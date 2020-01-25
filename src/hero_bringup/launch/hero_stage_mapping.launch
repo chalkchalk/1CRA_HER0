@@ -1,0 +1,18 @@
+<launch>
+  <arg name="map" value="icra2020"/>
+  <master auto="start"/>
+  <param name="/use_sim_time" value="true"/>
+
+
+  <!-- Run the stage simulator -->
+  <node pkg="stage_ros" type="stageros" name="stageros" args="$(find hero_bringup)/worlds/$(arg map).world" respawn="false" >
+    <remap from="base_scan" to="scan" />
+    <param name="base_watchdog_timeout" value="0.01" />
+  </node>
+
+ <include file="$(find hero_mapping)/launch/gmapping.launch"/>
+ 
+  <!-- Run the rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hero_mapping)/config/mapping.rviz" />
+
+</launch>

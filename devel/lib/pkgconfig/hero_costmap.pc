@@ -1,0 +1,8 @@
+prefix=/home/ycz/ICRA_HERO_ws/devel
+
+Name: hero_costmap
+Description: Description of hero_costmap
+Version: 1.0.0
+Cflags: -I/home/ycz/ICRA_HERO_ws/src/hero_costmap/include
+Libs: -L/home/ycz/ICRA_HERO_ws/devel/lib 
+Requires: 

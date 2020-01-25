@@ -1,0 +1,26 @@
+<launch>
+
+<include file="$(find hero_multistage)/launch/multi_stageros.launch"/>
+
+<include file="$(find hero_multistage)/launch/launch_robot.launch" >
+ <arg name="robot_num" value="robot_0"/>
+</include>
+
+<include file="$(find hero_multistage)/launch/launch_robot.launch" >
+ <arg name="robot_num" value="robot_1"/>
+</include>
+
+<include file="$(find hero_multistage)/launch/launch_robot.launch" >
+ <arg name="robot_num" value="robot_2"/>
+</include>
+
+<include file="$(find hero_multistage)/launch/launch_robot.launch" >
+ <arg name="robot_num" value="robot_3"/>
+</include>
+
+<node pkg="hero_judgesys" type="judgesys_control_node" name="judgesys_control_node" respawn="false"/>
+
+  <!-- Run the rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hero_multistage)/config/rviz/stage_ros_multibot.rviz"  />
+
+</launch>

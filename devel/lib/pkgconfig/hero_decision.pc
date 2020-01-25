@@ -1,0 +1,8 @@
+prefix=/home/ycz/ICRA_HERO_ws/devel
+
+Name: hero_decision
+Description: Description of hero_decision
+Version: 1.0.0
+Cflags: 
+Libs: -L/home/ycz/ICRA_HERO_ws/devel/lib 
+Requires: 
