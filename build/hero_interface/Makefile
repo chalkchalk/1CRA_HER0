@@ -369,6 +369,33 @@ src/qnode.cpp.s:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.s
 .PHONY : src/qnode.cpp.s
 
+src/rotatedrect.o: src/rotatedrect.cpp.o
+
+.PHONY : src/rotatedrect.o
+
+# target to build an object file
+src/rotatedrect.cpp.o:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o
+.PHONY : src/rotatedrect.cpp.o
+
+src/rotatedrect.i: src/rotatedrect.cpp.i
+
+.PHONY : src/rotatedrect.i
+
+# target to preprocess a source file
+src/rotatedrect.cpp.i:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.i
+.PHONY : src/rotatedrect.cpp.i
+
+src/rotatedrect.s: src/rotatedrect.cpp.s
+
+.PHONY : src/rotatedrect.s
+
+# target to generate assembly for a file
+src/rotatedrect.cpp.s:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.s
+.PHONY : src/rotatedrect.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -404,6 +431,9 @@ help:
 	@echo "... src/qnode.o"
 	@echo "... src/qnode.i"
 	@echo "... src/qnode.s"
+	@echo "... src/rotatedrect.o"
+	@echo "... src/rotatedrect.i"
+	@echo "... src/rotatedrect.s"
 .PHONY : help
 
 

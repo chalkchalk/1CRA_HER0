@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>847</width>
-    <height>679</height>
+    <width>1007</width>
+    <height>860</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,8 +32,8 @@
      <rect>
       <x>0</x>
       <y>10</y>
-      <width>441</width>
-      <height>621</height>
+      <width>541</width>
+      <height>801</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4"/>
@@ -41,10 +41,10 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>10</y>
-      <width>391</width>
-      <height>631</height>
+      <x>560</x>
+      <y>0</y>
+      <width>431</width>
+      <height>811</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -57,8 +57,8 @@
      <widget class="QPushButton" name="pushButtonReset">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>520</y>
+        <x>100</x>
+        <y>170</y>
         <width>61</width>
         <height>25</height>
        </rect>
@@ -80,22 +80,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>847</width>
+     <width>1007</width>
      <height>28</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_File">
-    <property name="title">
-     <string>&amp;App</string>
-    </property>
-    <addaction name="action_Preferences"/>
-    <addaction name="separator"/>
-    <addaction name="actionAbout"/>
-    <addaction name="actionAbout_Qt"/>
-    <addaction name="separator"/>
-    <addaction name="action_Quit"/>
-   </widget>
-   <addaction name="menu_File"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_Quit">

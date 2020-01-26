@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ycz/ICRA_HERO_ws/src/hero_interface/src/main.cpp" "/home/ycz/ICRA_HERO_ws/build/hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o"
   "/home/ycz/ICRA_HERO_ws/src/hero_interface/src/main_window.cpp" "/home/ycz/ICRA_HERO_ws/build/hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o"
   "/home/ycz/ICRA_HERO_ws/src/hero_interface/src/qnode.cpp" "/home/ycz/ICRA_HERO_ws/build/hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o"
+  "/home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.cpp" "/home/ycz/ICRA_HERO_ws/build/hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

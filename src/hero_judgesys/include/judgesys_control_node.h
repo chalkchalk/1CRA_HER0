@@ -19,7 +19,8 @@ namespace hero_judgesys{
              robots_.push_back(robot);
         }
         void UpdateVel();
-
+        bool KillRobot(std::string robot_num);
+        
 
         static const int HeatLimit = 240;
         static const int CoolingRateNormal = 120;

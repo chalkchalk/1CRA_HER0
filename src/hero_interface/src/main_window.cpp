@@ -27,9 +27,13 @@ using namespace Qt;
 
 MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 	: QMainWindow(parent)
-	, qnode(argc,argv)
+    , qnode(argc,argv,&battleView)
 {
 	ui.setupUi(this); // Calling this incidentally connects all ui's triggers to on_...() callbacks in this class.
+    setAutoFillBackground(false);  //这个不设置的话就背景变黑
+
+    setAttribute(Qt::WA_TranslucentBackground,true);
+
     QObject::connect(ui.actionAbout_Qt, SIGNAL(triggered(bool)), qApp, SLOT(aboutQt())); // qApp is a global variable for the application
 	setWindowIcon(QIcon(":/images/icon.png"));
     QObject::connect(&qnode, SIGNAL(rosShutdown()), this, SLOT(close()));
@@ -39,8 +43,11 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
     fTimer=new QTimer(this);
     connect(fTimer,SIGNAL(timeout()),this,SLOT(timer_timeout()));
-    fTimer->start(100);
-    battleView.AddRobot(new Robot("Robot_0","red"));
+    fTimer->start(20);
+    battleView.AddRobot(new Robot("robot_0","blue"));
+    battleView.AddRobot(new Robot("robot_1","blue"));
+    battleView.AddRobot(new Robot("robot_2","red"));
+    battleView.AddRobot(new Robot("robot_3","red"));
     qnode.init();
 }
 

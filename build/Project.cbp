@@ -3306,6 +3306,12 @@
       <Unit filename="/home/ycz/ICRA_HERO_ws/src/hero_interface/src/qnode.cpp">
          <Option target="hero_interface"/>
       </Unit>
+      <Unit filename="/home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.cpp">
+         <Option target="hero_interface"/>
+      </Unit>
+      <Unit filename="/home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.h">
+         <Option target="hero_interface"/>
+      </Unit>
       <Unit filename="/home/ycz/ICRA_HERO_ws/src/hero_interface/ui/main_window.ui">
          <Option target="hero_interface"/>
       </Unit>

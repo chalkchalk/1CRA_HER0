@@ -55,6 +55,10 @@ namespace hero_judgesys{
 
         void BuffHeal();
 
+        void Kill(){health_=0;}
+
+        
+
         private:
         hero_common::ErrorInfo Init(std::string robot_num, std::string color);
 

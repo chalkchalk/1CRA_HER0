@@ -6,9 +6,15 @@
 
 namespace hero_interface {
 
-#define POSE_TO_PIX 30
-#define ROBOT_WIDTH 20
-#define ROBOT_HEIGHT 24
+
+#define ROBOT_WIDTH 0.5
+#define ROBOT_HEIGHT 0.6
+
+#define ROBOT_WIDTH_PIX 50
+#define ROBOT_HEIGHT_PIX 60
+
+#define BATTLEFIELD_W 8.15
+#define BATTLEFIELD_H 5.15
 
 typedef struct
 {
@@ -48,6 +54,7 @@ public:
          robots_.push_back(robot);
     }
     void GetBattleView(QImage *qImage);
+    bool SetRobotPose(std::string robot_num,float x, float y, float yaw);
 
  private:
     std::vector<Robot* > robots_;

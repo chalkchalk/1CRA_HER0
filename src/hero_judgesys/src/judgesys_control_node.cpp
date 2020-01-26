@@ -20,6 +20,9 @@ ErrorInfo JydgesysControl::Init() {
 	AddRobot( new JydgesysRobot("robot_1","blue"));
 	AddRobot( new JydgesysRobot("robot_2","red"));
 	AddRobot( new JydgesysRobot("robot_3","red"));
+	//KillRobot("robot_1");
+	//KillRobot("robot_2");
+	//KillRobot("robot_3");
 	return ErrorInfo(ErrorCode::OK);
 }
 
@@ -31,9 +34,23 @@ void JydgesysControl::UpdateVel()
 	}
 }
 
+bool JydgesysControl::KillRobot(std::string robot_num)
+{
+	bool val = false;
+	 for (auto it = robots_.begin(); it != robots_.end(); ++it) {
+        if((*it)->GetNum() == robot_num)
+        {
+            (*it)->Kill();
+						ROS_INFO("[Hero_judgesys]Kill %s\n!",(*it)->GetNum().c_str());
+						val = true;
+        }
+    }
+		return val;
+}
 
 
 }
+
 
 
 int main(int argc, char *argv[])

@@ -32,7 +32,7 @@ ErrorInfo JydgesysRobot::Init(std::string robot_num, std::string color){
 	heat_ = 0;
 	ros::NodeHandle nh_;
 	judge_pub_ = nh_.advertise<geometry_msgs::Twist>(robot_num + "/" + "cmd_vel", 5);
-  judge_sub_ = nh_.subscribe<geometry_msgs::Twist>	(robot_num + "/" + "cmd_vel_raw", 100, &JydgesysRobot::RawVelCallback,this);
+    judge_sub_ = nh_.subscribe<geometry_msgs::Twist>	(robot_num + "/" + "cmd_vel_raw", 100, &JydgesysRobot::RawVelCallback,this);
 	return ErrorInfo(ErrorCode::OK);
 }
 

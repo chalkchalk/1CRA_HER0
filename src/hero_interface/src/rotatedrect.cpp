@@ -1,8 +1,6 @@
-#include "QRotatedRect.h"
+#include "rotatedrect.h"
 
-
-
-QRotatedRect::QRotatedRect(float cx, float cy, float w, float h, float angle)
+RotatedRect::RotatedRect(float cx, float cy, float w, float h, float angle)
 {
     this->cx = cx;
     this->cy = cy;
@@ -11,7 +9,16 @@ QRotatedRect::QRotatedRect(float cx, float cy, float w, float h, float angle)
     this->angle = angle;
 }
 
-QRotatedRect::QRotatedRect(const QPointF &center, const QSizeF &size, float angle)
+RotatedRect::RotatedRect()
+{
+    this->cx = 0;
+    this->cy = 0;
+    this->w = 0;
+    this->h = 0;
+    this->angle = 0;
+}
+
+RotatedRect::RotatedRect(const QPointF &center, const QSizeF &size, float angle)
 {
     this->cx = center.x();
     this->cy = center.y();
@@ -27,7 +34,7 @@ QRotatedRect::QRotatedRect(const QPointF &center, const QSizeF &size, float angl
 //         |          |
 //         |          |
 //  pts[3] ------------ pts[2]
-void QRotatedRect::points(QPointF pts[]) const
+void RotatedRect::points(QPointF pts[]) const
 {
     float fAngle = -angle * M_PI_180;
     float a = (float)sin(fAngle) * 0.5f;
@@ -42,20 +49,4 @@ void QRotatedRect::points(QPointF pts[]) const
     pts[3].setY(cy + b * h - a * w);
     pts[1].setX(2 * cx - pts[3].x());
     pts[1].setY(2 * cy - pts[3].y());
-}
-
-QRectF QRotatedRect::boundingRect() const
-{
-    QPointF pts[4];
-    this->points(pts);
-
-    float x1 = min(min(min(pts[3].x(), pts[0].x()), pts[1].x()), pts[2].x());
-    float y1 = min(min(min(pts[3].y(), pts[0].y()), pts[1].y()), pts[2].y());
-    float x2 = max(max(max(pts[3].x(), pts[0].x()), pts[1].x()), pts[2].x());
-    float y2 = max(max(max(pts[3].y(), pts[0].y()), pts[1].y()), pts[2].y());
-
-    QPointF topleft(x1, y1);
-    QPointF bottomRight(x2, y2);
-
-    return QRectF(topleft, bottomRight);
 }

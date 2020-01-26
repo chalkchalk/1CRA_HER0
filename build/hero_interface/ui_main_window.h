@@ -17,7 +17,6 @@
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QMainWindow>
-#include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
 #include <QtGui/QStatusBar>
@@ -41,14 +40,13 @@ public:
     QPushButton *pushButtonReset;
     QWidget *tab_2;
     QMenuBar *menubar;
-    QMenu *menu_File;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindowDesign)
     {
         if (MainWindowDesign->objectName().isEmpty())
             MainWindowDesign->setObjectName(QString::fromUtf8("MainWindowDesign"));
-        MainWindowDesign->resize(847, 679);
+        MainWindowDesign->resize(1007, 860);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -71,18 +69,18 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(0, 10, 441, 621));
+        horizontalLayoutWidget->setGeometry(QRect(0, 10, 541, 801));
         horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(450, 10, 391, 631));
+        tabWidget->setGeometry(QRect(560, 0, 431, 811));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         pushButtonReset = new QPushButton(tab);
         pushButtonReset->setObjectName(QString::fromUtf8("pushButtonReset"));
-        pushButtonReset->setGeometry(QRect(10, 520, 61, 25));
+        pushButtonReset->setGeometry(QRect(100, 170, 61, 25));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -90,21 +88,11 @@ public:
         MainWindowDesign->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindowDesign);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 847, 28));
-        menu_File = new QMenu(menubar);
-        menu_File->setObjectName(QString::fromUtf8("menu_File"));
+        menubar->setGeometry(QRect(0, 0, 1007, 28));
         MainWindowDesign->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindowDesign);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindowDesign->setStatusBar(statusbar);
-
-        menubar->addAction(menu_File->menuAction());
-        menu_File->addAction(action_Preferences);
-        menu_File->addSeparator();
-        menu_File->addAction(actionAbout);
-        menu_File->addAction(actionAbout_Qt);
-        menu_File->addSeparator();
-        menu_File->addAction(action_Quit);
 
         retranslateUi(MainWindowDesign);
         QObject::connect(action_Quit, SIGNAL(triggered()), MainWindowDesign, SLOT(close()));
@@ -126,7 +114,6 @@ public:
         pushButtonReset->setText(QApplication::translate("MainWindowDesign", "\345\244\215\344\275\215", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindowDesign", "\350\243\201\345\210\244\347\263\273\347\273\237", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindowDesign", "\347\211\251\347\220\206\345\274\225\346\223\216", 0, QApplication::UnicodeUTF8));
-        menu_File->setTitle(QApplication::translate("MainWindowDesign", "&App", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

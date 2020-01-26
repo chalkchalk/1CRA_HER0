@@ -149,9 +149,33 @@ hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o.provides: hero_inte
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o.provides.build: hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o
 
 
+hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o: hero_interface/CMakeFiles/hero_interface.dir/flags.make
+hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o"
+	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o -c /home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.cpp
+
+hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.i"
+	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.cpp > CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.i
+
+hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.s"
+	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.cpp -o CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.s
+
+hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o.requires:
+
+.PHONY : hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o.requires
+
+hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o.provides: hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o.requires
+	$(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o.provides.build
+.PHONY : hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o.provides
+
+hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o.provides.build: hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o
+
+
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: hero_interface/CMakeFiles/hero_interface.dir/flags.make
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/src/main_window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o"
 	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hero_interface.dir/src/main_window.cpp.o -c /home/ycz/ICRA_HERO_ws/src/hero_interface/src/main_window.cpp
 
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.i: cmake_force
@@ -175,7 +199,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o.provides.buil
 
 hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o: hero_interface/CMakeFiles/hero_interface.dir/flags.make
 hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o: hero_interface/qrc_images.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o"
 	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hero_interface.dir/qrc_images.cxx.o -c /home/ycz/ICRA_HERO_ws/build/hero_interface/qrc_images.cxx
 
 hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.i: cmake_force
@@ -199,7 +223,7 @@ hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o.provides.build: he
 
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: hero_interface/CMakeFiles/hero_interface.dir/flags.make
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: hero_interface/include/hero_interface/moc_main_window.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o"
 	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o -c /home/ycz/ICRA_HERO_ws/build/hero_interface/include/hero_interface/moc_main_window.cxx
 
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.i: cmake_force
@@ -223,7 +247,7 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
 
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: hero_interface/CMakeFiles/hero_interface.dir/flags.make
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: hero_interface/include/hero_interface/moc_qnode.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o"
 	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o -c /home/ycz/ICRA_HERO_ws/build/hero_interface/include/hero_interface/moc_qnode.cxx
 
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.i: cmake_force
@@ -250,6 +274,7 @@ hero_interface_OBJECTS = \
 "CMakeFiles/hero_interface.dir/src/battleview.cpp.o" \
 "CMakeFiles/hero_interface.dir/src/main.cpp.o" \
 "CMakeFiles/hero_interface.dir/src/qnode.cpp.o" \
+"CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o" \
 "CMakeFiles/hero_interface.dir/src/main_window.cpp.o" \
 "CMakeFiles/hero_interface.dir/qrc_images.cxx.o" \
 "CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o" \
@@ -261,6 +286,7 @@ hero_interface_EXTERNAL_OBJECTS =
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o
@@ -289,7 +315,7 @@ hero_interface_EXTERNAL_OBJECTS =
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface"
 	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hero_interface.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -300,6 +326,7 @@ hero_interface/CMakeFiles/hero_interface.dir/build: /home/ycz/ICRA_HERO_ws/devel
 hero_interface/CMakeFiles/hero_interface.dir/requires: hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o.requires
 hero_interface/CMakeFiles/hero_interface.dir/requires: hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o.requires
 hero_interface/CMakeFiles/hero_interface.dir/requires: hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o.requires
+hero_interface/CMakeFiles/hero_interface.dir/requires: hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o.requires
 hero_interface/CMakeFiles/hero_interface.dir/requires: hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o.requires
 hero_interface/CMakeFiles/hero_interface.dir/requires: hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o.requires
 hero_interface/CMakeFiles/hero_interface.dir/requires: hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o.requires

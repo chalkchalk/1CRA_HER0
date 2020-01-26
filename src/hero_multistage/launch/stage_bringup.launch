@@ -18,7 +18,7 @@
  <arg name="robot_num" value="robot_3"/>
 </include>
 
-<node pkg="hero_judgesys" type="judgesys_control_node" name="judgesys_control_node" respawn="false"/>
+<node pkg="hero_judgesys" type="judgesys_control_node" name="judgesys_control_node" respawn="false" output="screen"/>
 
   <!-- Run the rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hero_multistage)/config/rviz/stage_ros_multibot.rviz"  />

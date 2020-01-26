@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/hero_interface.dir/src/battleview.cpp.o"
   "CMakeFiles/hero_interface.dir/src/main.cpp.o"
   "CMakeFiles/hero_interface.dir/src/qnode.cpp.o"
+  "CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o"
   "CMakeFiles/hero_interface.dir/src/main_window.cpp.o"
   "CMakeFiles/hero_interface.dir/qrc_images.cxx.o"
   "CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o"
