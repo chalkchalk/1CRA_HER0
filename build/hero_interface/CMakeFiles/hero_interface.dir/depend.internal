@@ -3,6 +3,11 @@
 
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o
  /home/ycz/ICRA_HERO_ws/build/hero_interface/include/hero_interface/moc_main_window.cxx
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp
@@ -258,8 +263,10 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
  /usr/include/qt4/QtGui/QCommonStyle
  /usr/include/qt4/QtGui/QFileDialog
  /usr/include/qt4/QtGui/QFont
+ /usr/include/qt4/QtGui/QGroupBox
  /usr/include/qt4/QtGui/QHBoxLayout
  /usr/include/qt4/QtGui/QHeaderView
+ /usr/include/qt4/QtGui/QLabel
  /usr/include/qt4/QtGui/QLayout
  /usr/include/qt4/QtGui/QMainWindow
  /usr/include/qt4/QtGui/QMatrix4x4
@@ -268,6 +275,7 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
  /usr/include/qt4/QtGui/QPalette
  /usr/include/qt4/QtGui/QPlatformWindow
  /usr/include/qt4/QtGui/QPrinter
+ /usr/include/qt4/QtGui/QProgressBar
  /usr/include/qt4/QtGui/QPushButton
  /usr/include/qt4/QtGui/QStatusBar
  /usr/include/qt4/QtGui/QStringListModel
@@ -512,6 +520,11 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
  hero_interface/ui_main_window.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o
  /home/ycz/ICRA_HERO_ws/build/hero_interface/include/hero_interface/moc_qnode.cxx
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp
  /opt/ros/kinetic/include/geometry_msgs/Point.h
@@ -1008,9 +1021,83 @@ hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o
  /usr/include/qt4/QtCore/qfeatures.h
  /usr/include/qt4/QtCore/qglobal.h
 hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
+ /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp
+ /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/rotatedrect.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/src/battleview.cpp
- /home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.h
+ /opt/ros/kinetic/include/geometry_msgs/Point.h
+ /opt/ros/kinetic/include/geometry_msgs/Pose.h
+ /opt/ros/kinetic/include/geometry_msgs/PoseWithCovariance.h
+ /opt/ros/kinetic/include/geometry_msgs/Quaternion.h
+ /opt/ros/kinetic/include/geometry_msgs/Twist.h
+ /opt/ros/kinetic/include/geometry_msgs/TwistWithCovariance.h
+ /opt/ros/kinetic/include/geometry_msgs/Vector3.h
+ /opt/ros/kinetic/include/nav_msgs/Odometry.h
+ /opt/ros/kinetic/include/ros/advertise_options.h
+ /opt/ros/kinetic/include/ros/advertise_service_options.h
+ /opt/ros/kinetic/include/ros/assert.h
+ /opt/ros/kinetic/include/ros/builtin_message_traits.h
+ /opt/ros/kinetic/include/ros/common.h
+ /opt/ros/kinetic/include/ros/console.h
+ /opt/ros/kinetic/include/ros/console_backend.h
+ /opt/ros/kinetic/include/ros/datatypes.h
+ /opt/ros/kinetic/include/ros/duration.h
+ /opt/ros/kinetic/include/ros/exception.h
+ /opt/ros/kinetic/include/ros/exceptions.h
+ /opt/ros/kinetic/include/ros/forwards.h
+ /opt/ros/kinetic/include/ros/init.h
+ /opt/ros/kinetic/include/ros/macros.h
+ /opt/ros/kinetic/include/ros/master.h
+ /opt/ros/kinetic/include/ros/message.h
+ /opt/ros/kinetic/include/ros/message_event.h
+ /opt/ros/kinetic/include/ros/message_forward.h
+ /opt/ros/kinetic/include/ros/message_operations.h
+ /opt/ros/kinetic/include/ros/message_traits.h
+ /opt/ros/kinetic/include/ros/names.h
+ /opt/ros/kinetic/include/ros/node_handle.h
+ /opt/ros/kinetic/include/ros/package.h
+ /opt/ros/kinetic/include/ros/param.h
+ /opt/ros/kinetic/include/ros/parameter_adapter.h
+ /opt/ros/kinetic/include/ros/platform.h
+ /opt/ros/kinetic/include/ros/publisher.h
+ /opt/ros/kinetic/include/ros/rate.h
+ /opt/ros/kinetic/include/ros/ros.h
+ /opt/ros/kinetic/include/ros/roscpp_serialization_macros.h
+ /opt/ros/kinetic/include/ros/rostime_decl.h
+ /opt/ros/kinetic/include/ros/serialization.h
+ /opt/ros/kinetic/include/ros/serialized_message.h
+ /opt/ros/kinetic/include/ros/service.h
+ /opt/ros/kinetic/include/ros/service_callback_helper.h
+ /opt/ros/kinetic/include/ros/service_client.h
+ /opt/ros/kinetic/include/ros/service_client_options.h
+ /opt/ros/kinetic/include/ros/service_server.h
+ /opt/ros/kinetic/include/ros/service_traits.h
+ /opt/ros/kinetic/include/ros/single_subscriber_publisher.h
+ /opt/ros/kinetic/include/ros/spinner.h
+ /opt/ros/kinetic/include/ros/static_assert.h
+ /opt/ros/kinetic/include/ros/steady_timer.h
+ /opt/ros/kinetic/include/ros/steady_timer_options.h
+ /opt/ros/kinetic/include/ros/subscribe_options.h
+ /opt/ros/kinetic/include/ros/subscriber.h
+ /opt/ros/kinetic/include/ros/subscription_callback_helper.h
+ /opt/ros/kinetic/include/ros/this_node.h
+ /opt/ros/kinetic/include/ros/time.h
+ /opt/ros/kinetic/include/ros/timer.h
+ /opt/ros/kinetic/include/ros/timer_options.h
+ /opt/ros/kinetic/include/ros/topic.h
+ /opt/ros/kinetic/include/ros/transport_hints.h
+ /opt/ros/kinetic/include/ros/types.h
+ /opt/ros/kinetic/include/ros/wall_timer.h
+ /opt/ros/kinetic/include/ros/wall_timer_options.h
+ /opt/ros/kinetic/include/rosconsole/macros_generated.h
+ /opt/ros/kinetic/include/std_msgs/Header.h
+ /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
+ /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
  /usr/include/qt4/Qt3Support/q3cstring.h
  /usr/include/qt4/Qt3Support/q3valuelist.h
  /usr/include/qt4/QtCore/QDate
@@ -1018,6 +1105,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o
  /usr/include/qt4/QtCore/QObject
  /usr/include/qt4/QtCore/QPoint
  /usr/include/qt4/QtCore/QPointF
+ /usr/include/qt4/QtCore/QThread
  /usr/include/qt4/QtCore/QtCore
  /usr/include/qt4/QtCore/qabstractanimation.h
  /usr/include/qt4/QtCore/qabstracteventdispatcher.h
@@ -1194,6 +1282,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o
  /usr/include/qt4/QtGui/QPalette
  /usr/include/qt4/QtGui/QPlatformWindow
  /usr/include/qt4/QtGui/QPrinter
+ /usr/include/qt4/QtGui/QStringListModel
  /usr/include/qt4/QtGui/QTransform
  /usr/include/qt4/QtGui/QVector3D
  /usr/include/qt4/QtGui/QtGui
@@ -1431,6 +1520,11 @@ hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o
  /usr/include/qt4/QtGui/qworkspace.h
  /usr/include/qt4/QtGui/qwsembedwidget.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp
@@ -1687,8 +1781,10 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
  /usr/include/qt4/QtGui/QCommonStyle
  /usr/include/qt4/QtGui/QFileDialog
  /usr/include/qt4/QtGui/QFont
+ /usr/include/qt4/QtGui/QGroupBox
  /usr/include/qt4/QtGui/QHBoxLayout
  /usr/include/qt4/QtGui/QHeaderView
+ /usr/include/qt4/QtGui/QLabel
  /usr/include/qt4/QtGui/QLayout
  /usr/include/qt4/QtGui/QMainWindow
  /usr/include/qt4/QtGui/QMatrix4x4
@@ -1697,6 +1793,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
  /usr/include/qt4/QtGui/QPalette
  /usr/include/qt4/QtGui/QPlatformWindow
  /usr/include/qt4/QtGui/QPrinter
+ /usr/include/qt4/QtGui/QProgressBar
  /usr/include/qt4/QtGui/QPushButton
  /usr/include/qt4/QtGui/QStatusBar
  /usr/include/qt4/QtGui/QStringListModel
@@ -1940,6 +2037,11 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
  /usr/include/qt4/QtGui/qwsembedwidget.h
  hero_interface/ui_main_window.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp
@@ -2196,8 +2298,10 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
  /usr/include/qt4/QtGui/QCommonStyle
  /usr/include/qt4/QtGui/QFileDialog
  /usr/include/qt4/QtGui/QFont
+ /usr/include/qt4/QtGui/QGroupBox
  /usr/include/qt4/QtGui/QHBoxLayout
  /usr/include/qt4/QtGui/QHeaderView
+ /usr/include/qt4/QtGui/QLabel
  /usr/include/qt4/QtGui/QLayout
  /usr/include/qt4/QtGui/QMainWindow
  /usr/include/qt4/QtGui/QMatrix4x4
@@ -2207,6 +2311,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
  /usr/include/qt4/QtGui/QPalette
  /usr/include/qt4/QtGui/QPlatformWindow
  /usr/include/qt4/QtGui/QPrinter
+ /usr/include/qt4/QtGui/QProgressBar
  /usr/include/qt4/QtGui/QPushButton
  /usr/include/qt4/QtGui/QStatusBar
  /usr/include/qt4/QtGui/QStringListModel
@@ -2450,6 +2555,11 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
  /usr/include/qt4/QtGui/qwsembedwidget.h
  hero_interface/ui_main_window.h
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp
  /home/ycz/ICRA_HERO_ws/src/hero_interface/src/qnode.cpp
@@ -2944,8 +3054,8 @@ hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o
  /usr/include/qt4/QtGui/qworkspace.h
  /usr/include/qt4/QtGui/qwsembedwidget.h
 hero_interface/CMakeFiles/hero_interface.dir/src/rotatedrect.cpp.o
+ /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/rotatedrect.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.cpp
- /home/ycz/ICRA_HERO_ws/src/hero_interface/src/rotatedrect.h
  /usr/include/qt4/Qt3Support/q3cstring.h
  /usr/include/qt4/Qt3Support/q3valuelist.h
  /usr/include/qt4/QtCore/QDate

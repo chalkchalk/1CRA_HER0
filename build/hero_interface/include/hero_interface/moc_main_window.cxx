@@ -22,7 +22,7 @@ static const uint qt_meta_data_hero_interface__MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,13 +32,43 @@ static const uint qt_meta_data_hero_interface__MainWindow[] = {
  // slots: signature, parameters, type, tag, flags
       28,   27,   27,   27, 0x0a,
       44,   27,   27,   27, 0x0a,
+      72,   27,   27,   27, 0x0a,
+     102,   27,   27,   27, 0x0a,
+     132,   27,   27,   27, 0x0a,
+     162,   27,   27,   27, 0x0a,
+     194,   27,   27,   27, 0x0a,
+     226,   27,   27,   27, 0x0a,
+     258,   27,   27,   27, 0x0a,
+     288,   27,   27,   27, 0x0a,
+     320,   27,   27,   27, 0x0a,
+     352,   27,   27,   27, 0x0a,
+     384,   27,   27,   27, 0x0a,
+     414,   27,   27,   27, 0x0a,
+     446,   27,   27,   27, 0x0a,
+     478,   27,   27,   27, 0x0a,
+     510,   27,   27,   27, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_hero_interface__MainWindow[] = {
     "hero_interface::MainWindow\0\0timer_timeout()\0"
-    "on_pushButtonReset_clicked()\0"
+    "on_pushButtonKill_clicked()\0"
+    "on_pushButtonRevive_clicked()\0"
+    "on_pushButtonReload_clicked()\0"
+    "on_pushButtonDisarm_clicked()\0"
+    "on_pushButtonDisarm_4_clicked()\0"
+    "on_pushButtonReload_4_clicked()\0"
+    "on_pushButtonRevive_4_clicked()\0"
+    "on_pushButtonKill_4_clicked()\0"
+    "on_pushButtonDisarm_3_clicked()\0"
+    "on_pushButtonReload_3_clicked()\0"
+    "on_pushButtonRevive_3_clicked()\0"
+    "on_pushButtonKill_3_clicked()\0"
+    "on_pushButtonDisarm_1_clicked()\0"
+    "on_pushButtonReload_1_clicked()\0"
+    "on_pushButtonRevive_1_clicked()\0"
+    "on_pushButtonKill_1_clicked()\0"
 };
 
 void hero_interface::MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -48,7 +78,22 @@ void hero_interface::MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Ca
         MainWindow *_t = static_cast<MainWindow *>(_o);
         switch (_id) {
         case 0: _t->timer_timeout(); break;
-        case 1: _t->on_pushButtonReset_clicked(); break;
+        case 1: _t->on_pushButtonKill_clicked(); break;
+        case 2: _t->on_pushButtonRevive_clicked(); break;
+        case 3: _t->on_pushButtonReload_clicked(); break;
+        case 4: _t->on_pushButtonDisarm_clicked(); break;
+        case 5: _t->on_pushButtonDisarm_4_clicked(); break;
+        case 6: _t->on_pushButtonReload_4_clicked(); break;
+        case 7: _t->on_pushButtonRevive_4_clicked(); break;
+        case 8: _t->on_pushButtonKill_4_clicked(); break;
+        case 9: _t->on_pushButtonDisarm_3_clicked(); break;
+        case 10: _t->on_pushButtonReload_3_clicked(); break;
+        case 11: _t->on_pushButtonRevive_3_clicked(); break;
+        case 12: _t->on_pushButtonKill_3_clicked(); break;
+        case 13: _t->on_pushButtonDisarm_1_clicked(); break;
+        case 14: _t->on_pushButtonReload_1_clicked(); break;
+        case 15: _t->on_pushButtonRevive_1_clicked(); break;
+        case 16: _t->on_pushButtonKill_1_clicked(); break;
         default: ;
         }
     }
@@ -87,9 +132,9 @@ int hero_interface::MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void 
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 17;
     }
     return _id;
 }

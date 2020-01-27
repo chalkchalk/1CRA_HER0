@@ -26,6 +26,9 @@
 #include <QStringListModel>
 #include "nav_msgs//Odometry.h"
 #include "battleview.h"
+#include "hero_msgs/JudgeSysControl.h"
+#include "hero_msgs/RobotStatus.h"
+#include "hero_msgs/RobotHeat.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -58,7 +61,22 @@ public:
 	 };
 
 	QStringListModel* loggingModel() { return &logging_model; }
-    void PoseCallback(const nav_msgs::Odometry::ConstPtr& msg);
+    bool KillRobot(std::string robot_name);
+    bool ReviveRobot(std::string robot_name);
+    bool ReloadRobot(std::string robot_name);
+    bool DisarmRobot(std::string robot_name);
+    hero_msgs::RobotStatus GetRoboStatus(int index)
+    {
+        return roboStatus_[index];
+    }
+    hero_msgs::RobotHeat GetRoboHeat(int index)
+    {
+        return roboHeat_[index];
+    }
+    int GetRobotHeat(int index)
+    {return roboHeat_[index].shooter_heat;}
+    int GetRobotHealth(int index)
+    {return roboStatus_[index].remain_hp;}
 
 Q_SIGNALS:
     void rosShutdown();
@@ -68,8 +86,28 @@ private:
 	char** init_argv;
 	ros::Publisher chatter_publisher;
     ros::Subscriber pose_sub_[4];
+    ros::Subscriber judgeStatus_sub_[4];
+    ros::Subscriber judgeHeat_sub_[4];
+
     QStringListModel logging_model;
     BattleView *parentBattleView_;
+    ros::ServiceClient client_;
+    hero_msgs::RobotStatus roboStatus_[4];
+    hero_msgs::RobotHeat roboHeat_[4];
+    bool SendJudgeSysCall(int comman, std::string robot_name);
+    void RobotStatusCallback0(const hero_msgs::RobotStatus::ConstPtr& msg);
+    void RobotStatusCallback1(const hero_msgs::RobotStatus::ConstPtr& msg);
+    void RobotStatusCallback2(const hero_msgs::RobotStatus::ConstPtr& msg);
+    void RobotStatusCallback3(const hero_msgs::RobotStatus::ConstPtr& msg);
+    void SetRobotStatus(const hero_msgs::RobotStatus::ConstPtr& msg,int index);
+    void PoseCallback(const nav_msgs::Odometry::ConstPtr& msg);
+    void RobotHeatCallback0(const hero_msgs::RobotHeat::ConstPtr& msg);
+    void RobotHeatCallback1(const hero_msgs::RobotHeat::ConstPtr& msg);
+    void RobotHeatCallback2(const hero_msgs::RobotHeat::ConstPtr& msg);
+    void RobotHeatCallback3(const hero_msgs::RobotHeat::ConstPtr& msg);
+
+    void SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index);
+
 };
 
 }  // namespace hero_interface

@@ -1,0 +1,4 @@
+int32 command
+string robot_name
+---
+int32 error_code

@@ -108,6 +108,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/GimbalMode.srv"
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/FricWhl.srv"
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/ShootCmd.srv"
+    "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv"
     )
 endif()
 

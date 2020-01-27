@@ -89,6 +89,17 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -122,17 +133,6 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/ycz/ICRA_HERO_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles /home/ycz/ICRA_HERO_ws/build/hero_multistage/CMakeFiles/progress.marks
@@ -165,6 +165,75 @@ depend:
 	cd /home/ycz/ICRA_HERO_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+hero_multistage/CMakeFiles/robot_physics_node.dir/rule:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_multistage/CMakeFiles/robot_physics_node.dir/rule
+.PHONY : hero_multistage/CMakeFiles/robot_physics_node.dir/rule
+
+# Convenience name for target.
+robot_physics_node: hero_multistage/CMakeFiles/robot_physics_node.dir/rule
+
+.PHONY : robot_physics_node
+
+# fast build rule for target.
+robot_physics_node/fast:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/build
+.PHONY : robot_physics_node/fast
+
+src/robot_physics.o: src/robot_physics.cpp.o
+
+.PHONY : src/robot_physics.o
+
+# target to build an object file
+src/robot_physics.cpp.o:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o
+.PHONY : src/robot_physics.cpp.o
+
+src/robot_physics.i: src/robot_physics.cpp.i
+
+.PHONY : src/robot_physics.i
+
+# target to preprocess a source file
+src/robot_physics.cpp.i:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.i
+.PHONY : src/robot_physics.cpp.i
+
+src/robot_physics.s: src/robot_physics.cpp.s
+
+.PHONY : src/robot_physics.s
+
+# target to generate assembly for a file
+src/robot_physics.cpp.s:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.s
+.PHONY : src/robot_physics.cpp.s
+
+src/robot_tf.o: src/robot_tf.cpp.o
+
+.PHONY : src/robot_tf.o
+
+# target to build an object file
+src/robot_tf.cpp.o:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_tf.cpp.o
+.PHONY : src/robot_tf.cpp.o
+
+src/robot_tf.i: src/robot_tf.cpp.i
+
+.PHONY : src/robot_tf.i
+
+# target to preprocess a source file
+src/robot_tf.cpp.i:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_tf.cpp.i
+.PHONY : src/robot_tf.cpp.i
+
+src/robot_tf.s: src/robot_tf.cpp.s
+
+.PHONY : src/robot_tf.s
+
+# target to generate assembly for a file
+src/robot_tf.cpp.s:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_tf.cpp.s
+.PHONY : src/robot_tf.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -174,10 +243,17 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... robot_physics_node"
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... test"
-	@echo "... edit_cache"
+	@echo "... src/robot_physics.o"
+	@echo "... src/robot_physics.i"
+	@echo "... src/robot_physics.s"
+	@echo "... src/robot_tf.o"
+	@echo "... src/robot_tf.i"
+	@echo "... src/robot_tf.s"
 .PHONY : help
 
 

@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
 find_package(catkin REQUIRED COMPONENTS
+  actionlib_msgs
     std_msgs
     nav_msgs
     geometry_msgs
@@ -51,13 +52,21 @@ add_service_files(
     GimbalMode.srv
     FricWhl.srv
     ShootCmd.srv
+    JudgeSysControl.srv
 )
 
 generate_messages(
     DEPENDENCIES
+  actionlib_msgs
     std_msgs
     geometry_msgs
     nav_msgs
 )
 
-catkin_package()
+catkin_package(
+  CATKIN_DEPENDS
+  message_runtime)
+# add_action_files(
+#   FILES
+# )
+

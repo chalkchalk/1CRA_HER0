@@ -7,20 +7,20 @@ init_pose_topic_name : "initialpose"
 transform_tolerance  : 0.1
 #8.40 #1.0
 #14.35 #1.0
-initial_pose_x_robot_0 : 1
+initial_pose_x_robot_0 : 0.5
 initial_pose_y_robot_0 : 0.6
 initial_pose_a_robot_0 : 3.14
 
-initial_pose_x_robot_1 : 1
-initial_pose_y_robot_1 : 4.5
+initial_pose_x_robot_1 : 0.5
+initial_pose_y_robot_1 : 4.7
 initial_pose_a_robot_1 : 3.14
 
-initial_pose_x_robot_2 : 7.2
+initial_pose_x_robot_2 : 7.5
 initial_pose_y_robot_2 : 0.6
 initial_pose_a_robot_2 : 0
 
-initial_pose_x_robot_3 : 7.2
-initial_pose_y_robot_3 : 4.5
+initial_pose_x_robot_3 : 7.5
+initial_pose_y_robot_3 : 4.7
 initial_pose_a_robot_3 : 0
 initial_cov_xx : 0.1
 initial_cov_yy : 0.1

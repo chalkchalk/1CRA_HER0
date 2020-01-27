@@ -296,7 +296,6 @@ hero_interface_EXTERNAL_OBJECTS =
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libQtCore.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/libactionlib.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/libroscpp.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_signals.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/librosconsole.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
@@ -307,13 +306,19 @@ hero_interface_EXTERNAL_OBJECTS =
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/libroscpp_serialization.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/librostime.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/libcpp_common.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_system.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_thread.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/libroslib.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /opt/ros/kinetic/lib/librospack.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface: hero_interface/CMakeFiles/hero_interface.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable /home/ycz/ICRA_HERO_ws/devel/lib/hero_interface/hero_interface"
 	cd /home/ycz/ICRA_HERO_ws/build/hero_interface && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hero_interface.dir/link.txt --verbose=$(VERBOSE)

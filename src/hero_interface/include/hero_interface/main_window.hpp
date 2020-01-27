@@ -41,8 +41,22 @@ public Q_SLOTS:
 
 
     void timer_timeout(); //定时溢出处理槽函数
-
-    void on_pushButtonReset_clicked();
+    void on_pushButtonKill_clicked();
+    void on_pushButtonRevive_clicked();
+    void on_pushButtonReload_clicked();
+    void on_pushButtonDisarm_clicked();
+    void on_pushButtonDisarm_4_clicked();
+    void on_pushButtonReload_4_clicked();
+    void on_pushButtonRevive_4_clicked();
+    void on_pushButtonKill_4_clicked();
+    void on_pushButtonDisarm_3_clicked();
+    void on_pushButtonReload_3_clicked();
+    void on_pushButtonRevive_3_clicked();
+    void on_pushButtonKill_3_clicked();
+    void on_pushButtonDisarm_1_clicked();
+    void on_pushButtonReload_1_clicked();
+    void on_pushButtonRevive_1_clicked();
+    void on_pushButtonKill_1_clicked();
 
 private:
 	Ui::MainWindowDesign ui;
@@ -50,6 +64,9 @@ private:
     BattleView battleView;
     QImage          image;
     QTimer *fTimer;//定时器
+
+
+    void ShowJudgeSysInfo();
 };
 
 }  // namespace hero_interface

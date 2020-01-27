@@ -1,8 +1,8 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "hero_msgs: 38 messages, 3 services")
+message(STATUS "hero_msgs: 38 messages, 4 services")
 
-set(MSG_I_FLAGS "-Ihero_msgs:/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg;-Ihero_msgs:/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg;-Ihero_msgs:/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system;-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg;-Inav_msgs:/opt/ros/kinetic/share/nav_msgs/cmake/../msg;-Iactionlib_msgs:/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Ihero_msgs:/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg;-Ihero_msgs:/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg;-Ihero_msgs:/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system;-Iactionlib_msgs:/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg;-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg;-Inav_msgs:/opt/ros/kinetic/share/nav_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -35,6 +35,11 @@ add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/ShootCmd.srv" NAME_WE)
 add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hero_msgs" "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/ShootCmd.srv" ""
+)
+
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv" NAME_WE)
+add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hero_msgs" "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv" ""
 )
 
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/GimbalRate.msg" NAME_WE)
@@ -459,6 +464,12 @@ _generate_msg_cpp(hero_msgs
 
 ### Generating Services
 _generate_srv_cpp(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hero_msgs
+)
+_generate_srv_cpp(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/GimbalMode.srv"
   "${MSG_I_FLAGS}"
   ""
@@ -496,6 +507,8 @@ add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_ch
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/LocalPlannerAction.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/ShootCmd.srv" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/GimbalRate.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
@@ -812,6 +825,12 @@ _generate_msg_eus(hero_msgs
 
 ### Generating Services
 _generate_srv_eus(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hero_msgs
+)
+_generate_srv_eus(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/GimbalMode.srv"
   "${MSG_I_FLAGS}"
   ""
@@ -849,6 +868,8 @@ add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_ch
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/LocalPlannerAction.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/ShootCmd.srv" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/GimbalRate.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
@@ -1165,6 +1186,12 @@ _generate_msg_lisp(hero_msgs
 
 ### Generating Services
 _generate_srv_lisp(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hero_msgs
+)
+_generate_srv_lisp(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/GimbalMode.srv"
   "${MSG_I_FLAGS}"
   ""
@@ -1202,6 +1229,8 @@ add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_c
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/LocalPlannerAction.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/ShootCmd.srv" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/GimbalRate.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
@@ -1518,6 +1547,12 @@ _generate_msg_nodejs(hero_msgs
 
 ### Generating Services
 _generate_srv_nodejs(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hero_msgs
+)
+_generate_srv_nodejs(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/GimbalMode.srv"
   "${MSG_I_FLAGS}"
   ""
@@ -1555,6 +1590,8 @@ add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/LocalPlannerAction.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/ShootCmd.srv" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/GimbalRate.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
@@ -1871,6 +1908,12 @@ _generate_msg_py(hero_msgs
 
 ### Generating Services
 _generate_srv_py(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hero_msgs
+)
+_generate_srv_py(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/GimbalMode.srv"
   "${MSG_I_FLAGS}"
   ""
@@ -1908,6 +1951,8 @@ add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_che
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/LocalPlannerAction.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/ShootCmd.srv" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/srv/JudgeSysControl.srv" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/GimbalRate.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
@@ -2000,6 +2045,9 @@ if(gencpp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/he
     DESTINATION ${gencpp_INSTALL_DIR}
   )
 endif()
+if(TARGET actionlib_msgs_generate_messages_cpp)
+  add_dependencies(hero_msgs_generate_messages_cpp actionlib_msgs_generate_messages_cpp)
+endif()
 if(TARGET std_msgs_generate_messages_cpp)
   add_dependencies(hero_msgs_generate_messages_cpp std_msgs_generate_messages_cpp)
 endif()
@@ -2016,6 +2064,9 @@ if(geneus_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/he
     DIRECTORY ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hero_msgs
     DESTINATION ${geneus_INSTALL_DIR}
   )
+endif()
+if(TARGET actionlib_msgs_generate_messages_eus)
+  add_dependencies(hero_msgs_generate_messages_eus actionlib_msgs_generate_messages_eus)
 endif()
 if(TARGET std_msgs_generate_messages_eus)
   add_dependencies(hero_msgs_generate_messages_eus std_msgs_generate_messages_eus)
@@ -2034,6 +2085,9 @@ if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/
     DESTINATION ${genlisp_INSTALL_DIR}
   )
 endif()
+if(TARGET actionlib_msgs_generate_messages_lisp)
+  add_dependencies(hero_msgs_generate_messages_lisp actionlib_msgs_generate_messages_lisp)
+endif()
 if(TARGET std_msgs_generate_messages_lisp)
   add_dependencies(hero_msgs_generate_messages_lisp std_msgs_generate_messages_lisp)
 endif()
@@ -2050,6 +2104,9 @@ if(gennodejs_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_D
     DIRECTORY ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hero_msgs
     DESTINATION ${gennodejs_INSTALL_DIR}
   )
+endif()
+if(TARGET actionlib_msgs_generate_messages_nodejs)
+  add_dependencies(hero_msgs_generate_messages_nodejs actionlib_msgs_generate_messages_nodejs)
 endif()
 if(TARGET std_msgs_generate_messages_nodejs)
   add_dependencies(hero_msgs_generate_messages_nodejs std_msgs_generate_messages_nodejs)
@@ -2068,6 +2125,9 @@ if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hero
     DIRECTORY ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hero_msgs
     DESTINATION ${genpy_INSTALL_DIR}
   )
+endif()
+if(TARGET actionlib_msgs_generate_messages_py)
+  add_dependencies(hero_msgs_generate_messages_py actionlib_msgs_generate_messages_py)
 endif()
 if(TARGET std_msgs_generate_messages_py)
   add_dependencies(hero_msgs_generate_messages_py std_msgs_generate_messages_py)

@@ -42,7 +42,10 @@ PointNavigation::PointNavigation():global_planner_client_("global_planner_node_a
                                    local_planner_client_("local_planner_node_action", true)
 {
   ros::NodeHandle nh;
-  sub_ = nh.subscribe("/move_base_simple/goal", 1000, &PointNavigation::chatterCallback,this);
+  if(nh.getNamespace().c_str()!="/"&&nh.getNamespace().size()>5)
+      sub_ = nh.subscribe(nh.getNamespace().substr(1) + "/move_base_simple/goal", 1000, &PointNavigation::chatterCallback,this);
+  else
+    sub_ = nh.subscribe("/move_base_simple/goal", 1000, &PointNavigation::chatterCallback,this);
   ROS_INFO("PointNavigation start!");
   global_planner_client_.waitForServer();
   ROS_INFO("Global planer server start!");

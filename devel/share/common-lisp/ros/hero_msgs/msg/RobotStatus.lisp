@@ -37,6 +37,11 @@
     :initarg :heat_cooling_rate
     :type cl:fixnum
     :initform 0)
+   (remain_ammo
+    :reader remain_ammo
+    :initarg :remain_ammo
+    :type cl:fixnum
+    :initform 0)
    (gimbal_output
     :reader gimbal_output
     :initarg :gimbal_output
@@ -92,6 +97,11 @@
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:heat_cooling_rate-val is deprecated.  Use hero_msgs-msg:heat_cooling_rate instead.")
   (heat_cooling_rate m))
 
+(cl:ensure-generic-function 'remain_ammo-val :lambda-list '(m))
+(cl:defmethod remain_ammo-val ((m <RobotStatus>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:remain_ammo-val is deprecated.  Use hero_msgs-msg:remain_ammo instead.")
+  (remain_ammo m))
+
 (cl:ensure-generic-function 'gimbal_output-val :lambda-list '(m))
 (cl:defmethod gimbal_output-val ((m <RobotStatus>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:gimbal_output-val is deprecated.  Use hero_msgs-msg:gimbal_output instead.")
@@ -118,6 +128,8 @@
   (cl:write-byte (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'heat_cooling_limit)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'heat_cooling_rate)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'heat_cooling_rate)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'remain_ammo)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'remain_ammo)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'gimbal_output) 1 0)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'chassis_output) 1 0)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'shooter_output) 1 0)) ostream)
@@ -134,6 +146,8 @@
     (cl:setf (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'heat_cooling_limit)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'heat_cooling_rate)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'heat_cooling_rate)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'remain_ammo)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'remain_ammo)) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'gimbal_output) (cl:not (cl:zerop (cl:read-byte istream))))
     (cl:setf (cl:slot-value msg 'chassis_output) (cl:not (cl:zerop (cl:read-byte istream))))
     (cl:setf (cl:slot-value msg 'shooter_output) (cl:not (cl:zerop (cl:read-byte istream))))
@@ -147,20 +161,21 @@
   "hero_msgs/RobotStatus")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<RobotStatus>)))
   "Returns md5sum for a message object of type '<RobotStatus>"
-  "122334534857c1294574d2c7eef57af5")
+  "2033bd856eea52b3560e91f365784406")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'RobotStatus)))
   "Returns md5sum for a message object of type 'RobotStatus"
-  "122334534857c1294574d2c7eef57af5")
+  "2033bd856eea52b3560e91f365784406")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<RobotStatus>)))
   "Returns full string definition for message of type '<RobotStatus>"
-  (cl:format cl:nil "#robot status~%uint8 id~%uint8 level~%uint16 remain_hp~%uint16 max_hp~%uint16 heat_cooling_limit~%uint16 heat_cooling_rate~%bool gimbal_output~%bool chassis_output~%bool shooter_output~%~%"))
+  (cl:format cl:nil "#robot status~%uint8 id~%uint8 level~%uint16 remain_hp~%uint16 max_hp~%uint16 heat_cooling_limit~%uint16 heat_cooling_rate~%uint16 remain_ammo~%bool gimbal_output~%bool chassis_output~%bool shooter_output~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'RobotStatus)))
   "Returns full string definition for message of type 'RobotStatus"
-  (cl:format cl:nil "#robot status~%uint8 id~%uint8 level~%uint16 remain_hp~%uint16 max_hp~%uint16 heat_cooling_limit~%uint16 heat_cooling_rate~%bool gimbal_output~%bool chassis_output~%bool shooter_output~%~%"))
+  (cl:format cl:nil "#robot status~%uint8 id~%uint8 level~%uint16 remain_hp~%uint16 max_hp~%uint16 heat_cooling_limit~%uint16 heat_cooling_rate~%uint16 remain_ammo~%bool gimbal_output~%bool chassis_output~%bool shooter_output~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <RobotStatus>))
   (cl:+ 0
      1
      1
+     2
      2
      2
      2
@@ -178,6 +193,7 @@
     (cl:cons ':max_hp (max_hp msg))
     (cl:cons ':heat_cooling_limit (heat_cooling_limit msg))
     (cl:cons ':heat_cooling_rate (heat_cooling_rate msg))
+    (cl:cons ':remain_ammo (remain_ammo msg))
     (cl:cons ':gimbal_output (gimbal_output msg))
     (cl:cons ':chassis_output (chassis_output msg))
     (cl:cons ':shooter_output (shooter_output msg))

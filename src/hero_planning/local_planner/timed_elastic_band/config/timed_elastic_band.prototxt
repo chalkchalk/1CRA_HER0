@@ -7,7 +7,7 @@ trajectory_opt {
     teb_autosize: True
     dt_ref: 0.15
     dt_hysteresis: 0.01
-    global_plan_overwrite_orientation: false
+    global_plan_overwrite_orientation: true
     allow_init_with_backwards_motion: false 
     global_plan_viapoint_sep: 1.5
     via_points_ordered: False

@@ -38,6 +38,7 @@ file(REMOVE_RECURSE
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ArmorDetectionFeedback.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/SupplierStatus.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/GlobalPlannerActionResult.h"
+  "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/GimbalMode.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/FricWhl.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h"

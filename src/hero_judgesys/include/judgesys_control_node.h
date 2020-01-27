@@ -3,24 +3,29 @@
 
 #include <string>
 #include "geometry_msgs/Twist.h"
+#include "hero_msgs/JudgeSysControl.h"
 #include "state/error_code.h"
 #include "judgesys_robot.h"
 #include <vector>
 #include "ros/ros.h"
+#include "hero_msgs/RobotStatus.h"
 
 namespace hero_judgesys{
-    class JydgesysRobot;
-    class JydgesysControl{
+    class JudgesysRobot;
+    class JudgesysControl{
         public:
-        JydgesysControl();
-        ~JydgesysControl() = default;
-        void AddRobot(JydgesysRobot*  robot)
+        JudgesysControl();
+        ~JudgesysControl() = default;
+        void AddRobot(JudgesysRobot*  robot)
         {
              robots_.push_back(robot);
         }
         void UpdateVel();
         bool KillRobot(std::string robot_num);
-        
+        bool ReviveRobot(std::string robot_num);
+        bool ReloadRobot(std::string robot_num);
+        bool DisarmRobot(std::string robot_num);
+        void UpdateInfo();
 
         static const int HeatLimit = 240;
         static const int CoolingRateNormal = 120;
@@ -37,10 +42,11 @@ namespace hero_judgesys{
         private:
         hero_common::ErrorInfo Init();
         ros::NodeHandle nh_;
+        ros::ServiceServer service_;
+        bool handle_function(hero_msgs::JudgeSysControl::Request &req,
+                            hero_msgs::JudgeSysControl::Response &res);
 
-        
-
-        std::vector<JydgesysRobot* > robots_;
+        std::vector<JudgesysRobot* > robots_;
         
 
     };

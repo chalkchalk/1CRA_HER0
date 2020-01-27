@@ -2,8 +2,13 @@
 # CMake
 ##############################################################################
 
-cmake_minimum_required(VERSION 2.8.0)
+cmake_minimum_required(VERSION 3.0)
 project(hero_interface)
+
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_module)
+set(CMAKE_BUILD_TYPE Release)
 
 ##############################################################################
 # Catkin
@@ -16,6 +21,8 @@ find_package(catkin REQUIRED COMPONENTS qt_build roscpp
   actionlib
   hero_judgesys
   hero_common
+  hero_msgs
+  roslib
   )
 include_directories(
     ${catkin_INCLUDE_DIRS}

@@ -19,6 +19,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "QT_CORE_LIB"
   "QT_GUI_LIB"
+  "QT_NO_DEBUG"
   "QT_NO_KEYWORDS"
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
@@ -27,6 +28,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/ycz/ICRA_HERO_ws/devel/include"
   "/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include"
   "/home/ycz/ICRA_HERO_ws/src/hero_common/include"
   "/opt/ros/kinetic/include"

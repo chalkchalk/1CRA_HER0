@@ -24,6 +24,7 @@ class RobotStatus {
       this.max_hp = null;
       this.heat_cooling_limit = null;
       this.heat_cooling_rate = null;
+      this.remain_ammo = null;
       this.gimbal_output = null;
       this.chassis_output = null;
       this.shooter_output = null;
@@ -65,6 +66,12 @@ class RobotStatus {
       else {
         this.heat_cooling_rate = 0;
       }
+      if (initObj.hasOwnProperty('remain_ammo')) {
+        this.remain_ammo = initObj.remain_ammo
+      }
+      else {
+        this.remain_ammo = 0;
+      }
       if (initObj.hasOwnProperty('gimbal_output')) {
         this.gimbal_output = initObj.gimbal_output
       }
@@ -100,6 +107,8 @@ class RobotStatus {
     bufferOffset = _serializer.uint16(obj.heat_cooling_limit, buffer, bufferOffset);
     // Serialize message field [heat_cooling_rate]
     bufferOffset = _serializer.uint16(obj.heat_cooling_rate, buffer, bufferOffset);
+    // Serialize message field [remain_ammo]
+    bufferOffset = _serializer.uint16(obj.remain_ammo, buffer, bufferOffset);
     // Serialize message field [gimbal_output]
     bufferOffset = _serializer.bool(obj.gimbal_output, buffer, bufferOffset);
     // Serialize message field [chassis_output]
@@ -125,6 +134,8 @@ class RobotStatus {
     data.heat_cooling_limit = _deserializer.uint16(buffer, bufferOffset);
     // Deserialize message field [heat_cooling_rate]
     data.heat_cooling_rate = _deserializer.uint16(buffer, bufferOffset);
+    // Deserialize message field [remain_ammo]
+    data.remain_ammo = _deserializer.uint16(buffer, bufferOffset);
     // Deserialize message field [gimbal_output]
     data.gimbal_output = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [chassis_output]
@@ -135,7 +146,7 @@ class RobotStatus {
   }
 
   static getMessageSize(object) {
-    return 13;
+    return 15;
   }
 
   static datatype() {
@@ -145,7 +156,7 @@ class RobotStatus {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '122334534857c1294574d2c7eef57af5';
+    return '2033bd856eea52b3560e91f365784406';
   }
 
   static messageDefinition() {
@@ -158,9 +169,11 @@ class RobotStatus {
     uint16 max_hp
     uint16 heat_cooling_limit
     uint16 heat_cooling_rate
+    uint16 remain_ammo
     bool gimbal_output
     bool chassis_output
     bool shooter_output
+    
     `;
   }
 
@@ -210,6 +223,13 @@ class RobotStatus {
     }
     else {
       resolved.heat_cooling_rate = 0
+    }
+
+    if (msg.remain_ammo !== undefined) {
+      resolved.remain_ammo = msg.remain_ammo;
+    }
+    else {
+      resolved.remain_ammo = 0
     }
 
     if (msg.gimbal_output !== undefined) {

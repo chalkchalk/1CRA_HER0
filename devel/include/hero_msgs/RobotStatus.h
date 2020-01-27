@@ -30,6 +30,7 @@ struct RobotStatus_
     , max_hp(0)
     , heat_cooling_limit(0)
     , heat_cooling_rate(0)
+    , remain_ammo(0)
     , gimbal_output(false)
     , chassis_output(false)
     , shooter_output(false)  {
@@ -41,6 +42,7 @@ struct RobotStatus_
     , max_hp(0)
     , heat_cooling_limit(0)
     , heat_cooling_rate(0)
+    , remain_ammo(0)
     , gimbal_output(false)
     , chassis_output(false)
     , shooter_output(false)  {
@@ -66,6 +68,9 @@ struct RobotStatus_
 
    typedef uint16_t _heat_cooling_rate_type;
   _heat_cooling_rate_type heat_cooling_rate;
+
+   typedef uint16_t _remain_ammo_type;
+  _remain_ammo_type remain_ammo;
 
    typedef uint8_t _gimbal_output_type;
   _gimbal_output_type gimbal_output;
@@ -154,12 +159,12 @@ struct MD5Sum< ::hero_msgs::RobotStatus_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "122334534857c1294574d2c7eef57af5";
+    return "2033bd856eea52b3560e91f365784406";
   }
 
   static const char* value(const ::hero_msgs::RobotStatus_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x122334534857c129ULL;
-  static const uint64_t static_value2 = 0x4574d2c7eef57af5ULL;
+  static const uint64_t static_value1 = 0x2033bd856eea52b3ULL;
+  static const uint64_t static_value2 = 0x560e91f365784406ULL;
 };
 
 template<class ContainerAllocator>
@@ -185,6 +190,7 @@ uint16 remain_hp\n\
 uint16 max_hp\n\
 uint16 heat_cooling_limit\n\
 uint16 heat_cooling_rate\n\
+uint16 remain_ammo\n\
 bool gimbal_output\n\
 bool chassis_output\n\
 bool shooter_output\n\
@@ -212,6 +218,7 @@ namespace serialization
       stream.next(m.max_hp);
       stream.next(m.heat_cooling_limit);
       stream.next(m.heat_cooling_rate);
+      stream.next(m.remain_ammo);
       stream.next(m.gimbal_output);
       stream.next(m.chassis_output);
       stream.next(m.shooter_output);
@@ -245,6 +252,8 @@ struct Printer< ::hero_msgs::RobotStatus_<ContainerAllocator> >
     Printer<uint16_t>::stream(s, indent + "  ", v.heat_cooling_limit);
     s << indent << "heat_cooling_rate: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.heat_cooling_rate);
+    s << indent << "remain_ammo: ";
+    Printer<uint16_t>::stream(s, indent + "  ", v.remain_ammo);
     s << indent << "gimbal_output: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.gimbal_output);
     s << indent << "chassis_output: ";

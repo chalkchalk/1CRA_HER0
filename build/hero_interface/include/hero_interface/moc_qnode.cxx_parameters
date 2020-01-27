@@ -1,3 +1,4 @@
+-I/home/ycz/ICRA_HERO_ws/devel/include
 -I/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include
 -I/home/ycz/ICRA_HERO_ws/src/hero_common/include
 -I/opt/ros/kinetic/include

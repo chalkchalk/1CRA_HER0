@@ -2,7 +2,7 @@ prefix=/home/ycz/ICRA_HERO_ws/devel
 
 Name: hero_multistage
 Description: Description of hero_multistage
-Version: 0.0.0
-Cflags: 
+Version: 1.0.0
+Cflags: -I/home/ycz/ICRA_HERO_ws/src/hero_multistage/include
 Libs: -L/home/ycz/ICRA_HERO_ws/devel/lib 
 Requires: 

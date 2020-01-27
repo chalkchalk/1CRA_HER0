@@ -1,12 +1,15 @@
 #include "battleview.h"
 #include "rotatedrect.h"
+#include <ros/package.h>
 
 namespace hero_interface {
 
-BattleView::BattleView()
+BattleView::BattleView(QNode *qNode)
 {
-    background.load("/home/ycz/ICRA_HERO_ws/src/hero_interface/resources/images/map.png");
+    std::string full_path = ros::package::getPath("hero_interface") + "/resources/images/map.png";
+    background.load(full_path.c_str());
     background = background.scaled(554,854);
+    qNode_ = qNode;
 }
 
 bool BattleView::SetRobotPose(std::string robot_num,float x, float y, float yaw)
@@ -63,6 +66,33 @@ float PoseToAngle(float yaw)
     return yaw + 180;
 }
 
+
+void BattleView::UpdateHealthHeat()
+{
+    for (auto it = robots_.begin(); it != robots_.end(); ++it) {
+     if((*it)->name=="robot_0")
+     {
+         (*it)->health = qNode_->GetRoboStatus(0).remain_hp;
+         (*it)->heat = qNode_->GetRoboHeat(0).shooter_heat;
+     }
+     else if((*it)->name=="robot_1")
+     {
+         (*it)->health = qNode_->GetRoboStatus(1).remain_hp;
+         (*it)->heat = qNode_->GetRoboHeat(1).shooter_heat;
+     }
+     else if((*it)->name=="robot_2")
+     {
+         (*it)->health = qNode_->GetRoboStatus(2).remain_hp;
+         (*it)->heat = qNode_->GetRoboHeat(2).shooter_heat;
+     }
+     else if((*it)->name=="robot_3")
+     {
+         (*it)->health = qNode_->GetRoboStatus(3).remain_hp;
+         (*it)->heat = qNode_->GetRoboHeat(3).shooter_heat;
+     }
+    }
+}
+
 void BattleView::DrawRobot(QImage *qImage)
 {
     QPainter painter(qImage);
@@ -74,6 +104,7 @@ void BattleView::DrawRobot(QImage *qImage)
 
     painter.drawImage( QPoint(0, 0), background);
     int pix_h, pix_w;
+    UpdateHealthHeat();
     for (auto it = robots_.begin(); it != robots_.end(); ++it) {
         if((*it)->color=="red")
             robotColor=Qt::red;
@@ -85,13 +116,34 @@ void BattleView::DrawRobot(QImage *qImage)
             printf("color error! %s\n",(*it)->color.c_str());
         }
         //(*it)->pose.x+=0.01;
-        painterRobot.setPen(QPen(robotColor, 2, Qt::SolidLine,
+        painterRobot.setPen(QPen(Qt::black, 1, Qt::SolidLine,
                                 Qt::RoundCap, Qt::RoundJoin));
-        painter.setPen(QPen(robotColor, 2, Qt::SolidLine,
-                            Qt::RoundCap, Qt::RoundJoin));
         //painterRobot.drawRect(robotImage.rect());
         painterRobot.fillRect(ROBOT_WIDTH_PIX*0.2,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX,ROBOT_HEIGHT_PIX,robotColor);
-        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.6,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX*0.2,ROBOT_HEIGHT_PIX*0.5,Qt::gray);
+
+
+
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.72,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15,Qt::white);
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.72,ROBOT_WIDTH_PIX*0.8 * (*it)->health / 2000,ROBOT_HEIGHT_PIX*0.15,robotColor);
+        painterRobot.drawRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.72,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15);//health
+
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.9,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15,Qt::white);
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.9,ROBOT_WIDTH_PIX*0.8 * (*it)->heat / 240,ROBOT_HEIGHT_PIX*0.15,Qt::yellow);
+        painterRobot.drawRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.9,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15);//heat
+
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.55,ROBOT_HEIGHT_PIX*0.175,ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.05,Qt::white);
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.55,ROBOT_HEIGHT_PIX*1.175,ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.05,Qt::white);
+        painterRobot.drawRect(ROBOT_WIDTH_PIX*0.55,ROBOT_HEIGHT_PIX*0.175,ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.05);
+        painterRobot.drawRect(ROBOT_WIDTH_PIX*0.55,ROBOT_HEIGHT_PIX*1.175,ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.05);
+
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.175,ROBOT_HEIGHT_PIX*0.55,ROBOT_HEIGHT_PIX*0.05,ROBOT_WIDTH_PIX*0.3,Qt::white);
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*1.175,ROBOT_HEIGHT_PIX*0.55,ROBOT_HEIGHT_PIX*0.05,ROBOT_WIDTH_PIX*0.3,Qt::white);
+        painterRobot.drawRect(ROBOT_WIDTH_PIX*0.175,ROBOT_HEIGHT_PIX*0.55,ROBOT_HEIGHT_PIX*0.05,ROBOT_WIDTH_PIX*0.3);
+        painterRobot.drawRect(ROBOT_WIDTH_PIX*1.175,ROBOT_HEIGHT_PIX*0.55,ROBOT_HEIGHT_PIX*0.05,ROBOT_WIDTH_PIX*0.3);
+
+        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.6,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX*0.15,ROBOT_HEIGHT_PIX*0.45,Qt::gray);
+        painterRobot.drawRect(ROBOT_WIDTH_PIX*0.6,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX*0.15,ROBOT_HEIGHT_PIX*0.45);//barrel
+
         MeterToPix(&pix_h,&pix_w,ROBOT_HEIGHT*1.4,ROBOT_WIDTH*1.4,background.size());
         QMatrix matrix;
         matrix.rotate(PoseToAngle((*it)->pose.yaw));

@@ -38,6 +38,7 @@ file(REMOVE_RECURSE
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/ArmorDetectionFeedback.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/SupplierStatus.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/GlobalPlannerActionResult.lisp"
+  "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/srv/JudgeSysControl.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/srv/GimbalMode.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/srv/FricWhl.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/srv/ShootCmd.lisp"

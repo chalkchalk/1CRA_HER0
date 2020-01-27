@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <QtGui>
+#include "../include/hero_interface/qnode.hpp"
 
 namespace hero_interface {
 
@@ -15,6 +16,8 @@ namespace hero_interface {
 
 #define BATTLEFIELD_W 8.15
 #define BATTLEFIELD_H 5.15
+
+class QNode;
 
 typedef struct
 {
@@ -48,7 +51,7 @@ public:
 class BattleView
 {
 public:
-    BattleView();
+    BattleView(QNode *qNode);
     void AddRobot(Robot*  robot)
     {
          robots_.push_back(robot);
@@ -59,8 +62,10 @@ public:
  private:
     std::vector<Robot* > robots_;
     void DrawRobot(QImage *qImage);
+    void UpdateHealthHeat();
     QImage background;
     QPainter painter;
+    QNode *qNode_;
 };
 
 }

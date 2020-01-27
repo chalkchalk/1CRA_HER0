@@ -14,7 +14,7 @@
 
 (defclass hero_msgs::RobotStatus
   :super ros::object
-  :slots (_id _level _remain_hp _max_hp _heat_cooling_limit _heat_cooling_rate _gimbal_output _chassis_output _shooter_output ))
+  :slots (_id _level _remain_hp _max_hp _heat_cooling_limit _heat_cooling_rate _remain_ammo _gimbal_output _chassis_output _shooter_output ))
 
 (defmethod hero_msgs::RobotStatus
   (:init
@@ -25,6 +25,7 @@
     ((:max_hp __max_hp) 0)
     ((:heat_cooling_limit __heat_cooling_limit) 0)
     ((:heat_cooling_rate __heat_cooling_rate) 0)
+    ((:remain_ammo __remain_ammo) 0)
     ((:gimbal_output __gimbal_output) nil)
     ((:chassis_output __chassis_output) nil)
     ((:shooter_output __shooter_output) nil)
@@ -36,6 +37,7 @@
    (setq _max_hp (round __max_hp))
    (setq _heat_cooling_limit (round __heat_cooling_limit))
    (setq _heat_cooling_rate (round __heat_cooling_rate))
+   (setq _remain_ammo (round __remain_ammo))
    (setq _gimbal_output __gimbal_output)
    (setq _chassis_output __chassis_output)
    (setq _shooter_output __shooter_output)
@@ -58,6 +60,9 @@
   (:heat_cooling_rate
    (&optional __heat_cooling_rate)
    (if __heat_cooling_rate (setq _heat_cooling_rate __heat_cooling_rate)) _heat_cooling_rate)
+  (:remain_ammo
+   (&optional __remain_ammo)
+   (if __remain_ammo (setq _remain_ammo __remain_ammo)) _remain_ammo)
   (:gimbal_output
    (&optional __gimbal_output)
    (if __gimbal_output (setq _gimbal_output __gimbal_output)) _gimbal_output)
@@ -82,6 +87,8 @@
     2
     ;; uint16 _heat_cooling_rate
     2
+    ;; uint16 _remain_ammo
+    2
     ;; bool _gimbal_output
     1
     ;; bool _chassis_output
@@ -105,6 +112,8 @@
        (write-word _heat_cooling_limit s)
      ;; uint16 _heat_cooling_rate
        (write-word _heat_cooling_rate s)
+     ;; uint16 _remain_ammo
+       (write-word _remain_ammo s)
      ;; bool _gimbal_output
        (if _gimbal_output (write-byte -1 s) (write-byte 0 s))
      ;; bool _chassis_output
@@ -127,6 +136,8 @@
      (setq _heat_cooling_limit (sys::peek buf ptr- :short)) (incf ptr- 2)
    ;; uint16 _heat_cooling_rate
      (setq _heat_cooling_rate (sys::peek buf ptr- :short)) (incf ptr- 2)
+   ;; uint16 _remain_ammo
+     (setq _remain_ammo (sys::peek buf ptr- :short)) (incf ptr- 2)
    ;; bool _gimbal_output
      (setq _gimbal_output (not (= 0 (sys::peek buf ptr- :char)))) (incf ptr- 1)
    ;; bool _chassis_output
@@ -137,7 +148,7 @@
    self)
   )
 
-(setf (get hero_msgs::RobotStatus :md5sum-) "122334534857c1294574d2c7eef57af5")
+(setf (get hero_msgs::RobotStatus :md5sum-) "2033bd856eea52b3560e91f365784406")
 (setf (get hero_msgs::RobotStatus :datatype-) "hero_msgs/RobotStatus")
 (setf (get hero_msgs::RobotStatus :definition-)
       "#robot status
@@ -147,13 +158,15 @@ uint16 remain_hp
 uint16 max_hp
 uint16 heat_cooling_limit
 uint16 heat_cooling_rate
+uint16 remain_ammo
 bool gimbal_output
 bool chassis_output
 bool shooter_output
+
 ")
 
 
 
-(provide :hero_msgs/RobotStatus "122334534857c1294574d2c7eef57af5")
+(provide :hero_msgs/RobotStatus "2033bd856eea52b3560e91f365784406")
 
 

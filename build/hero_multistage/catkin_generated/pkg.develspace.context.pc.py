@@ -1,8 +1,8 @@
 # generated from catkin/cmake/template/pkg.context.pc.in
 CATKIN_PACKAGE_PREFIX = ""
-PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
+PROJECT_PKG_CONFIG_INCLUDE_DIRS = "/home/ycz/ICRA_HERO_ws/src/hero_multistage/include".split(';') if "/home/ycz/ICRA_HERO_ws/src/hero_multistage/include" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "hero_multistage"
 PROJECT_SPACE_DIR = "/home/ycz/ICRA_HERO_ws/devel"
-PROJECT_VERSION = "0.0.0"
+PROJECT_VERSION = "1.0.0"

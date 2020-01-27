@@ -38,6 +38,7 @@ file(REMOVE_RECURSE
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_ArmorDetectionFeedback.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_SupplierStatus.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_GlobalPlannerActionResult.py"
+  "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/srv/_JudgeSysControl.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/srv/_GimbalMode.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/srv/_FricWhl.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/srv/_ShootCmd.py"

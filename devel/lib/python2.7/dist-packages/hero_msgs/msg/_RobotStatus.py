@@ -7,7 +7,7 @@ import struct
 
 
 class RobotStatus(genpy.Message):
-  _md5sum = "122334534857c1294574d2c7eef57af5"
+  _md5sum = "2033bd856eea52b3560e91f365784406"
   _type = "hero_msgs/RobotStatus"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """#robot status
@@ -17,11 +17,13 @@ uint16 remain_hp
 uint16 max_hp
 uint16 heat_cooling_limit
 uint16 heat_cooling_rate
+uint16 remain_ammo
 bool gimbal_output
 bool chassis_output
-bool shooter_output"""
-  __slots__ = ['id','level','remain_hp','max_hp','heat_cooling_limit','heat_cooling_rate','gimbal_output','chassis_output','shooter_output']
-  _slot_types = ['uint8','uint8','uint16','uint16','uint16','uint16','bool','bool','bool']
+bool shooter_output
+"""
+  __slots__ = ['id','level','remain_hp','max_hp','heat_cooling_limit','heat_cooling_rate','remain_ammo','gimbal_output','chassis_output','shooter_output']
+  _slot_types = ['uint8','uint8','uint16','uint16','uint16','uint16','uint16','bool','bool','bool']
 
   def __init__(self, *args, **kwds):
     """
@@ -31,7 +33,7 @@ bool shooter_output"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       id,level,remain_hp,max_hp,heat_cooling_limit,heat_cooling_rate,gimbal_output,chassis_output,shooter_output
+       id,level,remain_hp,max_hp,heat_cooling_limit,heat_cooling_rate,remain_ammo,gimbal_output,chassis_output,shooter_output
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -52,6 +54,8 @@ bool shooter_output"""
         self.heat_cooling_limit = 0
       if self.heat_cooling_rate is None:
         self.heat_cooling_rate = 0
+      if self.remain_ammo is None:
+        self.remain_ammo = 0
       if self.gimbal_output is None:
         self.gimbal_output = False
       if self.chassis_output is None:
@@ -65,6 +69,7 @@ bool shooter_output"""
       self.max_hp = 0
       self.heat_cooling_limit = 0
       self.heat_cooling_rate = 0
+      self.remain_ammo = 0
       self.gimbal_output = False
       self.chassis_output = False
       self.shooter_output = False
@@ -82,7 +87,7 @@ bool shooter_output"""
     """
     try:
       _x = self
-      buff.write(_get_struct_2B4H3B().pack(_x.id, _x.level, _x.remain_hp, _x.max_hp, _x.heat_cooling_limit, _x.heat_cooling_rate, _x.gimbal_output, _x.chassis_output, _x.shooter_output))
+      buff.write(_get_struct_2B5H3B().pack(_x.id, _x.level, _x.remain_hp, _x.max_hp, _x.heat_cooling_limit, _x.heat_cooling_rate, _x.remain_ammo, _x.gimbal_output, _x.chassis_output, _x.shooter_output))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -95,8 +100,8 @@ bool shooter_output"""
       end = 0
       _x = self
       start = end
-      end += 13
-      (_x.id, _x.level, _x.remain_hp, _x.max_hp, _x.heat_cooling_limit, _x.heat_cooling_rate, _x.gimbal_output, _x.chassis_output, _x.shooter_output,) = _get_struct_2B4H3B().unpack(str[start:end])
+      end += 15
+      (_x.id, _x.level, _x.remain_hp, _x.max_hp, _x.heat_cooling_limit, _x.heat_cooling_rate, _x.remain_ammo, _x.gimbal_output, _x.chassis_output, _x.shooter_output,) = _get_struct_2B5H3B().unpack(str[start:end])
       self.gimbal_output = bool(self.gimbal_output)
       self.chassis_output = bool(self.chassis_output)
       self.shooter_output = bool(self.shooter_output)
@@ -113,7 +118,7 @@ bool shooter_output"""
     """
     try:
       _x = self
-      buff.write(_get_struct_2B4H3B().pack(_x.id, _x.level, _x.remain_hp, _x.max_hp, _x.heat_cooling_limit, _x.heat_cooling_rate, _x.gimbal_output, _x.chassis_output, _x.shooter_output))
+      buff.write(_get_struct_2B5H3B().pack(_x.id, _x.level, _x.remain_hp, _x.max_hp, _x.heat_cooling_limit, _x.heat_cooling_rate, _x.remain_ammo, _x.gimbal_output, _x.chassis_output, _x.shooter_output))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -127,8 +132,8 @@ bool shooter_output"""
       end = 0
       _x = self
       start = end
-      end += 13
-      (_x.id, _x.level, _x.remain_hp, _x.max_hp, _x.heat_cooling_limit, _x.heat_cooling_rate, _x.gimbal_output, _x.chassis_output, _x.shooter_output,) = _get_struct_2B4H3B().unpack(str[start:end])
+      end += 15
+      (_x.id, _x.level, _x.remain_hp, _x.max_hp, _x.heat_cooling_limit, _x.heat_cooling_rate, _x.remain_ammo, _x.gimbal_output, _x.chassis_output, _x.shooter_output,) = _get_struct_2B5H3B().unpack(str[start:end])
       self.gimbal_output = bool(self.gimbal_output)
       self.chassis_output = bool(self.chassis_output)
       self.shooter_output = bool(self.shooter_output)
@@ -140,9 +145,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_2B4H3B = None
-def _get_struct_2B4H3B():
-    global _struct_2B4H3B
-    if _struct_2B4H3B is None:
-        _struct_2B4H3B = struct.Struct("<2B4H3B")
-    return _struct_2B4H3B
+_struct_2B5H3B = None
+def _get_struct_2B5H3B():
+    global _struct_2B5H3B
+    if _struct_2B5H3B is None:
+        _struct_2B5H3B = struct.Struct("<2B5H3B")
+    return _struct_2B5H3B

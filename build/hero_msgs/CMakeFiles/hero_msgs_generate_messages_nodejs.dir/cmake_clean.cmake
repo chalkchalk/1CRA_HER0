@@ -38,6 +38,7 @@ file(REMOVE_RECURSE
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/ArmorDetectionFeedback.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/SupplierStatus.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/GlobalPlannerActionResult.js"
+  "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/srv/JudgeSysControl.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/srv/GimbalMode.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/srv/FricWhl.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/srv/ShootCmd.js"

@@ -11,6 +11,8 @@
           HEAT_COOLING_LIMIT
           HEAT_COOLING_RATE-VAL
           HEAT_COOLING_RATE
+          REMAIN_AMMO-VAL
+          REMAIN_AMMO
           GIMBAL_OUTPUT-VAL
           GIMBAL_OUTPUT
           CHASSIS_OUTPUT-VAL
