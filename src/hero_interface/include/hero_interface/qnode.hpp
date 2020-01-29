@@ -78,6 +78,8 @@ public:
     int GetRobotHealth(int index)
     {return roboStatus_[index].remain_hp;}
 
+    float GetGimbalYaw()
+    {return gimbal_yaw_;}
 Q_SIGNALS:
     void rosShutdown();
 
@@ -94,6 +96,7 @@ private:
     ros::ServiceClient client_;
     hero_msgs::RobotStatus roboStatus_[4];
     hero_msgs::RobotHeat roboHeat_[4];
+    float gimbal_yaw_;
     bool SendJudgeSysCall(int comman, std::string robot_name);
     void RobotStatusCallback0(const hero_msgs::RobotStatus::ConstPtr& msg);
     void RobotStatusCallback1(const hero_msgs::RobotStatus::ConstPtr& msg);

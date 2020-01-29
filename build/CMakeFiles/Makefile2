@@ -329,12 +329,12 @@ gtest/gtest/preinstall:
 gtest/gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest.dir/build.make gtest/gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest.dir/build.make gtest/gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num= "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=10 "Built target gtest"
 .PHONY : gtest/gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 gtest/gtest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 gtest/gtest/CMakeFiles/gtest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : gtest/gtest/CMakeFiles/gtest.dir/rule
@@ -361,7 +361,7 @@ clean: gtest/gtest/CMakeFiles/gtest.dir/clean
 gtest/gtest/CMakeFiles/gtest_main.dir/all: gtest/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest_main.dir/build.make gtest/gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest_main.dir/build.make gtest/gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=10 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num= "Built target gtest_main"
 .PHONY : gtest/gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -571,7 +571,7 @@ hero_msgs/CMakeFiles/hero_msgs_genpy.dir/all: hero_msgs/CMakeFiles/hero_msgs_gen
 
 # Build rule for subdir invocation for target.
 hero_msgs/CMakeFiles/hero_msgs_genpy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/hero_msgs_genpy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_genpy.dir/rule
@@ -675,7 +675,7 @@ hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/all: hero_msgs/CMakeFi
 hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/all: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GameResult.dir/all
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=48,49,50,51,52,53,54,55,56,57,58,59,60 "Built target hero_msgs_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=50,51,52,53,54,55,56,57,58,59,60,61,62 "Built target hero_msgs_generate_messages_lisp"
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1008,12 +1008,12 @@ hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/all: hero_msgs/CMakeFile
 hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/all: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GameResult.dir/all
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/depend
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=74,75,76,77,78,79,80,81,82,83,84,85,86 "Built target hero_msgs_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=77,78,79,80,81,82,83,84,85,86,87,88,89,90 "Built target hero_msgs_generate_messages_py"
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
 hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/rule
@@ -1469,12 +1469,12 @@ hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/all: hero_msgs/CMake
 hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/all: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GameResult.dir/all
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/depend
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=61,62,63,64,65,66,67,68,69,70,71,72,73 "Built target hero_msgs_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=63,64,65,66,67,68,69,70,71,72,73,74,75,76 "Built target hero_msgs_generate_messages_nodejs"
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
 hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/rule
@@ -1890,7 +1890,7 @@ hero_msgs/CMakeFiles/hero_msgs_gennodejs.dir/all: hero_msgs/CMakeFiles/hero_msgs
 
 # Build rule for subdir invocation for target.
 hero_msgs/CMakeFiles/hero_msgs_gennodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/hero_msgs_gennodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_gennodejs.dir/rule
@@ -2026,12 +2026,12 @@ hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/all: hero_msgs/CMakeFil
 hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/all: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GameResult.dir/all
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/depend
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=21,22,23,24,25,26,27,28,29,30,31,32,33 "Built target hero_msgs_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31,32,33,34,35 "Built target hero_msgs_generate_messages_cpp"
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/rule
@@ -2479,7 +2479,7 @@ hero_msgs/CMakeFiles/hero_msgs_gencpp.dir/all: hero_msgs/CMakeFiles/hero_msgs_ge
 
 # Build rule for subdir invocation for target.
 hero_msgs/CMakeFiles/hero_msgs_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/hero_msgs_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_gencpp.dir/rule
@@ -2967,7 +2967,7 @@ hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/all: hero_msgs/CMakeFil
 hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/all: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GameResult.dir/all
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/depend
 	$(MAKE) -f hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/build.make hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43,44,45,46,47 "Built target hero_msgs_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=36,37,38,39,40,41,42,43,44,45,46,47,48,49 "Built target hero_msgs_generate_messages_eus"
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3397,7 +3397,7 @@ all: hero_msgs/CMakeFiles/hero_msgs_generate_messages.dir/all
 
 # Build rule for subdir invocation for target.
 hero_msgs/CMakeFiles/hero_msgs_generate_messages.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 66
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 69
 	$(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/hero_msgs_generate_messages.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_msgs/CMakeFiles/hero_msgs_generate_messages.dir/rule
@@ -3702,7 +3702,7 @@ hero_costmap/preinstall:
 hero_costmap/CMakeFiles/hero_costmap.dir/all:
 	$(MAKE) -f hero_costmap/CMakeFiles/hero_costmap.dir/build.make hero_costmap/CMakeFiles/hero_costmap.dir/depend
 	$(MAKE) -f hero_costmap/CMakeFiles/hero_costmap.dir/build.make hero_costmap/CMakeFiles/hero_costmap.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=11,12,13,14,15,16 "Built target hero_costmap"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=11,12,13,14,15,16,17 "Built target hero_costmap"
 .PHONY : hero_costmap/CMakeFiles/hero_costmap.dir/all
 
 # Include target in all.
@@ -3712,7 +3712,7 @@ all: hero_costmap/CMakeFiles/hero_costmap.dir/all
 
 # Build rule for subdir invocation for target.
 hero_costmap/CMakeFiles/hero_costmap.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 hero_costmap/CMakeFiles/hero_costmap.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_costmap/CMakeFiles/hero_costmap.dir/rule
@@ -4859,7 +4859,7 @@ clean: hero_costmap/CMakeFiles/nodelet_generate_messages_cpp.dir/clean
 hero_costmap/CMakeFiles/test_costmap.dir/all: hero_costmap/CMakeFiles/hero_costmap.dir/all
 	$(MAKE) -f hero_costmap/CMakeFiles/test_costmap.dir/build.make hero_costmap/CMakeFiles/test_costmap.dir/depend
 	$(MAKE) -f hero_costmap/CMakeFiles/test_costmap.dir/build.make hero_costmap/CMakeFiles/test_costmap.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=96 "Built target test_costmap"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=97 "Built target test_costmap"
 .PHONY : hero_costmap/CMakeFiles/test_costmap.dir/all
 
 # Include target in all.
@@ -4869,7 +4869,7 @@ all: hero_costmap/CMakeFiles/test_costmap.dir/all
 
 # Build rule for subdir invocation for target.
 hero_costmap/CMakeFiles/test_costmap.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 hero_costmap/CMakeFiles/test_costmap.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_costmap/CMakeFiles/test_costmap.dir/rule
@@ -5311,18 +5311,12 @@ clean: hero_costmap/CMakeFiles/topic_tools_generate_messages_lisp.dir/clean
 # Convenience name for "all" pass in the directory.
 hero_decision/all: hero_decision/CMakeFiles/behavior_test_node.dir/all
 hero_decision/all: hero_decision/CMakeFiles/point_navigation.dir/all
-hero_decision/all: hero_decision/CMakeFiles/test_sub.dir/all
-hero_decision/all: hero_decision/CMakeFiles/test_pub.dir/all
-hero_decision/all: hero_decision/CMakeFiles/point_navigation_pub.dir/all
 
 .PHONY : hero_decision/all
 
 # Convenience name for "clean" pass in the directory.
 hero_decision/clean: hero_decision/CMakeFiles/behavior_test_node.dir/clean
 hero_decision/clean: hero_decision/CMakeFiles/point_navigation.dir/clean
-hero_decision/clean: hero_decision/CMakeFiles/test_sub.dir/clean
-hero_decision/clean: hero_decision/CMakeFiles/test_pub.dir/clean
-hero_decision/clean: hero_decision/CMakeFiles/point_navigation_pub.dir/clean
 
 .PHONY : hero_decision/clean
 
@@ -5349,7 +5343,7 @@ all: hero_decision/CMakeFiles/behavior_test_node.dir/all
 
 # Build rule for subdir invocation for target.
 hero_decision/CMakeFiles/behavior_test_node.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 78
 	$(MAKE) -f CMakeFiles/Makefile2 hero_decision/CMakeFiles/behavior_test_node.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_decision/CMakeFiles/behavior_test_node.dir/rule
@@ -5430,7 +5424,7 @@ hero_decision/CMakeFiles/point_navigation.dir/all: hero_costmap/CMakeFiles/tf2_m
 hero_decision/CMakeFiles/point_navigation.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_cpp.dir/all
 	$(MAKE) -f hero_decision/CMakeFiles/point_navigation.dir/build.make hero_decision/CMakeFiles/point_navigation.dir/depend
 	$(MAKE) -f hero_decision/CMakeFiles/point_navigation.dir/build.make hero_decision/CMakeFiles/point_navigation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num= "Built target point_navigation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=95 "Built target point_navigation"
 .PHONY : hero_decision/CMakeFiles/point_navigation.dir/all
 
 # Include target in all.
@@ -5440,7 +5434,7 @@ all: hero_decision/CMakeFiles/point_navigation.dir/all
 
 # Build rule for subdir invocation for target.
 hero_decision/CMakeFiles/point_navigation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 66
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 70
 	$(MAKE) -f CMakeFiles/Makefile2 hero_decision/CMakeFiles/point_navigation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_decision/CMakeFiles/point_navigation.dir/rule
@@ -5457,279 +5451,6 @@ hero_decision/CMakeFiles/point_navigation.dir/clean:
 
 # clean rule for target.
 clean: hero_decision/CMakeFiles/point_navigation.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target hero_decision/CMakeFiles/test_sub.dir
-
-# All Build rule for target.
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_sub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_cpp.dir/all
-	$(MAKE) -f hero_decision/CMakeFiles/test_sub.dir/build.make hero_decision/CMakeFiles/test_sub.dir/depend
-	$(MAKE) -f hero_decision/CMakeFiles/test_sub.dir/build.make hero_decision/CMakeFiles/test_sub.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=97 "Built target test_sub"
-.PHONY : hero_decision/CMakeFiles/test_sub.dir/all
-
-# Include target in all.
-all: hero_decision/CMakeFiles/test_sub.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-hero_decision/CMakeFiles/test_sub.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 67
-	$(MAKE) -f CMakeFiles/Makefile2 hero_decision/CMakeFiles/test_sub.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
-.PHONY : hero_decision/CMakeFiles/test_sub.dir/rule
-
-# Convenience name for target.
-test_sub: hero_decision/CMakeFiles/test_sub.dir/rule
-
-.PHONY : test_sub
-
-# clean rule for target.
-hero_decision/CMakeFiles/test_sub.dir/clean:
-	$(MAKE) -f hero_decision/CMakeFiles/test_sub.dir/build.make hero_decision/CMakeFiles/test_sub.dir/clean
-.PHONY : hero_decision/CMakeFiles/test_sub.dir/clean
-
-# clean rule for target.
-clean: hero_decision/CMakeFiles/test_sub.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target hero_decision/CMakeFiles/test_pub.dir
-
-# All Build rule for target.
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_py.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/test_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_cpp.dir/all
-	$(MAKE) -f hero_decision/CMakeFiles/test_pub.dir/build.make hero_decision/CMakeFiles/test_pub.dir/depend
-	$(MAKE) -f hero_decision/CMakeFiles/test_pub.dir/build.make hero_decision/CMakeFiles/test_pub.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num= "Built target test_pub"
-.PHONY : hero_decision/CMakeFiles/test_pub.dir/all
-
-# Include target in all.
-all: hero_decision/CMakeFiles/test_pub.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-hero_decision/CMakeFiles/test_pub.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 66
-	$(MAKE) -f CMakeFiles/Makefile2 hero_decision/CMakeFiles/test_pub.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
-.PHONY : hero_decision/CMakeFiles/test_pub.dir/rule
-
-# Convenience name for target.
-test_pub: hero_decision/CMakeFiles/test_pub.dir/rule
-
-.PHONY : test_pub
-
-# clean rule for target.
-hero_decision/CMakeFiles/test_pub.dir/clean:
-	$(MAKE) -f hero_decision/CMakeFiles/test_pub.dir/build.make hero_decision/CMakeFiles/test_pub.dir/clean
-.PHONY : hero_decision/CMakeFiles/test_pub.dir/clean
-
-# clean rule for target.
-clean: hero_decision/CMakeFiles/test_pub.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target hero_decision/CMakeFiles/point_navigation_pub.dir
-
-# All Build rule for target.
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/nav_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/actionlib_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/roscpp_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_msgs/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_py.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_eus.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/all
-hero_decision/CMakeFiles/point_navigation_pub.dir/all: hero_costmap/CMakeFiles/tf_generate_messages_cpp.dir/all
-	$(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/depend
-	$(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=92 "Built target point_navigation_pub"
-.PHONY : hero_decision/CMakeFiles/point_navigation_pub.dir/all
-
-# Include target in all.
-all: hero_decision/CMakeFiles/point_navigation_pub.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-hero_decision/CMakeFiles/point_navigation_pub.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 67
-	$(MAKE) -f CMakeFiles/Makefile2 hero_decision/CMakeFiles/point_navigation_pub.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
-.PHONY : hero_decision/CMakeFiles/point_navigation_pub.dir/rule
-
-# Convenience name for target.
-point_navigation_pub: hero_decision/CMakeFiles/point_navigation_pub.dir/rule
-
-.PHONY : point_navigation_pub
-
-# clean rule for target.
-hero_decision/CMakeFiles/point_navigation_pub.dir/clean:
-	$(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/clean
-.PHONY : hero_decision/CMakeFiles/point_navigation_pub.dir/clean
-
-# clean rule for target.
-clean: hero_decision/CMakeFiles/point_navigation_pub.dir/clean
 
 .PHONY : clean
 
@@ -5758,7 +5479,7 @@ hero_interface/preinstall:
 hero_interface/CMakeFiles/hero_interface.dir/all:
 	$(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/depend
 	$(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=17,18,19,20 "Built target hero_interface"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=18,19,20,21 "Built target hero_interface"
 .PHONY : hero_interface/CMakeFiles/hero_interface.dir/all
 
 # Include target in all.
@@ -5813,7 +5534,7 @@ hero_judgesys/preinstall:
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/all:
 	$(MAKE) -f hero_judgesys/CMakeFiles/judgesys_control_node.dir/build.make hero_judgesys/CMakeFiles/judgesys_control_node.dir/depend
 	$(MAKE) -f hero_judgesys/CMakeFiles/judgesys_control_node.dir/build.make hero_judgesys/CMakeFiles/judgesys_control_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=87 "Built target judgesys_control_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=91 "Built target judgesys_control_node"
 .PHONY : hero_judgesys/CMakeFiles/judgesys_control_node.dir/all
 
 # Include target in all.
@@ -6034,7 +5755,6 @@ clean: hero_planning/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/cle
 
 # Convenience name for "all" pass in the directory.
 hero_planning/local_planner/all: hero_planning/local_planner/CMakeFiles/local_planner_node.dir/all
-hero_planning/local_planner/all: hero_planning/local_planner/CMakeFiles/teb_test.dir/all
 hero_planning/local_planner/all: hero_planning/local_planner/CMakeFiles/vel_converter.dir/all
 hero_planning/local_planner/all: hero_planning/local_planner/timed_elastic_band/all
 
@@ -6042,7 +5762,6 @@ hero_planning/local_planner/all: hero_planning/local_planner/timed_elastic_band/
 
 # Convenience name for "clean" pass in the directory.
 hero_planning/local_planner/clean: hero_planning/local_planner/CMakeFiles/local_planner_node.dir/clean
-hero_planning/local_planner/clean: hero_planning/local_planner/CMakeFiles/teb_test.dir/clean
 hero_planning/local_planner/clean: hero_planning/local_planner/CMakeFiles/vel_converter.dir/clean
 hero_planning/local_planner/clean: hero_planning/local_planner/timed_elastic_band/clean
 
@@ -6062,7 +5781,7 @@ hero_planning/local_planner/CMakeFiles/local_planner_node.dir/all: hero_costmap/
 hero_planning/local_planner/CMakeFiles/local_planner_node.dir/all: hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir/all
 	$(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/depend
 	$(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=88,89,90 "Built target local_planner_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=92,93 "Built target local_planner_node"
 .PHONY : hero_planning/local_planner/CMakeFiles/local_planner_node.dir/all
 
 # Include target in all.
@@ -6072,7 +5791,7 @@ all: hero_planning/local_planner/CMakeFiles/local_planner_node.dir/all
 
 # Build rule for subdir invocation for target.
 hero_planning/local_planner/CMakeFiles/local_planner_node.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 77
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 80
 	$(MAKE) -f CMakeFiles/Makefile2 hero_planning/local_planner/CMakeFiles/local_planner_node.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_planning/local_planner/CMakeFiles/local_planner_node.dir/rule
@@ -6089,45 +5808,6 @@ hero_planning/local_planner/CMakeFiles/local_planner_node.dir/clean:
 
 # clean rule for target.
 clean: hero_planning/local_planner/CMakeFiles/local_planner_node.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target hero_planning/local_planner/CMakeFiles/teb_test.dir
-
-# All Build rule for target.
-hero_planning/local_planner/CMakeFiles/teb_test.dir/all: hero_msgs/CMakeFiles/hero_msgs_generate_messages.dir/all
-hero_planning/local_planner/CMakeFiles/teb_test.dir/all: hero_costmap/CMakeFiles/hero_costmap.dir/all
-hero_planning/local_planner/CMakeFiles/teb_test.dir/all: hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir/all
-	$(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/depend
-	$(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=94,95 "Built target teb_test"
-.PHONY : hero_planning/local_planner/CMakeFiles/teb_test.dir/all
-
-# Include target in all.
-all: hero_planning/local_planner/CMakeFiles/teb_test.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-hero_planning/local_planner/CMakeFiles/teb_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 76
-	$(MAKE) -f CMakeFiles/Makefile2 hero_planning/local_planner/CMakeFiles/teb_test.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
-.PHONY : hero_planning/local_planner/CMakeFiles/teb_test.dir/rule
-
-# Convenience name for target.
-teb_test: hero_planning/local_planner/CMakeFiles/teb_test.dir/rule
-
-.PHONY : teb_test
-
-# clean rule for target.
-hero_planning/local_planner/CMakeFiles/teb_test.dir/clean:
-	$(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/clean
-.PHONY : hero_planning/local_planner/CMakeFiles/teb_test.dir/clean
-
-# clean rule for target.
-clean: hero_planning/local_planner/CMakeFiles/teb_test.dir/clean
 
 .PHONY : clean
 
@@ -6149,7 +5829,7 @@ all: hero_planning/local_planner/CMakeFiles/vel_converter.dir/all
 
 # Build rule for subdir invocation for target.
 hero_planning/local_planner/CMakeFiles/vel_converter.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 77
 	$(MAKE) -f CMakeFiles/Makefile2 hero_planning/local_planner/CMakeFiles/vel_converter.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_planning/local_planner/CMakeFiles/vel_converter.dir/rule
@@ -6204,7 +5884,7 @@ all: hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_ban
 
 # Build rule for subdir invocation for target.
 hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir/rule
@@ -6265,7 +5945,7 @@ all: hero_planning/global_planner/CMakeFiles/global_planner_node.dir/all
 
 # Build rule for subdir invocation for target.
 hero_planning/global_planner/CMakeFiles/global_planner_node.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 78
 	$(MAKE) -f CMakeFiles/Makefile2 hero_planning/global_planner/CMakeFiles/global_planner_node.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_planning/global_planner/CMakeFiles/global_planner_node.dir/rule
@@ -6302,7 +5982,7 @@ all: hero_planning/global_planner/CMakeFiles/global_planner_test.dir/all
 
 # Build rule for subdir invocation for target.
 hero_planning/global_planner/CMakeFiles/global_planner_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 67
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 70
 	$(MAKE) -f CMakeFiles/Makefile2 hero_planning/global_planner/CMakeFiles/global_planner_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_planning/global_planner/CMakeFiles/global_planner_test.dir/rule
@@ -6357,7 +6037,7 @@ all: hero_planning/global_planner/a_star_planner/CMakeFiles/a_star_planner.dir/a
 
 # Build rule for subdir invocation for target.
 hero_planning/global_planner/a_star_planner/CMakeFiles/a_star_planner.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 hero_planning/global_planner/a_star_planner/CMakeFiles/a_star_planner.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ycz/ICRA_HERO_ws/build/CMakeFiles 0
 .PHONY : hero_planning/global_planner/a_star_planner/CMakeFiles/a_star_planner.dir/rule
@@ -6404,7 +6084,7 @@ hero_localization/preinstall: hero_localization/amcl/preinstall
 hero_localization/CMakeFiles/localization_node.dir/all: hero_localization/amcl/CMakeFiles/amcl.dir/all
 	$(MAKE) -f hero_localization/CMakeFiles/localization_node.dir/build.make hero_localization/CMakeFiles/localization_node.dir/depend
 	$(MAKE) -f hero_localization/CMakeFiles/localization_node.dir/build.make hero_localization/CMakeFiles/localization_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=91 "Built target localization_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=94 "Built target localization_node"
 .PHONY : hero_localization/CMakeFiles/localization_node.dir/all
 
 # Include target in all.
@@ -6514,7 +6194,7 @@ hero_multistage/preinstall:
 hero_multistage/CMakeFiles/robot_physics_node.dir/all:
 	$(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/depend
 	$(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=93 "Built target robot_physics_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=96 "Built target robot_physics_node"
 .PHONY : hero_multistage/CMakeFiles/robot_physics_node.dir/all
 
 # Include target in all.

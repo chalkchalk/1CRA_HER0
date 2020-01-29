@@ -369,7 +369,7 @@ public:
         progressBarAmmo_3->setFormat(QApplication::translate("MainWindowDesign", "%v", 0, QApplication::UnicodeUTF8));
         pushButtonReload_3->setText(QApplication::translate("MainWindowDesign", "Reload", 0, QApplication::UnicodeUTF8));
         pushButtonDisarm_3->setText(QApplication::translate("MainWindowDesign", "Disarm", 0, QApplication::UnicodeUTF8));
-        groupBoxRed2->setTitle(QApplication::translate("MainWindowDesign", "Red 1", 0, QApplication::UnicodeUTF8));
+        groupBoxRed2->setTitle(QApplication::translate("MainWindowDesign", "Red 2", 0, QApplication::UnicodeUTF8));
         pushButtonKill_4->setText(QApplication::translate("MainWindowDesign", "Kill", 0, QApplication::UnicodeUTF8));
         pushButtonRevive_4->setText(QApplication::translate("MainWindowDesign", "Revive", 0, QApplication::UnicodeUTF8));
         progressBarHealth_4->setFormat(QApplication::translate("MainWindowDesign", "%v/2000", 0, QApplication::UnicodeUTF8));

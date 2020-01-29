@@ -27,7 +27,7 @@ private:
     ros::Subscriber pose_sub_[4];
 
     tf::Transform robot_tf_[4];
-    bool robot_tf_received[4];
+    bool robot_tf_received_[4];
     hero_common::ErrorInfo Init();
     void PoseCallback(const nav_msgs::Odometry::ConstPtr& msg);
 

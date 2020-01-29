@@ -16,6 +16,8 @@
 #include <std_msgs/String.h>
 #include <sstream>
 #include "../include/hero_interface/qnode.hpp"
+#include <tf/transform_listener.h>
+#include <tf/tf.h>
 
 /*****************************************************************************
 ** Namespaces
@@ -30,7 +32,8 @@ namespace hero_interface {
 QNode::QNode(int argc, char** argv ,BattleView *parentBattleView) :
 	init_argc(argc),
     init_argv(argv),
-    parentBattleView_(parentBattleView)
+    parentBattleView_(parentBattleView),
+    gimbal_yaw_(0)
 	{}
 
 QNode::~QNode() {

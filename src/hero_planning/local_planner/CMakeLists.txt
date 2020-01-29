@@ -49,23 +49,23 @@ add_dependencies(${PROJECT_NAME}_node
   hero_msgs_generate_messages)
 
 #local palnner test
-add_executable(teb_test
-  ${LocalPlanProtoSrc}
-  ${LocalPlanProtoHds}
-  src/teb_test.cpp
-  src/local_visualization.cpp
-  src/obstacles.cpp
-  src/odom_info.cpp
-  src/robot_position_cost.cpp
-  )
+#add_executable(teb_test
+#  ${LocalPlanProtoSrc}
+#  ${LocalPlanProtoHds}
+ # src/teb_test.cpp
+ # src/local_visualization.cpp
+ # src/obstacles.cpp
+ # src/odom_info.cpp
+ # src/robot_position_cost.cpp
+#  )
 
-target_link_libraries(teb_test
-  PRIVATE
-  planning::timed_elastic_band
-  ${EXTERNAL_LIBS}
-  )
-add_dependencies(teb_test
-  hero_msgs_generate_messages)
+#target_link_libraries(teb_test
+#  PRIVATE
+#  planning::timed_elastic_band
+#  ${EXTERNAL_LIBS}
+#  )
+#add_dependencies(teb_test
+#  hero_msgs_generate_messages)
 
 #vel converter
 add_executable(vel_converter

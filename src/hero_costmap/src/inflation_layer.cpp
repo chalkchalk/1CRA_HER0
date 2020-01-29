@@ -153,8 +153,9 @@ void InflationLayer::OnFootprintChanged() {
 void InflationLayer::UpdateCosts(Costmap2D &master_grid, int min_i, int min_j, int max_i, int max_j) {
   std::unique_lock<std::recursive_mutex> lock(*inflation_access_);
   if (!is_enabled_ || (cell_inflation_radius_ == 0)) {
+    ros::NodeHandle nh;
     if(cell_inflation_radius_ == 0 )
-        ROS_ERROR("%s:inflation radius is zero",name_.c_str());
+        ROS_ERROR("[%s]%s:inflation radius is zero",nh.getNamespace().c_str(),name_.c_str());
     if(!is_enabled_ )
       ROS_ERROR("Layer is not enabled"); 
     return;

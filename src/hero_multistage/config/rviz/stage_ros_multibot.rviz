@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /Map2
+        - /TF1
       Splitter Ratio: 0.5
     Tree Height: 756
   - Class: rviz/Selection
@@ -476,13 +477,13 @@ Visualization Manager:
         All Enabled: true
         map:
           Value: true
-        robot_0/armor/back:
+        robot_0/armor_back:
           Value: true
-        robot_0/armor/front:
+        robot_0/armor_front:
           Value: true
-        robot_0/armor/left:
+        robot_0/armor_left:
           Value: true
-        robot_0/armor/right:
+        robot_0/armor_right:
           Value: true
         robot_0/base_footprint:
           Value: true
@@ -490,7 +491,19 @@ Visualization Manager:
           Value: true
         robot_0/base_link:
           Value: true
+        robot_0/base_pose_ground_truth:
+          Value: true
+        robot_0/gimbal:
+          Value: true
         robot_0/odom:
+          Value: true
+        robot_1/armor_back:
+          Value: true
+        robot_1/armor_front:
+          Value: true
+        robot_1/armor_left:
+          Value: true
+        robot_1/armor_right:
           Value: true
         robot_1/base_footprint:
           Value: true
@@ -498,7 +511,19 @@ Visualization Manager:
           Value: true
         robot_1/base_link:
           Value: true
+        robot_1/base_pose_ground_truth:
+          Value: true
+        robot_1/gimbal:
+          Value: true
         robot_1/odom:
+          Value: true
+        robot_2/armor_back:
+          Value: true
+        robot_2/armor_front:
+          Value: true
+        robot_2/armor_left:
+          Value: true
+        robot_2/armor_right:
           Value: true
         robot_2/base_footprint:
           Value: true
@@ -506,7 +531,19 @@ Visualization Manager:
           Value: true
         robot_2/base_link:
           Value: true
+        robot_2/base_pose_ground_truth:
+          Value: true
+        robot_2/gimbal:
+          Value: true
         robot_2/odom:
+          Value: true
+        robot_3/armor_back:
+          Value: true
+        robot_3/armor_front:
+          Value: true
+        robot_3/armor_left:
+          Value: true
+        robot_3/armor_right:
           Value: true
         robot_3/base_footprint:
           Value: true
@@ -514,30 +551,78 @@ Visualization Manager:
           Value: true
         robot_3/base_link:
           Value: true
+        robot_3/base_pose_ground_truth:
+          Value: true
+        robot_3/gimbal:
+          Value: true
         robot_3/odom:
           Value: true
       Marker Scale: 1
       Name: TF
-      Show Arrows: true
+      Show Arrows: false
       Show Axes: true
       Show Names: true
       Tree:
         map:
+          robot_0/base_pose_ground_truth:
+            robot_0/armor_back:
+              {}
+            robot_0/armor_front:
+              {}
+            robot_0/armor_left:
+              {}
+            robot_0/armor_right:
+              {}
+            robot_0/gimbal:
+              {}
           robot_0/odom:
             robot_0/base_footprint:
               robot_0/base_link:
                 robot_0/base_laser_link:
                   {}
+          robot_1/base_pose_ground_truth:
+            robot_1/armor_back:
+              {}
+            robot_1/armor_front:
+              {}
+            robot_1/armor_left:
+              {}
+            robot_1/armor_right:
+              {}
+            robot_1/gimbal:
+              {}
           robot_1/odom:
             robot_1/base_footprint:
               robot_1/base_link:
                 robot_1/base_laser_link:
                   {}
+          robot_2/base_pose_ground_truth:
+            robot_2/armor_back:
+              {}
+            robot_2/armor_front:
+              {}
+            robot_2/armor_left:
+              {}
+            robot_2/armor_right:
+              {}
+            robot_2/gimbal:
+              {}
           robot_2/odom:
             robot_2/base_footprint:
               robot_2/base_link:
                 robot_2/base_laser_link:
                   {}
+          robot_3/base_pose_ground_truth:
+            robot_3/armor_back:
+              {}
+            robot_3/armor_front:
+              {}
+            robot_3/armor_left:
+              {}
+            robot_3/armor_right:
+              {}
+            robot_3/gimbal:
+              {}
           robot_3/odom:
             robot_3/base_footprint:
               robot_3/base_link:
@@ -570,25 +655,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 13.8095131
+      Distance: 15.8788347
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 4.75831509
-        Y: 2.62610483
-        Z: -1.35809505
+        X: 5.80027246
+        Y: 0.88105917
+        Z: -1.96766651
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 1.56979632
+      Pitch: 1.04479682
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 6.2685833
+      Yaw: 6.27858353
     Saved: ~
 Window Geometry:
   Displays:

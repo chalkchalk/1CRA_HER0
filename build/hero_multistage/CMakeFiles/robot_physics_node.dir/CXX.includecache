@@ -6,11 +6,19 @@
 
 #IncludeRegexTransform: 
 
+/home/ycz/ICRA_HERO_ws/src/hero_common/include/math/geometry.h
+cmath
+-
+string
+-
+vector
+-
+
 /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/error_code.h
 string
 -
 
-/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/robot_physics.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/bullet.h
 ros/ros.h
 -
 tf/transform_broadcaster.h
@@ -23,6 +31,20 @@ state/error_code.h
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/state/error_code.h
 robot_tf.h
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/robot_tf.h
+math/geometry.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/math/geometry.h
+
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/robot_physics.h
+ros/ros.h
+-
+state/error_code.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/state/error_code.h
+robot_tf.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/robot_tf.h
+bullet.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/bullet.h
+nav_msgs/Odometry.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/nav_msgs/Odometry.h
 
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/robot_tf.h
 state/error_code.h
@@ -36,9 +58,27 @@ ros/ros.h
 tf/transform_listener.h
 -
 
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/src/bullet.cpp
+bullet.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/src/bullet.h
+
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/src/robot_physics.cpp
 robot_physics.h
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/src/robot_physics.h
+string
+-
+sstream
+-
+iostream
+-
+stdio.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/src/stdio.h
+tf/transform_listener.h
+-
+tf/tf.h
+-
+tf/transform_broadcaster.h
+-
 
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/src/robot_tf.cpp
 robot_tf.h
@@ -196,6 +236,24 @@ std_msgs/Header.h
 geometry_msgs/Pose.h
 -
 
+/opt/ros/kinetic/include/geometry_msgs/PoseWithCovariance.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+geometry_msgs/Pose.h
+-
+
 /opt/ros/kinetic/include/geometry_msgs/Quaternion.h
 string
 -
@@ -312,6 +370,24 @@ std_msgs/Header.h
 geometry_msgs/Twist.h
 -
 
+/opt/ros/kinetic/include/geometry_msgs/TwistWithCovariance.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+geometry_msgs/Twist.h
+-
+
 /opt/ros/kinetic/include/geometry_msgs/Vector3.h
 string
 -
@@ -346,6 +422,28 @@ ros/message_operations.h
 std_msgs/Header.h
 -
 geometry_msgs/Vector3.h
+-
+
+/opt/ros/kinetic/include/nav_msgs/Odometry.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
+-
+geometry_msgs/PoseWithCovariance.h
+-
+geometry_msgs/TwistWithCovariance.h
 -
 
 /opt/ros/kinetic/include/ros/advertise_options.h

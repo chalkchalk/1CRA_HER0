@@ -111,17 +111,6 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -132,6 +121,17 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -181,21 +181,6 @@ local_planner_node/fast:
 .PHONY : local_planner_node/fast
 
 # Convenience name for target.
-hero_planning/local_planner/CMakeFiles/teb_test.dir/rule:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_planning/local_planner/CMakeFiles/teb_test.dir/rule
-.PHONY : hero_planning/local_planner/CMakeFiles/teb_test.dir/rule
-
-# Convenience name for target.
-teb_test: hero_planning/local_planner/CMakeFiles/teb_test.dir/rule
-
-.PHONY : teb_test
-
-# fast build rule for target.
-teb_test/fast:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/build
-.PHONY : teb_test/fast
-
-# Convenience name for target.
 hero_planning/local_planner/CMakeFiles/vel_converter.dir/rule:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_planning/local_planner/CMakeFiles/vel_converter.dir/rule
 .PHONY : hero_planning/local_planner/CMakeFiles/vel_converter.dir/rule
@@ -217,7 +202,6 @@ include/local_planner/proto/local_planner.pb.o: include/local_planner/proto/loca
 # target to build an object file
 include/local_planner/proto/local_planner.pb.cc.o:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/include/local_planner/proto/local_planner.pb.cc.o
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/include/local_planner/proto/local_planner.pb.cc.o
 .PHONY : include/local_planner/proto/local_planner.pb.cc.o
 
 include/local_planner/proto/local_planner.pb.i: include/local_planner/proto/local_planner.pb.cc.i
@@ -227,7 +211,6 @@ include/local_planner/proto/local_planner.pb.i: include/local_planner/proto/loca
 # target to preprocess a source file
 include/local_planner/proto/local_planner.pb.cc.i:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/include/local_planner/proto/local_planner.pb.cc.i
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/include/local_planner/proto/local_planner.pb.cc.i
 .PHONY : include/local_planner/proto/local_planner.pb.cc.i
 
 include/local_planner/proto/local_planner.pb.s: include/local_planner/proto/local_planner.pb.cc.s
@@ -237,7 +220,6 @@ include/local_planner/proto/local_planner.pb.s: include/local_planner/proto/loca
 # target to generate assembly for a file
 include/local_planner/proto/local_planner.pb.cc.s:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/include/local_planner/proto/local_planner.pb.cc.s
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/include/local_planner/proto/local_planner.pb.cc.s
 .PHONY : include/local_planner/proto/local_planner.pb.cc.s
 
 src/local_planner_node.o: src/local_planner_node.cpp.o
@@ -274,7 +256,6 @@ src/local_visualization.o: src/local_visualization.cpp.o
 # target to build an object file
 src/local_visualization.cpp.o:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/local_visualization.cpp.o
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/local_visualization.cpp.o
 .PHONY : src/local_visualization.cpp.o
 
 src/local_visualization.i: src/local_visualization.cpp.i
@@ -284,7 +265,6 @@ src/local_visualization.i: src/local_visualization.cpp.i
 # target to preprocess a source file
 src/local_visualization.cpp.i:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/local_visualization.cpp.i
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/local_visualization.cpp.i
 .PHONY : src/local_visualization.cpp.i
 
 src/local_visualization.s: src/local_visualization.cpp.s
@@ -294,7 +274,6 @@ src/local_visualization.s: src/local_visualization.cpp.s
 # target to generate assembly for a file
 src/local_visualization.cpp.s:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/local_visualization.cpp.s
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/local_visualization.cpp.s
 .PHONY : src/local_visualization.cpp.s
 
 src/obstacles.o: src/obstacles.cpp.o
@@ -304,7 +283,6 @@ src/obstacles.o: src/obstacles.cpp.o
 # target to build an object file
 src/obstacles.cpp.o:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/obstacles.cpp.o
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/obstacles.cpp.o
 .PHONY : src/obstacles.cpp.o
 
 src/obstacles.i: src/obstacles.cpp.i
@@ -314,7 +292,6 @@ src/obstacles.i: src/obstacles.cpp.i
 # target to preprocess a source file
 src/obstacles.cpp.i:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/obstacles.cpp.i
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/obstacles.cpp.i
 .PHONY : src/obstacles.cpp.i
 
 src/obstacles.s: src/obstacles.cpp.s
@@ -324,7 +301,6 @@ src/obstacles.s: src/obstacles.cpp.s
 # target to generate assembly for a file
 src/obstacles.cpp.s:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/obstacles.cpp.s
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/obstacles.cpp.s
 .PHONY : src/obstacles.cpp.s
 
 src/odom_info.o: src/odom_info.cpp.o
@@ -334,7 +310,6 @@ src/odom_info.o: src/odom_info.cpp.o
 # target to build an object file
 src/odom_info.cpp.o:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/odom_info.cpp.o
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/odom_info.cpp.o
 .PHONY : src/odom_info.cpp.o
 
 src/odom_info.i: src/odom_info.cpp.i
@@ -344,7 +319,6 @@ src/odom_info.i: src/odom_info.cpp.i
 # target to preprocess a source file
 src/odom_info.cpp.i:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/odom_info.cpp.i
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/odom_info.cpp.i
 .PHONY : src/odom_info.cpp.i
 
 src/odom_info.s: src/odom_info.cpp.s
@@ -354,7 +328,6 @@ src/odom_info.s: src/odom_info.cpp.s
 # target to generate assembly for a file
 src/odom_info.cpp.s:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/odom_info.cpp.s
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/odom_info.cpp.s
 .PHONY : src/odom_info.cpp.s
 
 src/robot_position_cost.o: src/robot_position_cost.cpp.o
@@ -364,7 +337,6 @@ src/robot_position_cost.o: src/robot_position_cost.cpp.o
 # target to build an object file
 src/robot_position_cost.cpp.o:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/robot_position_cost.cpp.o
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/robot_position_cost.cpp.o
 .PHONY : src/robot_position_cost.cpp.o
 
 src/robot_position_cost.i: src/robot_position_cost.cpp.i
@@ -374,7 +346,6 @@ src/robot_position_cost.i: src/robot_position_cost.cpp.i
 # target to preprocess a source file
 src/robot_position_cost.cpp.i:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/robot_position_cost.cpp.i
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/robot_position_cost.cpp.i
 .PHONY : src/robot_position_cost.cpp.i
 
 src/robot_position_cost.s: src/robot_position_cost.cpp.s
@@ -384,35 +355,7 @@ src/robot_position_cost.s: src/robot_position_cost.cpp.s
 # target to generate assembly for a file
 src/robot_position_cost.cpp.s:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/src/robot_position_cost.cpp.s
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/robot_position_cost.cpp.s
 .PHONY : src/robot_position_cost.cpp.s
-
-src/teb_test.o: src/teb_test.cpp.o
-
-.PHONY : src/teb_test.o
-
-# target to build an object file
-src/teb_test.cpp.o:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/teb_test.cpp.o
-.PHONY : src/teb_test.cpp.o
-
-src/teb_test.i: src/teb_test.cpp.i
-
-.PHONY : src/teb_test.i
-
-# target to preprocess a source file
-src/teb_test.cpp.i:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/teb_test.cpp.i
-.PHONY : src/teb_test.cpp.i
-
-src/teb_test.s: src/teb_test.cpp.s
-
-.PHONY : src/teb_test.s
-
-# target to generate assembly for a file
-src/teb_test.cpp.s:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/src/teb_test.cpp.s
-.PHONY : src/teb_test.cpp.s
 
 src/vel_converter.o: src/vel_converter.cpp.o
 
@@ -453,10 +396,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... local_planner_node"
-	@echo "... teb_test"
-	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... vel_converter"
+	@echo "... install/local"
 	@echo "... include/local_planner/proto/local_planner.pb.o"
 	@echo "... include/local_planner/proto/local_planner.pb.i"
 	@echo "... include/local_planner/proto/local_planner.pb.s"
@@ -475,9 +417,6 @@ help:
 	@echo "... src/robot_position_cost.o"
 	@echo "... src/robot_position_cost.i"
 	@echo "... src/robot_position_cost.s"
-	@echo "... src/teb_test.o"
-	@echo "... src/teb_test.i"
-	@echo "... src/teb_test.s"
 	@echo "... src/vel_converter.o"
 	@echo "... src/vel_converter.i"
 	@echo "... src/vel_converter.s"

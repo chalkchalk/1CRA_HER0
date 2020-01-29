@@ -56,6 +56,16 @@ CMAKE_BINARY_DIR = /home/ycz/ICRA_HERO_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -68,48 +78,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : list_install_components/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -122,16 +100,38 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : rebuild_cache/fast
+.PHONY : test/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -194,51 +194,6 @@ point_navigation: hero_decision/CMakeFiles/point_navigation.dir/rule
 point_navigation/fast:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/point_navigation.dir/build.make hero_decision/CMakeFiles/point_navigation.dir/build
 .PHONY : point_navigation/fast
-
-# Convenience name for target.
-hero_decision/CMakeFiles/test_sub.dir/rule:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_decision/CMakeFiles/test_sub.dir/rule
-.PHONY : hero_decision/CMakeFiles/test_sub.dir/rule
-
-# Convenience name for target.
-test_sub: hero_decision/CMakeFiles/test_sub.dir/rule
-
-.PHONY : test_sub
-
-# fast build rule for target.
-test_sub/fast:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/test_sub.dir/build.make hero_decision/CMakeFiles/test_sub.dir/build
-.PHONY : test_sub/fast
-
-# Convenience name for target.
-hero_decision/CMakeFiles/test_pub.dir/rule:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_decision/CMakeFiles/test_pub.dir/rule
-.PHONY : hero_decision/CMakeFiles/test_pub.dir/rule
-
-# Convenience name for target.
-test_pub: hero_decision/CMakeFiles/test_pub.dir/rule
-
-.PHONY : test_pub
-
-# fast build rule for target.
-test_pub/fast:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/test_pub.dir/build.make hero_decision/CMakeFiles/test_pub.dir/build
-.PHONY : test_pub/fast
-
-# Convenience name for target.
-hero_decision/CMakeFiles/point_navigation_pub.dir/rule:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_decision/CMakeFiles/point_navigation_pub.dir/rule
-.PHONY : hero_decision/CMakeFiles/point_navigation_pub.dir/rule
-
-# Convenience name for target.
-point_navigation_pub: hero_decision/CMakeFiles/point_navigation_pub.dir/rule
-
-.PHONY : point_navigation_pub
-
-# fast build rule for target.
-point_navigation_pub/fast:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/build
-.PHONY : point_navigation_pub/fast
 
 behavior_test.o: behavior_test.cpp.o
 
@@ -348,105 +303,21 @@ proto/decision.pb.cc.s:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/behavior_test_node.dir/build.make hero_decision/CMakeFiles/behavior_test_node.dir/proto/decision.pb.cc.s
 .PHONY : proto/decision.pb.cc.s
 
-src/point_navigation_pub.o: src/point_navigation_pub.cpp.o
-
-.PHONY : src/point_navigation_pub.o
-
-# target to build an object file
-src/point_navigation_pub.cpp.o:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o
-.PHONY : src/point_navigation_pub.cpp.o
-
-src/point_navigation_pub.i: src/point_navigation_pub.cpp.i
-
-.PHONY : src/point_navigation_pub.i
-
-# target to preprocess a source file
-src/point_navigation_pub.cpp.i:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.i
-.PHONY : src/point_navigation_pub.cpp.i
-
-src/point_navigation_pub.s: src/point_navigation_pub.cpp.s
-
-.PHONY : src/point_navigation_pub.s
-
-# target to generate assembly for a file
-src/point_navigation_pub.cpp.s:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.s
-.PHONY : src/point_navigation_pub.cpp.s
-
-src/test_pub.o: src/test_pub.cpp.o
-
-.PHONY : src/test_pub.o
-
-# target to build an object file
-src/test_pub.cpp.o:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/test_pub.dir/build.make hero_decision/CMakeFiles/test_pub.dir/src/test_pub.cpp.o
-.PHONY : src/test_pub.cpp.o
-
-src/test_pub.i: src/test_pub.cpp.i
-
-.PHONY : src/test_pub.i
-
-# target to preprocess a source file
-src/test_pub.cpp.i:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/test_pub.dir/build.make hero_decision/CMakeFiles/test_pub.dir/src/test_pub.cpp.i
-.PHONY : src/test_pub.cpp.i
-
-src/test_pub.s: src/test_pub.cpp.s
-
-.PHONY : src/test_pub.s
-
-# target to generate assembly for a file
-src/test_pub.cpp.s:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/test_pub.dir/build.make hero_decision/CMakeFiles/test_pub.dir/src/test_pub.cpp.s
-.PHONY : src/test_pub.cpp.s
-
-src/test_sub.o: src/test_sub.cpp.o
-
-.PHONY : src/test_sub.o
-
-# target to build an object file
-src/test_sub.cpp.o:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/test_sub.dir/build.make hero_decision/CMakeFiles/test_sub.dir/src/test_sub.cpp.o
-.PHONY : src/test_sub.cpp.o
-
-src/test_sub.i: src/test_sub.cpp.i
-
-.PHONY : src/test_sub.i
-
-# target to preprocess a source file
-src/test_sub.cpp.i:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/test_sub.dir/build.make hero_decision/CMakeFiles/test_sub.dir/src/test_sub.cpp.i
-.PHONY : src/test_sub.cpp.i
-
-src/test_sub.s: src/test_sub.cpp.s
-
-.PHONY : src/test_sub.s
-
-# target to generate assembly for a file
-src/test_sub.cpp.s:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_decision/CMakeFiles/test_sub.dir/build.make hero_decision/CMakeFiles/test_sub.dir/src/test_sub.cpp.s
-.PHONY : src/test_sub.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... list_install_components"
 	@echo "... install"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... behavior_test_node"
 	@echo "... point_navigation"
-	@echo "... test_sub"
-	@echo "... list_install_components"
-	@echo "... install/strip"
-	@echo "... test_pub"
-	@echo "... point_navigation_pub"
 	@echo "... install/local"
-	@echo "... test"
-	@echo "... edit_cache"
-	@echo "... rebuild_cache"
+	@echo "... install/strip"
 	@echo "... behavior_test.o"
 	@echo "... behavior_test.i"
 	@echo "... behavior_test.s"
@@ -459,15 +330,6 @@ help:
 	@echo "... proto/decision.pb.o"
 	@echo "... proto/decision.pb.i"
 	@echo "... proto/decision.pb.s"
-	@echo "... src/point_navigation_pub.o"
-	@echo "... src/point_navigation_pub.i"
-	@echo "... src/point_navigation_pub.s"
-	@echo "... src/test_pub.o"
-	@echo "... src/test_pub.i"
-	@echo "... src/test_pub.s"
-	@echo "... src/test_sub.o"
-	@echo "... src/test_sub.i"
-	@echo "... src/test_sub.s"
 .PHONY : help
 
 

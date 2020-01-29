@@ -37,8 +37,10 @@ include_directories(
 add_executable(robot_physics_node
   src/robot_physics.cpp
   src/robot_tf.cpp
+  src/bullet.cpp
   include/robot_physics.h
   include/robot_tf.h
+  include/bullet.h
 )
 
 
@@ -51,9 +53,4 @@ target_link_libraries(robot_physics_node
 
 target_include_directories(robot_physics_node PUBLIC
         ${catkin_INCLUDE_DIRS})
-
-
-
-
-
 

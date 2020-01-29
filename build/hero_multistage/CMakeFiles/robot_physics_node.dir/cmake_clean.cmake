@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o"
   "CMakeFiles/robot_physics_node.dir/src/robot_tf.cpp.o"
+  "CMakeFiles/robot_physics_node.dir/src/bullet.cpp.o"
   "/home/ycz/ICRA_HERO_ws/devel/lib/hero_multistage/robot_physics_node.pdb"
   "/home/ycz/ICRA_HERO_ws/devel/lib/hero_multistage/robot_physics_node"
 )

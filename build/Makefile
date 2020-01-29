@@ -2116,45 +2116,6 @@ point_navigation/fast:
 .PHONY : point_navigation/fast
 
 #=============================================================================
-# Target rules for targets named test_sub
-
-# Build rule for target.
-test_sub: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_sub
-.PHONY : test_sub
-
-# fast build rule for target.
-test_sub/fast:
-	$(MAKE) -f hero_decision/CMakeFiles/test_sub.dir/build.make hero_decision/CMakeFiles/test_sub.dir/build
-.PHONY : test_sub/fast
-
-#=============================================================================
-# Target rules for targets named test_pub
-
-# Build rule for target.
-test_pub: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_pub
-.PHONY : test_pub
-
-# fast build rule for target.
-test_pub/fast:
-	$(MAKE) -f hero_decision/CMakeFiles/test_pub.dir/build.make hero_decision/CMakeFiles/test_pub.dir/build
-.PHONY : test_pub/fast
-
-#=============================================================================
-# Target rules for targets named point_navigation_pub
-
-# Build rule for target.
-point_navigation_pub: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 point_navigation_pub
-.PHONY : point_navigation_pub
-
-# fast build rule for target.
-point_navigation_pub/fast:
-	$(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/build
-.PHONY : point_navigation_pub/fast
-
-#=============================================================================
 # Target rules for targets named hero_interface
 
 # Build rule for target.
@@ -2257,19 +2218,6 @@ local_planner_node: cmake_check_build_system
 local_planner_node/fast:
 	$(MAKE) -f hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build.make hero_planning/local_planner/CMakeFiles/local_planner_node.dir/build
 .PHONY : local_planner_node/fast
-
-#=============================================================================
-# Target rules for targets named teb_test
-
-# Build rule for target.
-teb_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 teb_test
-.PHONY : teb_test
-
-# fast build rule for target.
-teb_test/fast:
-	$(MAKE) -f hero_planning/local_planner/CMakeFiles/teb_test.dir/build.make hero_planning/local_planner/CMakeFiles/teb_test.dir/build
-.PHONY : teb_test/fast
 
 #=============================================================================
 # Target rules for targets named vel_converter
@@ -2538,9 +2486,6 @@ help:
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... behavior_test_node"
 	@echo "... point_navigation"
-	@echo "... test_sub"
-	@echo "... test_pub"
-	@echo "... point_navigation_pub"
 	@echo "... hero_interface"
 	@echo "... judgesys_control_node"
 	@echo "... visualization_msgs_generate_messages_nodejs"
@@ -2549,7 +2494,6 @@ help:
 	@echo "... visualization_msgs_generate_messages_py"
 	@echo "... visualization_msgs_generate_messages_cpp"
 	@echo "... local_planner_node"
-	@echo "... teb_test"
 	@echo "... vel_converter"
 	@echo "... timed_elastic_band"
 	@echo "... global_planner_node"

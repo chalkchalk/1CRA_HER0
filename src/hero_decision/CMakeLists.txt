@@ -58,13 +58,7 @@ add_dependencies(behavior_test_node
   hero_msgs_generate_messages)
 
 
-add_executable(point_navigation_pub
-  src/point_navigation_pub.cpp
-)
-add_dependencies(point_navigation_pub ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(point_navigation_pub
-  ${catkin_LIBRARIES}
-)
+
 
 add_executable(point_navigation
   executor/point_navigation.cpp
@@ -74,18 +68,3 @@ target_link_libraries(point_navigation
   ${catkin_LIBRARIES}
 )
 
-add_executable(test_pub
-  src/test_pub.cpp
-)
-add_dependencies(test_pub ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(test_pub
-  ${catkin_LIBRARIES}
-)
-
-add_executable(test_sub
-  src/test_sub.cpp
-)
-add_dependencies(test_sub ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(test_sub
-  ${catkin_LIBRARIES}
-)

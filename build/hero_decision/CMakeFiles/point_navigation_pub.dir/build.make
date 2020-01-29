@@ -57,73 +57,7 @@ include hero_decision/CMakeFiles/point_navigation_pub.dir/progress.make
 # Include the compile flags for this target's objects.
 include hero_decision/CMakeFiles/point_navigation_pub.dir/flags.make
 
-hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o: hero_decision/CMakeFiles/point_navigation_pub.dir/flags.make
-hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_decision/src/point_navigation_pub.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o"
-	cd /home/ycz/ICRA_HERO_ws/build/hero_decision && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o -c /home/ycz/ICRA_HERO_ws/src/hero_decision/src/point_navigation_pub.cpp
-
-hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.i"
-	cd /home/ycz/ICRA_HERO_ws/build/hero_decision && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ycz/ICRA_HERO_ws/src/hero_decision/src/point_navigation_pub.cpp > CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.i
-
-hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.s"
-	cd /home/ycz/ICRA_HERO_ws/build/hero_decision && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ycz/ICRA_HERO_ws/src/hero_decision/src/point_navigation_pub.cpp -o CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.s
-
-hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o.requires:
-
-.PHONY : hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o.requires
-
-hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o.provides: hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o.requires
-	$(MAKE) -f hero_decision/CMakeFiles/point_navigation_pub.dir/build.make hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o.provides.build
-.PHONY : hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o.provides
-
-hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o.provides.build: hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o
-
-
-# Object files for target point_navigation_pub
-point_navigation_pub_OBJECTS = \
-"CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o"
-
-# External object files for target point_navigation_pub
-point_navigation_pub_EXTERNAL_OBJECTS =
-
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: hero_decision/CMakeFiles/point_navigation_pub.dir/build.make
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libtf.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libtf2_ros.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libmessage_filters.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libtf2.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libactionlib.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libroscpp.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/librosconsole.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libxmlrpcpp.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libroscpp_serialization.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/librostime.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /opt/ros/kinetic/lib/libcpp_common.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub: hero_decision/CMakeFiles/point_navigation_pub.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub"
-	cd /home/ycz/ICRA_HERO_ws/build/hero_decision && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/point_navigation_pub.dir/link.txt --verbose=$(VERBOSE)
-
-# Rule to build all files generated by this target.
-hero_decision/CMakeFiles/point_navigation_pub.dir/build: /home/ycz/ICRA_HERO_ws/devel/lib/hero_decision/point_navigation_pub
-
-.PHONY : hero_decision/CMakeFiles/point_navigation_pub.dir/build
-
-hero_decision/CMakeFiles/point_navigation_pub.dir/requires: hero_decision/CMakeFiles/point_navigation_pub.dir/src/point_navigation_pub.cpp.o.requires
+hero_decision/CMakeFiles/point_navigation_pub.dir/requires:
 
 .PHONY : hero_decision/CMakeFiles/point_navigation_pub.dir/requires
 

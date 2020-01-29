@@ -7,6 +7,7 @@
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
 
+
 namespace HeroMultistage {
 
 #define RobotWidth 0.5
@@ -19,11 +20,15 @@ public:
     void PublishArmorTF();
     std::string GetName()
     {return robot_name_;}
+    float GetGimbalYaw()
+    {return gimbal_yaw_;}
+
 
 private:
     std::string robot_name_;
     tf::TransformListener listener_;
     tf::TransformBroadcaster broadcaster_;
+    float gimbal_yaw_;
     hero_common::ErrorInfo Init(std::string robot_name);
 
 };

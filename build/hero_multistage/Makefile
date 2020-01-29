@@ -180,6 +180,33 @@ robot_physics_node/fast:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/build
 .PHONY : robot_physics_node/fast
 
+src/bullet.o: src/bullet.cpp.o
+
+.PHONY : src/bullet.o
+
+# target to build an object file
+src/bullet.cpp.o:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/bullet.cpp.o
+.PHONY : src/bullet.cpp.o
+
+src/bullet.i: src/bullet.cpp.i
+
+.PHONY : src/bullet.i
+
+# target to preprocess a source file
+src/bullet.cpp.i:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/bullet.cpp.i
+.PHONY : src/bullet.cpp.i
+
+src/bullet.s: src/bullet.cpp.s
+
+.PHONY : src/bullet.s
+
+# target to generate assembly for a file
+src/bullet.cpp.s:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_multistage/CMakeFiles/robot_physics_node.dir/build.make hero_multistage/CMakeFiles/robot_physics_node.dir/src/bullet.cpp.s
+.PHONY : src/bullet.cpp.s
+
 src/robot_physics.o: src/robot_physics.cpp.o
 
 .PHONY : src/robot_physics.o
@@ -248,6 +275,9 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... test"
+	@echo "... src/bullet.o"
+	@echo "... src/bullet.i"
+	@echo "... src/bullet.s"
 	@echo "... src/robot_physics.o"
 	@echo "... src/robot_physics.i"
 	@echo "... src/robot_physics.s"
