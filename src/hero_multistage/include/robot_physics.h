@@ -8,6 +8,8 @@
 #include "nav_msgs//Odometry.h"
 #include "geometry_msgs/PointStamped.h"
 
+
+#define DistributeYaw 1.2f
 namespace HeroMultistage {
 class  RobotPhysics
 {

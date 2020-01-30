@@ -73,8 +73,6 @@ tf/transform_listener.h
 -
 state/error_code.h
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/state/error_code.h
-robot_tf.h
-/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/robot_tf.h
 hero_math/geometry.h
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/hero_math/geometry.h
 hero_msgs/BulletMove.h
@@ -109,6 +107,8 @@ hero_math/math.h
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/hero_math/math.h
 geometry_msgs/PointStamped.h
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/geometry_msgs/PointStamped.h
+bullet.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/include/bullet.h
 
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/src/bullet.cpp
 bullet.h
@@ -143,10 +143,16 @@ thread
 -
 sys/time.h
 -
+cstdlib
+-
 
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/src/robot_tf.cpp
 robot_tf.h
 /home/ycz/ICRA_HERO_ws/src/hero_multistage/src/robot_tf.h
+hero_math/geometry.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/src/hero_math/geometry.h
+hero_math/math.h
+/home/ycz/ICRA_HERO_ws/src/hero_multistage/src/hero_math/math.h
 
 /opt/ros/kinetic/include/boost_161_condition_variable.h
 boost/thread/detail/platform.hpp

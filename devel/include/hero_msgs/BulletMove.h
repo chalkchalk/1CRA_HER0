@@ -30,7 +30,8 @@ struct BulletMove_
     , x_last(0.0)
     , y_last(0.0)
     , yaw(0.0)
-    , speed(0.0)  {
+    , speed(0.0)
+    , covered_distance(0.0)  {
     }
   BulletMove_(const ContainerAllocator& _alloc)
     : owner(_alloc)
@@ -39,7 +40,8 @@ struct BulletMove_
     , x_last(0.0)
     , y_last(0.0)
     , yaw(0.0)
-    , speed(0.0)  {
+    , speed(0.0)
+    , covered_distance(0.0)  {
   (void)_alloc;
     }
 
@@ -65,6 +67,9 @@ struct BulletMove_
 
    typedef double _speed_type;
   _speed_type speed;
+
+   typedef double _covered_distance_type;
+  _covered_distance_type covered_distance;
 
 
 
@@ -144,12 +149,12 @@ struct MD5Sum< ::hero_msgs::BulletMove_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "584e9ba03268754685621bbbb5bf5de7";
+    return "549805474b46a9047454c7d22f3cd2ad";
   }
 
   static const char* value(const ::hero_msgs::BulletMove_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x584e9ba032687546ULL;
-  static const uint64_t static_value2 = 0x85621bbbb5bf5de7ULL;
+  static const uint64_t static_value1 = 0x549805474b46a904ULL;
+  static const uint64_t static_value2 = 0x7454c7d22f3cd2adULL;
 };
 
 template<class ContainerAllocator>
@@ -175,6 +180,7 @@ float64 x_last\n\
 float64 y_last\n\
 float64 yaw\n\
 float64 speed\n\
+float64 covered_distance\n\
 ";
   }
 
@@ -200,6 +206,7 @@ namespace serialization
       stream.next(m.y_last);
       stream.next(m.yaw);
       stream.next(m.speed);
+      stream.next(m.covered_distance);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -232,6 +239,8 @@ struct Printer< ::hero_msgs::BulletMove_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.yaw);
     s << indent << "speed: ";
     Printer<double>::stream(s, indent + "  ", v.speed);
+    s << indent << "covered_distance: ";
+    Printer<double>::stream(s, indent + "  ", v.covered_distance);
   }
 };
 

@@ -165,18 +165,21 @@ void BattleView::DrawRobot(QImage *qImage)
 
     /***************************Draw bullets********************************************************************************/
 
+    qNode_->bulletInfo_lock.lock();
     for(int i=0;i<qNode_->GetBulletsInfo()->bullet_num;i++)
     {
-         qNode_->bulletInfo_lock.lock();
-        painter.setPen(QPen(Qt::black, 2, Qt::SolidLine,
-                            Qt::RoundCap, Qt::RoundJoin));
-        painter.drawEllipse(PoseToMapPoint(Pose(qNode_->GetBulletsInfo()->bullets.at(i).x_last,qNode_->GetBulletsInfo()->bullets.at(i).y_last,0),background.size()),BULLET_RADIUS_PIX*0.5,BULLET_RADIUS_PIX*0.5);
-        painter.setPen(QPen(Qt::green, BULLET_RADIUS_PIX*0.5, Qt::SolidLine,
-                            Qt::RoundCap, Qt::RoundJoin));
-        painter.drawEllipse(PoseToMapPoint(Pose(qNode_->GetBulletsInfo()->bullets.at(i).x_last,qNode_->GetBulletsInfo()->bullets.at(i).y_last,0),background.size()),BULLET_RADIUS_PIX*0.3,BULLET_RADIUS_PIX*0.3);
-        qNode_->bulletInfo_lock.unlock();
-    }
+        if(qNode_->GetBulletsInfo()->bullets.at(i).covered_distance > ROBOT_HEIGHT*1.5 )
+        {
+            painter.setPen(QPen(Qt::black, 2, Qt::SolidLine,
+                                Qt::RoundCap, Qt::RoundJoin));
+            painter.drawEllipse(PoseToMapPoint(Pose(qNode_->GetBulletsInfo()->bullets.at(i).x_last,qNode_->GetBulletsInfo()->bullets.at(i).y_last,0),background.size()),BULLET_RADIUS_PIX*0.5,BULLET_RADIUS_PIX*0.5);
+            painter.setPen(QPen(Qt::green, BULLET_RADIUS_PIX*0.5, Qt::SolidLine,
+                                Qt::RoundCap, Qt::RoundJoin));
+            painter.drawEllipse(PoseToMapPoint(Pose(qNode_->GetBulletsInfo()->bullets.at(i).x_last,qNode_->GetBulletsInfo()->bullets.at(i).y_last,0),background.size()),BULLET_RADIUS_PIX*0.3,BULLET_RADIUS_PIX*0.3);
+        }
 
+    }
+    qNode_->bulletInfo_lock.unlock();
     }
 
 }

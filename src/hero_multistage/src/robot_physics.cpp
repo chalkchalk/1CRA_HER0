@@ -12,6 +12,8 @@
 #include "hero_math/math.h"
 #include <thread>
 #include <sys/time.h>
+#include <cstdlib>// Header file needed to use rand
+
 
 
 namespace HeroMultistage {
@@ -19,6 +21,7 @@ namespace HeroMultistage {
     using hero_common::ErrorCode;
     using hero_common::ErrorInfo;
     using namespace std;
+
 
     RobotPhysics::RobotPhysics()
     {
@@ -97,9 +100,9 @@ namespace HeroMultistage {
             }
             robotf->robot_tf.setOrigin(tf::Vector3(msg->pose.pose.position.x,msg->pose.pose.position.y,0));
             robotf->robot_tf.setRotation(q);
-            broadcaster.sendTransform(tf::StampedTransform(robotf->robot_tf,ros::Time::now(),"map",robot_name + "/base_pose_ground_truth"));
+            //broadcaster.sendTransform(tf::StampedTransform(robotf->robot_tf,ros::Time::now(),"map",robot_name + "/base_pose_ground_truth"));
 
-            robotf->PublishArmorTF();
+            //robotf->PublishArmorTF();
         }
     }
 
@@ -130,88 +133,39 @@ namespace HeroMultistage {
     int RobotPhysics::ArmorHitDetect()
     {
         int i,j;
-        static int time = 0;
-        std::string armor_name[4] = {"armor_front","armor_left","armor_right","armor_back"};
+        //static int time = 0;
         std::string robot_name[4] = {"robot_0","robot_1","robot_2","robot_3"};
-        static tf::StampedTransform transform[4][4];
-        tf::TransformListener listener;
-        std::thread tf_thread[4][4];
-        double roll,pitch,yaw;
+        std::string aromor_name[4] = {"armor_front","armor_right","armor_back","armor_left"};
+        std::vector<Point2D> pointsTest;
+        int hitResult = 0;
         for(i=0;i<4;i++)//4 robots
         {
+
             if(robot_tf_received_[i])
             {
-                for(j=0;j<4;j++)
+                for(auto iter=bullets_.begin(); iter!=bullets_.end(); )
                 {
-                   // tf_thread[i][j] = std::thread(ListenTF,&listener,"map",robot_name[i]  + "/" + armor_name[j], ros::Time(0), &transform[i][j]);
 
-
-                    /*
-                    try {
-                     listener.lookupTransform("map",robot_name[i]  + "/" + armor_name[j], ros::Time(0), transform[i][j]);
-                     //ROS_INFO("receive tf!");
-
-                      //bullets_.emplace_back(new Bullet(robot_name[i],transform.getOrigin().getX(),transform.getOrigin().getY(),0.0,0.0));
-                     //
-                    }
-                    catch (tf::TransformException ex) {
-                     // ROS_ERROR("%s", ex.what());
-                      j--;
-                         ros::Duration(0.001).sleep();
-                    }
-                    */
-                }
-            }
-        }
-        for(i=0;i<4;i++)//4 robots
-        {
-            if(robot_tf_received_[i])
-            {
-                for(j=0;j<4;j++)
-                {
-                    //tf_thread[i][j].join();
-
-                }
-            }
-        }
-        for(i=0;i<4;i++)//4 robots
-        {
-            if(robot_tf_received_[i])
-            {
-                for(j=0;j<4;j++)
-                {
-                    tf::Matrix3x3(transform[i][j].getRotation()).getRPY(roll, pitch, yaw);
-                    Point2D armorLeft(transform[i][j].getOrigin().getX() - AromrLength * std::sin(yaw),transform[i][j].getOrigin().getY() + AromrLength * std::cos(yaw));
-                    Point2D armorRight(transform[i][j].getOrigin().getX() + AromrLength * std::sin(yaw),transform[i][j].getOrigin().getY() - AromrLength * std::cos(yaw));
-                    //bullets_.emplace_back(new Bullet("",armorLeft.X(),armorLeft.Y(),0.0,0.0));
-                    //bullets_.emplace_back(new Bullet("",armorRight.X(),armorRight.Y(),0.0,0.0));
-                    hero_common::LineSegment2D armorLine(armorLeft,armorRight);
-
-
-
-                    for(auto iter=bullets_.begin(); iter!=bullets_.end(); )
+                hitResult = robots_[i]->BulletHitDetect(**iter,&pointsTest);
+               // ROS_INFO("hitResult = %d",hitResult);
+                    if(hitResult)
                     {
-                        hero_common::LineSegment2D bulletLine((*iter)->GetPositionNow(),(*iter)->GetPositionLast());
-                        if(hero_common::CheckLineSegmentsIntersection2D(armorLine,bulletLine)&&(*iter)->GetShooter()!=robot_name[i])
-                        {
-                            ROS_INFO("%s hit %s %s",(*iter)->GetShooter().c_str(), robot_name[i].c_str(),armor_name[j].c_str());
-                             iter = bullets_.erase(iter);
-                        }
-                        else
-                             iter ++;
+                        if(hitResult > 0 && hitResult < 5)
+                        ROS_INFO("%s hit %s %s",(*iter)->GetShooter().c_str(), robot_name[i].c_str(),aromor_name[hitResult - 1].c_str());
+                         iter = bullets_.erase(iter);
                     }
+                    else
+                         iter ++;
+                    }
+     /*           for (auto it = pointsTest.begin(); it != pointsTest.end(); ++it) {
+                    bullets_.emplace_back(new Bullet("test",(*it).X(),(*it).Y(),0,0));
                 }
-
-
-
-
+*/
+                }
             }
 
-
-
-        }
-        time++;
-        ROS_INFO("time:%d",time);
+        //time++;
+        //ROS_INFO("time:%d",time);
 
         return 0;
     }
@@ -263,9 +217,10 @@ namespace HeroMultistage {
     void RobotPhysics::RobotShoot(std::string robot_name)
     {
         RobotTF *robotf = FindRobot(robot_name);
+        float yaw_distribute = ((rand()%2000)/1000.0f - 1) * DistributeYaw;
         if(robotf)
         {
-            bullets_.emplace_back(new Bullet(robot_name,robotf->robot_tf.getOrigin().getX(),robotf->robot_tf.getOrigin().getY(),robotf->GetGimbalAbsoluteYaw(),23));
+            bullets_.emplace_back(new Bullet(robot_name,robotf->robot_tf.getOrigin().getX(),robotf->robot_tf.getOrigin().getY(),robotf->GetGimbalAbsoluteYaw() + yaw_distribute,23));
         }
     }
 
@@ -287,16 +242,6 @@ void ROS_Spin()
     ros::spin();
 }
 
-void RobotBulletJudge(HeroMultistage::RobotPhysics *robot )
-{
-    while(true)
-    {
-        robot->PublishBulletsInfo();
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
-    }
-
-}
-
 
 int main(int argc, char** argv){
     struct timeval tv;
@@ -306,10 +251,9 @@ int main(int argc, char** argv){
     ros::init(argc, argv, "robot_physics_node");
     HeroMultistage::RobotPhysics robotPhysics;
     std::thread spin_thread(ROS_Spin);
-    //std::thread bulletJudge_thread(RobotBulletJudge,&robotPhysics);
     spin_thread.detach();
-    //bulletJudge_thread.detach();
     ros::start();
+   // int divider = 0;
     while ( ros::ok() ) {
         ms_last = ms;
         //robotPhysics.PublishTF();
@@ -317,11 +261,16 @@ int main(int argc, char** argv){
         robotPhysics.PublishBulletsInfo();
         robotPhysics.BulletJudge();
         robotPhysics.ArmorHitDetect();
-        robotPhysics.RobotShoot("robot_0");
-        robotPhysics.RobotShoot("robot_3");
+        //divider++;
+       // if(divider%2==0)
+        //{
+          robotPhysics.RobotShoot("robot_0");
+            //robotPhysics.RobotShoot("robot_3");
+       // }
+
         gettimeofday(&tv,&tz);
         ms = tv.tv_sec*1000 + tv.tv_usec/1000;
-        ROS_INFO("time used:%d",ms-ms_last);
+       // ROS_INFO("time used:%d",ms-ms_last);
         if(ms - ms_last <33 && ms - ms_last >0)
           std::this_thread::sleep_for(std::chrono::milliseconds(33 -(ms - ms_last)));
     }

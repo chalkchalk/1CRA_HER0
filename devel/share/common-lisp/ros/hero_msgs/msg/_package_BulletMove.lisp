@@ -13,4 +13,6 @@
           YAW
           SPEED-VAL
           SPEED
+          COVERED_DISTANCE-VAL
+          COVERED_DISTANCE
 ))

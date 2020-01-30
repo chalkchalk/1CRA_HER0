@@ -12,7 +12,8 @@ namespace HeroMultistage {
         yaw_(yaw),
         origin_(x,y),
         position_now_(x,y),
-        position_last_(x,y)
+        position_last_(x,y),
+        coveredDistance_(0)
     {
 
     }
@@ -22,6 +23,7 @@ namespace HeroMultistage {
         position_last_ = position_now_;
         double dx = std::cos(DegreeToRad(yaw_)) * speed_ / frequency;
         double dy = std::sin(DegreeToRad(yaw_)) * speed_ / frequency;
+        coveredDistance_ += speed_ / frequency;
         position_now_ += Point2D (dx,dy);
     }
 
@@ -36,6 +38,7 @@ namespace HeroMultistage {
         bulletMove.y_last = position_last_.Y();
         bulletMove.yaw = yaw_;
         bulletMove.speed = speed_;
+        bulletMove.covered_distance = coveredDistance_;
         return bulletMove;
 
     }

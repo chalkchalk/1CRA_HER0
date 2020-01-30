@@ -82,7 +82,7 @@ class BulletsInfo {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'bdf8108add47e44ea1df95423235ef9c';
+    return '38e2196c2ea7bf8b960e57cec8261003';
   }
 
   static messageDefinition() {
@@ -100,6 +100,7 @@ class BulletsInfo {
     float64 y_last
     float64 yaw
     float64 speed
+    float64 covered_distance
     
     `;
   }

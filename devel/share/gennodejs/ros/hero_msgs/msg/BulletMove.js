@@ -25,6 +25,7 @@ class BulletMove {
       this.y_last = null;
       this.yaw = null;
       this.speed = null;
+      this.covered_distance = null;
     }
     else {
       if (initObj.hasOwnProperty('owner')) {
@@ -69,6 +70,12 @@ class BulletMove {
       else {
         this.speed = 0.0;
       }
+      if (initObj.hasOwnProperty('covered_distance')) {
+        this.covered_distance = initObj.covered_distance
+      }
+      else {
+        this.covered_distance = 0.0;
+      }
     }
   }
 
@@ -88,6 +95,8 @@ class BulletMove {
     bufferOffset = _serializer.float64(obj.yaw, buffer, bufferOffset);
     // Serialize message field [speed]
     bufferOffset = _serializer.float64(obj.speed, buffer, bufferOffset);
+    // Serialize message field [covered_distance]
+    bufferOffset = _serializer.float64(obj.covered_distance, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -109,13 +118,15 @@ class BulletMove {
     data.yaw = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [speed]
     data.speed = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [covered_distance]
+    data.covered_distance = _deserializer.float64(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += object.owner.length;
-    return length + 52;
+    return length + 60;
   }
 
   static datatype() {
@@ -125,7 +136,7 @@ class BulletMove {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '584e9ba03268754685621bbbb5bf5de7';
+    return '549805474b46a9047454c7d22f3cd2ad';
   }
 
   static messageDefinition() {
@@ -138,6 +149,7 @@ class BulletMove {
     float64 y_last
     float64 yaw
     float64 speed
+    float64 covered_distance
     
     `;
   }
@@ -195,6 +207,13 @@ class BulletMove {
     }
     else {
       resolved.speed = 0.0
+    }
+
+    if (msg.covered_distance !== undefined) {
+      resolved.covered_distance = msg.covered_distance;
+    }
+    else {
+      resolved.covered_distance = 0.0
     }
 
     return resolved;

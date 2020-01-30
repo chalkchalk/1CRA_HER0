@@ -6,7 +6,6 @@
 #include <tf/tf.h>
 #include <tf/transform_listener.h>
 #include "state/error_code.h"
-#include "robot_tf.h"
 #include "hero_math/geometry.h"
 #include "hero_msgs/BulletMove.h"
 
@@ -27,6 +26,8 @@ using hero_common::Point2D;
         {return position_now_;}
         Point2D GetPositionLast()
         {return position_last_;}
+        float GetDistance()
+        {return coveredDistance_;}
     private:
         std::string shooter_;
         double speed_;
@@ -34,6 +35,7 @@ using hero_common::Point2D;
         Point2D origin_;
         Point2D position_now_;
         Point2D position_last_;
+        float coveredDistance_;
     };
 
 

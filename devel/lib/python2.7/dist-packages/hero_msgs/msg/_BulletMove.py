@@ -7,7 +7,7 @@ import struct
 
 
 class BulletMove(genpy.Message):
-  _md5sum = "584e9ba03268754685621bbbb5bf5de7"
+  _md5sum = "549805474b46a9047454c7d22f3cd2ad"
   _type = "hero_msgs/BulletMove"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """string owner
@@ -17,9 +17,10 @@ float64 x_last
 float64 y_last
 float64 yaw
 float64 speed
+float64 covered_distance
 """
-  __slots__ = ['owner','x','y','x_last','y_last','yaw','speed']
-  _slot_types = ['string','float64','float64','float64','float64','float64','float64']
+  __slots__ = ['owner','x','y','x_last','y_last','yaw','speed','covered_distance']
+  _slot_types = ['string','float64','float64','float64','float64','float64','float64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -29,7 +30,7 @@ float64 speed
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       owner,x,y,x_last,y_last,yaw,speed
+       owner,x,y,x_last,y_last,yaw,speed,covered_distance
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -52,6 +53,8 @@ float64 speed
         self.yaw = 0.
       if self.speed is None:
         self.speed = 0.
+      if self.covered_distance is None:
+        self.covered_distance = 0.
     else:
       self.owner = ''
       self.x = 0.
@@ -60,6 +63,7 @@ float64 speed
       self.y_last = 0.
       self.yaw = 0.
       self.speed = 0.
+      self.covered_distance = 0.
 
   def _get_types(self):
     """
@@ -80,7 +84,7 @@ float64 speed
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_get_struct_6d().pack(_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed))
+      buff.write(_get_struct_7d().pack(_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed, _x.covered_distance))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -102,8 +106,8 @@ float64 speed
         self.owner = str[start:end]
       _x = self
       start = end
-      end += 48
-      (_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed,) = _get_struct_6d().unpack(str[start:end])
+      end += 56
+      (_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed, _x.covered_distance,) = _get_struct_7d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -123,7 +127,7 @@ float64 speed
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_get_struct_6d().pack(_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed))
+      buff.write(_get_struct_7d().pack(_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed, _x.covered_distance))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -146,8 +150,8 @@ float64 speed
         self.owner = str[start:end]
       _x = self
       start = end
-      end += 48
-      (_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed,) = _get_struct_6d().unpack(str[start:end])
+      end += 56
+      (_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed, _x.covered_distance,) = _get_struct_7d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -156,9 +160,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_6d = None
-def _get_struct_6d():
-    global _struct_6d
-    if _struct_6d is None:
-        _struct_6d = struct.Struct("<6d")
-    return _struct_6d
+_struct_7d = None
+def _get_struct_7d():
+    global _struct_7d
+    if _struct_7d is None:
+        _struct_7d = struct.Struct("<7d")
+    return _struct_7d

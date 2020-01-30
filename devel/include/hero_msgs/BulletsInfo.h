@@ -120,12 +120,12 @@ struct MD5Sum< ::hero_msgs::BulletsInfo_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "bdf8108add47e44ea1df95423235ef9c";
+    return "38e2196c2ea7bf8b960e57cec8261003";
   }
 
   static const char* value(const ::hero_msgs::BulletsInfo_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xbdf8108add47e44eULL;
-  static const uint64_t static_value2 = 0xa1df95423235ef9cULL;
+  static const uint64_t static_value1 = 0x38e2196c2ea7bf8bULL;
+  static const uint64_t static_value2 = 0x960e57cec8261003ULL;
 };
 
 template<class ContainerAllocator>
@@ -156,6 +156,7 @@ float64 x_last\n\
 float64 y_last\n\
 float64 yaw\n\
 float64 speed\n\
+float64 covered_distance\n\
 ";
   }
 

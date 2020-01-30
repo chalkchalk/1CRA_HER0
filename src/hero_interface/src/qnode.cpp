@@ -216,6 +216,7 @@ void QNode::BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr &msg)
     bulletInfo_.bullet_num = msg->bullet_num;
     for(int i=0;i<msg->bullet_num;i++)
         bulletInfo_.bullets.emplace_back(msg->bullets[i]);
+
     bulletInfo_lock.unlock();
 }
 

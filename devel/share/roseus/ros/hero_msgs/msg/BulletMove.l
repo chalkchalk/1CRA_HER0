@@ -14,7 +14,7 @@
 
 (defclass hero_msgs::BulletMove
   :super ros::object
-  :slots (_owner _x _y _x_last _y_last _yaw _speed ))
+  :slots (_owner _x _y _x_last _y_last _yaw _speed _covered_distance ))
 
 (defmethod hero_msgs::BulletMove
   (:init
@@ -26,6 +26,7 @@
     ((:y_last __y_last) 0.0)
     ((:yaw __yaw) 0.0)
     ((:speed __speed) 0.0)
+    ((:covered_distance __covered_distance) 0.0)
     )
    (send-super :init)
    (setq _owner (string __owner))
@@ -35,6 +36,7 @@
    (setq _y_last (float __y_last))
    (setq _yaw (float __yaw))
    (setq _speed (float __speed))
+   (setq _covered_distance (float __covered_distance))
    self)
   (:owner
    (&optional __owner)
@@ -57,6 +59,9 @@
   (:speed
    (&optional __speed)
    (if __speed (setq _speed __speed)) _speed)
+  (:covered_distance
+   (&optional __covered_distance)
+   (if __covered_distance (setq _covered_distance __covered_distance)) _covered_distance)
   (:serialization-length
    ()
    (+
@@ -73,6 +78,8 @@
     ;; float64 _yaw
     8
     ;; float64 _speed
+    8
+    ;; float64 _covered_distance
     8
     ))
   (:serialize
@@ -93,6 +100,8 @@
        (sys::poke _yaw (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _speed
        (sys::poke _speed (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _covered_distance
+       (sys::poke _covered_distance (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -111,11 +120,13 @@
      (setq _yaw (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _speed
      (setq _speed (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _covered_distance
+     (setq _covered_distance (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;;
    self)
   )
 
-(setf (get hero_msgs::BulletMove :md5sum-) "584e9ba03268754685621bbbb5bf5de7")
+(setf (get hero_msgs::BulletMove :md5sum-) "549805474b46a9047454c7d22f3cd2ad")
 (setf (get hero_msgs::BulletMove :datatype-) "hero_msgs/BulletMove")
 (setf (get hero_msgs::BulletMove :definition-)
       "string owner
@@ -125,11 +136,12 @@ float64 x_last
 float64 y_last
 float64 yaw
 float64 speed
+float64 covered_distance
 
 ")
 
 
 
-(provide :hero_msgs/BulletMove "584e9ba03268754685621bbbb5bf5de7")
+(provide :hero_msgs/BulletMove "549805474b46a9047454c7d22f3cd2ad")
 
 

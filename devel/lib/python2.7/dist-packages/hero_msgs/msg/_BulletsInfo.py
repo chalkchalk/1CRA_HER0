@@ -8,7 +8,7 @@ import struct
 import hero_msgs.msg
 
 class BulletsInfo(genpy.Message):
-  _md5sum = "bdf8108add47e44ea1df95423235ef9c"
+  _md5sum = "38e2196c2ea7bf8b960e57cec8261003"
   _type = "hero_msgs/BulletsInfo"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """uint32 bullet_num
@@ -23,6 +23,7 @@ float64 x_last
 float64 y_last
 float64 yaw
 float64 speed
+float64 covered_distance
 """
   __slots__ = ['bullet_num','bullets']
   _slot_types = ['uint32','hero_msgs/BulletMove[]']
@@ -75,7 +76,7 @@ float64 speed
           length = len(_x)
         buff.write(struct.pack('<I%ss'%length, length, _x))
         _x = val1
-        buff.write(_get_struct_6d().pack(_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed))
+        buff.write(_get_struct_7d().pack(_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed, _x.covered_distance))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -108,8 +109,8 @@ float64 speed
           val1.owner = str[start:end]
         _x = val1
         start = end
-        end += 48
-        (_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed,) = _get_struct_6d().unpack(str[start:end])
+        end += 56
+        (_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed, _x.covered_distance,) = _get_struct_7d().unpack(str[start:end])
         self.bullets.append(val1)
       return self
     except struct.error as e:
@@ -134,7 +135,7 @@ float64 speed
           length = len(_x)
         buff.write(struct.pack('<I%ss'%length, length, _x))
         _x = val1
-        buff.write(_get_struct_6d().pack(_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed))
+        buff.write(_get_struct_7d().pack(_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed, _x.covered_distance))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -168,8 +169,8 @@ float64 speed
           val1.owner = str[start:end]
         _x = val1
         start = end
-        end += 48
-        (_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed,) = _get_struct_6d().unpack(str[start:end])
+        end += 56
+        (_x.x, _x.y, _x.x_last, _x.y_last, _x.yaw, _x.speed, _x.covered_distance,) = _get_struct_7d().unpack(str[start:end])
         self.bullets.append(val1)
       return self
     except struct.error as e:
@@ -179,9 +180,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_6d = None
-def _get_struct_6d():
-    global _struct_6d
-    if _struct_6d is None:
-        _struct_6d = struct.Struct("<6d")
-    return _struct_6d
+_struct_7d = None
+def _get_struct_7d():
+    global _struct_7d
+    if _struct_7d is None:
+        _struct_7d = struct.Struct("<7d")
+    return _struct_7d

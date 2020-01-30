@@ -41,6 +41,11 @@
     :reader speed
     :initarg :speed
     :type cl:float
+    :initform 0.0)
+   (covered_distance
+    :reader covered_distance
+    :initarg :covered_distance
+    :type cl:float
     :initform 0.0))
 )
 
@@ -86,6 +91,11 @@
 (cl:defmethod speed-val ((m <BulletMove>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:speed-val is deprecated.  Use hero_msgs-msg:speed instead.")
   (speed m))
+
+(cl:ensure-generic-function 'covered_distance-val :lambda-list '(m))
+(cl:defmethod covered_distance-val ((m <BulletMove>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:covered_distance-val is deprecated.  Use hero_msgs-msg:covered_distance instead.")
+  (covered_distance m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <BulletMove>) ostream)
   "Serializes a message object of type '<BulletMove>"
   (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'owner))))
@@ -140,6 +150,15 @@
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'speed))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'covered_distance))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
@@ -219,6 +238,16 @@
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'speed) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'covered_distance) (roslisp-utils:decode-double-float-bits bits)))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<BulletMove>)))
@@ -229,19 +258,20 @@
   "hero_msgs/BulletMove")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BulletMove>)))
   "Returns md5sum for a message object of type '<BulletMove>"
-  "584e9ba03268754685621bbbb5bf5de7")
+  "549805474b46a9047454c7d22f3cd2ad")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BulletMove)))
   "Returns md5sum for a message object of type 'BulletMove"
-  "584e9ba03268754685621bbbb5bf5de7")
+  "549805474b46a9047454c7d22f3cd2ad")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BulletMove>)))
   "Returns full string definition for message of type '<BulletMove>"
-  (cl:format cl:nil "string owner~%float64 x~%float64 y~%float64 x_last~%float64 y_last~%float64 yaw~%float64 speed~%~%~%"))
+  (cl:format cl:nil "string owner~%float64 x~%float64 y~%float64 x_last~%float64 y_last~%float64 yaw~%float64 speed~%float64 covered_distance~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'BulletMove)))
   "Returns full string definition for message of type 'BulletMove"
-  (cl:format cl:nil "string owner~%float64 x~%float64 y~%float64 x_last~%float64 y_last~%float64 yaw~%float64 speed~%~%~%"))
+  (cl:format cl:nil "string owner~%float64 x~%float64 y~%float64 x_last~%float64 y_last~%float64 yaw~%float64 speed~%float64 covered_distance~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <BulletMove>))
   (cl:+ 0
      4 (cl:length (cl:slot-value msg 'owner))
+     8
      8
      8
      8
@@ -259,4 +289,5 @@
     (cl:cons ':y_last (y_last msg))
     (cl:cons ':yaw (yaw msg))
     (cl:cons ':speed (speed msg))
+    (cl:cons ':covered_distance (covered_distance msg))
 ))

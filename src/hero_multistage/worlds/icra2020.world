@@ -82,8 +82,8 @@ floorplan
 
 # throw in a robot
  rmcar(pose [ 0.500 0.600 0.000 0.000 ] name "rmcar0" color "blue" )
- rmcar(pose [ 0.500 4.700 0.000 0.000 ] name "rmcar1" color "blue" )
+ rmcar(pose [ 0.500 4.600 0.000 0.000 ] name "rmcar1" color "blue" )
 
  rmcar(pose [ 7.500 0.600 0.000 180.000 ] name "rmcar2" color "red" )
- rmcar(pose [ 7.500 4.700 0.000 180.000 ] name "rmcar3" color "red" )
+ rmcar(pose [ 7.500 4.600 0.000 180.000 ] name "rmcar3" color "red" )
  #block(pose [ 7.790 3.450 0.000 0.300 ] color "red"  )

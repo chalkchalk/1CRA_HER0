@@ -76,16 +76,16 @@
   "hero_msgs/BulletsInfo")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BulletsInfo>)))
   "Returns md5sum for a message object of type '<BulletsInfo>"
-  "bdf8108add47e44ea1df95423235ef9c")
+  "38e2196c2ea7bf8b960e57cec8261003")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BulletsInfo)))
   "Returns md5sum for a message object of type 'BulletsInfo"
-  "bdf8108add47e44ea1df95423235ef9c")
+  "38e2196c2ea7bf8b960e57cec8261003")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BulletsInfo>)))
   "Returns full string definition for message of type '<BulletsInfo>"
-  (cl:format cl:nil "uint32 bullet_num~%hero_msgs/BulletMove[] bullets~%~%================================================================================~%MSG: hero_msgs/BulletMove~%string owner~%float64 x~%float64 y~%float64 x_last~%float64 y_last~%float64 yaw~%float64 speed~%~%~%"))
+  (cl:format cl:nil "uint32 bullet_num~%hero_msgs/BulletMove[] bullets~%~%================================================================================~%MSG: hero_msgs/BulletMove~%string owner~%float64 x~%float64 y~%float64 x_last~%float64 y_last~%float64 yaw~%float64 speed~%float64 covered_distance~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'BulletsInfo)))
   "Returns full string definition for message of type 'BulletsInfo"
-  (cl:format cl:nil "uint32 bullet_num~%hero_msgs/BulletMove[] bullets~%~%================================================================================~%MSG: hero_msgs/BulletMove~%string owner~%float64 x~%float64 y~%float64 x_last~%float64 y_last~%float64 yaw~%float64 speed~%~%~%"))
+  (cl:format cl:nil "uint32 bullet_num~%hero_msgs/BulletMove[] bullets~%~%================================================================================~%MSG: hero_msgs/BulletMove~%string owner~%float64 x~%float64 y~%float64 x_last~%float64 y_last~%float64 yaw~%float64 speed~%float64 covered_distance~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <BulletsInfo>))
   (cl:+ 0
      4

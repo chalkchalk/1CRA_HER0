@@ -429,6 +429,17 @@ inline double DistancePolygonToPolygon2D(const hero_common::Polygon2D &polygon0,
   return dist;
 }
 
+inline hero_common::Point2D PointRotateAroundPoint(const hero_common::Point2D source,
+                                                   const hero_common::Point2D around,
+                                                   double theta)
+{
+    hero_common::Point2D val((source.X() - around.X())*std::cos(theta) - (source.Y() - around.Y())*std::sin(theta) + around.X(),
+                             (source.X() - around.X())*std::sin(theta) + (source.Y() - around.Y())*std::cos(theta) + around.Y());
+    //val.SetX((source.X() - around.X()*std::cos(theta) - (source.Y() - around.Y())*std::sin(theta) + around.X()));
+    //val.SetY((source.X() - around.X()*std::sin(theta) + (source.Y() - around.Y())*std::cos(theta) + around.Y()));
+    return val;
+}
+
 } // namespace hero_common
 
 #endif //HERO_COMMON_MATH_H

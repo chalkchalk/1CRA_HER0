@@ -8,7 +8,7 @@
 #include <tf/transform_listener.h>
 #include "hero_math/math.h"
 #include "geometry_msgs/PointStamped.h"
-
+#include "bullet.h"
 
 namespace HeroMultistage {
 
@@ -28,7 +28,7 @@ public:
     float GetGimbalYaw()
     {return gimbal_yaw_;}
     float GetGimbalAbsoluteYaw();
-    Polygon2D GetArmorPoly(int num);//front left right back 0 1 2 3
+    int BulletHitDetect(HeroMultistage::Bullet bullet,std::vector<Point2D> *points = nullptr);//front left right back 0 1 2 3
 
     tf::Transform robot_tf;
     tf::Transform armor_tf[4];//front left right back
@@ -42,6 +42,7 @@ private:
     float gimbal_yaw_;
     float gimbal_yaw_absolute_;
     hero_common::ErrorInfo Init(std::string robot_name);
+
 
 };
 

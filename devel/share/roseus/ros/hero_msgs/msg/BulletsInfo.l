@@ -72,7 +72,7 @@
    self)
   )
 
-(setf (get hero_msgs::BulletsInfo :md5sum-) "bdf8108add47e44ea1df95423235ef9c")
+(setf (get hero_msgs::BulletsInfo :md5sum-) "38e2196c2ea7bf8b960e57cec8261003")
 (setf (get hero_msgs::BulletsInfo :datatype-) "hero_msgs/BulletsInfo")
 (setf (get hero_msgs::BulletsInfo :definition-)
       "uint32 bullet_num
@@ -87,11 +87,12 @@ float64 x_last
 float64 y_last
 float64 yaw
 float64 speed
+float64 covered_distance
 
 ")
 
 
 
-(provide :hero_msgs/BulletsInfo "bdf8108add47e44ea1df95423235ef9c")
+(provide :hero_msgs/BulletsInfo "38e2196c2ea7bf8b960e57cec8261003")
 
 
