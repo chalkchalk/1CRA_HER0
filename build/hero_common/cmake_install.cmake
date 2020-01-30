@@ -51,3 +51,10 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/hero_common" TYPE DIRECTORY FILES "/home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_common/" FILES_MATCHING REGEX "/[^/]*\\.h$" REGEX "/\\.svn$" EXCLUDE)
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/home/ycz/ICRA_HERO_ws/build/hero_common/include/hero_math/cmake_install.cmake")
+  include("/home/ycz/ICRA_HERO_ws/build/hero_common/include/io/cmake_install.cmake")
+
+endif()
+

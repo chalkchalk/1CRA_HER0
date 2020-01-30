@@ -84,6 +84,8 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/ObstacleMsg.msg"
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/ShootInfo.msg"
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/ShootState.msg"
+    "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
+    "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg"
     )
 endif()
 

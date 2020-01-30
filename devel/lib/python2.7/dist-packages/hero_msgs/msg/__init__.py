@@ -6,6 +6,9 @@ from ._ArmorDetectionFeedback import *
 from ._ArmorDetectionGoal import *
 from ._ArmorDetectionResult import *
 from ._BonusStatus import *
+from ._BulletMove import *
+from ._Bulletmove import *
+from ._BulletsInfo import *
 from ._GameResult import *
 from ._GameStatus import *
 from ._GameSurvivor import *

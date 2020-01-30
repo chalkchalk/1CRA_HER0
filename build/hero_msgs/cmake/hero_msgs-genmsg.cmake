@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "hero_msgs: 38 messages, 4 services")
+message(STATUS "hero_msgs: 40 messages, 4 services")
 
 set(MSG_I_FLAGS "-Ihero_msgs:/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg;-Ihero_msgs:/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg;-Ihero_msgs:/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system;-Iactionlib_msgs:/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg;-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg;-Inav_msgs:/opt/ros/kinetic/share/nav_msgs/cmake/../msg")
 
@@ -92,6 +92,11 @@ add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hero_msgs" "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerGoal.msg" "geometry_msgs/Quaternion:geometry_msgs/PoseStamped:geometry_msgs/Pose:std_msgs/Header:geometry_msgs/Point"
 )
 
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg" NAME_WE)
+add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hero_msgs" "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg" ""
+)
+
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg" NAME_WE)
 add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hero_msgs" "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg" ""
@@ -170,6 +175,11 @@ add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg" NAME_WE)
 add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hero_msgs" "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg" ""
+)
+
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg" NAME_WE)
+add_custom_target(_hero_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hero_msgs" "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg" "hero_msgs/BulletMove"
 )
 
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/TwistAccel.msg" NAME_WE)
@@ -306,6 +316,12 @@ _generate_msg_cpp(hero_msgs
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_cpp(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_cpp(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg"
   "${MSG_I_FLAGS}"
   ""
@@ -393,6 +409,12 @@ _generate_msg_cpp(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_cpp(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_cpp(hero_msgs
@@ -530,6 +552,8 @@ get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/m
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerGoal.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerActionGoal.msg" NAME_WE)
@@ -561,6 +585,8 @@ add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_ch
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/ShootInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/TwistAccel.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_cpp _hero_msgs_generate_messages_check_deps_${_filename})
@@ -667,6 +693,12 @@ _generate_msg_eus(hero_msgs
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_eus(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_eus(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg"
   "${MSG_I_FLAGS}"
   ""
@@ -754,6 +786,12 @@ _generate_msg_eus(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_eus(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_eus(hero_msgs
@@ -891,6 +929,8 @@ get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/m
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerGoal.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerActionGoal.msg" NAME_WE)
@@ -922,6 +962,8 @@ add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_ch
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/ShootInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/TwistAccel.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_eus _hero_msgs_generate_messages_check_deps_${_filename})
@@ -1028,6 +1070,12 @@ _generate_msg_lisp(hero_msgs
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_lisp(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_lisp(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg"
   "${MSG_I_FLAGS}"
   ""
@@ -1115,6 +1163,12 @@ _generate_msg_lisp(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_lisp(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_lisp(hero_msgs
@@ -1252,6 +1306,8 @@ get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/m
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerGoal.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerActionGoal.msg" NAME_WE)
@@ -1283,6 +1339,8 @@ add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_c
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/ShootInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/TwistAccel.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_lisp _hero_msgs_generate_messages_check_deps_${_filename})
@@ -1389,6 +1447,12 @@ _generate_msg_nodejs(hero_msgs
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_nodejs(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_nodejs(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg"
   "${MSG_I_FLAGS}"
   ""
@@ -1476,6 +1540,12 @@ _generate_msg_nodejs(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_nodejs(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_nodejs(hero_msgs
@@ -1613,6 +1683,8 @@ get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/m
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerGoal.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerActionGoal.msg" NAME_WE)
@@ -1644,6 +1716,8 @@ add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/ShootInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/TwistAccel.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_nodejs _hero_msgs_generate_messages_check_deps_${_filename})
@@ -1750,6 +1824,12 @@ _generate_msg_py(hero_msgs
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_py(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_py(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg"
   "${MSG_I_FLAGS}"
   ""
@@ -1837,6 +1917,12 @@ _generate_msg_py(hero_msgs
   "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg"
   "${MSG_I_FLAGS}"
   ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hero_msgs
+)
+_generate_msg_py(hero_msgs
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg"
+  "${MSG_I_FLAGS}"
+  "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hero_msgs
 )
 _generate_msg_py(hero_msgs
@@ -1974,6 +2060,8 @@ get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/m
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerGoal.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletMove.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/BonusStatus.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg/GlobalPlannerActionGoal.msg" NAME_WE)
@@ -2005,6 +2093,8 @@ add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_che
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/ShootInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg" NAME_WE)
+add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/BulletsInfo.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/TwistAccel.msg" NAME_WE)
 add_dependencies(hero_msgs_generate_messages_py _hero_msgs_generate_messages_check_deps_${_filename})

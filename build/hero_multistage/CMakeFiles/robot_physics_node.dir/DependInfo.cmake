@@ -50,6 +50,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/ycz/ICRA_HERO_ws/src/hero_common/include"
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/usr/include/eigen3"
+  "/usr/include/eigen3/Eigen"
   )
 
 # Targets to which this target links.

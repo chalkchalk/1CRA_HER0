@@ -1300,6 +1300,9 @@ catkin_DIR:PATH=/opt/ros/kinetic/share/catkin/cmake
 //The directory containing a CMake configuration file for class_loader.
 class_loader_DIR:PATH=/opt/ros/kinetic/share/class_loader/cmake
 
+//The directory containing a CMake configuration file for cmake_modules.
+cmake_modules_DIR:PATH=/opt/ros/kinetic/share/cmake_modules/cmake
+
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/kinetic/share/cpp_common/cmake
 
@@ -1436,6 +1439,12 @@ hero_mapping_BINARY_DIR:STATIC=/home/ycz/ICRA_HERO_ws/build/hero_mapping
 hero_mapping_SOURCE_DIR:STATIC=/home/ycz/ICRA_HERO_ws/src/hero_mapping
 
 //Value Computed by CMake
+hero_math_BINARY_DIR:STATIC=/home/ycz/ICRA_HERO_ws/build/hero_common/include/hero_math
+
+//Value Computed by CMake
+hero_math_SOURCE_DIR:STATIC=/home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math
+
+//Value Computed by CMake
 hero_msgs_BINARY_DIR:STATIC=/home/ycz/ICRA_HERO_ws/build/hero_msgs
 
 //The directory containing a CMake configuration file for hero_msgs.
@@ -1460,6 +1469,12 @@ hero_planning_SOURCE_DIR:STATIC=/home/ycz/ICRA_HERO_ws/src/hero_planning
 
 //The directory containing a CMake configuration file for interactive_markers.
 interactive_markers_DIR:PATH=/opt/ros/kinetic/share/interactive_markers/cmake
+
+//Value Computed by CMake
+io_BINARY_DIR:STATIC=/home/ycz/ICRA_HERO_ws/build/hero_common/include/io
+
+//Value Computed by CMake
+io_SOURCE_DIR:STATIC=/home/ycz/ICRA_HERO_ws/src/hero_common/include/io
 
 //The directory containing a CMake configuration file for laser_geometry.
 laser_geometry_DIR:PATH=/opt/ros/kinetic/share/laser_geometry/cmake
@@ -1742,7 +1757,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=19
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=21
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

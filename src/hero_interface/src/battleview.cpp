@@ -51,10 +51,21 @@ QPoint PoseToMapPoint(Pose pose, QSize battleSize,QImage roboPic)
 {
     int offset_x,offset_y;
     int x,y;
-    offset_x=roboPic.size().width()/2;
-    offset_y=roboPic.size().height()/2;
+    offset_y=roboPic.size().width()/2;
+    offset_x=roboPic.size().height()/2;
     y=pose.x * battleSize.height() / BATTLEFIELD_W - offset_x;
     x=pose.y * battleSize.width() / BATTLEFIELD_H - offset_y;
+    x=x>=0?x:0;
+    y=y>=0?y:0;
+    return QPoint(x,y);
+}
+
+QPoint PoseToMapPoint(Pose pose, QSize battleSize)
+{
+    int offset_x,offset_y;
+    int x,y;
+    y=pose.x * battleSize.height() / BATTLEFIELD_W;
+    x=pose.y * battleSize.width() / BATTLEFIELD_H ;
     x=x>=0?x:0;
     y=y>=0?y:0;
     return QPoint(x,y);
@@ -97,9 +108,11 @@ void BattleView::DrawRobot(QImage *qImage)
 {
     QPainter painter(qImage);
     QColor robotColor;
-    QPointF roboPoint[4];
     QImage robotImage = QImage(QSize(ROBOT_WIDTH_PIX*1.4,ROBOT_HEIGHT_PIX*1.4), QImage::Format_ARGB32);
+    QImage bulletImage = QImage(QSize(BULLET_RADIUS_PIX,BULLET_RADIUS_PIX), QImage::Format_ARGB32);
+    bulletImage.fill(Qt::transparent);
     robotImage.fill(Qt::transparent);
+    qImage->fill(Qt::white);
     QPainter painterRobot(&robotImage);
 
     painter.drawImage( QPoint(0, 0), background);
@@ -149,6 +162,21 @@ void BattleView::DrawRobot(QImage *qImage)
         matrix.rotate(PoseToAngle((*it)->pose.yaw));
         painter.drawImage(PoseToMapPoint((*it)->pose,background.size(),robotImage.scaled(pix_w,pix_h).transformed(matrix)), robotImage.scaled(pix_w,pix_h).transformed(matrix));
         }
+
+    /***************************Draw bullets********************************************************************************/
+
+    for(int i=0;i<qNode_->GetBulletsInfo()->bullet_num;i++)
+    {
+         qNode_->bulletInfo_lock.lock();
+        painter.setPen(QPen(Qt::black, 2, Qt::SolidLine,
+                            Qt::RoundCap, Qt::RoundJoin));
+        painter.drawEllipse(PoseToMapPoint(Pose(qNode_->GetBulletsInfo()->bullets.at(i).x_last,qNode_->GetBulletsInfo()->bullets.at(i).y_last,0),background.size()),BULLET_RADIUS_PIX*0.5,BULLET_RADIUS_PIX*0.5);
+        painter.setPen(QPen(Qt::green, BULLET_RADIUS_PIX*0.5, Qt::SolidLine,
+                            Qt::RoundCap, Qt::RoundJoin));
+        painter.drawEllipse(PoseToMapPoint(Pose(qNode_->GetBulletsInfo()->bullets.at(i).x_last,qNode_->GetBulletsInfo()->bullets.at(i).y_last,0),background.size()),BULLET_RADIUS_PIX*0.3,BULLET_RADIUS_PIX*0.3);
+        qNode_->bulletInfo_lock.unlock();
+    }
+
     }
 
 }

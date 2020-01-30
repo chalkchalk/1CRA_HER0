@@ -29,6 +29,8 @@
 #include "hero_msgs/JudgeSysControl.h"
 #include "hero_msgs/RobotStatus.h"
 #include "hero_msgs/RobotHeat.h"
+#include "hero_msgs/BulletsInfo.h"
+#include <mutex>
 
 /*****************************************************************************
 ** Namespaces
@@ -44,23 +46,26 @@ class QNode : public QThread {
     Q_OBJECT
 public:
     QNode(int argc, char** argv,BattleView *parentBattleView);
-	virtual ~QNode();
-	bool init();
-	bool init(const std::string &master_url, const std::string &host_url);
-	void run();
+    virtual ~QNode();
+    bool init();
+    bool init(const std::string &master_url, const std::string &host_url);
+    void run();
 
-	/*********************
-	** Logging
-	**********************/
-	enum LogLevel {
-	         Debug,
-	         Info,
-	         Warn,
-	         Error,
-	         Fatal
-	 };
 
-	QStringListModel* loggingModel() { return &logging_model; }
+    std::mutex bulletInfo_lock;
+
+    /*********************
+    ** Logging
+    **********************/
+    enum LogLevel {
+             Debug,
+             Info,
+             Warn,
+             Error,
+             Fatal
+     };
+
+    QStringListModel* loggingModel() { return &logging_model; }
     bool KillRobot(std::string robot_name);
     bool ReviveRobot(std::string robot_name);
     bool ReloadRobot(std::string robot_name);
@@ -80,22 +85,27 @@ public:
 
     float GetGimbalYaw()
     {return gimbal_yaw_;}
+    const hero_msgs::BulletsInfo *GetBulletsInfo()
+    {return &bulletInfo_;}
 Q_SIGNALS:
     void rosShutdown();
 
 private:
-	int init_argc;
-	char** init_argv;
-	ros::Publisher chatter_publisher;
+    int init_argc;
+    char** init_argv;
     ros::Subscriber pose_sub_[4];
     ros::Subscriber judgeStatus_sub_[4];
     ros::Subscriber judgeHeat_sub_[4];
+    ros::Subscriber bulletInfo_sub_;
 
     QStringListModel logging_model;
     BattleView *parentBattleView_;
     ros::ServiceClient client_;
     hero_msgs::RobotStatus roboStatus_[4];
     hero_msgs::RobotHeat roboHeat_[4];
+
+    hero_msgs::BulletsInfo bulletInfo_;
+
     float gimbal_yaw_;
     bool SendJudgeSysCall(int comman, std::string robot_name);
     void RobotStatusCallback0(const hero_msgs::RobotStatus::ConstPtr& msg);
@@ -108,6 +118,7 @@ private:
     void RobotHeatCallback1(const hero_msgs::RobotHeat::ConstPtr& msg);
     void RobotHeatCallback2(const hero_msgs::RobotHeat::ConstPtr& msg);
     void RobotHeatCallback3(const hero_msgs::RobotHeat::ConstPtr& msg);
+    void BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr& msg);
 
     void SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index);
 

@@ -6,13 +6,18 @@
 #include <tf/tf.h>
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
+#include "hero_math/math.h"
+#include "geometry_msgs/PointStamped.h"
 
 
 namespace HeroMultistage {
 
+using hero_common::Point2D;
+using hero_common::Polygon2D;
+
 #define RobotWidth 0.5
 #define RobotLength 0.6
-
+#define AromrLength 0.15//real lenth(0.13) is to difficult to hit!
 class RobotTF
 {
 public:
@@ -22,6 +27,12 @@ public:
     {return robot_name_;}
     float GetGimbalYaw()
     {return gimbal_yaw_;}
+    float GetGimbalAbsoluteYaw();
+    Polygon2D GetArmorPoly(int num);//front left right back 0 1 2 3
+
+    tf::Transform robot_tf;
+    tf::Transform armor_tf[4];//front left right back
+    geometry_msgs::PointStamped armor_point[4];
 
 
 private:
@@ -29,6 +40,7 @@ private:
     tf::TransformListener listener_;
     tf::TransformBroadcaster broadcaster_;
     float gimbal_yaw_;
+    float gimbal_yaw_absolute_;
     hero_common::ErrorInfo Init(std::string robot_name);
 
 };

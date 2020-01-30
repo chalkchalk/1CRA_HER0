@@ -3,6 +3,8 @@
 
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o
  /home/ycz/ICRA_HERO_ws/build/hero_interface/include/hero_interface/moc_main_window.cxx
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
@@ -520,6 +522,8 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
  hero_interface/ui_main_window.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o
  /home/ycz/ICRA_HERO_ws/build/hero_interface/include/hero_interface/moc_qnode.cxx
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
@@ -1021,6 +1025,8 @@ hero_interface/CMakeFiles/hero_interface.dir/qrc_images.cxx.o
  /usr/include/qt4/QtCore/qfeatures.h
  /usr/include/qt4/QtCore/qglobal.h
 hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
@@ -1520,6 +1526,8 @@ hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o
  /usr/include/qt4/QtGui/qworkspace.h
  /usr/include/qt4/QtGui/qwsembedwidget.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
@@ -2037,6 +2045,8 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
  /usr/include/qt4/QtGui/qwsembedwidget.h
  hero_interface/ui_main_window.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
@@ -2555,6 +2565,8 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
  /usr/include/qt4/QtGui/qwsembedwidget.h
  hero_interface/ui_main_window.h
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h

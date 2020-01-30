@@ -30,29 +30,28 @@ namespace hero_interface {
 *****************************************************************************/
 
 QNode::QNode(int argc, char** argv ,BattleView *parentBattleView) :
-	init_argc(argc),
+    init_argc(argc),
     init_argv(argv),
     parentBattleView_(parentBattleView),
     gimbal_yaw_(0)
-	{}
+    {}
 
 QNode::~QNode() {
     if(ros::isStarted()) {
       ros::shutdown(); // explicitly needed since we use ros::start();
       ros::waitForShutdown();
     }
-	wait();
+    wait();
 }
 
 bool QNode::init() {
-	ros::init(init_argc,init_argv,"hero_interface");
-	if ( ! ros::master::check() ) {
-		return false;
-	}
-	ros::start(); // explicitly needed since our nodehandle is going out of scope.
-	ros::NodeHandle n;
-	// Add your ros communications here.
-    chatter_publisher = n.advertise<std_msgs::String>("chatter", 1000);
+    ros::init(init_argc,init_argv,"hero_interface");
+    if ( ! ros::master::check() ) {
+        return false;
+    }
+    ros::start(); // explicitly needed since our nodehandle is going out of scope.
+    ros::NodeHandle n;
+    // Add your ros communications here.
     pose_sub_[0] = n.subscribe<nav_msgs::Odometry>("/robot_0/base_pose_ground_truth", 1000,&QNode::PoseCallback,this);
     pose_sub_[1] = n.subscribe<nav_msgs::Odometry>("/robot_1/base_pose_ground_truth", 1000,&QNode::PoseCallback,this);
     pose_sub_[2] = n.subscribe<nav_msgs::Odometry>("/robot_2/base_pose_ground_truth", 1000,&QNode::PoseCallback,this);
@@ -67,9 +66,11 @@ bool QNode::init() {
     judgeHeat_sub_[2] = n.subscribe<hero_msgs::RobotHeat>("/judgeSysInfo/robot_2/heat_power", 1000,&QNode::RobotHeatCallback2,this);
     judgeHeat_sub_[3] = n.subscribe<hero_msgs::RobotHeat>("/judgeSysInfo/robot_3/heat_power", 1000,&QNode::RobotHeatCallback3,this);
 
+    bulletInfo_sub_ =  n.subscribe<hero_msgs::BulletsInfo>("robot_physic/bullet_info", 1000,&QNode::BulletInfoCallback,this);
+
     client_ = n.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
     start();
-	return true;
+    return true;
 }
 
 
@@ -108,6 +109,7 @@ void QNode::RobotStatusCallback3(const hero_msgs::RobotStatus::ConstPtr& msg)
 void QNode::SetRobotStatus(const hero_msgs::RobotStatus::ConstPtr& msg, int index)
 {
     roboStatus_[index] = *msg;
+
 }
 
 void QNode::RobotHeatCallback0(const hero_msgs::RobotHeat::ConstPtr& msg)
@@ -134,37 +136,36 @@ void QNode::SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index)
 }
 
 bool QNode::init(const std::string &master_url, const std::string &host_url) {
-	std::map<std::string,std::string> remappings;
-	remappings["__master"] = master_url;
-	remappings["__hostname"] = host_url;
-	ros::init(remappings,"hero_interface");
-	if ( ! ros::master::check() ) {
-		return false;
-	}
-	ros::start(); // explicitly needed since our nodehandle is going out of scope.
-	ros::NodeHandle n;
-	// Add your ros communications here.
-	chatter_publisher = n.advertise<std_msgs::String>("chatter", 1000);
-	start();
-	return true;
+    std::map<std::string,std::string> remappings;
+    remappings["__master"] = master_url;
+    remappings["__hostname"] = host_url;
+    ros::init(remappings,"hero_interface");
+    if ( ! ros::master::check() ) {
+        return false;
+    }
+    ros::start(); // explicitly needed since our nodehandle is going out of scope.
+    ros::NodeHandle n;
+    // Add your ros communications here.
+    start();
+    return true;
 }
 
 void QNode::run() {
     ros::Rate loop_rate(50);
-	int count = 0;
-	while ( ros::ok() ) {
+    int count = 0;
+    while ( ros::ok() ) {
 
-		std_msgs::String msg;
-		std::stringstream ss;
-		ss << "hello world " << count;
-		msg.data = ss.str();
+        std_msgs::String msg;
+        std::stringstream ss;
+        ss << "hello world " << count;
+        msg.data = ss.str();
         //chatter_publisher.publish(msg);
-		ros::spinOnce();
-		loop_rate.sleep();
-		++count;
-	}
-	std::cout << "Ros shutdown, proceeding to close the gui." << std::endl;
-	Q_EMIT rosShutdown(); // used to signal the gui for a shutdown (useful to roslaunch)
+        ros::spinOnce();
+        loop_rate.sleep();
+        ++count;
+    }
+    std::cout << "Ros shutdown, proceeding to close the gui." << std::endl;
+    Q_EMIT rosShutdown(); // used to signal the gui for a shutdown (useful to roslaunch)
 }
 
 bool QNode::KillRobot(std::string robot_name)
@@ -206,6 +207,16 @@ bool QNode::SendJudgeSysCall(int command, std::string robot_name)
             ROS_ERROR("Failed to call judgesys service");
             return false;
         }
+}
+
+void QNode::BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr &msg)
+{
+    bulletInfo_lock.lock();
+    bulletInfo_.bullets.clear();
+    bulletInfo_.bullet_num = msg->bullet_num;
+    for(int i=0;i<msg->bullet_num;i++)
+        bulletInfo_.bullets.emplace_back(msg->bullets[i]);
+    bulletInfo_lock.unlock();
 }
 
 

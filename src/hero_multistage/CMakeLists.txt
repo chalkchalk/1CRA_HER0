@@ -54,3 +54,5 @@ target_link_libraries(robot_physics_node
 target_include_directories(robot_physics_node PUBLIC
         ${catkin_INCLUDE_DIRS})
 
+include_directories("/usr/include/eigen3")
+include_directories("/usr/include/eigen3/Eigen")

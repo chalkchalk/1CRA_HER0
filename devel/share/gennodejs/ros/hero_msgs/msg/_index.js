@@ -23,9 +23,11 @@ let GlobalPlannerResult = require('./GlobalPlannerResult.js');
 let ArmorDetectionAction = require('./ArmorDetectionAction.js');
 let LocalPlannerActionFeedback = require('./LocalPlannerActionFeedback.js');
 let ObstacleMsg = require('./ObstacleMsg.js');
+let BulletsInfo = require('./BulletsInfo.js');
 let GimbalAngle = require('./GimbalAngle.js');
 let TwistAccel = require('./TwistAccel.js');
 let ShootState = require('./ShootState.js');
+let BulletMove = require('./BulletMove.js');
 let ShootInfo = require('./ShootInfo.js');
 let GimbalRate = require('./GimbalRate.js');
 let GameStatus = require('./GameStatus.js');
@@ -63,9 +65,11 @@ module.exports = {
   ArmorDetectionAction: ArmorDetectionAction,
   LocalPlannerActionFeedback: LocalPlannerActionFeedback,
   ObstacleMsg: ObstacleMsg,
+  BulletsInfo: BulletsInfo,
   GimbalAngle: GimbalAngle,
   TwistAccel: TwistAccel,
   ShootState: ShootState,
+  BulletMove: BulletMove,
   ShootInfo: ShootInfo,
   GimbalRate: GimbalRate,
   GameStatus: GameStatus,

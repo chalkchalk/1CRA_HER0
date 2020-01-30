@@ -11,21 +11,24 @@ namespace hero_interface {
 #define ROBOT_WIDTH 0.5
 #define ROBOT_HEIGHT 0.6
 
-#define ROBOT_WIDTH_PIX 50
-#define ROBOT_HEIGHT_PIX 60
+#define ROBOT_WIDTH_PIX 100
+#define ROBOT_HEIGHT_PIX 120
 
 #define BATTLEFIELD_W 8.15
 #define BATTLEFIELD_H 5.15
 
+#define BULLET_RADIUS_PIX   8
 class QNode;
 
-typedef struct
+struct Pose
 {
+    Pose(float x_, float y_,float yaw_) :x(x_), y(y_), yaw(yaw_){}//有参构造
+    Pose() :x(0), y(0), yaw(0){}
     float x;
     float y;
     float yaw;
 
-}Pose;
+};
 
 class Robot
 {

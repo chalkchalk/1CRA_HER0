@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -21,19 +21,19 @@
 #include <iostream>
 #include <vector>
 
-#include <Eigen/Core>
+#include "Eigen/Core"
 
 #include "geometry.h"
 namespace hero_common {
 
-inline double Cross2D (const geometry::Point2D &vector0,
-                       const geometry::Point2D &vector1) {
+inline double Cross2D (const hero_common::Point2D &vector0,
+                       const hero_common::Point2D &vector1) {
   return vector0.X() * vector1.Y() - vector0.Y() * vector1.X();
 }
 
-inline double Cross2D (const geometry::Point2D &start_point,
-                       const geometry::Point2D &point0,
-                       const geometry::Point2D &point1) {
+inline double Cross2D (const hero_common::Point2D &start_point,
+                       const hero_common::Point2D &point0,
+                       const hero_common::Point2D &point1) {
   auto vector0 = point0 - start_point;
   auto vector1 = point1 - start_point;
   return Cross2D(vector0, vector1);
@@ -49,7 +49,7 @@ inline double Cross2D(const double x0, const double y0,
   return x0 * y1 - x1 * y0;
 }
 
-inline bool ConvexVerify(std::vector<geometry::Point2D> &points) {
+inline bool ConvexVerify(std::vector<hero_common::Point2D> &points) {
 
   auto num_points = points.size();
   if (num_points < 4) {
@@ -88,8 +88,8 @@ inline double PointDistance (const double x0, const double y0,
   return hypot(x1 - x0, y1 - y0);
 }
 
-inline double PointDistance (const geometry::Point2D &point0,
-                             const geometry::Point2D &point1) {
+inline double PointDistance (const hero_common::Point2D &point0,
+                             const hero_common::Point2D &point1) {
   return hypot((point1 - point0).X(), (point1 - point0).Y());
 }
 
@@ -131,8 +131,8 @@ inline double PointToLineDistance (const double px, const double py,
   return PointDistance(px, py, xx, yy);
 }
 
-inline double PointToLineDistance (const geometry::Point2D &point,
-                                   const geometry::LineSegment2D &line) {
+inline double PointToLineDistance (const hero_common::Point2D &point,
+                                   const hero_common::LineSegment2D &line) {
   double A = point.X() - line.Start().X();
   double B = point.Y() - line.Start().Y();
   double C = line.DiffX();
@@ -223,9 +223,9 @@ inline bool CheckLineSegmentsIntersection2D(const Eigen::Ref<const Eigen::Vector
   return true;
 }
 
-inline bool CheckLineSegmentsIntersection2D(const geometry::LineSegment2D &line0,
-                                            const geometry::LineSegment2D &line1,
-                                            geometry::Point2D *intersection = NULL) {
+inline bool CheckLineSegmentsIntersection2D(const hero_common::LineSegment2D &line0,
+                                            const hero_common::LineSegment2D &line1,
+                                            hero_common::Point2D *intersection = NULL) {
   double s_numer, t_numer, denom, t;
 
   denom = line0.DiffX() * line1.DiffY() - line1.DiffX() * line0.DiffY();
@@ -234,7 +234,7 @@ inline bool CheckLineSegmentsIntersection2D(const geometry::LineSegment2D &line0
   }
   bool denomPositive = denom > 0;
 
-  geometry::LineSegment2D aux(line1.Start(), line0.Start());
+  hero_common::LineSegment2D aux(line1.Start(), line0.Start());
 
   s_numer = line0.DiffX() * aux.DiffY() - line0.DiffY() * aux.DiffX();
   if ((s_numer < 0) == denomPositive) {
@@ -252,7 +252,7 @@ inline bool CheckLineSegmentsIntersection2D(const geometry::LineSegment2D &line0
 
   t = t_numer / denom;
   if (intersection) {
-    *intersection = line0.Start() + geometry::Point2D(t * line0.DiffX(), t * line0.DiffY());
+    *intersection = line0.Start() + hero_common::Point2D(t * line0.DiffX(), t * line0.DiffY());
   }
 
   return true;
@@ -277,7 +277,7 @@ inline double DistanceSegmentToSegment2D(const Eigen::Ref<const Eigen::Vector2d>
   return *std::min_element(distances.begin(), distances.end());
 }
 
-inline double DistanceSegmentToSegment2D(const geometry::LineSegment2D &line0, const geometry::LineSegment2D &line1) {
+inline double DistanceSegmentToSegment2D(const hero_common::LineSegment2D &line0, const hero_common::LineSegment2D &line1) {
 
   if (CheckLineSegmentsIntersection2D(line0, line1)) {
     return 0;
@@ -315,7 +315,7 @@ inline double DistancePointToPolygon2D(const Eigen::Vector2d &point, const std::
   double new_dist = PointToLineDistance(point.coeffRef(0), point.coeffRef(1), vertices.back().coeffRef(0), vertices.back().coeffRef(1),
                                         vertices.front().coeffRef(0), vertices.front().coeffRef(1));
     if (new_dist < dist) {
-      std::cout << "here" << std::endl;
+      //std::cout << "here" << std::endl;
       dist = new_dist;
     }
   }
@@ -323,7 +323,7 @@ inline double DistancePointToPolygon2D(const Eigen::Vector2d &point, const std::
   return dist;
 }
 
-inline double DistancePointToPolygon2D(const geometry::Point2D &point, const geometry::Polygon2D &polygon) {
+inline double DistancePointToPolygon2D(const hero_common::Point2D &point, const hero_common::Polygon2D &polygon) {
   double dist = HUGE_VAL;
 
   if (polygon.NumPoints() == 1) {
@@ -368,8 +368,8 @@ inline double DistanceSegmentToPolygon2D(const Eigen::Vector2d &line_start,
   return dist;
 }
 
-inline double DistanceSegmentToPolygon2D(const geometry::LineSegment2D line,
-                                         const geometry::Polygon2D polygon) {
+inline double DistanceSegmentToPolygon2D(const hero_common::LineSegment2D line,
+                                         const hero_common::Polygon2D polygon) {
   double dist = HUGE_VAL;
 
   if (polygon.Points().size() == 1) {
@@ -411,8 +411,8 @@ inline double DistancePolygonToPolygon2D(const std::vector<Eigen::Vector2d> &ver
   return dist;
 }
 
-inline double DistancePolygonToPolygon2D(const geometry::Polygon2D &polygon0,
-                                         const geometry::Polygon2D &polygon1) {
+inline double DistancePolygonToPolygon2D(const hero_common::Polygon2D &polygon0,
+                                         const hero_common::Polygon2D &polygon1) {
   double dist = HUGE_VAL;
 
   if (polygon0.Points().size() == 1) {

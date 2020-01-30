@@ -44,7 +44,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
     fTimer=new QTimer(this);
     connect(fTimer,SIGNAL(timeout()),this,SLOT(timer_timeout()));
-    fTimer->start(20);
+    fTimer->start(50);
     battleView.AddRobot(new Robot("robot_0","blue"));
     battleView.AddRobot(new Robot("robot_1","blue"));
     battleView.AddRobot(new Robot("robot_2","red"));
