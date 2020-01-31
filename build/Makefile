@@ -2142,19 +2142,6 @@ point_navigation/fast:
 .PHONY : point_navigation/fast
 
 #=============================================================================
-# Target rules for targets named hero_interface
-
-# Build rule for target.
-hero_interface: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hero_interface
-.PHONY : hero_interface
-
-# fast build rule for target.
-hero_interface/fast:
-	$(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/build
-.PHONY : hero_interface/fast
-
-#=============================================================================
 # Target rules for targets named judgesys_control_node
 
 # Build rule for target.
@@ -2309,6 +2296,19 @@ a_star_planner: cmake_check_build_system
 a_star_planner/fast:
 	$(MAKE) -f hero_planning/global_planner/a_star_planner/CMakeFiles/a_star_planner.dir/build.make hero_planning/global_planner/a_star_planner/CMakeFiles/a_star_planner.dir/build
 .PHONY : a_star_planner/fast
+
+#=============================================================================
+# Target rules for targets named hero_interface
+
+# Build rule for target.
+hero_interface: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hero_interface
+.PHONY : hero_interface
+
+# fast build rule for target.
+hero_interface/fast:
+	$(MAKE) -f hero_interface/CMakeFiles/hero_interface.dir/build.make hero_interface/CMakeFiles/hero_interface.dir/build
+.PHONY : hero_interface/fast
 
 #=============================================================================
 # Target rules for targets named localization_node
@@ -2514,7 +2514,6 @@ help:
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... behavior_test_node"
 	@echo "... point_navigation"
-	@echo "... hero_interface"
 	@echo "... judgesys_control_node"
 	@echo "... visualization_msgs_generate_messages_nodejs"
 	@echo "... visualization_msgs_generate_messages_eus"
@@ -2527,6 +2526,7 @@ help:
 	@echo "... global_planner_node"
 	@echo "... global_planner_test"
 	@echo "... a_star_planner"
+	@echo "... hero_interface"
 	@echo "... localization_node"
 	@echo "... amcl"
 	@echo "... robot_physics_node"

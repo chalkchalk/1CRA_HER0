@@ -57,6 +57,7 @@ public Q_SLOTS:
     void on_pushButtonReload_1_clicked();
     void on_pushButtonRevive_1_clicked();
     void on_pushButtonKill_1_clicked();
+    void on_pushButtonRFID_Rfresh_clicked();
 
 private:
 	Ui::MainWindowDesign ui;

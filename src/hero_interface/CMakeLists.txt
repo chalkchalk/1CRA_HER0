@@ -22,8 +22,13 @@ find_package(catkin REQUIRED COMPONENTS qt_build roscpp
   hero_judgesys
   hero_common
   hero_msgs
+  tf
   roslib
   )
+
+include_directories("/usr/include/eigen3")
+include_directories("/usr/include/eigen3/Eigen")
+
 include_directories(
     ${catkin_INCLUDE_DIRS}
     include

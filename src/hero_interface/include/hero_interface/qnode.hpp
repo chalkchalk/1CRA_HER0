@@ -31,6 +31,8 @@
 #include "hero_msgs/RobotHeat.h"
 #include "hero_msgs/BulletsInfo.h"
 #include <mutex>
+#include "state/command_code.h"
+#include "std_msgs/Float32.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -83,8 +85,8 @@ public:
     int GetRobotHealth(int index)
     {return roboStatus_[index].remain_hp;}
 
-    float GetGimbalYaw()
-    {return gimbal_yaw_;}
+    float GetGimbalYaw(int i)
+    {return gimbal_yaw_[i];}
     const hero_msgs::BulletsInfo *GetBulletsInfo()
     {return &bulletInfo_;}
 Q_SIGNALS:
@@ -105,8 +107,9 @@ private:
     hero_msgs::RobotHeat roboHeat_[4];
 
     hero_msgs::BulletsInfo bulletInfo_;
+    ros::Subscriber gimbal_yaw_sub_[4];
 
-    float gimbal_yaw_;
+    float gimbal_yaw_[4];
     bool SendJudgeSysCall(int comman, std::string robot_name);
     void RobotStatusCallback0(const hero_msgs::RobotStatus::ConstPtr& msg);
     void RobotStatusCallback1(const hero_msgs::RobotStatus::ConstPtr& msg);
@@ -120,8 +123,11 @@ private:
     void RobotHeatCallback3(const hero_msgs::RobotHeat::ConstPtr& msg);
     void BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr& msg);
 
+    void GimbalYawCallback0(const std_msgs::Float32::ConstPtr& msg);
+    void GimbalYawCallback1(const std_msgs::Float32::ConstPtr& msg);
+    void GimbalYawCallback2(const std_msgs::Float32::ConstPtr& msg);
+    void GimbalYawCallback3(const std_msgs::Float32::ConstPtr& msg);
     void SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index);
-
 };
 
 }  // namespace hero_interface

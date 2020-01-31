@@ -78,6 +78,10 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
+/home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
+string
+-
+
 /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/error_code.h
 string
 -
@@ -99,6 +103,8 @@ ros/ros.h
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/ros/ros.h
 hero_msgs/RobotStatus.h
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/hero_msgs/RobotStatus.h
+state/command_code.h
+/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/state/command_code.h
 
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_robot.h
 string
@@ -115,6 +121,8 @@ hero_msgs/RobotStatus.h
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/hero_msgs/RobotStatus.h
 hero_msgs/RobotHeat.h
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/hero_msgs/RobotHeat.h
+state/command_code.h
+/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/state/command_code.h
 
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/src/judgesys_control_node.cpp
 judgesys_control_node.h
@@ -124,6 +132,10 @@ string
 thread
 -
 chrono
+-
+sys/time.h
+-
+cstdlib
 -
 
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/src/judgesys_robot.cpp

@@ -13,7 +13,8 @@
 #include <thread>
 #include <sys/time.h>
 #include <cstdlib>// Header file needed to use rand
-
+#include "hero_map/hero_map.h"
+#include "std_msgs/Float32.h"
 
 
 namespace HeroMultistage {
@@ -33,6 +34,8 @@ namespace HeroMultistage {
     }
 
     ErrorInfo RobotPhysics::Init() {
+
+        GetParam(&nh_);
         tf::TransformListener listener;
         robot_tf_received_[0] = listener.waitForTransform("/map","robot_0/odom",ros::Time(0),ros::Duration(5));
         if(robot_tf_received_[0])
@@ -52,10 +55,52 @@ namespace HeroMultistage {
         pose_sub_[2] = nh_.subscribe<nav_msgs::Odometry>("/robot_2/base_pose_ground_truth", 1000,&RobotPhysics::PoseCallback,this);
         pose_sub_[3] = nh_.subscribe<nav_msgs::Odometry>("/robot_3/base_pose_ground_truth", 1000,&RobotPhysics::PoseCallback,this);
 
+
+        judgeStatus_sub_[0] = nh_.subscribe<hero_msgs::RobotStatus>("/judgeSysInfo/robot_0/status", 1000,&RobotPhysics::RobotStatusCallback0,this);
+        judgeStatus_sub_[1] = nh_.subscribe<hero_msgs::RobotStatus>("/judgeSysInfo/robot_1/status", 1000,&RobotPhysics::RobotStatusCallback1,this);
+        judgeStatus_sub_[2] = nh_.subscribe<hero_msgs::RobotStatus>("/judgeSysInfo/robot_2/status", 1000,&RobotPhysics::RobotStatusCallback2,this);
+        judgeStatus_sub_[3] = nh_.subscribe<hero_msgs::RobotStatus>("/judgeSysInfo/robot_3/status", 1000,&RobotPhysics::RobotStatusCallback3,this);
+
         bulletsInfo_pub_ = nh_.advertise<hero_msgs::BulletsInfo>("robot_physic/bullet_info",5);
+
+        gimbalYaw_pub_[0] = nh_.advertise<std_msgs::Float32>("robot_0/gimbal_yaw_relative",5);
+        gimbalYaw_pub_[1] = nh_.advertise<std_msgs::Float32>("robot_1/gimbal_yaw_relative",5);
+        gimbalYaw_pub_[2] = nh_.advertise<std_msgs::Float32>("robot_2/gimbal_yaw_relative",5);
+        gimbalYaw_pub_[3] = nh_.advertise<std_msgs::Float32>("robot_3/gimbal_yaw_relative",5);
+
+        judgeSysClient_ = nh_.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
+        static_map_srv_ = nh_.serviceClient<nav_msgs::GetMap>("/static_map");
+        ros::service::waitForService("/static_map", -1);
+        nav_msgs::GetMap::Request req;
+        nav_msgs::GetMap::Response res;
+        if(static_map_srv_.call(req,res)) {
+        ROS_INFO( "Received Static Map");
+        map_ = res.map;
+        } else{
+
+        ROS_ERROR ("Get static map failed");
+        }
 
 
         return ErrorInfo(ErrorCode::OK);
+    }
+
+    void RobotPhysics::GetParam(ros::NodeHandle *nh)
+    {
+        nh->param<double>("RFID_F1_x", RFID_F_x[0], 7.63);
+        nh->param<double>("RFID_F1_y", RFID_F_y[0], 1.8);
+        nh->param<double>("RFID_F2_x", RFID_F_x[1], 6.23);
+        nh->param<double>("RFID_F2_y", RFID_F_y[1], 3.225);
+        nh->param<double>("RFID_F3_x", RFID_F_x[2], 4.03);
+        nh->param<double>("RFID_F3_y", RFID_F_y[2], 0.49);
+        nh->param<double>("RFID_F4_x", RFID_F_x[3], 0.45);
+        nh->param<double>("RFID_F4_y", RFID_F_y[3], 3.34);
+        nh->param<double>("RFID_F5_x", RFID_F_x[4], 1.85);
+        nh->param<double>("RFID_F5_y", RFID_F_y[4], 1.915);
+        nh->param<double>("RFID_F6_x", RFID_F_x[5], 4.05);
+        nh->param<double>("RFID_F6_y", RFID_F_y[5], 4.9);
+        nh->param<double>("RFID_height", RFID_height, 0.4);
+        nh->param<double>("RFID_width", RFID_width, 0.46);
     }
 
     bool RobotPhysics::AddRobot(RobotTF *robot)
@@ -100,35 +145,23 @@ namespace HeroMultistage {
             }
             robotf->robot_tf.setOrigin(tf::Vector3(msg->pose.pose.position.x,msg->pose.pose.position.y,0));
             robotf->robot_tf.setRotation(q);
-            //broadcaster.sendTransform(tf::StampedTransform(robotf->robot_tf,ros::Time::now(),"map",robot_name + "/base_pose_ground_truth"));
+            broadcaster.sendTransform(tf::StampedTransform(robotf->robot_tf,ros::Time::now(),"map",robot_name + "/base_pose_ground_truth"));
 
-            //robotf->PublishArmorTF();
+            robotf->PublishArmorTF();
         }
     }
 
-    void RobotPhysics::PublishTF()
+    void RobotPhysics::PublishGimbalYaw()
     {
-        for (auto it = robots_.begin(); it != robots_.end(); ++it) {
-            (*it)->PublishArmorTF();
-        }
-    }
-
-    void ListenTF(tf::TransformListener *listener,std::string map, std::string name, ros::Time time,tf::StampedTransform *tf)
-    {
-        int i,j;
-        for(j=0;j<4;j++)
+        int i;
+        for(i=0;i<4;i++)
         {
-            try {
-                 listener->lookupTransform(map,name, time, *tf);
+            gimbalYaw_pub_[i].publish(robots_[i]->GetGimbalYaw());
+        }
 
-                }
-                catch (tf::TransformException ex) {
-                 // ROS_ERROR("%s", ex.what());
-                  j--;
-                     ros::Duration(0.001).sleep();
-                }
-            }
     }
+
+
 
     int RobotPhysics::ArmorHitDetect()
     {
@@ -151,7 +184,11 @@ namespace HeroMultistage {
                     if(hitResult)
                     {
                         if(hitResult > 0 && hitResult < 5)
-                        ROS_INFO("%s hit %s %s",(*iter)->GetShooter().c_str(), robot_name[i].c_str(),aromor_name[hitResult - 1].c_str());
+                        {
+                            ROS_INFO("%s hit %s %s",(*iter)->GetShooter().c_str(), robot_name[i].c_str(),aromor_name[hitResult - 1].c_str());
+                            SendHitRobotInfo(robot_name[i],hitResult - 1);
+                        }
+
                          iter = bullets_.erase(iter);
                     }
                     else
@@ -172,23 +209,15 @@ namespace HeroMultistage {
 
     void RobotPhysics::BulletJudge()
     {
-        int i ,j ;
-
-        tf::TransformListener listener;
-        tf::StampedTransform transform;
 
 
         for(auto iter=bullets_.begin(); iter!=bullets_.end(); )
         {
             //hero_common::Polygon2D
 
-
-
-
-
-
-
-             if( (*iter)->ReachBoundary(8,8))
+             if( (*iter)->ReachBoundary(8,8)||
+                     hero_common::LineSegmentIsIntersectMapObstacle(&map_,(*iter)->GetPositionNow().X(),(*iter)->GetPositionNow().Y(),
+                                                                    (*iter)->GetPositionLast().X(),(*iter)->GetPositionLast().Y()))
                   iter = bullets_.erase(iter);
               else
                  iter ++ ;
@@ -202,8 +231,6 @@ namespace HeroMultistage {
 
     void RobotPhysics::PublishBulletsInfo()
     {
-        if(bullets_.size()==0)
-            return;
         int i = 0;
         hero_msgs::BulletsInfo bulletInfo;
         bulletInfo.bullet_num = bullets_.size();
@@ -218,8 +245,33 @@ namespace HeroMultistage {
     {
         RobotTF *robotf = FindRobot(robot_name);
         float yaw_distribute = ((rand()%2000)/1000.0f - 1) * DistributeYaw;
+        if(robot_name=="robot_0")
+        {
+            if(roboStatus_[0].remain_ammo <= 0||roboStatus_[0].remain_hp<=0 || !roboStatus_[0].shooter_output)
+                return;
+        }
+        else if(robot_name=="robot_1")
+        {
+            if(roboStatus_[1].remain_ammo <= 0 || roboStatus_[1].remain_hp<=0 || !roboStatus_[1].shooter_output)
+                return;
+        }
+        else if(robot_name=="robot_2")
+        {
+            if(roboStatus_[2].remain_ammo <= 0||roboStatus_[2].remain_hp<=0 || !roboStatus_[1].shooter_output )
+                return;
+        }
+        else if(robot_name=="robot_3")
+        {
+            if(roboStatus_[3].remain_ammo <= 0||roboStatus_[3].remain_hp<=0 || !roboStatus_[1].shooter_output)
+                return;
+        }
+        else
+            return;
+
         if(robotf)
         {
+
+            SendShootRobotInfo(robot_name);
             bullets_.emplace_back(new Bullet(robot_name,robotf->robot_tf.getOrigin().getX(),robotf->robot_tf.getOrigin().getY(),robotf->GetGimbalAbsoluteYaw() + yaw_distribute,23));
         }
     }
@@ -233,6 +285,88 @@ namespace HeroMultistage {
         }
     }
 
+    void RobotPhysics::SendHitRobotInfo(std::string robot_name, int armor_num)
+    {
+        SendJudgeSysRequest(robot_name,hero_common::JudgeSysCommand::ARMOR_HIT_FRONT + armor_num);
+    }
+
+    void RobotPhysics::SendShootRobotInfo(std::string robot_name)
+    {
+        SendJudgeSysRequest(robot_name,hero_common::JudgeSysCommand::SHOOT_BULLET);
+    }
+
+    void RobotPhysics::RobotStatusCallback0(const hero_msgs::RobotStatus::ConstPtr& msg)
+    {
+        SetRobotStatus(msg,0);
+
+    }
+
+    void RobotPhysics::RobotStatusCallback1(const hero_msgs::RobotStatus::ConstPtr& msg)
+    {
+        SetRobotStatus(msg,1);
+
+    }
+    void RobotPhysics::RobotStatusCallback2(const hero_msgs::RobotStatus::ConstPtr& msg)
+    {
+        SetRobotStatus(msg,2);
+
+    }
+    void RobotPhysics::RobotStatusCallback3(const hero_msgs::RobotStatus::ConstPtr& msg)
+    {
+        SetRobotStatus(msg,3);
+
+    }
+    void RobotPhysics::SetRobotStatus(const hero_msgs::RobotStatus::ConstPtr& msg, int index)
+    {
+        roboStatus_[index] = *msg;
+
+    }
+    void RobotPhysics::RFID_detect()
+    {
+        int i,j;
+        static int infoDivider;
+
+        for(i = 0;i<4;i++)//robot
+        {
+            for(j = 0;j<6;j++)//RFID
+            {
+                if(hero_common::PointInRect(robots_[i]->robot_tf.getOrigin().getX(),robots_[i]->robot_tf.getOrigin().getY(),RFID_F_x[j],RFID_F_y[j],
+                                            RFID_F_x[j] + RFID_width ,RFID_F_y[j] + RFID_height))
+                {
+                    //ROS_INFO("robot: %f,%f",robots_[i]->robot_tf.getOrigin().getX(),robots_[i]->robot_tf.getOrigin().getY());
+                    //ROS_INFO("rect %d: %f,%f, %f,%f",j+1,RFID_F_x[j],RFID_F_y[j],RFID_F_x[j] + RFID_width ,RFID_F_y[j] + RFID_height);
+                    infoDivider ++;
+                    if(infoDivider % 20 == 0)
+                         ROS_INFO("%s just pass RFID %d.",robots_[i]->GetName().c_str(),j + 1);
+                    SendJudgeSysRequest(robots_[i]->GetName(),hero_common::JudgeSysCommand::RFID_F1 + j);
+                     //bullets_.emplace_back(new Bullet("robot",RFID_F_x[j],RFID_F_y[j],0,5));
+                }
+                else
+                    infoDivider = 0;
+               // ROS_INFO("robot: %f,%f",robots_[i]->robot_tf.getOrigin().getX(),robots_[i]->robot_tf.getOrigin().getY());
+               // ROS_INFO("rect %d: %f,%f, %f,%f",j+1,RFID_F_x[j],RFID_F_y[j],RFID_F_x[j] + RFID_width ,RFID_F_y[j] + RFID_height);
+            }
+        }
+    }
+
+    void RobotPhysics::SendJudgeSysRequest(string robot_name, int command)
+    {
+        hero_msgs::JudgeSysControl srv;
+        srv.request.command = command;
+        srv.request.robot_name = robot_name;
+        if (judgeSysClient_.call(srv))
+            {
+                if(srv.response.error_code!=0)
+                {
+                    ROS_ERROR("judgesys service error:%d\n",srv.response.error_code);
+                }
+
+            }
+            else
+            {
+                ROS_ERROR("Failed to call judgesys service");
+            }
+    }
 }
 
 
@@ -253,25 +387,27 @@ int main(int argc, char** argv){
     std::thread spin_thread(ROS_Spin);
     spin_thread.detach();
     ros::start();
-   // int divider = 0;
+    int divider = 0;
     while ( ros::ok() ) {
-        ms_last = ms;
-        //robotPhysics.PublishTF();
+        gettimeofday(&tv,&tz);
+        ms_last = tv.tv_sec*1000 + tv.tv_usec/1000;
+        robotPhysics.PublishGimbalYaw();
         robotPhysics.LetBulletsFly(30);
         robotPhysics.PublishBulletsInfo();
         robotPhysics.BulletJudge();
         robotPhysics.ArmorHitDetect();
-        //divider++;
-       // if(divider%2==0)
-        //{
+        robotPhysics.RFID_detect();
+        divider++;
+        if(divider%3==0)
+        {
           robotPhysics.RobotShoot("robot_0");
             //robotPhysics.RobotShoot("robot_3");
-       // }
+        }
 
         gettimeofday(&tv,&tz);
         ms = tv.tv_sec*1000 + tv.tv_usec/1000;
-       // ROS_INFO("time used:%d",ms-ms_last);
-        if(ms - ms_last <33 && ms - ms_last >0)
+        //ROS_INFO("time used:%d",ms-ms_last);
+        if(ms - ms_last <33)
           std::this_thread::sleep_for(std::chrono::milliseconds(33 -(ms - ms_last)));
     }
     return 0;

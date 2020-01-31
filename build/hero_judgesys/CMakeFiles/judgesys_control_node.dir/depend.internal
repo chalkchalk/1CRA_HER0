@@ -7,6 +7,7 @@ hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/error_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_control_node.h
  /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_robot.h
@@ -88,6 +89,7 @@ hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/error_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_control_node.h
  /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_robot.h

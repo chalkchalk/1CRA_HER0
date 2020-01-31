@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   hero_msgs
   actionlib
+  nav_msgs
   )
 
 find_package(Boost REQUIRED)
@@ -38,5 +39,6 @@ install(DIRECTORY include/${PROJECT_NAME}/
 include_directories("/usr/include/eigen3")
 include_directories("/usr/include/eigen3/Eigen")
 
+add_subdirectory(include/hero_map)
 add_subdirectory(include/hero_math)
 add_subdirectory(include/io)

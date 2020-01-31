@@ -186,7 +186,7 @@ hero_common::ErrorInfo TebLocalPlanner::ComputeVelocityCommands(hero_msgs::Twist
 
     optimal_->ClearPlanner();
     last_cmd_ = cmd_vel;
-    ROS_ERROR("trajectory is not feasible");
+    //ROS_ERROR("trajectory is not feasible");
     hero_common::ErrorInfo trajectory_error(hero_common::LP_ALGORITHM_TRAJECTORY_ERROR, "trajectory is not feasible");
     return trajectory_error;
   }

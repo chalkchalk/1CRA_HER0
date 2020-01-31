@@ -113,7 +113,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None(CMAKE_CXX_FLAGS or
 // CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.
-CMAKE_BUILD_TYPE:STRING=Debug
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -1418,7 +1418,8 @@ hero_interface_SOURCE_DIR:STATIC=/home/ycz/ICRA_HERO_ws/src/hero_interface
 //Value Computed by CMake
 hero_judgesys_BINARY_DIR:STATIC=/home/ycz/ICRA_HERO_ws/build/hero_judgesys
 
-hero_judgesys_DIR:PATH=
+//The directory containing a CMake configuration file for hero_judgesys.
+hero_judgesys_DIR:PATH=/home/ycz/ICRA_HERO_ws/devel/share/hero_judgesys/cmake
 
 //Dependencies for target
 hero_judgesys_LIB_DEPENDS:STATIC=
@@ -1431,6 +1432,12 @@ hero_localization_BINARY_DIR:STATIC=/home/ycz/ICRA_HERO_ws/build/hero_localizati
 
 //Value Computed by CMake
 hero_localization_SOURCE_DIR:STATIC=/home/ycz/ICRA_HERO_ws/src/hero_localization
+
+//Value Computed by CMake
+hero_map_BINARY_DIR:STATIC=/home/ycz/ICRA_HERO_ws/build/hero_common/include/hero_map
+
+//Value Computed by CMake
+hero_map_SOURCE_DIR:STATIC=/home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_map
 
 //Value Computed by CMake
 hero_mapping_BINARY_DIR:STATIC=/home/ycz/ICRA_HERO_ws/build/hero_mapping
@@ -1757,7 +1764,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=21
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=22
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -49,6 +49,10 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     battleView.AddRobot(new Robot("robot_1","blue"));
     battleView.AddRobot(new Robot("robot_2","red"));
     battleView.AddRobot(new Robot("robot_3","red"));
+
+   // lcdNumberTime->
+   // display(0074);
+
     qnode.init();
 }
 
@@ -176,4 +180,9 @@ void hero_interface::MainWindow::on_pushButtonReload_4_clicked()
 void hero_interface::MainWindow::on_pushButtonDisarm_4_clicked()
 {
     qnode.DisarmRobot("robot_3");
+}
+
+void hero_interface::MainWindow::on_pushButtonRFID_Rfresh_clicked()
+{
+
 }

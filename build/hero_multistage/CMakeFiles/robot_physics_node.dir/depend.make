@@ -133,8 +133,14 @@ hero_multistage/CMakeFiles/robot_physics_node.dir/src/bullet.cpp.o: /usr/include
 
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_map/hero_map.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math/geometry.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math/math.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/error_code.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/bullet.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/robot_physics.h
@@ -158,6 +164,11 @@ hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/geometry_msgs/TwistWithCovariance.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Vector3.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Vector3Stamped.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/nav_msgs/GetMap.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/nav_msgs/GetMapRequest.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/nav_msgs/GetMapResponse.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/nav_msgs/MapMetaData.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/nav_msgs/OccupancyGrid.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/nav_msgs/Odometry.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/ros/advertise_options.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/ros/advertise_service_options.h
@@ -220,6 +231,7 @@ hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/sensor_msgs/ChannelFloat32.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/sensor_msgs/PointCloud.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/std_msgs/Empty.h
+hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/std_msgs/Float32.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/std_msgs/Header.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/tf/FrameGraph.h
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o: /opt/ros/kinetic/include/tf/FrameGraphRequest.h

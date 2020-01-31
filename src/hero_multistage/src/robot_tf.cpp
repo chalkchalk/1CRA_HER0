@@ -35,6 +35,7 @@ namespace HeroMultistage {
         tf::Transform transform;
         tf::Quaternion q;
 
+        /*
         armor_tf[0].setOrigin(tf::Vector3(RobotLength/2,0,0));
         q.setRPY(0,0,DegreeToRad(0));
         armor_tf[0].setRotation(q);
@@ -59,7 +60,7 @@ namespace HeroMultistage {
         transform.setOrigin(tf::Vector3(0,0,0));
         transform.setRotation(q);
         broadcaster_.sendTransform(tf::StampedTransform(transform,ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/gimbal"));
-
+*/
 
     }
 
@@ -67,7 +68,7 @@ namespace HeroMultistage {
     {
         double roll,pitch,yaw;
         tf::Matrix3x3(robot_tf.getRotation()).getRPY(roll, pitch, yaw);
-        gimbal_yaw_absolute_ = RadToDegree(yaw + gimbal_yaw_);
+        gimbal_yaw_absolute_ = (RadToDegree(yaw) + gimbal_yaw_);
         return gimbal_yaw_absolute_;
 
     }
@@ -100,34 +101,36 @@ namespace HeroMultistage {
             if(hero_common::CheckLineSegmentsIntersection2D(chassisEdge,bulletSeg,&interSectionPoint))
             {
                 isHit = true;
-                  if(hero_common::PointDistance(interSectionPoint,chassisSidesMid[i]) < AromrLength * 0.5)
-                  {
+                  //if(hero_common::PointDistance(interSectionPoint,chassisSidesMid[i]) < AromrLength * 0.5)
+                  //{
                         pointsIntersect.emplace_back(interSectionPoint);
                         sides.emplace_back(i);
-                       // ROS_INFO("hit armor %d",i);
-                  }
-                  break;
+                  //}
             }
         }
         if(!isHit)
             return 0;
 
-        if(pointsIntersect.empty())
-            return 5;
-
-        int minDistanceIndex = 0;
+        Point2D firstPointIntersect;
         double minDistance = 100;
+        int index = 0;
+
         for(i=0;i<pointsIntersect.size();i++)
         {
-            if(minDistance > hero_common::PointDistance(bullet.GetPositionLast(),chassisSidesMid[sides[i]]))
+            if(minDistance > hero_common::PointDistance(bullet.GetPositionLast(),pointsIntersect[i]))
             {
-                minDistanceIndex = sides[i];
-                minDistance = hero_common::PointDistance(bullet.GetPositionLast(),chassisSidesMid[sides[i]]);
+                minDistance = hero_common::PointDistance(bullet.GetPositionLast(),pointsIntersect[i]);
+                firstPointIntersect = pointsIntersect[i];
+                index = sides[i];
             }
 
         }
+        if(hero_common::PointDistance(firstPointIntersect,chassisSidesMid[index]) < AromrLength * 0.5)
+            return index + 1;
+        else {
+            return index + 5;
+        }
        // ROS_INFO("minDistanceIndex = %d,minDistanceIndex = %f",minDistanceIndex,minDistanceIndex);
-        return minDistanceIndex + 1;
 
 
     }

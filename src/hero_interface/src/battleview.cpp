@@ -1,8 +1,10 @@
 #include "battleview.h"
 #include "rotatedrect.h"
 #include <ros/package.h>
+#include "hero_math/math.h"
 
 namespace hero_interface {
+
 
 BattleView::BattleView(QNode *qNode)
 {
@@ -141,7 +143,11 @@ void BattleView::DrawRobot(QImage *qImage)
         painterRobot.drawRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.72,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15);//health
 
         painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.9,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15,Qt::white);
-        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.9,ROBOT_WIDTH_PIX*0.8 * (*it)->heat / 240,ROBOT_HEIGHT_PIX*0.15,Qt::yellow);
+        if((*it)->heat<240)
+            painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.9,ROBOT_WIDTH_PIX*0.8 * (*it)->heat / 240,ROBOT_HEIGHT_PIX*0.15,Qt::yellow);
+        else {
+            painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.9,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15,Qt::darkCyan);
+        }
         painterRobot.drawRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.9,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15);//heat
 
         painterRobot.fillRect(ROBOT_WIDTH_PIX*0.55,ROBOT_HEIGHT_PIX*0.175,ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.05,Qt::white);
@@ -154,8 +160,13 @@ void BattleView::DrawRobot(QImage *qImage)
         painterRobot.drawRect(ROBOT_WIDTH_PIX*0.175,ROBOT_HEIGHT_PIX*0.55,ROBOT_HEIGHT_PIX*0.05,ROBOT_WIDTH_PIX*0.3);
         painterRobot.drawRect(ROBOT_WIDTH_PIX*1.175,ROBOT_HEIGHT_PIX*0.55,ROBOT_HEIGHT_PIX*0.05,ROBOT_WIDTH_PIX*0.3);
 
-        painterRobot.fillRect(ROBOT_WIDTH_PIX*0.6,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX*0.15,ROBOT_HEIGHT_PIX*0.45,Qt::gray);
-        painterRobot.drawRect(ROBOT_WIDTH_PIX*0.6,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX*0.15,ROBOT_HEIGHT_PIX*0.45);//barrel
+        //painterRobot.fillRect(ROBOT_WIDTH_PIX*0.6,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX*0.15,ROBOT_HEIGHT_PIX*0.45,Qt::gray);
+        //painterRobot.drawRect(ROBOT_WIDTH_PIX*0.6,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX*0.15,ROBOT_HEIGHT_PIX*0.45);//barrel
+        hero_common::Point2D gimbalMid(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.7);
+        hero_common::Point2D gimbalEndNormal(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.15);
+        hero_common::Point2D gimbalEndRotated = hero_common::PointRotateAroundPoint(gimbalEndNormal, gimbalMid, - qNode_->GetGimbalYaw((*it)->index) * 3.14159 / 180);
+        painterRobot.setPen(QPen(Qt::gray, 20, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
+        painterRobot.drawLine(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.7,gimbalEndRotated.X(),gimbalEndRotated.Y());
 
         MeterToPix(&pix_h,&pix_w,ROBOT_HEIGHT*1.4,ROBOT_WIDTH*1.4,background.size());
         QMatrix matrix;
@@ -179,7 +190,7 @@ void BattleView::DrawRobot(QImage *qImage)
         }
 
     }
-    qNode_->bulletInfo_lock.unlock();
+        qNode_->bulletInfo_lock.unlock();
     }
 
 }

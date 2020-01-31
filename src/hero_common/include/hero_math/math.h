@@ -440,6 +440,28 @@ inline hero_common::Point2D PointRotateAroundPoint(const hero_common::Point2D so
     return val;
 }
 
+inline int PointInRect(double point_x, double point_y ,double rect_x1,double rect_y1, double rect_x2, double rect_y2)
+{
+    double val_x = (rect_x1 - point_x)*(rect_x2 - point_x);
+    double val_y = (rect_y1 - point_y)*(rect_y2 - point_y);
+
+    //ROS_INFO("val_x = %f, val_y = %f",val_x,val_y);
+    if(val_x < 0 && val_y < 0)
+        return 1;//inside
+    else if(((val_x == 0)||(val_y == 0))&& val_x + val_y < 0)
+        return 2;// on the edge
+    else
+        return 0;//outside
+}
+
+inline int PointInRect(const hero_common::Point2D point,
+                       const hero_common::Point2D rect_1,
+                       const hero_common::Point2D rect_2)
+{
+    return PointInRect(point.X(),point.Y(),rect_1.X(),rect_1.Y(),rect_2.X(),rect_2.Y());
+}
+
+
 } // namespace hero_common
 
 #endif //HERO_COMMON_MATH_H

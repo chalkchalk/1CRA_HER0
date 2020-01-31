@@ -14,8 +14,8 @@ namespace hero_interface {
 #define ROBOT_WIDTH_PIX 100
 #define ROBOT_HEIGHT_PIX 120
 
-#define BATTLEFIELD_W 8.15
-#define BATTLEFIELD_H 5.15
+#define BATTLEFIELD_W 8.54
+#define BATTLEFIELD_H 5.54
 
 #define BULLET_RADIUS_PIX   8
 class QNode;
@@ -42,9 +42,21 @@ public:
         heat = 0;
         color = robot_color;
         name = robot_name;
+        if(robot_name == "robot_0")
+            index = 0;
+        else if(robot_name == "robot_1")
+            index = 1;
+        else if(robot_name == "robot_2")
+            index = 2;
+        else if(robot_name == "robot_3")
+            index = 3;
+        else {
+            index = -1;
+        }
     };
     std::string color;
     std::string name;
+    int index;
     int health;
     int heat;
     Pose pose;

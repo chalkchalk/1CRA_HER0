@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /Map2
+        - /LaserScan2
         - /TF1
       Splitter Ratio: 0.5
     Tree Height: 756
@@ -28,7 +29,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LaserScan
 Toolbars:
   toolButtonStyle: 2
 Visualization Manager:
@@ -392,7 +393,7 @@ Visualization Manager:
       Color: 0; 0; 255
       Color Transformer: FlatColor
       Decay Time: 0
-      Enabled: false
+      Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 1
@@ -403,13 +404,13 @@ Visualization Manager:
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.100000001
+      Size (m): 0.0500000007
       Style: Flat Squares
       Topic: /robot_1/scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -477,14 +478,6 @@ Visualization Manager:
         All Enabled: true
         map:
           Value: true
-        robot_0/armor_back:
-          Value: true
-        robot_0/armor_front:
-          Value: true
-        robot_0/armor_left:
-          Value: true
-        robot_0/armor_right:
-          Value: true
         robot_0/base_footprint:
           Value: true
         robot_0/base_laser_link:
@@ -493,17 +486,7 @@ Visualization Manager:
           Value: true
         robot_0/base_pose_ground_truth:
           Value: true
-        robot_0/gimbal:
-          Value: true
         robot_0/odom:
-          Value: true
-        robot_1/armor_back:
-          Value: true
-        robot_1/armor_front:
-          Value: true
-        robot_1/armor_left:
-          Value: true
-        robot_1/armor_right:
           Value: true
         robot_1/base_footprint:
           Value: true
@@ -513,17 +496,7 @@ Visualization Manager:
           Value: true
         robot_1/base_pose_ground_truth:
           Value: true
-        robot_1/gimbal:
-          Value: true
         robot_1/odom:
-          Value: true
-        robot_2/armor_back:
-          Value: true
-        robot_2/armor_front:
-          Value: true
-        robot_2/armor_left:
-          Value: true
-        robot_2/armor_right:
           Value: true
         robot_2/base_footprint:
           Value: true
@@ -533,17 +506,7 @@ Visualization Manager:
           Value: true
         robot_2/base_pose_ground_truth:
           Value: true
-        robot_2/gimbal:
-          Value: true
         robot_2/odom:
-          Value: true
-        robot_3/armor_back:
-          Value: true
-        robot_3/armor_front:
-          Value: true
-        robot_3/armor_left:
-          Value: true
-        robot_3/armor_right:
           Value: true
         robot_3/base_footprint:
           Value: true
@@ -552,8 +515,6 @@ Visualization Manager:
         robot_3/base_link:
           Value: true
         robot_3/base_pose_ground_truth:
-          Value: true
-        robot_3/gimbal:
           Value: true
         robot_3/odom:
           Value: true
@@ -565,64 +526,28 @@ Visualization Manager:
       Tree:
         map:
           robot_0/base_pose_ground_truth:
-            robot_0/armor_back:
-              {}
-            robot_0/armor_front:
-              {}
-            robot_0/armor_left:
-              {}
-            robot_0/armor_right:
-              {}
-            robot_0/gimbal:
-              {}
+            {}
           robot_0/odom:
             robot_0/base_footprint:
               robot_0/base_link:
                 robot_0/base_laser_link:
                   {}
           robot_1/base_pose_ground_truth:
-            robot_1/armor_back:
-              {}
-            robot_1/armor_front:
-              {}
-            robot_1/armor_left:
-              {}
-            robot_1/armor_right:
-              {}
-            robot_1/gimbal:
-              {}
+            {}
           robot_1/odom:
             robot_1/base_footprint:
               robot_1/base_link:
                 robot_1/base_laser_link:
                   {}
           robot_2/base_pose_ground_truth:
-            robot_2/armor_back:
-              {}
-            robot_2/armor_front:
-              {}
-            robot_2/armor_left:
-              {}
-            robot_2/armor_right:
-              {}
-            robot_2/gimbal:
-              {}
+            {}
           robot_2/odom:
             robot_2/base_footprint:
               robot_2/base_link:
                 robot_2/base_laser_link:
                   {}
           robot_3/base_pose_ground_truth:
-            robot_3/armor_back:
-              {}
-            robot_3/armor_front:
-              {}
-            robot_3/armor_left:
-              {}
-            robot_3/armor_right:
-              {}
-            robot_3/gimbal:
-              {}
+            {}
           robot_3/odom:
             robot_3/base_footprint:
               robot_3/base_link:
@@ -647,7 +572,7 @@ Visualization Manager:
     - Class: rviz/SetInitialPose
       Topic: /initialpose
     - Class: rviz/SetGoal
-      Topic: robot_0/move_base_simple/goal
+      Topic: robot_1/move_base_simple/goal
     - Class: rviz/PublishPoint
       Single click: true
       Topic: /clicked_point
@@ -655,25 +580,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 15.8788347
+      Distance: 11.7729712
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 5.80027246
-        Y: 0.88105917
-        Z: -1.96766651
+        X: 4.656497
+        Y: 2.13186336
+        Z: -1.95155656
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 1.04479682
+      Pitch: 1.56979632
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 6.27858353
+      Yaw: 0.000398166478
     Saved: ~
 Window Geometry:
   Displays:

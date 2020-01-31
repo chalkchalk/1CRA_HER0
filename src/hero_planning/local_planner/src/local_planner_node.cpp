@@ -193,7 +193,7 @@ void LocalPlannerNode::Loop() {
       SetNodeState(NodeState::FAILURE);
     } else {
       error_count++;
-      ROS_ERROR("Can not get cmd_vel for once. %s error count:  %d", error_info.error_msg().c_str(), error_count);
+      //ROS_ERROR("Can not get cmd_vel for once. %s error count:  %d", error_info.error_msg().c_str(), error_count);
     }
 
     SetErrorInfo(error_info);

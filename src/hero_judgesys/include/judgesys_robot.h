@@ -8,6 +8,7 @@
 #include "judgesys_control_node.h"
 #include "hero_msgs/RobotStatus.h"
 #include "hero_msgs/RobotHeat.h"
+#include "state/command_code.h"
 
 namespace hero_judgesys{
 
@@ -21,7 +22,7 @@ namespace hero_judgesys{
         std::string GetColor()
         {return color_;}
 
-         std::string GetNum()
+         std::string GetName()
         {return robot_num_;}
 
         int GetHealth()
@@ -44,17 +45,16 @@ namespace hero_judgesys{
         void PublishVel();
         void PublishInfo();
         
-        void Shoot(int num, float speed)
-        {heat_ += num * speed;}
+        void Shoot(int num, float speed);
 
-        void GetHit(int armor_num);
+
+        void BeHit(hero_common::JudgeSysCommand command);
 
         void DebuffMove();
 
         void DebuffShoot();
 
         void BuffReload();
-
 
         void BuffHeal();
 
@@ -64,13 +64,18 @@ namespace hero_judgesys{
 
         void Reload()
         {
-            ammo_+=100;
+            ammo_+=50;
             if(ammo_>400)
                 ammo_=400;
         }
 
         void Disarm()
         {ammo_ = 0;}
+
+        void BuffAndDebuff(int fre);
+
+        void Cool(int fre);
+
 
         private:
         hero_common::ErrorInfo Init(std::string robot_num, std::string color);
@@ -81,10 +86,12 @@ namespace hero_judgesys{
         int health_;
         float heat_;
         int cooling_rate_;
+        int heat_cooling_limit_;
         int ammo_;
         bool is_alive_;
 
         bool is_forbidden_to_move_;
+        bool is_forbidden_to_shoot_;
 
         ros::Publisher judgeVel_pub_;
         ros::Publisher judgeStatus_pub_;
@@ -99,6 +106,10 @@ namespace hero_judgesys{
 
         bool new_cmd_acc_;
         bool begin_;
+
+        float move_debuff_time_;
+        float shoot_debuff_time_;
+
 
     };
 

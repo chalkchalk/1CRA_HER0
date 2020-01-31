@@ -1,5 +1,5 @@
 image: icra2020.pgm
-resolution: 0.0177
+resolution: 0.0185
 origin: [0, 0, 0.000000]
 negate: 0
 occupied_thresh: 0.6

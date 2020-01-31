@@ -6,6 +6,7 @@ hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/error_code.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_control_node.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_control_node.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_robot.h
@@ -87,6 +88,7 @@ hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o: /ho
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/error_code.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_control_node.h
 hero_judgesys/CMakeFiles/judgesys_control_node.dir/src/judgesys_robot.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_robot.h

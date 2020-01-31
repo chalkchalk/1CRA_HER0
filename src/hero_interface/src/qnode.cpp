@@ -16,15 +16,14 @@
 #include <std_msgs/String.h>
 #include <sstream>
 #include "../include/hero_interface/qnode.hpp"
-#include <tf/transform_listener.h>
-#include <tf/tf.h>
+
 
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/
 
 namespace hero_interface {
-
+using hero_common::JudgeSysCommand;
 /*****************************************************************************
 ** Implementation
 *****************************************************************************/
@@ -32,9 +31,13 @@ namespace hero_interface {
 QNode::QNode(int argc, char** argv ,BattleView *parentBattleView) :
     init_argc(argc),
     init_argv(argv),
-    parentBattleView_(parentBattleView),
-    gimbal_yaw_(0)
-    {}
+    parentBattleView_(parentBattleView)
+    {
+    int i;
+
+    for(i=0;i<4;i++)
+        gimbal_yaw_[i] = 0;
+}
 
 QNode::~QNode() {
     if(ros::isStarted()) {
@@ -65,6 +68,11 @@ bool QNode::init() {
     judgeHeat_sub_[1] = n.subscribe<hero_msgs::RobotHeat>("/judgeSysInfo/robot_1/heat_power", 1000,&QNode::RobotHeatCallback1,this);
     judgeHeat_sub_[2] = n.subscribe<hero_msgs::RobotHeat>("/judgeSysInfo/robot_2/heat_power", 1000,&QNode::RobotHeatCallback2,this);
     judgeHeat_sub_[3] = n.subscribe<hero_msgs::RobotHeat>("/judgeSysInfo/robot_3/heat_power", 1000,&QNode::RobotHeatCallback3,this);
+
+    gimbal_yaw_sub_[0] = n.subscribe<std_msgs::Float32>("/robot_0/gimbal_yaw_relative", 1000,&QNode::GimbalYawCallback0,this);
+    gimbal_yaw_sub_[1] = n.subscribe<std_msgs::Float32>("/robot_1/gimbal_yaw_relative", 1000,&QNode::GimbalYawCallback1,this);
+    gimbal_yaw_sub_[2] = n.subscribe<std_msgs::Float32>("/robot_2/gimbal_yaw_relative", 1000,&QNode::GimbalYawCallback2,this);
+    gimbal_yaw_sub_[3] = n.subscribe<std_msgs::Float32>("/robot_3/gimbal_yaw_relative", 1000,&QNode::GimbalYawCallback3,this);
 
     bulletInfo_sub_ =  n.subscribe<hero_msgs::BulletsInfo>("robot_physic/bullet_info", 1000,&QNode::BulletInfoCallback,this);
 
@@ -135,6 +143,26 @@ void QNode::SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index)
     roboHeat_[index].shooter_heat = msg->shooter_heat;
 }
 
+void QNode::GimbalYawCallback0(const std_msgs::Float32::ConstPtr &msg)
+{
+    gimbal_yaw_[0] = msg->data;
+}
+
+void QNode::GimbalYawCallback1(const std_msgs::Float32::ConstPtr &msg)
+{
+    gimbal_yaw_[1] = msg->data;
+}
+
+void QNode::GimbalYawCallback2(const std_msgs::Float32::ConstPtr &msg)
+{
+    gimbal_yaw_[2] = msg->data;
+}
+
+void QNode::GimbalYawCallback3(const std_msgs::Float32::ConstPtr &msg)
+{
+    gimbal_yaw_[3] = msg->data;
+}
+
 bool QNode::init(const std::string &master_url, const std::string &host_url) {
     std::map<std::string,std::string> remappings;
     remappings["__master"] = master_url;
@@ -153,12 +181,8 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
 void QNode::run() {
     ros::Rate loop_rate(50);
     int count = 0;
-    while ( ros::ok() ) {
-
-        std_msgs::String msg;
-        std::stringstream ss;
-        ss << "hello world " << count;
-        msg.data = ss.str();
+    while ( ros::ok() )
+    {
         //chatter_publisher.publish(msg);
         ros::spinOnce();
         loop_rate.sleep();
@@ -170,22 +194,22 @@ void QNode::run() {
 
 bool QNode::KillRobot(std::string robot_name)
 {
-   return SendJudgeSysCall(1,robot_name);
+   return SendJudgeSysCall(JudgeSysCommand::KILL_ROBOT,robot_name);
 }
 
 bool QNode::ReviveRobot(std::string robot_name)
 {
-  return SendJudgeSysCall(2,robot_name);
+  return SendJudgeSysCall(JudgeSysCommand::REVIVE_ROBOT,robot_name);
 }
 
 bool QNode::ReloadRobot(std::string robot_name)
 {
-    return SendJudgeSysCall(3,robot_name);
+    return SendJudgeSysCall(JudgeSysCommand::RELOAD_ROBOT,robot_name);
 }
 
 bool QNode::DisarmRobot(std::string robot_name)
 {
-    return SendJudgeSysCall(4,robot_name);
+    return SendJudgeSysCall(JudgeSysCommand::DISARM_ROBOT,robot_name);
 }
 bool QNode::SendJudgeSysCall(int command, std::string robot_name)
 {
@@ -219,6 +243,7 @@ void QNode::BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr &msg)
 
     bulletInfo_lock.unlock();
 }
+
 
 
 }  // namespace hero_interface

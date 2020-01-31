@@ -17,6 +17,7 @@
 #include <QtGui/QGroupBox>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLCDNumber>
 #include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
@@ -84,7 +85,10 @@ public:
     QProgressBar *progressBarAmmo_4;
     QPushButton *pushButtonReload_4;
     QPushButton *pushButtonDisarm_4;
+    QPushButton *pushButtonRFID_Rfresh;
+    QLCDNumber *lcdNumberTime;
     QWidget *tab_2;
+    QWidget *tab_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -149,8 +153,8 @@ public:
         progressBarHeat->setGeometry(QRect(69, 66, 201, 23));
         progressBarHeat->setLayoutDirection(Qt::LeftToRight);
         progressBarHeat->setStyleSheet(QString::fromUtf8(""));
-        progressBarHeat->setMaximum(2000);
-        progressBarHeat->setValue(1000);
+        progressBarHeat->setMaximum(360);
+        progressBarHeat->setValue(0);
         labelHealth = new QLabel(groupBoxBlue1);
         labelHealth->setObjectName(QString::fromUtf8("labelHealth"));
         labelHealth->setGeometry(QRect(13, 28, 51, 17));
@@ -163,7 +167,7 @@ public:
         progressBarAmmo = new QProgressBar(groupBoxBlue1);
         progressBarAmmo->setObjectName(QString::fromUtf8("progressBarAmmo"));
         progressBarAmmo->setGeometry(QRect(70, 103, 201, 23));
-        progressBarAmmo->setMaximum(400);
+        progressBarAmmo->setMaximum(300);
         progressBarAmmo->setValue(100);
         pushButtonReload = new QPushButton(groupBoxBlue1);
         pushButtonReload->setObjectName(QString::fromUtf8("pushButtonReload"));
@@ -194,8 +198,8 @@ public:
         progressBarHeat_1->setGeometry(QRect(69, 66, 201, 23));
         progressBarHeat_1->setLayoutDirection(Qt::LeftToRight);
         progressBarHeat_1->setStyleSheet(QString::fromUtf8(""));
-        progressBarHeat_1->setMaximum(2000);
-        progressBarHeat_1->setValue(1000);
+        progressBarHeat_1->setMaximum(360);
+        progressBarHeat_1->setValue(0);
         labelHealth_3 = new QLabel(groupBoxBlue1_2);
         labelHealth_3->setObjectName(QString::fromUtf8("labelHealth_3"));
         labelHealth_3->setGeometry(QRect(13, 28, 51, 17));
@@ -208,7 +212,7 @@ public:
         progressBarAmmo_1 = new QProgressBar(groupBoxBlue1_2);
         progressBarAmmo_1->setObjectName(QString::fromUtf8("progressBarAmmo_1"));
         progressBarAmmo_1->setGeometry(QRect(70, 103, 201, 23));
-        progressBarAmmo_1->setMaximum(400);
+        progressBarAmmo_1->setMaximum(300);
         progressBarAmmo_1->setValue(100);
         pushButtonReload_1 = new QPushButton(groupBoxBlue1_2);
         pushButtonReload_1->setObjectName(QString::fromUtf8("pushButtonReload_1"));
@@ -239,8 +243,8 @@ public:
         progressBarHeat_3->setGeometry(QRect(69, 66, 201, 23));
         progressBarHeat_3->setLayoutDirection(Qt::LeftToRight);
         progressBarHeat_3->setStyleSheet(QString::fromUtf8(""));
-        progressBarHeat_3->setMaximum(2000);
-        progressBarHeat_3->setValue(1000);
+        progressBarHeat_3->setMaximum(360);
+        progressBarHeat_3->setValue(0);
         labelHealth_4 = new QLabel(groupBoxRed1);
         labelHealth_4->setObjectName(QString::fromUtf8("labelHealth_4"));
         labelHealth_4->setGeometry(QRect(13, 28, 51, 17));
@@ -253,7 +257,7 @@ public:
         progressBarAmmo_3 = new QProgressBar(groupBoxRed1);
         progressBarAmmo_3->setObjectName(QString::fromUtf8("progressBarAmmo_3"));
         progressBarAmmo_3->setGeometry(QRect(70, 103, 201, 23));
-        progressBarAmmo_3->setMaximum(400);
+        progressBarAmmo_3->setMaximum(300);
         progressBarAmmo_3->setValue(100);
         pushButtonReload_3 = new QPushButton(groupBoxRed1);
         pushButtonReload_3->setObjectName(QString::fromUtf8("pushButtonReload_3"));
@@ -284,8 +288,8 @@ public:
         progressBarHeat_4->setGeometry(QRect(69, 66, 201, 23));
         progressBarHeat_4->setLayoutDirection(Qt::LeftToRight);
         progressBarHeat_4->setStyleSheet(QString::fromUtf8(""));
-        progressBarHeat_4->setMaximum(2000);
-        progressBarHeat_4->setValue(1000);
+        progressBarHeat_4->setMaximum(360);
+        progressBarHeat_4->setValue(0);
         labelHealth_5 = new QLabel(groupBoxRed2);
         labelHealth_5->setObjectName(QString::fromUtf8("labelHealth_5"));
         labelHealth_5->setGeometry(QRect(13, 28, 51, 17));
@@ -298,7 +302,7 @@ public:
         progressBarAmmo_4 = new QProgressBar(groupBoxRed2);
         progressBarAmmo_4->setObjectName(QString::fromUtf8("progressBarAmmo_4"));
         progressBarAmmo_4->setGeometry(QRect(70, 103, 201, 23));
-        progressBarAmmo_4->setMaximum(400);
+        progressBarAmmo_4->setMaximum(300);
         progressBarAmmo_4->setValue(100);
         pushButtonReload_4 = new QPushButton(groupBoxRed2);
         pushButtonReload_4->setObjectName(QString::fromUtf8("pushButtonReload_4"));
@@ -306,10 +310,24 @@ public:
         pushButtonDisarm_4 = new QPushButton(groupBoxRed2);
         pushButtonDisarm_4->setObjectName(QString::fromUtf8("pushButtonDisarm_4"));
         pushButtonDisarm_4->setGeometry(QRect(296, 107, 71, 25));
+        pushButtonRFID_Rfresh = new QPushButton(tab);
+        pushButtonRFID_Rfresh->setObjectName(QString::fromUtf8("pushButtonRFID_Rfresh"));
+        pushButtonRFID_Rfresh->setGeometry(QRect(320, 30, 81, 25));
+        lcdNumberTime = new QLCDNumber(tab);
+        lcdNumberTime->setObjectName(QString::fromUtf8("lcdNumberTime"));
+        lcdNumberTime->setGeometry(QRect(50, 30, 141, 51));
+        lcdNumberTime->setFrameShape(QFrame::Box);
+        lcdNumberTime->setDigitCount(5);
+        lcdNumberTime->setSegmentStyle(QLCDNumber::Filled);
+        lcdNumberTime->setProperty("value", QVariant(20.1));
+        lcdNumberTime->setProperty("intValue", QVariant(20));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         tabWidget->addTab(tab_2, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        tabWidget->addTab(tab_3, QString());
         MainWindowDesign->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindowDesign);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -380,8 +398,10 @@ public:
         progressBarAmmo_4->setFormat(QApplication::translate("MainWindowDesign", "%v", 0, QApplication::UnicodeUTF8));
         pushButtonReload_4->setText(QApplication::translate("MainWindowDesign", "Reload", 0, QApplication::UnicodeUTF8));
         pushButtonDisarm_4->setText(QApplication::translate("MainWindowDesign", "Disarm", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindowDesign", "\350\243\201\345\210\244\347\263\273\347\273\237", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindowDesign", "\347\211\251\347\220\206\345\274\225\346\223\216", 0, QApplication::UnicodeUTF8));
+        pushButtonRFID_Rfresh->setText(QApplication::translate("MainWindowDesign", "RFID Refr", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindowDesign", "JudgeSys", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindowDesign", "Physics", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindowDesign", "Strategy", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

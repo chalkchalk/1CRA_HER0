@@ -1,5 +1,7 @@
 <launch>
 
+<rosparam command="load" file="$(find hero_multistage)/worlds/battlefield.yaml" />
+
 <include file="$(find hero_multistage)/launch/multi_stageros.launch"/>
 
 <include file="$(find hero_multistage)/launch/launch_robot.launch" >

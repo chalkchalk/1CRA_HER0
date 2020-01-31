@@ -134,8 +134,14 @@ hero_multistage/CMakeFiles/robot_physics_node.dir/src/bullet.cpp.o
 hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_map/hero_map.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math/geometry.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math/math.h
+ /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/error_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/bullet.h
  /home/ycz/ICRA_HERO_ws/src/hero_multistage/include/robot_physics.h
@@ -159,6 +165,11 @@ hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o
  /opt/ros/kinetic/include/geometry_msgs/TwistWithCovariance.h
  /opt/ros/kinetic/include/geometry_msgs/Vector3.h
  /opt/ros/kinetic/include/geometry_msgs/Vector3Stamped.h
+ /opt/ros/kinetic/include/nav_msgs/GetMap.h
+ /opt/ros/kinetic/include/nav_msgs/GetMapRequest.h
+ /opt/ros/kinetic/include/nav_msgs/GetMapResponse.h
+ /opt/ros/kinetic/include/nav_msgs/MapMetaData.h
+ /opt/ros/kinetic/include/nav_msgs/OccupancyGrid.h
  /opt/ros/kinetic/include/nav_msgs/Odometry.h
  /opt/ros/kinetic/include/ros/advertise_options.h
  /opt/ros/kinetic/include/ros/advertise_service_options.h
@@ -221,6 +232,7 @@ hero_multistage/CMakeFiles/robot_physics_node.dir/src/robot_physics.cpp.o
  /opt/ros/kinetic/include/sensor_msgs/ChannelFloat32.h
  /opt/ros/kinetic/include/sensor_msgs/PointCloud.h
  /opt/ros/kinetic/include/std_msgs/Empty.h
+ /opt/ros/kinetic/include/std_msgs/Float32.h
  /opt/ros/kinetic/include/std_msgs/Header.h
  /opt/ros/kinetic/include/tf/FrameGraph.h
  /opt/ros/kinetic/include/tf/FrameGraphRequest.h

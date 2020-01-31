@@ -64,7 +64,7 @@
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>裁判系统</string>
+      <string>JudgeSys</string>
      </attribute>
      <widget class="QGroupBox" name="groupBoxBlue1">
       <property name="geometry">
@@ -151,10 +151,10 @@
         <string notr="true"/>
        </property>
        <property name="maximum">
-        <number>2000</number>
+        <number>360</number>
        </property>
        <property name="value">
-        <number>1000</number>
+        <number>0</number>
        </property>
        <property name="format">
         <string>%v</string>
@@ -209,7 +209,7 @@
         </rect>
        </property>
        <property name="maximum">
-        <number>400</number>
+        <number>300</number>
        </property>
        <property name="value">
         <number>100</number>
@@ -330,10 +330,10 @@
         <string notr="true"/>
        </property>
        <property name="maximum">
-        <number>2000</number>
+        <number>360</number>
        </property>
        <property name="value">
-        <number>1000</number>
+        <number>0</number>
        </property>
        <property name="format">
         <string>%v</string>
@@ -388,7 +388,7 @@
         </rect>
        </property>
        <property name="maximum">
-        <number>400</number>
+        <number>300</number>
        </property>
        <property name="value">
         <number>100</number>
@@ -509,10 +509,10 @@
         <string notr="true"/>
        </property>
        <property name="maximum">
-        <number>2000</number>
+        <number>360</number>
        </property>
        <property name="value">
-        <number>1000</number>
+        <number>0</number>
        </property>
        <property name="format">
         <string>%v</string>
@@ -567,7 +567,7 @@
         </rect>
        </property>
        <property name="maximum">
-        <number>400</number>
+        <number>300</number>
        </property>
        <property name="value">
         <number>100</number>
@@ -688,10 +688,10 @@
         <string notr="true"/>
        </property>
        <property name="maximum">
-        <number>2000</number>
+        <number>360</number>
        </property>
        <property name="value">
-        <number>1000</number>
+        <number>0</number>
        </property>
        <property name="format">
         <string>%v</string>
@@ -746,7 +746,7 @@
         </rect>
        </property>
        <property name="maximum">
-        <number>400</number>
+        <number>300</number>
        </property>
        <property name="value">
         <number>100</number>
@@ -782,10 +782,53 @@
        </property>
       </widget>
      </widget>
+     <widget class="QPushButton" name="pushButtonRFID_Rfresh">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>30</y>
+        <width>81</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RFID Refr</string>
+      </property>
+     </widget>
+     <widget class="QLCDNumber" name="lcdNumberTime">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>30</y>
+        <width>141</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="digitCount">
+       <number>5</number>
+      </property>
+      <property name="segmentStyle">
+       <enum>QLCDNumber::Filled</enum>
+      </property>
+      <property name="value" stdset="0">
+       <double>20.100000000000001</double>
+      </property>
+      <property name="intValue" stdset="0">
+       <number>20</number>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>物理引擎</string>
+      <string>Physics</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Strategy</string>
      </attribute>
     </widget>
    </widget>
