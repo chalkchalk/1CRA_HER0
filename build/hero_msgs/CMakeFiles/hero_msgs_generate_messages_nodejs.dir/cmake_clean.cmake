@@ -21,6 +21,7 @@ file(REMOVE_RECURSE
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/LocalPlannerGoal.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/RobotShoot.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/RobotBonus.js"
+  "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/Buffinfo.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/ObstacleMsg.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/LocalPlannerActionFeedback.js"
   "/home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/GimbalAngle.js"

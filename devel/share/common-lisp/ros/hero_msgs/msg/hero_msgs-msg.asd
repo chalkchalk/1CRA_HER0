@@ -24,6 +24,8 @@
     (:file "_package_ArmorDetectionResult" :depends-on ("_package"))
     (:file "BonusStatus" :depends-on ("_package_BonusStatus"))
     (:file "_package_BonusStatus" :depends-on ("_package"))
+    (:file "Buffinfo" :depends-on ("_package_Buffinfo"))
+    (:file "_package_Buffinfo" :depends-on ("_package"))
     (:file "BulletMove" :depends-on ("_package_BulletMove"))
     (:file "_package_BulletMove" :depends-on ("_package"))
     (:file "BulletsInfo" :depends-on ("_package_BulletsInfo"))

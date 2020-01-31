@@ -75,7 +75,18 @@ bool JudgesysControl::handle_function(hero_msgs::JudgeSysControl::Request &req,
     case JudgeSysCommand::RFID_F6:
         RFID_Callback(req.robot_name,req.command - JudgeSysCommand::RFID_F1);
         break;
-
+    case JudgeSysCommand::REFRESH_RFID:
+        RFID_Refresh();
+        break;
+    case JudgeSysCommand::KILL_ALL:
+        KillRobot("all");
+        ROS_INFO("[Hero_judgesys]Kill all");
+        break;
+    case JudgeSysCommand::GAME_PERP:
+    case JudgeSysCommand::GAME_START:
+    case JudgeSysCommand::GAME_END:
+        SetGamePhase(req.command);
+        break;
     default:   res.error_code = 1;
         break;
     }
@@ -84,6 +95,30 @@ bool JudgesysControl::handle_function(hero_msgs::JudgeSysControl::Request &req,
 	// 返回一个反馈，将response设置为"..."
 
 	return true;
+}
+
+void JudgesysControl::SetGamePhase(int phase)
+{
+    if(phase == JudgeSysCommand::GAME_PERP)
+    {
+        gamePhase_ = GamePhase::PREPERATION;
+        game_time = 180;
+        ROS_INFO("[Hero_judgesys]Set game preperation");
+    }
+    else if(phase == JudgeSysCommand::GAME_START)
+    {
+        gamePhase_ = GamePhase::START;
+        game_time = 180;
+        ROS_INFO("[Hero_judgesys]Set game start");
+        RFID_Refresh();
+    }
+    else if(phase == JudgeSysCommand::GAME_END)
+    {
+        gamePhase_ = GamePhase::END;
+        game_time = 0;
+        ROS_INFO("[Hero_judgesys]Set game end");
+    }
+
 }
 
 void JudgesysControl::RFID_Callback(std::string robot_name, int num)
@@ -140,9 +175,12 @@ ErrorInfo JudgesysControl::Init() {
     AddRobot( new JudgesysRobot("robot_3","red"));
 
     service_ = nh_.advertiseService("judgesys_control", &JudgesysControl::handle_function,this);
-
+    gameState_pub_ = nh_.advertise<hero_msgs::GameStatus>("judgeSysInfo/game_state", 5);
+    buffInfo_pub_ = nh_.advertise<hero_msgs::Buffinfo>("judgeSysInfo/buff_info", 5);
     for(int i=0;i<6;i++)
         buffZone[i] = false;
+    game_time = 0;
+    gamePhase_ = GamePhase::PREPERATION;
 
 	//KillRobot("robot_1");
 	//KillRobot("robot_2");
@@ -151,6 +189,30 @@ ErrorInfo JudgesysControl::Init() {
 	return ErrorInfo(ErrorCode::OK);
 }
 
+void JudgesysControl::GameTick(int fre)
+{
+    static double time_last;
+    if(gamePhase_ == GamePhase::START)
+    {
+         game_time -= 1.0 / fre;
+
+         if((time_last > 60 && game_time<60)||((time_last > 120 && game_time<120)))
+             RFID_Refresh();
+
+         if(game_time < 0)
+         {
+             game_time = 0;
+             gamePhase_ = GamePhase::END;
+         }
+         time_last = game_time;
+    }
+    else  if (gamePhase_ == GamePhase::PREPERATION)
+        game_time = 180;
+    else {
+        game_time = 0;
+    }
+
+}
 
 void JudgesysControl::UpdateVel()
 {
@@ -164,13 +226,51 @@ void JudgesysControl::UpdateInfo()
     for (auto it = robots_.begin(); it != robots_.end(); ++it) {
         (*it)->PublishInfo();
     }
+    hero_msgs::GameStatus gameState;
+    if(gamePhase_ == GamePhase::PREPERATION)
+        gameState.game_status = gameState.PRE_MATCH;
+    else if(gamePhase_ == GamePhase::START)
+    {
+        gameState.game_status = gameState.ROUND;
+    }
+    else if(gamePhase_ == GamePhase::END)
+        gameState.game_status = gameState.CALCULATION;
+    gameState.remaining_time = (int)game_time;
+    gameState_pub_.publish(gameState);
+
+    hero_msgs::Buffinfo buffInfo;
+    for(int i=0;i<6;i++)
+    {
+        if(RFID[i].type == RFID_type::HEAL)
+        {
+            if(RFID[i].color=="red")
+                buffInfo.buff_data.emplace_back(buffInfo.RED_HEAL);
+            else if(RFID[i].color=="blue")
+                buffInfo.buff_data.emplace_back(buffInfo.BLUE_HEAL);
+        }
+        else if(RFID[i].type == RFID_type::RELOAD)
+        {
+            if(RFID[i].color=="red")
+                buffInfo.buff_data.emplace_back(buffInfo.RED_RELOAD);
+            else if(RFID[i].color=="blue")
+                buffInfo.buff_data.emplace_back(buffInfo.BLUE_RELOAD);
+        }
+        else if(RFID[i].type == RFID_type::MOVE_DEFBUFF)
+            buffInfo.buff_data.emplace_back(buffInfo.MOVE_DEBUFF);
+        else if(RFID[i].type == RFID_type::SHOOT_DEBUFF)
+            buffInfo.buff_data.emplace_back(buffInfo.SHOOT_DEBUFF);
+        buffInfo.activated.emplace_back(RFID[i].isActivated);
+
+    }
+
+    buffInfo_pub_.publish(buffInfo);
 }
 
 bool JudgesysControl::KillRobot(std::string robot_num)
 {
 	bool val = false;
 	 for (auto it = robots_.begin(); it != robots_.end(); ++it) {
-        if((*it)->GetName() == robot_num)
+        if((*it)->GetName() == robot_num||robot_num=="all")
         {
             (*it)->Kill();
                         ROS_INFO("[Hero_judgesys]Kill %s\n",(*it)->GetName().c_str());
@@ -233,6 +333,7 @@ void JudgesysControl::RobotsCooling(int fre)
 void JudgesysControl::RFID_Refresh()
 {
     vector<RFID_type> rfid_vector;
+    rfid_vector.clear();
     rfid_vector.emplace_back(RFID_type::HEAL);
     rfid_vector.emplace_back(RFID_type::RELOAD);
     if(rand()%2)
@@ -244,13 +345,15 @@ void JudgesysControl::RFID_Refresh()
     random_shuffle(rfid_vector.begin(),rfid_vector.end());
     std::string color[2] = {"red","blue"};
     std::string type[4] = {"heal","reload","move_debuff","shoot_debuff"};
+    int k;
     for(int i =0;i<3;i++)
     {
         if(rfid_vector[i] != RFID_type::MOVE_DEFBUFF && rfid_vector[i] != RFID_type::SHOOT_DEBUFF)
         {
-            RFID[i].color = color[rand()%2];
+            k = rand()%2;
+            RFID[i].color = color[k];
             RFID[i].type = rfid_vector[i];
-            RFID[i + 3].color = color[1 - rand()%2];
+            RFID[i + 3].color = color[1 - k];
             RFID[i + 3].type = rfid_vector[i];
         }
         else {
@@ -318,6 +421,7 @@ int main(int argc, char *argv[])
     judgesys_control.RobotsCooling(40);
     judgesys_control.BuffHandle(40);
     judgesys_control.LogOutput();
+    judgesys_control.GameTick(40);
 
     gettimeofday(&tv,&tz);
     ms = tv.tv_sec*1000 + tv.tv_usec/1000;

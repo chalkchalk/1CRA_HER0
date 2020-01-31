@@ -81,6 +81,7 @@ public:
     QImage background;
     QPainter painter;
     QNode *qNode_;
+    QImage buffImage[6];
 };
 
 }

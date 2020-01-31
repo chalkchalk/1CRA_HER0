@@ -21,6 +21,7 @@ file(REMOVE_RECURSE
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/LocalPlannerGoal.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/RobotShoot.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/RobotBonus.lisp"
+  "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/Buffinfo.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/ObstacleMsg.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/LocalPlannerActionFeedback.lisp"
   "/home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/GimbalAngle.lisp"

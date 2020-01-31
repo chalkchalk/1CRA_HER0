@@ -12,6 +12,12 @@ BattleView::BattleView(QNode *qNode)
     background.load(full_path.c_str());
     background = background.scaled(554,854);
     qNode_ = qNode;
+    buffImage[0].load((ros::package::getPath("hero_interface") + "/resources/images/heal_red.png").c_str());
+    buffImage[1].load((ros::package::getPath("hero_interface") + "/resources/images/heal_blue.png").c_str());
+    buffImage[2].load((ros::package::getPath("hero_interface") + "/resources/images/reload_red.png").c_str());
+    buffImage[3].load((ros::package::getPath("hero_interface") + "/resources/images/reload_blue.png").c_str());
+    buffImage[4].load((ros::package::getPath("hero_interface") + "/resources/images/move_debuff.png").c_str());
+    buffImage[5].load((ros::package::getPath("hero_interface") + "/resources/images/shoot_debuff.png").c_str());
 }
 
 bool BattleView::SetRobotPose(std::string robot_num,float x, float y, float yaw)
@@ -30,7 +36,7 @@ bool BattleView::SetRobotPose(std::string robot_num,float x, float y, float yaw)
     return val;
 }
 
-void MeterToPix(int *pix_h, int *pix_w,float real_h, float real_w, QSize battleSize)
+void MeterToPix(int *pix_h, int *pix_w,double real_h, double real_w, QSize battleSize)
 {
     if(pix_h!=nullptr)
     {
@@ -190,7 +196,19 @@ void BattleView::DrawRobot(QImage *qImage)
         }
 
     }
-        qNode_->bulletInfo_lock.unlock();
+     qNode_->bulletInfo_lock.unlock();
+
+     for(int i =0;i<qNode_->GetBuffInfo()->activated.size();i++)
+     {
+         if((!qNode_->GetBuffInfo()->activated[i]) && qNode_->GetBuffInfo()->buff_data[i] >=0 && qNode_->GetBuffInfo()->buff_data[i] < 6)
+         {
+            MeterToPix(&pix_h,&pix_w,qNode_->RFID_height,qNode_->RFID_width,background.size());
+            painter.drawImage(PoseToMapPoint(Pose(qNode_->RFID_F_x[i] + qNode_->RFID_width*0.5 ,qNode_->RFID_F_y[i] + qNode_->RFID_height*0.5,0),
+                                             background.size(),buffImage[qNode_->GetBuffInfo()->buff_data[i]].scaled(pix_w,pix_h)), buffImage[qNode_->GetBuffInfo()->buff_data[i]].scaled(pix_w,pix_h));
+         }
+     }
+
+
     }
 
 }

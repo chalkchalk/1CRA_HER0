@@ -21,6 +21,7 @@ file(REMOVE_RECURSE
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/LocalPlannerGoal.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotShoot.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotBonus.h"
+  "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/Buffinfo.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ObstacleMsg.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/LocalPlannerActionFeedback.h"
   "/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/GimbalAngle.h"

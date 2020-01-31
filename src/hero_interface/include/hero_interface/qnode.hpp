@@ -33,6 +33,8 @@
 #include <mutex>
 #include "state/command_code.h"
 #include "std_msgs/Float32.h"
+#include "hero_msgs/GameStatus.h"
+#include "hero_msgs/Buffinfo.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -89,6 +91,19 @@ public:
     {return gimbal_yaw_[i];}
     const hero_msgs::BulletsInfo *GetBulletsInfo()
     {return &bulletInfo_;}
+    const hero_msgs::Buffinfo *GetBuffInfo()
+    {return &buffInfo_;}
+    const hero_msgs::GameStatus *GetGameStatus()
+    {return &gameStatus_;}
+    bool SendJudgeSysCall(int comman, std::string robot_name);
+
+    double RFID_F_x[6];
+    double RFID_F_y[6];
+
+    double RFID_height;
+    double RFID_width;
+
+
 Q_SIGNALS:
     void rosShutdown();
 
@@ -99,18 +114,22 @@ private:
     ros::Subscriber judgeStatus_sub_[4];
     ros::Subscriber judgeHeat_sub_[4];
     ros::Subscriber bulletInfo_sub_;
+    ros::Subscriber gameStatus_sub_;
+    ros::Subscriber buffInfo_sub_;
 
     QStringListModel logging_model;
     BattleView *parentBattleView_;
     ros::ServiceClient client_;
     hero_msgs::RobotStatus roboStatus_[4];
     hero_msgs::RobotHeat roboHeat_[4];
-
+    hero_msgs::Buffinfo buffInfo_;
+    hero_msgs::GameStatus gameStatus_;
     hero_msgs::BulletsInfo bulletInfo_;
     ros::Subscriber gimbal_yaw_sub_[4];
 
+
     float gimbal_yaw_[4];
-    bool SendJudgeSysCall(int comman, std::string robot_name);
+
     void RobotStatusCallback0(const hero_msgs::RobotStatus::ConstPtr& msg);
     void RobotStatusCallback1(const hero_msgs::RobotStatus::ConstPtr& msg);
     void RobotStatusCallback2(const hero_msgs::RobotStatus::ConstPtr& msg);
@@ -122,12 +141,16 @@ private:
     void RobotHeatCallback2(const hero_msgs::RobotHeat::ConstPtr& msg);
     void RobotHeatCallback3(const hero_msgs::RobotHeat::ConstPtr& msg);
     void BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr& msg);
+    void GameStatusCallback(const hero_msgs::GameStatus::ConstPtr& msg);
+    void BuffInfoCallback(const hero_msgs::Buffinfo::ConstPtr& msg);
 
     void GimbalYawCallback0(const std_msgs::Float32::ConstPtr& msg);
     void GimbalYawCallback1(const std_msgs::Float32::ConstPtr& msg);
     void GimbalYawCallback2(const std_msgs::Float32::ConstPtr& msg);
     void GimbalYawCallback3(const std_msgs::Float32::ConstPtr& msg);
     void SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index);
+
+    void GetParam(ros::NodeHandle *nh);
 };
 
 }  // namespace hero_interface

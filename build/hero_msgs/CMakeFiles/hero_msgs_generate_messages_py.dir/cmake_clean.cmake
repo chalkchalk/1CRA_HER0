@@ -21,6 +21,7 @@ file(REMOVE_RECURSE
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_LocalPlannerGoal.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_RobotShoot.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_RobotBonus.py"
+  "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_Buffinfo.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_ObstacleMsg.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_LocalPlannerActionFeedback.py"
   "/home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_GimbalAngle.py"

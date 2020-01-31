@@ -43,21 +43,33 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     image.fill(Qt::white);
 
     fTimer=new QTimer(this);
-    connect(fTimer,SIGNAL(timeout()),this,SLOT(timer_timeout()));
+
     fTimer->start(50);
     battleView.AddRobot(new Robot("robot_0","blue"));
     battleView.AddRobot(new Robot("robot_1","blue"));
     battleView.AddRobot(new Robot("robot_2","red"));
     battleView.AddRobot(new Robot("robot_3","red"));
 
-   // lcdNumberTime->
-   // display(0074);
+    for(int i =0; i< 6;i++)
+    {
+        qnode.RFID_F_x[i] = 0;
+        qnode.RFID_F_y[i] = 0;
+    }
+    qnode.RFID_height = 0.4;
+    qnode.RFID_width = 0.4;
 
     qnode.init();
+    connect(fTimer,SIGNAL(timeout()),this,SLOT(timer_timeout()));
 }
 
 MainWindow::~MainWindow() {}
 
+void MainWindow::DisplayCountDown(int sec)
+{
+     QTime time;
+     time.setHMS(0,sec/60,sec%60,0);
+     ui.lcdNumberTime->display(time.toString("mm:ss"));
+}
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     QPainter canvasPainter(this);
@@ -93,6 +105,7 @@ void MainWindow::timer_timeout()
 {
     battleView.GetBattleView(&image);
     ShowJudgeSysInfo();
+    DisplayCountDown(qnode.GetGameStatus()->remaining_time);
     this->update();
 }
 
@@ -184,5 +197,25 @@ void hero_interface::MainWindow::on_pushButtonDisarm_4_clicked()
 
 void hero_interface::MainWindow::on_pushButtonRFID_Rfresh_clicked()
 {
+    qnode.SendJudgeSysCall(hero_common::JudgeSysCommand::REFRESH_RFID,"null");
+}
 
+void hero_interface::MainWindow::on_pushButtonRFID_KillAll_clicked()
+{
+    qnode.SendJudgeSysCall(hero_common::JudgeSysCommand::KILL_ALL,"null");
+}
+
+void hero_interface::MainWindow::on_pushButtonGamePrep_clicked()
+{
+    qnode.SendJudgeSysCall(hero_common::JudgeSysCommand::GAME_PERP,"null");
+}
+
+void hero_interface::MainWindow::on_pushButtonGameStart_clicked()
+{
+    qnode.SendJudgeSysCall(hero_common::JudgeSysCommand::GAME_START,"null");
+}
+
+void hero_interface::MainWindow::on_pushButtonGameStop_clicked()
+{
+    qnode.SendJudgeSysCall(hero_common::JudgeSysCommand::GAME_END,"null");
 }

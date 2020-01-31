@@ -36,6 +36,7 @@ public:
 	void WriteSettings(); // Save qt program settings when closing
 	void closeEvent(QCloseEvent *event); // Overloaded function
     virtual void paintEvent(QPaintEvent *event);
+    void DisplayCountDown(int sec);
 
 public Q_SLOTS:
 
@@ -58,6 +59,10 @@ public Q_SLOTS:
     void on_pushButtonRevive_1_clicked();
     void on_pushButtonKill_1_clicked();
     void on_pushButtonRFID_Rfresh_clicked();
+    void on_pushButtonGameStop_clicked();
+    void on_pushButtonGameStart_clicked();
+    void on_pushButtonGamePrep_clicked();
+    void on_pushButtonRFID_KillAll_clicked();
 
 private:
 	Ui::MainWindowDesign ui;

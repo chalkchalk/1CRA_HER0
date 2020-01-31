@@ -7,6 +7,7 @@ d4fa2f31de940ea47e01a521d7439674 /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/
 570e2774f8159f302a79fcba89ed8720 /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ArmorDetectionGoal.h
 012b48e7a94a8be0bb67476c21dfd02f /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ArmorDetectionResult.h
 4dfeb2bfccbcfbf2bcaf2a3e7960a87b /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BonusStatus.h
+f03778c8df68d1aae23b87580f26dc9a /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/Buffinfo.h
 14f0ce205b88fe84212c3cc2edef9821 /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
 7a1d33e00cd8c9ce71d655a8a3939d12 /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletsInfo.h
 c3baf4c491c7f95dc723db39f15fd8fb /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/FricWhl.h
@@ -51,6 +52,7 @@ daff473a04a23f73b3321c1ef18f6cef /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist
 cf898178fa46a361d717880dc4cb20f4 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_ArmorDetectionGoal.py
 e910d390d3e4598fef442a9a76f94ef0 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_ArmorDetectionResult.py
 8574b004718e6b204d0c1cb62ac65446 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_BonusStatus.py
+2e15c1dfc829cff7f0fa0d625db17016 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_Buffinfo.py
 abc5b17fd0e9b5b136a4b513df8f735b /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_BulletMove.py
 d887509ed4ac2a8b79efff55e7b21a59 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_Bulletmove.py
 b81edb11f0acebe5930a07a0c27c7108 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_BulletsInfo.py
@@ -98,6 +100,7 @@ bdad534a8d986c6c73a8d36bb5a05061 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/
 81427c47c3f7db7ea00e6b02b3819426 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/ArmorDetectionGoal.lisp
 331a72aaea212f51b3cacd2da86881d5 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/ArmorDetectionResult.lisp
 7cf3a565f8222eeb49b4fc9b6a146ab9 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/BonusStatus.lisp
+991a74bc5612ef4f0959aa9704541861 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/Buffinfo.lisp
 5accec46349aec47756cc34b60c87f07 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/BulletMove.lisp
 195cf79fbb4adc5a7baa73673eeb6b6f /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/Bulletmove.lisp
 0daf5a523e074f02211247ccf343facc /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/BulletsInfo.lisp
@@ -143,6 +146,7 @@ d0338ce9aa3c3c5db527229b95c616f1 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ro
 3f5e0941e4cea37a149c41776f4db9b0 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/ArmorDetectionGoal.js
 6777cf493e8847539e09802daa9e9a0b /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/ArmorDetectionResult.js
 8e0b9a6df0fb85d87bcfad4f7d6ede8c /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/BonusStatus.js
+6300bb75dec57a0ce4df413db13165b1 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/Buffinfo.js
 08cf1f3264cbc48875dfd951db4c7cb3 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/BulletMove.js
 46e4b34701be8b7711c368ebfd52ab58 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/Bulletmove.js
 f0ea906b97f9f412456bb98707d4c053 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/BulletsInfo.js
@@ -189,6 +193,7 @@ b867a0a51b98a41aec73520c7cc775cc /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/h
 54003ff46fb7678833adc4d0d36e0402 /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/ArmorDetectionGoal.l
 aa36c4e12a3caeb344079a041cde5ea2 /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/ArmorDetectionResult.l
 2fd9e02ad6dcbe445f17f629cc7cc8aa /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/BonusStatus.l
+77e7a4d4354125d732bbd2f6be0d2f4b /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/Buffinfo.l
 c69f9126130fa7069ded56b4766a1e36 /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/BulletMove.l
 beb9e47a805392962a8853e670a43c7a /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/Bulletmove.l
 f3f9c5b10bed35047881376dee1111b9 /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/BulletsInfo.l
@@ -248,6 +253,7 @@ ec9b7e5aacd8591d475fb617ee4a2dc1 hero_interface/ui_main_window.h
 fcd9dc3d4b387ba390670be909f35f96 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_ArmorDetectionGoal
 4bbf2c5bca40f28d85696b58107dca19 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_ArmorDetectionResult
 0a3c39920d9c0dd7548761de6fcf7478 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_BonusStatus
+c9aa1212496f2b035f593a7543a1530a hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo
 75ec85f1d385719ae0bb46a6cfa52f30 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_BulletMove
 9a0b4228efea3e5705846dfe28c85876 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_BulletsInfo
 ef4306901e94771b356564e90943c860 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_FricWhl

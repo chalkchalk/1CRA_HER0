@@ -18,6 +18,22 @@
 QtCore/qglobal.h
 -
 
+/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/Buffinfo.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/BulletMove.h
 string
 -
@@ -50,6 +66,22 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 hero_msgs/BulletMove.h
+-
+
+/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/GameStatus.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
 -
 
 /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
@@ -195,6 +227,10 @@ state/command_code.h
 /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/state/command_code.h
 std_msgs/Float32.h
 /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/std_msgs/Float32.h
+hero_msgs/GameStatus.h
+/home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/hero_msgs/GameStatus.h
+hero_msgs/Buffinfo.h
+/home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/hero_msgs/Buffinfo.h
 
 /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/rotatedrect.h
 QtGui

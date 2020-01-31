@@ -1102,32 +1102,6 @@ _hero_msgs_generate_messages_check_deps_BonusStatus/fast:
 .PHONY : _hero_msgs_generate_messages_check_deps_BonusStatus/fast
 
 #=============================================================================
-# Target rules for targets named roscpp_generate_messages_nodejs
-
-# Build rule for target.
-roscpp_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_nodejs
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	$(MAKE) -f hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal
-
-# Build rule for target.
-_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal
-.PHONY : _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal
-
-# fast build rule for target.
-_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal/fast:
-	$(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/build
-.PHONY : _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal/fast
-
-#=============================================================================
 # Target rules for targets named _hero_msgs_generate_messages_check_deps_GameStatus
 
 # Build rule for target.
@@ -1245,6 +1219,19 @@ _hero_msgs_generate_messages_check_deps_LocalPlannerGoal/fast:
 .PHONY : _hero_msgs_generate_messages_check_deps_LocalPlannerGoal/fast
 
 #=============================================================================
+# Target rules for targets named _hero_msgs_generate_messages_check_deps_RobotHeat
+
+# Build rule for target.
+_hero_msgs_generate_messages_check_deps_RobotHeat: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _hero_msgs_generate_messages_check_deps_RobotHeat
+.PHONY : _hero_msgs_generate_messages_check_deps_RobotHeat
+
+# fast build rule for target.
+_hero_msgs_generate_messages_check_deps_RobotHeat/fast:
+	$(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/build
+.PHONY : _hero_msgs_generate_messages_check_deps_RobotHeat/fast
+
+#=============================================================================
 # Target rules for targets named _hero_msgs_generate_messages_check_deps_GlobalPlannerAction
 
 # Build rule for target.
@@ -1349,17 +1336,30 @@ _hero_msgs_generate_messages_check_deps_ProjectileSupply/fast:
 .PHONY : _hero_msgs_generate_messages_check_deps_ProjectileSupply/fast
 
 #=============================================================================
-# Target rules for targets named _hero_msgs_generate_messages_check_deps_RobotHeat
+# Target rules for targets named roscpp_generate_messages_nodejs
 
 # Build rule for target.
-_hero_msgs_generate_messages_check_deps_RobotHeat: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _hero_msgs_generate_messages_check_deps_RobotHeat
-.PHONY : _hero_msgs_generate_messages_check_deps_RobotHeat
+roscpp_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 roscpp_generate_messages_nodejs
+.PHONY : roscpp_generate_messages_nodejs
 
 # fast build rule for target.
-_hero_msgs_generate_messages_check_deps_RobotHeat/fast:
-	$(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/build
-.PHONY : _hero_msgs_generate_messages_check_deps_RobotHeat/fast
+roscpp_generate_messages_nodejs/fast:
+	$(MAKE) -f hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal
+
+# Build rule for target.
+_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal
+.PHONY : _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal
+
+# fast build rule for target.
+_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal/fast:
+	$(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/build
+.PHONY : _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal/fast
 
 #=============================================================================
 # Target rules for targets named _hero_msgs_generate_messages_check_deps_ArmorDetectionFeedback
@@ -1386,6 +1386,19 @@ actionlib_msgs_generate_messages_nodejs: cmake_check_build_system
 actionlib_msgs_generate_messages_nodejs/fast:
 	$(MAKE) -f hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build.make hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build
 .PHONY : actionlib_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named _hero_msgs_generate_messages_check_deps_Buffinfo
+
+# Build rule for target.
+_hero_msgs_generate_messages_check_deps_Buffinfo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _hero_msgs_generate_messages_check_deps_Buffinfo
+.PHONY : _hero_msgs_generate_messages_check_deps_Buffinfo
+
+# fast build rule for target.
+_hero_msgs_generate_messages_check_deps_Buffinfo/fast:
+	$(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo.dir/build
+.PHONY : _hero_msgs_generate_messages_check_deps_Buffinfo/fast
 
 #=============================================================================
 # Target rules for targets named _hero_msgs_generate_messages_check_deps_SupplierStatus
@@ -2434,8 +2447,6 @@ help:
 	@echo "... _hero_msgs_generate_messages_check_deps_BulletMove"
 	@echo "... actionlib_msgs_generate_messages_cpp"
 	@echo "... _hero_msgs_generate_messages_check_deps_BonusStatus"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal"
 	@echo "... _hero_msgs_generate_messages_check_deps_GameStatus"
 	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerResult"
 	@echo "... _hero_msgs_generate_messages_check_deps_RobotBonus"
@@ -2445,6 +2456,7 @@ help:
 	@echo "... hero_msgs_generate_messages_py"
 	@echo "... _hero_msgs_generate_messages_check_deps_LocalPlannerActionResult"
 	@echo "... _hero_msgs_generate_messages_check_deps_LocalPlannerGoal"
+	@echo "... _hero_msgs_generate_messages_check_deps_RobotHeat"
 	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerAction"
 	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerFeedback"
 	@echo "... hero_msgs_generate_messages_nodejs"
@@ -2453,9 +2465,11 @@ help:
 	@echo "... hero_msgs_gennodejs"
 	@echo "... _hero_msgs_generate_messages_check_deps_ArmorDetectionActionResult"
 	@echo "... _hero_msgs_generate_messages_check_deps_ProjectileSupply"
-	@echo "... _hero_msgs_generate_messages_check_deps_RobotHeat"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal"
 	@echo "... _hero_msgs_generate_messages_check_deps_ArmorDetectionFeedback"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
+	@echo "... _hero_msgs_generate_messages_check_deps_Buffinfo"
 	@echo "... _hero_msgs_generate_messages_check_deps_SupplierStatus"
 	@echo "... hero_msgs_generate_messages_lisp"
 	@echo "... _hero_msgs_generate_messages_check_deps_LocalPlannerFeedback"

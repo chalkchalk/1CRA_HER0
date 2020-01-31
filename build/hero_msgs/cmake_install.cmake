@@ -102,6 +102,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotShoot.msg"
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/RobotStatus.msg"
     "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/SupplierStatus.msg"
+    "/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system/Buffinfo.msg"
     )
 endif()
 

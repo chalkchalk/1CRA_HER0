@@ -139,7 +139,7 @@
        <property name="geometry">
         <rect>
          <x>69</x>
-         <y>66</y>
+         <y>62</y>
          <width>201</width>
          <height>23</height>
         </rect>
@@ -177,7 +177,7 @@
        <property name="geometry">
         <rect>
          <x>13</x>
-         <y>68</y>
+         <y>64</y>
          <width>41</width>
          <height>17</height>
         </rect>
@@ -318,7 +318,7 @@
        <property name="geometry">
         <rect>
          <x>69</x>
-         <y>66</y>
+         <y>65</y>
          <width>201</width>
          <height>23</height>
         </rect>
@@ -356,7 +356,7 @@
        <property name="geometry">
         <rect>
          <x>13</x>
-         <y>68</y>
+         <y>67</y>
          <width>41</width>
          <height>17</height>
         </rect>
@@ -497,7 +497,7 @@
        <property name="geometry">
         <rect>
          <x>69</x>
-         <y>66</y>
+         <y>65</y>
          <width>201</width>
          <height>23</height>
         </rect>
@@ -535,7 +535,7 @@
        <property name="geometry">
         <rect>
          <x>13</x>
-         <y>68</y>
+         <y>67</y>
          <width>41</width>
          <height>17</height>
         </rect>
@@ -676,7 +676,7 @@
        <property name="geometry">
         <rect>
          <x>69</x>
-         <y>66</y>
+         <y>64</y>
          <width>201</width>
          <height>23</height>
         </rect>
@@ -714,7 +714,7 @@
        <property name="geometry">
         <rect>
          <x>13</x>
-         <y>68</y>
+         <y>66</y>
          <width>41</width>
          <height>17</height>
         </rect>
@@ -782,43 +782,129 @@
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButtonRFID_Rfresh">
+     <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>30</y>
-        <width>81</width>
-        <height>25</height>
+        <x>20</x>
+        <y>40</y>
+        <width>391</width>
+        <height>141</height>
        </rect>
       </property>
-      <property name="text">
-       <string>RFID Refr</string>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(211, 215, 207);</string>
       </property>
-     </widget>
-     <widget class="QLCDNumber" name="lcdNumberTime">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>30</y>
-        <width>141</width>
-        <height>51</height>
-       </rect>
+      <property name="title">
+       <string>Control</string>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::Box</enum>
-      </property>
-      <property name="digitCount">
-       <number>5</number>
-      </property>
-      <property name="segmentStyle">
-       <enum>QLCDNumber::Filled</enum>
-      </property>
-      <property name="value" stdset="0">
-       <double>20.100000000000001</double>
-      </property>
-      <property name="intValue" stdset="0">
-       <number>20</number>
-      </property>
+      <widget class="QPushButton" name="pushButtonRFID_Rfresh">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>67</y>
+         <width>81</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>RFID Refr</string>
+       </property>
+      </widget>
+      <widget class="QLCDNumber" name="lcdNumberTime">
+       <property name="geometry">
+        <rect>
+         <x>206</x>
+         <y>40</y>
+         <width>171</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="digitCount">
+        <number>5</number>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Filled</enum>
+       </property>
+       <property name="value" stdset="0">
+        <double>20.000000000000000</double>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>20</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonGameStart">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>97</y>
+         <width>51</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonGameStop">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>97</y>
+         <width>51</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonGamePrep">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>97</y>
+         <width>51</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Prep</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonRFID_KillAll">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>67</y>
+         <width>81</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Kill All</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelHealthStatus">
+       <property name="geometry">
+        <rect>
+         <x>22</x>
+         <y>39</y>
+         <width>161</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Status:</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">

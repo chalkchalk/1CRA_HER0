@@ -10,6 +10,8 @@
 #include "ros/ros.h"
 #include "hero_msgs/RobotStatus.h"
 #include "state/command_code.h"
+#include "hero_msgs/GameStatus.h"
+#include "hero_msgs/Buffinfo.h"
 
 namespace hero_judgesys{
 class JudgesysRobot;
@@ -47,8 +49,10 @@ public:
     void RFID_Callback(std::string robot_name, int num);
     void RFID_Refresh();
     void BuffHandle(int fre);
+    void GameTick(int fre);
+    void SetGamePhase(int phase);
 
-    enum GameState{
+    enum GamePhase{
         PREPERATION = 0,
         START = 1,
         END = 2
@@ -78,6 +82,8 @@ private:
     hero_common::ErrorInfo Init();
     ros::NodeHandle nh_;
     ros::ServiceServer service_;
+    ros::Publisher gameState_pub_;
+    ros::Publisher buffInfo_pub_;
     bool handle_function(hero_msgs::JudgeSysControl::Request &req,
                         hero_msgs::JudgeSysControl::Response &res);
 
@@ -85,7 +91,7 @@ private:
     bool buffZone[6];
 
     float game_time;
-    GameState gameState;
+    GamePhase gamePhase_;
     RFID_def RFID[6];
 
 

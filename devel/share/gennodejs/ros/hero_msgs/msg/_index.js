@@ -40,6 +40,7 @@ let GameResult = require('./GameResult.js');
 let GameSurvivor = require('./GameSurvivor.js');
 let RobotStatus = require('./RobotStatus.js');
 let BonusStatus = require('./BonusStatus.js');
+let Buffinfo = require('./Buffinfo.js');
 let RobotHeat = require('./RobotHeat.js');
 
 module.exports = {
@@ -82,5 +83,6 @@ module.exports = {
   GameSurvivor: GameSurvivor,
   RobotStatus: RobotStatus,
   BonusStatus: BonusStatus,
+  Buffinfo: Buffinfo,
   RobotHeat: RobotHeat,
 };

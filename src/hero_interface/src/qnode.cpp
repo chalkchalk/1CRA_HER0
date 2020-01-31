@@ -75,12 +75,42 @@ bool QNode::init() {
     gimbal_yaw_sub_[3] = n.subscribe<std_msgs::Float32>("/robot_3/gimbal_yaw_relative", 1000,&QNode::GimbalYawCallback3,this);
 
     bulletInfo_sub_ =  n.subscribe<hero_msgs::BulletsInfo>("robot_physic/bullet_info", 1000,&QNode::BulletInfoCallback,this);
+    gameStatus_sub_ = n.subscribe<hero_msgs::GameStatus>("judgeSysInfo/game_state", 1000,&QNode::GameStatusCallback,this);
+    buffInfo_sub_ = n.subscribe<hero_msgs::Buffinfo>("judgeSysInfo/buff_info", 1000,&QNode::BuffInfoCallback,this);
 
     client_ = n.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
+    GetParam(&n);
+
     start();
     return true;
 }
 
+void QNode::GetParam(ros::NodeHandle *nh)
+{
+    nh->param<double>("RFID_F1_x", RFID_F_x[0], 7.63);
+    nh->param<double>("RFID_F1_y", RFID_F_y[0], 1.8);
+    nh->param<double>("RFID_F2_x", RFID_F_x[1], 6.23);
+    nh->param<double>("RFID_F2_y", RFID_F_y[1], 3.225);
+    nh->param<double>("RFID_F3_x", RFID_F_x[2], 4.03);
+    nh->param<double>("RFID_F3_y", RFID_F_y[2], 0.49);
+    nh->param<double>("RFID_F4_x", RFID_F_x[3], 0.45);
+    nh->param<double>("RFID_F4_y", RFID_F_y[3], 3.34);
+    nh->param<double>("RFID_F5_x", RFID_F_x[4], 1.85);
+    nh->param<double>("RFID_F5_y", RFID_F_y[4], 1.915);
+    nh->param<double>("RFID_F6_x", RFID_F_x[5], 4.05);
+    nh->param<double>("RFID_F6_y", RFID_F_y[5], 4.9);
+    nh->param<double>("RFID_height", RFID_height, 0.4);
+    nh->param<double>("RFID_width", RFID_width, 0.46);
+}
+void QNode::GameStatusCallback(const hero_msgs::GameStatus::ConstPtr &msg)
+{
+    gameStatus_ = *msg;
+}
+
+void QNode::BuffInfoCallback(const hero_msgs::Buffinfo::ConstPtr &msg)
+{
+    buffInfo_ = *msg;
+}
 
 void QNode::PoseCallback(const nav_msgs::Odometry::ConstPtr& msg)
 {

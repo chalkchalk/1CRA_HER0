@@ -6,6 +6,38 @@
 
 #IncludeRegexTransform: 
 
+/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/Buffinfo.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/GameStatus.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControl.h
 ros/service_traits.h
 -
@@ -105,6 +137,10 @@ hero_msgs/RobotStatus.h
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/hero_msgs/RobotStatus.h
 state/command_code.h
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/state/command_code.h
+hero_msgs/GameStatus.h
+/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/hero_msgs/GameStatus.h
+hero_msgs/Buffinfo.h
+/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/hero_msgs/Buffinfo.h
 
 /home/ycz/ICRA_HERO_ws/src/hero_judgesys/include/judgesys_robot.h
 string

@@ -56,6 +56,18 @@ CMAKE_BINARY_DIR = /home/ycz/ICRA_HERO_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -77,18 +89,6 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -1096,36 +1096,6 @@ _hero_msgs_generate_messages_check_deps_BonusStatus/fast:
 .PHONY : _hero_msgs_generate_messages_check_deps_BonusStatus/fast
 
 # Convenience name for target.
-hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/rule:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/rule
-.PHONY : hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/rule
-
-# Convenience name for target.
-_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/rule
-
-.PHONY : _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal
-
-# fast build rule for target.
-_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal/fast:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/build
-.PHONY : _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal/fast
-
-# Convenience name for target.
 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GameStatus.dir/rule:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GameStatus.dir/rule
 .PHONY : hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GameStatus.dir/rule
@@ -1261,6 +1231,21 @@ _hero_msgs_generate_messages_check_deps_LocalPlannerGoal/fast:
 .PHONY : _hero_msgs_generate_messages_check_deps_LocalPlannerGoal/fast
 
 # Convenience name for target.
+hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/rule:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/rule
+.PHONY : hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/rule
+
+# Convenience name for target.
+_hero_msgs_generate_messages_check_deps_RobotHeat: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/rule
+
+.PHONY : _hero_msgs_generate_messages_check_deps_RobotHeat
+
+# fast build rule for target.
+_hero_msgs_generate_messages_check_deps_RobotHeat/fast:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/build
+.PHONY : _hero_msgs_generate_messages_check_deps_RobotHeat/fast
+
+# Convenience name for target.
 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerAction.dir/rule:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerAction.dir/rule
 .PHONY : hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerAction.dir/rule
@@ -1381,19 +1366,34 @@ _hero_msgs_generate_messages_check_deps_ProjectileSupply/fast:
 .PHONY : _hero_msgs_generate_messages_check_deps_ProjectileSupply/fast
 
 # Convenience name for target.
-hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/rule:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/rule
-.PHONY : hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/rule
+hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-_hero_msgs_generate_messages_check_deps_RobotHeat: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/rule
+roscpp_generate_messages_nodejs: hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 
-.PHONY : _hero_msgs_generate_messages_check_deps_RobotHeat
+.PHONY : roscpp_generate_messages_nodejs
 
 # fast build rule for target.
-_hero_msgs_generate_messages_check_deps_RobotHeat/fast:
-	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_RobotHeat.dir/build
-.PHONY : _hero_msgs_generate_messages_check_deps_RobotHeat/fast
+roscpp_generate_messages_nodejs/fast:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make hero_msgs/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
+
+# Convenience name for target.
+hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/rule:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/rule
+.PHONY : hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/rule
+
+# Convenience name for target.
+_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/rule
+
+.PHONY : _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal
+
+# fast build rule for target.
+_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal/fast:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal.dir/build
+.PHONY : _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal/fast
 
 # Convenience name for target.
 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_ArmorDetectionFeedback.dir/rule:
@@ -1424,6 +1424,21 @@ actionlib_msgs_generate_messages_nodejs: hero_msgs/CMakeFiles/actionlib_msgs_gen
 actionlib_msgs_generate_messages_nodejs/fast:
 	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build.make hero_msgs/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build
 .PHONY : actionlib_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo.dir/rule:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo.dir/rule
+.PHONY : hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo.dir/rule
+
+# Convenience name for target.
+_hero_msgs_generate_messages_check_deps_Buffinfo: hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo.dir/rule
+
+.PHONY : _hero_msgs_generate_messages_check_deps_Buffinfo
+
+# fast build rule for target.
+_hero_msgs_generate_messages_check_deps_Buffinfo/fast:
+	cd /home/ycz/ICRA_HERO_ws/build && $(MAKE) -f hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo.dir/build.make hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_Buffinfo.dir/build
+.PHONY : _hero_msgs_generate_messages_check_deps_Buffinfo/fast
 
 # Convenience name for target.
 hero_msgs/CMakeFiles/_hero_msgs_generate_messages_check_deps_SupplierStatus.dir/rule:
@@ -1521,6 +1536,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install"
 	@echo "... _hero_msgs_generate_messages_check_deps_ArmorDetectionActionGoal"
 	@echo "... _hero_msgs_generate_messages_check_deps_LocalPlannerAction"
 	@echo "... _hero_msgs_generate_messages_check_deps_GimbalMode"
@@ -1574,7 +1590,6 @@ help:
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerActionResult"
 	@echo "... _hero_msgs_generate_messages_check_deps_LocalPlannerActionFeedback"
-	@echo "... install"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_eus"
@@ -1586,9 +1601,6 @@ help:
 	@echo "... _hero_msgs_generate_messages_check_deps_BulletMove"
 	@echo "... actionlib_msgs_generate_messages_cpp"
 	@echo "... _hero_msgs_generate_messages_check_deps_BonusStatus"
-	@echo "... list_install_components"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal"
 	@echo "... _hero_msgs_generate_messages_check_deps_GameStatus"
 	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerResult"
 	@echo "... _hero_msgs_generate_messages_check_deps_RobotBonus"
@@ -1598,6 +1610,7 @@ help:
 	@echo "... hero_msgs_generate_messages_py"
 	@echo "... _hero_msgs_generate_messages_check_deps_LocalPlannerActionResult"
 	@echo "... _hero_msgs_generate_messages_check_deps_LocalPlannerGoal"
+	@echo "... _hero_msgs_generate_messages_check_deps_RobotHeat"
 	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerAction"
 	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerFeedback"
 	@echo "... hero_msgs_generate_messages_nodejs"
@@ -1606,9 +1619,12 @@ help:
 	@echo "... hero_msgs_gennodejs"
 	@echo "... _hero_msgs_generate_messages_check_deps_ArmorDetectionActionResult"
 	@echo "... _hero_msgs_generate_messages_check_deps_ProjectileSupply"
-	@echo "... _hero_msgs_generate_messages_check_deps_RobotHeat"
+	@echo "... list_install_components"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal"
 	@echo "... _hero_msgs_generate_messages_check_deps_ArmorDetectionFeedback"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
+	@echo "... _hero_msgs_generate_messages_check_deps_Buffinfo"
 	@echo "... _hero_msgs_generate_messages_check_deps_SupplierStatus"
 	@echo "... hero_msgs_generate_messages_lisp"
 	@echo "... _hero_msgs_generate_messages_check_deps_LocalPlannerFeedback"
