@@ -101,11 +101,21 @@ void MainWindow::ShowJudgeSysInfo()
     ui.progressBarAmmo_4->setValue(qnode.GetRoboStatus(3).remain_ammo);
 }
 
+void MainWindow::ShowGameStatus()
+{
+    if(qnode.GetGameStatus()->game_status == qnode.GetGameStatus()->PRE_MATCH)
+         ui.labelStatus->setText("Status: Prepration");
+    else if(qnode.GetGameStatus()->game_status == qnode.GetGameStatus()->ROUND)
+        ui.labelStatus->setText("Status: Start");
+    else if(qnode.GetGameStatus()->game_status == qnode.GetGameStatus()->CALCULATION)
+         ui.labelStatus->setText("Status: End");
+}
 void MainWindow::timer_timeout()
 {
     battleView.GetBattleView(&image);
     ShowJudgeSysInfo();
     DisplayCountDown(qnode.GetGameStatus()->remaining_time);
+    ShowGameStatus();
     this->update();
 }
 
@@ -218,4 +228,45 @@ void hero_interface::MainWindow::on_pushButtonGameStart_clicked()
 void hero_interface::MainWindow::on_pushButtonGameStop_clicked()
 {
     qnode.SendJudgeSysCall(hero_common::JudgeSysCommand::GAME_END,"null");
+}
+
+
+void hero_interface::MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+    {
+        //printf("%d,%d\n",event->pos().x(),event->pos().y());
+
+        battleView.LeftButtonPress(event->pos().x(),event->pos().y());
+                //SetRobotGoalPoint(event->pos().x(),event->pos().y());
+
+    }
+    if(event->button()==Qt::RightButton)
+    {
+        battleView.RightButtonPress(event->pos().x(),event->pos().y());
+    }
+    else if(event->button()==Qt::MidButton)
+    {
+
+    }
+
+}
+
+
+void hero_interface::MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if ((event->buttons() == Qt::LeftButton))
+    {
+        battleView.LeftButtonDrag(event->pos().x(),event->pos().y());
+    }
+
+}
+
+void hero_interface::MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+    {
+        battleView.LeftButtonRelease(event->pos().x(),event->pos().y());
+    }
+
 }

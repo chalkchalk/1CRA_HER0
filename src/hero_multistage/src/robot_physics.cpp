@@ -400,7 +400,7 @@ int main(int argc, char** argv){
         divider++;
         if(divider%3==0)
         {
-          robotPhysics.RobotShoot("robot_0");
+          //robotPhysics.RobotShoot("robot_0");
             //robotPhysics.RobotShoot("robot_3");
         }
 

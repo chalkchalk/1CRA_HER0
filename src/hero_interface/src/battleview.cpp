@@ -10,7 +10,7 @@ BattleView::BattleView(QNode *qNode)
 {
     std::string full_path = ros::package::getPath("hero_interface") + "/resources/images/map.png";
     background.load(full_path.c_str());
-    background = background.scaled(554,854);
+    background = background.scaled(BATTLEFIELD_PIX_W,BATTLEFIELD_PIX_H);
     qNode_ = qNode;
     buffImage[0].load((ros::package::getPath("hero_interface") + "/resources/images/heal_red.png").c_str());
     buffImage[1].load((ros::package::getPath("hero_interface") + "/resources/images/heal_blue.png").c_str());
@@ -18,6 +18,8 @@ BattleView::BattleView(QNode *qNode)
     buffImage[3].load((ros::package::getPath("hero_interface") + "/resources/images/reload_blue.png").c_str());
     buffImage[4].load((ros::package::getPath("hero_interface") + "/resources/images/move_debuff.png").c_str());
     buffImage[5].load((ros::package::getPath("hero_interface") + "/resources/images/shoot_debuff.png").c_str());
+
+    isDraging = false;
 }
 
 bool BattleView::SetRobotPose(std::string robot_num,float x, float y, float yaw)
@@ -70,7 +72,6 @@ QPoint PoseToMapPoint(Pose pose, QSize battleSize,QImage roboPic)
 
 QPoint PoseToMapPoint(Pose pose, QSize battleSize)
 {
-    int offset_x,offset_y;
     int x,y;
     y=pose.x * battleSize.height() / BATTLEFIELD_W;
     x=pose.y * battleSize.width() / BATTLEFIELD_H ;
@@ -79,7 +80,84 @@ QPoint PoseToMapPoint(Pose pose, QSize battleSize)
     return QPoint(x,y);
 }
 
+void BattleView::ImageToPosePoint(double *pose_x, double *pose_y, int image_x, int image_y)
+{
+    *pose_y=image_x * BATTLEFIELD_W/ background.height();
+    *pose_x=image_y * BATTLEFIELD_H /background.width();
+}
 
+void BattleView::LeftButtonPress(int x, int y)
+{
+
+
+    lastPoint = QPoint(x,y);
+     //printf("left press\n");
+
+}
+
+void BattleView::LeftButtonDrag(int x, int y)
+{
+    if(hero_common::PointDistance(lastPoint.x(),lastPoint.y(),x,y) > 10)
+    {
+        isDraging = true;
+    }
+
+    if(isDraging)
+    {
+        dragingPoint = QPoint(x,y);
+    }
+
+}
+
+void BattleView::LeftButtonRelease(int x, int y)
+{
+    if(isDraging)
+    {
+        isDraging = false;
+        for (auto it = robots_.begin(); it != robots_.end(); ++it) {
+            (*it)->selected = hero_common::PointInRect(PoseToMapPoint((*it)->pose,background.size()).x(),PoseToMapPoint((*it)->pose,background.size()).y(),
+                        lastPoint.x(),lastPoint.y(),x,y);
+        }
+    }
+    else
+    {
+        SetRobotGoalPoint(x,y);
+    }
+    //printf("release\n");
+}
+
+void BattleView::RightButtonPress(int x, int y)
+{
+    isDraging = false;
+    for (auto it = robots_.begin(); it != robots_.end(); ++it) {
+        (*it)->selected = false;
+    }
+    //printf("right press\n");
+}
+
+void BattleView::SetRobotGoalPoint(int image_x, int image_y)
+{
+    if(image_x > BATTLEFIELD_PIX_W || image_y > BATTLEFIELD_PIX_H)
+        return;
+    double x_target;
+    double y_target;
+
+
+
+    ImageToPosePoint(&x_target,&y_target,image_x,image_y);
+    for (auto it = robots_.begin(); it != robots_.end(); ++it) {
+        if((*it)->selected)
+        {
+            double yaw_target = std::atan2(y_target - (*it)->pose.y,x_target - (*it)->pose.x) *180 / 3.14159;
+            //double yaw_target = (*it)->pose.yaw;
+            qNode_->SendGoalPoint((*it)->index,x_target,y_target,yaw_target);
+            (*it)->SetDest.x = x_target;
+            (*it)->SetDest.y = y_target;
+
+        }
+    }
+
+}
 float PoseToAngle(float yaw)
 {
     return yaw + 180;
@@ -127,6 +205,7 @@ void BattleView::DrawRobot(QImage *qImage)
     int pix_h, pix_w;
     UpdateHealthHeat();
     for (auto it = robots_.begin(); it != robots_.end(); ++it) {
+        robotImage.fill(Qt::transparent);
         if((*it)->color=="red")
             robotColor=Qt::red;
         else if((*it)->color=="blue")
@@ -137,12 +216,15 @@ void BattleView::DrawRobot(QImage *qImage)
             printf("color error! %s\n",(*it)->color.c_str());
         }
         //(*it)->pose.x+=0.01;
-        painterRobot.setPen(QPen(Qt::black, 1, Qt::SolidLine,
+        painterRobot.setPen(QPen(Qt::black, 8, Qt::SolidLine,
                                 Qt::RoundCap, Qt::RoundJoin));
         //painterRobot.drawRect(robotImage.rect());
         painterRobot.fillRect(ROBOT_WIDTH_PIX*0.2,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX,ROBOT_HEIGHT_PIX,robotColor);
+        if((*it)->selected)
+            painterRobot.drawRect(ROBOT_WIDTH_PIX*0.2,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX,ROBOT_HEIGHT_PIX);
 
-
+        painterRobot.setPen(QPen(Qt::black, 1, Qt::SolidLine,
+                                Qt::RoundCap, Qt::RoundJoin));
 
         painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.72,ROBOT_WIDTH_PIX*0.8,ROBOT_HEIGHT_PIX*0.15,Qt::white);
         painterRobot.fillRect(ROBOT_WIDTH_PIX*0.3,ROBOT_HEIGHT_PIX*0.72,ROBOT_WIDTH_PIX*0.8 * (*it)->health / 2000,ROBOT_HEIGHT_PIX*0.15,robotColor);
@@ -178,7 +260,22 @@ void BattleView::DrawRobot(QImage *qImage)
         QMatrix matrix;
         matrix.rotate(PoseToAngle((*it)->pose.yaw));
         painter.drawImage(PoseToMapPoint((*it)->pose,background.size(),robotImage.scaled(pix_w,pix_h).transformed(matrix)), robotImage.scaled(pix_w,pix_h).transformed(matrix));
+
+        if((*it)->selected && !((*it)->SetDest.x==0&&(*it)->SetDest.y==0))
+        {
+            if(hero_common::PointDistance((*it)->pose.x,(*it)->pose.y,(*it)->SetDest.x, (*it)->SetDest.y) > 0.4)
+            {
+                painter.setPen(QPen(Qt::green, 2, Qt::SolidLine,
+                                        Qt::RoundCap, Qt::RoundJoin));
+                painter.drawLine(PoseToMapPoint((*it)->pose,background.size()),PoseToMapPoint((*it)->SetDest,background.size()));
+                painter.setPen(QPen(Qt::green, 5, Qt::SolidLine,
+                                        Qt::SquareCap, Qt::RoundJoin));
+                painter.drawPoint(PoseToMapPoint((*it)->pose,background.size()));
+                painter.drawPoint(PoseToMapPoint((*it)->SetDest,background.size()));
+            }
         }
+
+    }
 
     /***************************Draw bullets********************************************************************************/
 
@@ -207,6 +304,14 @@ void BattleView::DrawRobot(QImage *qImage)
                                              background.size(),buffImage[qNode_->GetBuffInfo()->buff_data[i]].scaled(pix_w,pix_h)), buffImage[qNode_->GetBuffInfo()->buff_data[i]].scaled(pix_w,pix_h));
          }
      }
+
+     if(isDraging)
+     {
+         painter.setPen(QPen(Qt::white, 2, Qt::SolidLine,
+                             Qt::RoundCap, Qt::RoundJoin));
+         painter.drawRect(lastPoint.x(),lastPoint.y(),dragingPoint.x()-lastPoint.x(),dragingPoint.y()-lastPoint.y());
+     }
+
 
 
     }

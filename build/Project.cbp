@@ -919,26 +919,6 @@
             <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="roscpp_generate_messages_nodejs">
-         <Option working_dir="/home/ycz/ICRA_HERO_ws/build/hero_msgs" />
-         <Option type="4" />
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 roscpp_generate_messages_nodejs" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
-      <Target title="_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal">
-         <Option working_dir="/home/ycz/ICRA_HERO_ws/build/hero_msgs" />
-         <Option type="4" />
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
       <Target title="_hero_msgs_generate_messages_check_deps_GameStatus">
          <Option working_dir="/home/ycz/ICRA_HERO_ws/build/hero_msgs" />
          <Option type="4" />
@@ -1029,6 +1009,16 @@
             <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
+      <Target title="_hero_msgs_generate_messages_check_deps_RobotHeat">
+         <Option working_dir="/home/ycz/ICRA_HERO_ws/build/hero_msgs" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 _hero_msgs_generate_messages_check_deps_RobotHeat" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
       <Target title="_hero_msgs_generate_messages_check_deps_GlobalPlannerAction">
          <Option working_dir="/home/ycz/ICRA_HERO_ws/build/hero_msgs" />
          <Option type="4" />
@@ -1109,11 +1099,21 @@
             <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="_hero_msgs_generate_messages_check_deps_RobotHeat">
+      <Target title="roscpp_generate_messages_nodejs">
          <Option working_dir="/home/ycz/ICRA_HERO_ws/build/hero_msgs" />
          <Option type="4" />
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 _hero_msgs_generate_messages_check_deps_RobotHeat" />
+            <Build command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 roscpp_generate_messages_nodejs" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="_hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal">
+         <Option working_dir="/home/ycz/ICRA_HERO_ws/build/hero_msgs" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 _hero_msgs_generate_messages_check_deps_GlobalPlannerActionGoal" />
             <CompileFile command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
@@ -1134,6 +1134,16 @@
          <Option type="4" />
          <MakeCommands>
             <Build command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 actionlib_msgs_generate_messages_nodejs" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="_hero_msgs_generate_messages_check_deps_Buffinfo">
+         <Option working_dir="/home/ycz/ICRA_HERO_ws/build/hero_msgs" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 _hero_msgs_generate_messages_check_deps_Buffinfo" />
             <CompileFile command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/ycz/ICRA_HERO_ws/build/hero_msgs/Makefile&quot;  VERBOSE=1 clean" />
@@ -2849,6 +2859,8 @@
             <Add directory="/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include" />
             <Add directory="/opt/ros/kinetic/include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/eigen3/Eigen" />
             <Add directory="/usr/include/qt4" />
             <Add directory="/usr/include/qt4/QtCore" />
             <Add directory="/usr/include/qt4/QtGui" />
@@ -2882,6 +2894,8 @@
             <Add directory="/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include" />
             <Add directory="/opt/ros/kinetic/include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/eigen3/Eigen" />
             <Add directory="/usr/include/qt4" />
             <Add directory="/usr/include/qt4/QtCore" />
             <Add directory="/usr/include/qt4/QtGui" />

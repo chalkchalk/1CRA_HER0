@@ -16,7 +16,8 @@
 #include <std_msgs/String.h>
 #include <sstream>
 #include "../include/hero_interface/qnode.hpp"
-
+#include "tf/tf.h"
+#include<tf/transform_datatypes.h> //转换函数头文件
 
 /*****************************************************************************
 ** Namespaces
@@ -36,7 +37,7 @@ QNode::QNode(int argc, char** argv ,BattleView *parentBattleView) :
     int i;
 
     for(i=0;i<4;i++)
-        gimbal_yaw_[i] = 0;
+        robot[i].gimbal_yaw = 0;
 }
 
 QNode::~QNode() {
@@ -78,9 +79,18 @@ bool QNode::init() {
     gameStatus_sub_ = n.subscribe<hero_msgs::GameStatus>("judgeSysInfo/game_state", 1000,&QNode::GameStatusCallback,this);
     buffInfo_sub_ = n.subscribe<hero_msgs::Buffinfo>("judgeSysInfo/buff_info", 1000,&QNode::BuffInfoCallback,this);
 
+    goalPoint_pub_[0] = n.advertise<geometry_msgs::PoseStamped>("robot_0/move_base_simple/goal", 5);
+    goalPoint_pub_[1] = n.advertise<geometry_msgs::PoseStamped>("robot_1/move_base_simple/goal", 5);
+    goalPoint_pub_[2] = n.advertise<geometry_msgs::PoseStamped>("robot_2/move_base_simple/goal", 5);
+    goalPoint_pub_[3] = n.advertise<geometry_msgs::PoseStamped>("robot_3/move_base_simple/goal", 5);
+
     client_ = n.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
     GetParam(&n);
 
+    robot[0].robot_name = "robot_0";
+    robot[1].robot_name = "robot_1";
+    robot[2].robot_name = "robot_2";
+    robot[3].robot_name = "robot_3";
     start();
     return true;
 }
@@ -146,7 +156,7 @@ void QNode::RobotStatusCallback3(const hero_msgs::RobotStatus::ConstPtr& msg)
 }
 void QNode::SetRobotStatus(const hero_msgs::RobotStatus::ConstPtr& msg, int index)
 {
-    roboStatus_[index] = *msg;
+    robot[index].roboStatus = *msg;
 
 }
 
@@ -170,27 +180,28 @@ void QNode::RobotHeatCallback3(const hero_msgs::RobotHeat::ConstPtr& msg)
 
 void QNode::SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index)
 {
-    roboHeat_[index].shooter_heat = msg->shooter_heat;
+
+    robot[index].roboHeat = *msg;
 }
 
 void QNode::GimbalYawCallback0(const std_msgs::Float32::ConstPtr &msg)
 {
-    gimbal_yaw_[0] = msg->data;
+    robot[0].gimbal_yaw = msg->data;
 }
 
 void QNode::GimbalYawCallback1(const std_msgs::Float32::ConstPtr &msg)
 {
-    gimbal_yaw_[1] = msg->data;
+    robot[1].gimbal_yaw = msg->data;
 }
 
 void QNode::GimbalYawCallback2(const std_msgs::Float32::ConstPtr &msg)
 {
-    gimbal_yaw_[2] = msg->data;
+    robot[2].gimbal_yaw = msg->data;
 }
 
 void QNode::GimbalYawCallback3(const std_msgs::Float32::ConstPtr &msg)
 {
-    gimbal_yaw_[3] = msg->data;
+    robot[3].gimbal_yaw = msg->data;
 }
 
 bool QNode::init(const std::string &master_url, const std::string &host_url) {
@@ -272,6 +283,21 @@ void QNode::BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr &msg)
         bulletInfo_.bullets.emplace_back(msg->bullets[i]);
 
     bulletInfo_lock.unlock();
+}
+
+void QNode::SendGoalPoint(int robot_num, double x, double y,double yaw)
+{
+    geometry_msgs::PoseStamped pose;
+    geometry_msgs::Quaternion quaternion = tf::createQuaternionMsgFromRollPitchYaw(0,0,yaw * 3.14 / 180); //欧拉角;
+    pose.pose.position.x = x;
+    pose.pose.position.y = y;
+    pose.pose.position.z = 0;
+
+    pose.pose.orientation.x = quaternion.x;
+    pose.pose.orientation.y = quaternion.y;
+    pose.pose.orientation.z = quaternion.z;
+    pose.pose.orientation.w = quaternion.w;
+    goalPoint_pub_[robot_num].publish(pose);
 }
 
 

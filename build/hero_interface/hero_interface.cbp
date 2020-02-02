@@ -39,6 +39,8 @@
             <Add directory="/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include" />
             <Add directory="/opt/ros/kinetic/include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/eigen3/Eigen" />
             <Add directory="/usr/include/qt4" />
             <Add directory="/usr/include/qt4/QtCore" />
             <Add directory="/usr/include/qt4/QtGui" />
@@ -72,6 +74,8 @@
             <Add directory="/home/ycz/ICRA_HERO_ws/src/hero_judgesys/include" />
             <Add directory="/opt/ros/kinetic/include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/eigen3/Eigen" />
             <Add directory="/usr/include/qt4" />
             <Add directory="/usr/include/qt4/QtCore" />
             <Add directory="/usr/include/qt4/QtGui" />

@@ -17,6 +17,9 @@ namespace hero_interface {
 #define BATTLEFIELD_W 8.54
 #define BATTLEFIELD_H 5.54
 
+#define BATTLEFIELD_PIX_W 554
+#define BATTLEFIELD_PIX_H 854
+
 #define BULLET_RADIUS_PIX   8
 class QNode;
 
@@ -38,10 +41,12 @@ public:
         heat = 0;
     };
     Robot(std::string robot_name, std::string robot_color){
+        selected = false;
         health = 2000;
         heat = 0;
         color = robot_color;
         name = robot_name;
+        SetDest = Pose(0,0,0);
         if(robot_name == "robot_0")
             index = 0;
         else if(robot_name == "robot_1")
@@ -60,6 +65,8 @@ public:
     int health;
     int heat;
     Pose pose;
+    bool selected;
+    Pose SetDest;
 };
 
 
@@ -73,15 +80,23 @@ public:
     }
     void GetBattleView(QImage *qImage);
     bool SetRobotPose(std::string robot_num,float x, float y, float yaw);
-
+    void ImageToPosePoint(double *pose_x, double *pose_y, int image_x, int image_y);
+    void SetRobotGoalPoint(int image_x,int image_y);
+    void LeftButtonPress(int x, int y);
+    void LeftButtonDrag(int x, int y);
+    void LeftButtonRelease(int x, int y);
+    void RightButtonPress(int x, int y);
  private:
-    std::vector<Robot* > robots_;
+    std::vector<Robot*> robots_;
     void DrawRobot(QImage *qImage);
     void UpdateHealthHeat();
     QImage background;
     QPainter painter;
     QNode *qNode_;
     QImage buffImage[6];
+    QPoint lastPoint;
+    QPoint dragingPoint;
+    bool isDraging;
 };
 
 }

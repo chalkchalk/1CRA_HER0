@@ -37,7 +37,10 @@ public:
 	void closeEvent(QCloseEvent *event); // Overloaded function
     virtual void paintEvent(QPaintEvent *event);
     void DisplayCountDown(int sec);
-
+    void ShowGameStatus();
+    virtual void mousePressEvent(QMouseEvent *event);
+    virtual void mouseMoveEvent(QMouseEvent *event);
+    virtual void mouseReleaseEvent(QMouseEvent *event);
 public Q_SLOTS:
 
 

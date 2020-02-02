@@ -35,6 +35,7 @@
 #include "std_msgs/Float32.h"
 #include "hero_msgs/GameStatus.h"
 #include "hero_msgs/Buffinfo.h"
+#include "geometry_msgs/PoseStamped.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -69,6 +70,16 @@ public:
              Fatal
      };
 
+    struct Robot
+    {
+        Robot() {}
+        Robot(std::string name) {robot_name = name;}
+        std::string robot_name;
+        hero_msgs::RobotStatus roboStatus;
+        hero_msgs::RobotHeat roboHeat;
+        float gimbal_yaw;
+    };
+
     QStringListModel* loggingModel() { return &logging_model; }
     bool KillRobot(std::string robot_name);
     bool ReviveRobot(std::string robot_name);
@@ -76,32 +87,39 @@ public:
     bool DisarmRobot(std::string robot_name);
     hero_msgs::RobotStatus GetRoboStatus(int index)
     {
-        return roboStatus_[index];
+        return robot[index].roboStatus;
     }
     hero_msgs::RobotHeat GetRoboHeat(int index)
     {
-        return roboHeat_[index];
+        return robot[index].roboHeat;
     }
     int GetRobotHeat(int index)
-    {return roboHeat_[index].shooter_heat;}
+    {return robot[index].roboHeat.shooter_heat;}
     int GetRobotHealth(int index)
-    {return roboStatus_[index].remain_hp;}
+    {return robot[index].roboStatus.remain_hp;}
 
     float GetGimbalYaw(int i)
-    {return gimbal_yaw_[i];}
+    {return robot[i].gimbal_yaw;}
     const hero_msgs::BulletsInfo *GetBulletsInfo()
     {return &bulletInfo_;}
     const hero_msgs::Buffinfo *GetBuffInfo()
     {return &buffInfo_;}
     const hero_msgs::GameStatus *GetGameStatus()
     {return &gameStatus_;}
+    const Robot* GetRobot(int i)
+    {return &robot[i];}
+
     bool SendJudgeSysCall(int comman, std::string robot_name);
 
+    void SendGoalPoint(int robot_num, double x, double y,double yaw);
     double RFID_F_x[6];
     double RFID_F_y[6];
 
     double RFID_height;
     double RFID_width;
+
+
+
 
 
 Q_SIGNALS:
@@ -120,16 +138,18 @@ private:
     QStringListModel logging_model;
     BattleView *parentBattleView_;
     ros::ServiceClient client_;
-    hero_msgs::RobotStatus roboStatus_[4];
-    hero_msgs::RobotHeat roboHeat_[4];
+    //hero_msgs::RobotStatus roboStatus_[4];
+    //hero_msgs::RobotHeat roboHeat_[4];
     hero_msgs::Buffinfo buffInfo_;
     hero_msgs::GameStatus gameStatus_;
     hero_msgs::BulletsInfo bulletInfo_;
     ros::Subscriber gimbal_yaw_sub_[4];
 
+    ros::Publisher goalPoint_pub_[4];
 
-    float gimbal_yaw_[4];
+    //float gimbal_yaw_[4];
 
+    Robot robot[4];
     void RobotStatusCallback0(const hero_msgs::RobotStatus::ConstPtr& msg);
     void RobotStatusCallback1(const hero_msgs::RobotStatus::ConstPtr& msg);
     void RobotStatusCallback2(const hero_msgs::RobotStatus::ConstPtr& msg);

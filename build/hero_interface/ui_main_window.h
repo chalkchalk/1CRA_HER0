@@ -92,7 +92,7 @@ public:
     QPushButton *pushButtonGameStop;
     QPushButton *pushButtonGamePrep;
     QPushButton *pushButtonRFID_KillAll;
-    QLabel *labelHealthStatus;
+    QLabel *labelStatus;
     QWidget *tab_2;
     QWidget *tab_3;
     QMenuBar *menubar;
@@ -325,7 +325,7 @@ public:
         pushButtonRFID_Rfresh->setGeometry(QRect(20, 67, 81, 25));
         lcdNumberTime = new QLCDNumber(groupBox);
         lcdNumberTime->setObjectName(QString::fromUtf8("lcdNumberTime"));
-        lcdNumberTime->setGeometry(QRect(206, 40, 171, 81));
+        lcdNumberTime->setGeometry(QRect(206, 42, 171, 81));
         lcdNumberTime->setFrameShape(QFrame::Box);
         lcdNumberTime->setDigitCount(5);
         lcdNumberTime->setSegmentStyle(QLCDNumber::Filled);
@@ -343,12 +343,12 @@ public:
         pushButtonRFID_KillAll = new QPushButton(groupBox);
         pushButtonRFID_KillAll->setObjectName(QString::fromUtf8("pushButtonRFID_KillAll"));
         pushButtonRFID_KillAll->setGeometry(QRect(110, 67, 81, 25));
-        labelHealthStatus = new QLabel(groupBox);
-        labelHealthStatus->setObjectName(QString::fromUtf8("labelHealthStatus"));
-        labelHealthStatus->setGeometry(QRect(22, 39, 161, 17));
+        labelStatus = new QLabel(groupBox);
+        labelStatus->setObjectName(QString::fromUtf8("labelStatus"));
+        labelStatus->setGeometry(QRect(22, 28, 161, 17));
         QFont font;
-        font.setPointSize(13);
-        labelHealthStatus->setFont(font);
+        font.setPointSize(14);
+        labelStatus->setFont(font);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -432,7 +432,7 @@ public:
         pushButtonGameStop->setText(QApplication::translate("MainWindowDesign", "Stop", 0, QApplication::UnicodeUTF8));
         pushButtonGamePrep->setText(QApplication::translate("MainWindowDesign", "Prep", 0, QApplication::UnicodeUTF8));
         pushButtonRFID_KillAll->setText(QApplication::translate("MainWindowDesign", "Kill All", 0, QApplication::UnicodeUTF8));
-        labelHealthStatus->setText(QApplication::translate("MainWindowDesign", "Status:", 0, QApplication::UnicodeUTF8));
+        labelStatus->setText(QApplication::translate("MainWindowDesign", "Status:", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindowDesign", "JudgeSys", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindowDesign", "Physics", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindowDesign", "Strategy", 0, QApplication::UnicodeUTF8));
