@@ -245,6 +245,7 @@ namespace HeroMultistage {
     {
         RobotTF *robotf = FindRobot(robot_name);
         float yaw_distribute = ((rand()%2000)/1000.0f - 1) * DistributeYaw;
+        float speed_distribute = ((rand()%2000)/1000.0f - 1) * DistributeSpeed;
         if(robot_name=="robot_0")
         {
             if(roboStatus_[0].remain_ammo <= 0||roboStatus_[0].remain_hp<=0 || !roboStatus_[0].shooter_output)
@@ -272,7 +273,7 @@ namespace HeroMultistage {
         {
 
             SendShootRobotInfo(robot_name);
-            bullets_.emplace_back(new Bullet(robot_name,robotf->robot_tf.getOrigin().getX(),robotf->robot_tf.getOrigin().getY(),robotf->GetGimbalAbsoluteYaw() + yaw_distribute,23));
+            bullets_.emplace_back(new Bullet(robot_name,robotf->robot_tf.getOrigin().getX(),robotf->robot_tf.getOrigin().getY(),robotf->GetGimbalAbsoluteYaw() + yaw_distribute,23+speed_distribute));
         }
     }
 
@@ -400,7 +401,7 @@ int main(int argc, char** argv){
         divider++;
         if(divider%3==0)
         {
-          //robotPhysics.RobotShoot("robot_0");
+          robotPhysics.RobotShoot("robot_0");
             //robotPhysics.RobotShoot("robot_3");
         }
 

@@ -97,6 +97,14 @@ bool JudgesysControl::handle_function(hero_msgs::JudgeSysControl::Request &req,
 	return true;
 }
 
+void JudgesysControl::ResetAllRobot()
+{
+    for (auto it = robots_.begin(); it != robots_.end(); ++it) {
+        (*it)->Reset();
+
+    }
+}
+
 void JudgesysControl::SetGamePhase(int phase)
 {
     if(phase == JudgeSysCommand::GAME_PERP)
@@ -111,6 +119,7 @@ void JudgesysControl::SetGamePhase(int phase)
         game_time = 180;
         ROS_INFO("[Hero_judgesys]Set game start");
         RFID_Refresh();
+        ResetAllRobot();
     }
     else if(phase == JudgeSysCommand::GAME_END)
     {

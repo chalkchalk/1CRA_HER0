@@ -54,6 +54,57 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/boost_161_condition_variable.h
  /opt/ros/kinetic/include/boost_161_pthread_condition_variable.h
  /opt/ros/kinetic/include/boost_161_pthread_condition_variable_fwd.h
+ /opt/ros/kinetic/include/g2o/config.h
+ /opt/ros/kinetic/include/g2o/core/base_binary_edge.h
+ /opt/ros/kinetic/include/g2o/core/base_binary_edge.hpp
+ /opt/ros/kinetic/include/g2o/core/base_edge.h
+ /opt/ros/kinetic/include/g2o/core/base_multi_edge.h
+ /opt/ros/kinetic/include/g2o/core/base_multi_edge.hpp
+ /opt/ros/kinetic/include/g2o/core/base_unary_edge.h
+ /opt/ros/kinetic/include/g2o/core/base_unary_edge.hpp
+ /opt/ros/kinetic/include/g2o/core/base_vertex.h
+ /opt/ros/kinetic/include/g2o/core/base_vertex.hpp
+ /opt/ros/kinetic/include/g2o/core/batch_stats.h
+ /opt/ros/kinetic/include/g2o/core/block_solver.h
+ /opt/ros/kinetic/include/g2o/core/block_solver.hpp
+ /opt/ros/kinetic/include/g2o/core/creators.h
+ /opt/ros/kinetic/include/g2o/core/eigen_types.h
+ /opt/ros/kinetic/include/g2o/core/factory.h
+ /opt/ros/kinetic/include/g2o/core/g2o_core_api.h
+ /opt/ros/kinetic/include/g2o/core/hyper_graph.h
+ /opt/ros/kinetic/include/g2o/core/hyper_graph_action.h
+ /opt/ros/kinetic/include/g2o/core/jacobian_workspace.h
+ /opt/ros/kinetic/include/g2o/core/linear_solver.h
+ /opt/ros/kinetic/include/g2o/core/marginal_covariance_cholesky.h
+ /opt/ros/kinetic/include/g2o/core/matrix_operations.h
+ /opt/ros/kinetic/include/g2o/core/matrix_structure.h
+ /opt/ros/kinetic/include/g2o/core/openmp_mutex.h
+ /opt/ros/kinetic/include/g2o/core/optimizable_graph.h
+ /opt/ros/kinetic/include/g2o/core/optimization_algorithm.h
+ /opt/ros/kinetic/include/g2o/core/optimization_algorithm_gauss_newton.h
+ /opt/ros/kinetic/include/g2o/core/optimization_algorithm_levenberg.h
+ /opt/ros/kinetic/include/g2o/core/optimization_algorithm_with_hessian.h
+ /opt/ros/kinetic/include/g2o/core/parameter.h
+ /opt/ros/kinetic/include/g2o/core/parameter_container.h
+ /opt/ros/kinetic/include/g2o/core/robust_kernel.h
+ /opt/ros/kinetic/include/g2o/core/solver.h
+ /opt/ros/kinetic/include/g2o/core/sparse_block_matrix.h
+ /opt/ros/kinetic/include/g2o/core/sparse_block_matrix.hpp
+ /opt/ros/kinetic/include/g2o/core/sparse_block_matrix_ccs.h
+ /opt/ros/kinetic/include/g2o/core/sparse_block_matrix_diagonal.h
+ /opt/ros/kinetic/include/g2o/core/sparse_optimizer.h
+ /opt/ros/kinetic/include/g2o/solvers/cholmod/linear_solver_cholmod.h
+ /opt/ros/kinetic/include/g2o/solvers/csparse/csparse_helper.h
+ /opt/ros/kinetic/include/g2o/solvers/csparse/g2o_csparse_api.h
+ /opt/ros/kinetic/include/g2o/solvers/csparse/g2o_csparse_extension_api.h
+ /opt/ros/kinetic/include/g2o/solvers/csparse/linear_solver_csparse.h
+ /opt/ros/kinetic/include/g2o/stuff/g2o_stuff_api.h
+ /opt/ros/kinetic/include/g2o/stuff/macros.h
+ /opt/ros/kinetic/include/g2o/stuff/misc.h
+ /opt/ros/kinetic/include/g2o/stuff/property.h
+ /opt/ros/kinetic/include/g2o/stuff/sparse_helper.h
+ /opt/ros/kinetic/include/g2o/stuff/string_tools.h
+ /opt/ros/kinetic/include/g2o/stuff/timeutil.h
  /opt/ros/kinetic/include/geometry_msgs/Accel.h
  /opt/ros/kinetic/include/geometry_msgs/Point.h
  /opt/ros/kinetic/include/geometry_msgs/Point32.h
@@ -75,7 +126,6 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/geometry_msgs/Vector3Stamped.h
  /opt/ros/kinetic/include/laser_geometry/laser_geometry.h
  /opt/ros/kinetic/include/message_filters/connection.h
- /opt/ros/kinetic/include/message_filters/macros.h
  /opt/ros/kinetic/include/message_filters/signal1.h
  /opt/ros/kinetic/include/message_filters/simple_filter.h
  /opt/ros/kinetic/include/message_filters/subscriber.h
@@ -189,6 +239,8 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
  /usr/include/eigen3/Eigen/Cholesky
  /usr/include/eigen3/Eigen/Core
+ /usr/include/eigen3/Eigen/Dense
+ /usr/include/eigen3/Eigen/Eigenvalues
  /usr/include/eigen3/Eigen/Geometry
  /usr/include/eigen3/Eigen/Householder
  /usr/include/eigen3/Eigen/Jacobi
@@ -317,6 +369,25 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h
  /usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h
  /usr/include/eigen3/Eigen/src/Core/util/XprHelper.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./ComplexSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./RealQZ.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./RealSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./Tridiagonalization.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/HessenbergDecomposition.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h
  /usr/include/eigen3/Eigen/src/Geometry/AlignedBox.h
  /usr/include/eigen3/Eigen/src/Geometry/AngleAxis.h
  /usr/include/eigen3/Eigen/src/Geometry/EulerAngles.h
@@ -374,6 +445,20 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /usr/include/pcl-1.7/pcl/point_traits.h
  /usr/include/pcl-1.7/pcl/point_types.h
  /usr/include/pcl-1.7/pcl/register_point_struct.h
+ /usr/include/suitesparse/SuiteSparse_config.h
+ /usr/include/suitesparse/cholmod.h
+ /usr/include/suitesparse/cholmod_camd.h
+ /usr/include/suitesparse/cholmod_check.h
+ /usr/include/suitesparse/cholmod_cholesky.h
+ /usr/include/suitesparse/cholmod_config.h
+ /usr/include/suitesparse/cholmod_core.h
+ /usr/include/suitesparse/cholmod_gpu.h
+ /usr/include/suitesparse/cholmod_io64.h
+ /usr/include/suitesparse/cholmod_matrixops.h
+ /usr/include/suitesparse/cholmod_modify.h
+ /usr/include/suitesparse/cholmod_partition.h
+ /usr/include/suitesparse/cholmod_supernodal.h
+ /usr/include/suitesparse/cs.h
  /usr/include/x86_64-linux-gnu/bits/select.h
  /usr/include/x86_64-linux-gnu/bits/select2.h
  /usr/include/x86_64-linux-gnu/bits/sigset.h
@@ -429,6 +514,57 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/boost_161_condition_variable.h
  /opt/ros/kinetic/include/boost_161_pthread_condition_variable.h
  /opt/ros/kinetic/include/boost_161_pthread_condition_variable_fwd.h
+ /opt/ros/kinetic/include/g2o/config.h
+ /opt/ros/kinetic/include/g2o/core/base_binary_edge.h
+ /opt/ros/kinetic/include/g2o/core/base_binary_edge.hpp
+ /opt/ros/kinetic/include/g2o/core/base_edge.h
+ /opt/ros/kinetic/include/g2o/core/base_multi_edge.h
+ /opt/ros/kinetic/include/g2o/core/base_multi_edge.hpp
+ /opt/ros/kinetic/include/g2o/core/base_unary_edge.h
+ /opt/ros/kinetic/include/g2o/core/base_unary_edge.hpp
+ /opt/ros/kinetic/include/g2o/core/base_vertex.h
+ /opt/ros/kinetic/include/g2o/core/base_vertex.hpp
+ /opt/ros/kinetic/include/g2o/core/batch_stats.h
+ /opt/ros/kinetic/include/g2o/core/block_solver.h
+ /opt/ros/kinetic/include/g2o/core/block_solver.hpp
+ /opt/ros/kinetic/include/g2o/core/creators.h
+ /opt/ros/kinetic/include/g2o/core/eigen_types.h
+ /opt/ros/kinetic/include/g2o/core/factory.h
+ /opt/ros/kinetic/include/g2o/core/g2o_core_api.h
+ /opt/ros/kinetic/include/g2o/core/hyper_graph.h
+ /opt/ros/kinetic/include/g2o/core/hyper_graph_action.h
+ /opt/ros/kinetic/include/g2o/core/jacobian_workspace.h
+ /opt/ros/kinetic/include/g2o/core/linear_solver.h
+ /opt/ros/kinetic/include/g2o/core/marginal_covariance_cholesky.h
+ /opt/ros/kinetic/include/g2o/core/matrix_operations.h
+ /opt/ros/kinetic/include/g2o/core/matrix_structure.h
+ /opt/ros/kinetic/include/g2o/core/openmp_mutex.h
+ /opt/ros/kinetic/include/g2o/core/optimizable_graph.h
+ /opt/ros/kinetic/include/g2o/core/optimization_algorithm.h
+ /opt/ros/kinetic/include/g2o/core/optimization_algorithm_gauss_newton.h
+ /opt/ros/kinetic/include/g2o/core/optimization_algorithm_levenberg.h
+ /opt/ros/kinetic/include/g2o/core/optimization_algorithm_with_hessian.h
+ /opt/ros/kinetic/include/g2o/core/parameter.h
+ /opt/ros/kinetic/include/g2o/core/parameter_container.h
+ /opt/ros/kinetic/include/g2o/core/robust_kernel.h
+ /opt/ros/kinetic/include/g2o/core/solver.h
+ /opt/ros/kinetic/include/g2o/core/sparse_block_matrix.h
+ /opt/ros/kinetic/include/g2o/core/sparse_block_matrix.hpp
+ /opt/ros/kinetic/include/g2o/core/sparse_block_matrix_ccs.h
+ /opt/ros/kinetic/include/g2o/core/sparse_block_matrix_diagonal.h
+ /opt/ros/kinetic/include/g2o/core/sparse_optimizer.h
+ /opt/ros/kinetic/include/g2o/solvers/cholmod/linear_solver_cholmod.h
+ /opt/ros/kinetic/include/g2o/solvers/csparse/csparse_helper.h
+ /opt/ros/kinetic/include/g2o/solvers/csparse/g2o_csparse_api.h
+ /opt/ros/kinetic/include/g2o/solvers/csparse/g2o_csparse_extension_api.h
+ /opt/ros/kinetic/include/g2o/solvers/csparse/linear_solver_csparse.h
+ /opt/ros/kinetic/include/g2o/stuff/g2o_stuff_api.h
+ /opt/ros/kinetic/include/g2o/stuff/macros.h
+ /opt/ros/kinetic/include/g2o/stuff/misc.h
+ /opt/ros/kinetic/include/g2o/stuff/property.h
+ /opt/ros/kinetic/include/g2o/stuff/sparse_helper.h
+ /opt/ros/kinetic/include/g2o/stuff/string_tools.h
+ /opt/ros/kinetic/include/g2o/stuff/timeutil.h
  /opt/ros/kinetic/include/geometry_msgs/Point.h
  /opt/ros/kinetic/include/geometry_msgs/Point32.h
  /opt/ros/kinetic/include/geometry_msgs/PointStamped.h
@@ -447,7 +583,6 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/geometry_msgs/Vector3Stamped.h
  /opt/ros/kinetic/include/laser_geometry/laser_geometry.h
  /opt/ros/kinetic/include/message_filters/connection.h
- /opt/ros/kinetic/include/message_filters/macros.h
  /opt/ros/kinetic/include/message_filters/signal1.h
  /opt/ros/kinetic/include/message_filters/simple_filter.h
  /opt/ros/kinetic/include/message_filters/subscriber.h
@@ -560,6 +695,8 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
  /usr/include/eigen3/Eigen/Cholesky
  /usr/include/eigen3/Eigen/Core
+ /usr/include/eigen3/Eigen/Dense
+ /usr/include/eigen3/Eigen/Eigenvalues
  /usr/include/eigen3/Eigen/Geometry
  /usr/include/eigen3/Eigen/Householder
  /usr/include/eigen3/Eigen/Jacobi
@@ -688,6 +825,25 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h
  /usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h
  /usr/include/eigen3/Eigen/src/Core/util/XprHelper.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./ComplexSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./RealQZ.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./RealSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./Tridiagonalization.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/HessenbergDecomposition.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h
  /usr/include/eigen3/Eigen/src/Geometry/AlignedBox.h
  /usr/include/eigen3/Eigen/src/Geometry/AngleAxis.h
  /usr/include/eigen3/Eigen/src/Geometry/EulerAngles.h
@@ -745,6 +901,20 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /usr/include/pcl-1.7/pcl/point_traits.h
  /usr/include/pcl-1.7/pcl/point_types.h
  /usr/include/pcl-1.7/pcl/register_point_struct.h
+ /usr/include/suitesparse/SuiteSparse_config.h
+ /usr/include/suitesparse/cholmod.h
+ /usr/include/suitesparse/cholmod_camd.h
+ /usr/include/suitesparse/cholmod_check.h
+ /usr/include/suitesparse/cholmod_cholesky.h
+ /usr/include/suitesparse/cholmod_config.h
+ /usr/include/suitesparse/cholmod_core.h
+ /usr/include/suitesparse/cholmod_gpu.h
+ /usr/include/suitesparse/cholmod_io64.h
+ /usr/include/suitesparse/cholmod_matrixops.h
+ /usr/include/suitesparse/cholmod_modify.h
+ /usr/include/suitesparse/cholmod_partition.h
+ /usr/include/suitesparse/cholmod_supernodal.h
+ /usr/include/suitesparse/cs.h
  /usr/include/x86_64-linux-gnu/bits/select.h
  /usr/include/x86_64-linux-gnu/bits/select2.h
  /usr/include/x86_64-linux-gnu/bits/sigset.h
@@ -783,6 +953,24 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/boost_161_condition_variable.h
  /opt/ros/kinetic/include/boost_161_pthread_condition_variable.h
  /opt/ros/kinetic/include/boost_161_pthread_condition_variable_fwd.h
+ /opt/ros/kinetic/include/g2o/config.h
+ /opt/ros/kinetic/include/g2o/core/base_vertex.h
+ /opt/ros/kinetic/include/g2o/core/base_vertex.hpp
+ /opt/ros/kinetic/include/g2o/core/creators.h
+ /opt/ros/kinetic/include/g2o/core/eigen_types.h
+ /opt/ros/kinetic/include/g2o/core/g2o_core_api.h
+ /opt/ros/kinetic/include/g2o/core/hyper_graph.h
+ /opt/ros/kinetic/include/g2o/core/hyper_graph_action.h
+ /opt/ros/kinetic/include/g2o/core/jacobian_workspace.h
+ /opt/ros/kinetic/include/g2o/core/openmp_mutex.h
+ /opt/ros/kinetic/include/g2o/core/optimizable_graph.h
+ /opt/ros/kinetic/include/g2o/core/parameter.h
+ /opt/ros/kinetic/include/g2o/core/parameter_container.h
+ /opt/ros/kinetic/include/g2o/stuff/g2o_stuff_api.h
+ /opt/ros/kinetic/include/g2o/stuff/macros.h
+ /opt/ros/kinetic/include/g2o/stuff/misc.h
+ /opt/ros/kinetic/include/g2o/stuff/property.h
+ /opt/ros/kinetic/include/g2o/stuff/string_tools.h
  /opt/ros/kinetic/include/geometry_msgs/Point.h
  /opt/ros/kinetic/include/geometry_msgs/Point32.h
  /opt/ros/kinetic/include/geometry_msgs/PointStamped.h
@@ -801,7 +989,6 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/geometry_msgs/Vector3Stamped.h
  /opt/ros/kinetic/include/laser_geometry/laser_geometry.h
  /opt/ros/kinetic/include/message_filters/connection.h
- /opt/ros/kinetic/include/message_filters/macros.h
  /opt/ros/kinetic/include/message_filters/signal1.h
  /opt/ros/kinetic/include/message_filters/simple_filter.h
  /opt/ros/kinetic/include/message_filters/subscriber.h
@@ -912,6 +1099,8 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
  /usr/include/eigen3/Eigen/Cholesky
  /usr/include/eigen3/Eigen/Core
+ /usr/include/eigen3/Eigen/Dense
+ /usr/include/eigen3/Eigen/Eigenvalues
  /usr/include/eigen3/Eigen/Geometry
  /usr/include/eigen3/Eigen/Householder
  /usr/include/eigen3/Eigen/Jacobi
@@ -1040,6 +1229,25 @@ hero_planning/local_planner/timed_elastic_band/CMakeFiles/timed_elastic_band.dir
  /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h
  /usr/include/eigen3/Eigen/src/Core/util/StaticAssert.h
  /usr/include/eigen3/Eigen/src/Core/util/XprHelper.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./ComplexSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./HessenbergDecomposition.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./RealQZ.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./RealSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/./Tridiagonalization.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexSchur_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/HessenbergDecomposition.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_MKL.h
+ /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h
  /usr/include/eigen3/Eigen/src/Geometry/AlignedBox.h
  /usr/include/eigen3/Eigen/src/Geometry/AngleAxis.h
  /usr/include/eigen3/Eigen/src/Geometry/EulerAngles.h

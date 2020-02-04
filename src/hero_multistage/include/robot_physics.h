@@ -13,7 +13,9 @@
 #include "state/command_code.h"
 #include "hero_msgs/RobotStatus.h"
 
-#define DistributeYaw 1.2f
+#define DistributeYaw 1.5f
+#define DistributeSpeed 2.0f
+
 namespace HeroMultistage {
 class  RobotPhysics
 {

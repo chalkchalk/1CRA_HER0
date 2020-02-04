@@ -136,7 +136,6 @@ judgesys_control_node_EXTERNAL_OBJECTS =
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_judgesys/judgesys_control_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_judgesys/judgesys_control_node: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_judgesys/judgesys_control_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_judgesys/judgesys_control_node: /usr/local/lib/libglog.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_judgesys/judgesys_control_node: hero_judgesys/CMakeFiles/judgesys_control_node.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ycz/ICRA_HERO_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable /home/ycz/ICRA_HERO_ws/devel/lib/hero_judgesys/judgesys_control_node"
 	cd /home/ycz/ICRA_HERO_ws/build/hero_judgesys && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/judgesys_control_node.dir/link.txt --verbose=$(VERBOSE)

@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -133,23 +133,10 @@ boost::shared_ptr<g2o::SparseOptimizer> TebOptimal::InitOptimizer() {
 
 
   boost::shared_ptr<g2o::SparseOptimizer> optimizer = boost::make_shared<g2o::SparseOptimizer>();
-
-
-
- // TebLinearSolver* linearSolver = new TebLinearSolver();
-  std::unique_ptr<TebLinearSolver> linearSolver ( new TebLinearSolver() );
-
+  TebLinearSolver* linearSolver = new TebLinearSolver();
   linearSolver->setBlockOrdering(true);
-  //TebBlockSolver* blockSolver = new TebBlockSolver(linearSolver);
-
- // std::unique_ptr<Block> solver_ptr (new Block( std::move(linearSolver) ));
-
-  std::unique_ptr<TebBlockSolver> blockSolver (new TebBlockSolver( std::move(linearSolver) ));
-
-
-  //g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(blockSolver);
-
-  g2o::OptimizationAlgorithmLevenberg* solver (new g2o::OptimizationAlgorithmLevenberg( std::move(blockSolver) ));
+  TebBlockSolver* blockSolver = new TebBlockSolver(linearSolver);
+  g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(blockSolver);
 
   optimizer->setAlgorithm(solver);
 

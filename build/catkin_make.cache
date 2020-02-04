@@ -1,2 +1,2 @@
 hero_bringup:hero_common:hero_costmap:hero_decision:hero_interface:hero_judgesys:hero_localization:hero_mapping:hero_msgs:hero_multistage:hero_planning
--G CodeBlocks - Unix Makefiles -DCMAKE_BUILD_TYPE=Release -DCATKIN_DEVEL_PREFIX=/home/ycz/ICRA_HERO_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ycz/ICRA_HERO_ws/install
+-DCATKIN_DEVEL_PREFIX=/home/ycz/ICRA_HERO_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ycz/ICRA_HERO_ws/install -G Unix Makefiles

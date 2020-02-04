@@ -90,15 +90,15 @@ vel_converter_EXTERNAL_OBJECTS =
 
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: hero_planning/local_planner/CMakeFiles/vel_converter.dir/src/vel_converter.cpp.o
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: hero_planning/local_planner/CMakeFiles/vel_converter.dir/build.make
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_csparse_extension.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_core.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_stuff.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_types_slam2d.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_types_slam3d.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_solver_cholmod.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_solver_pcg.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_solver_csparse.so
-/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /usr/local/lib/libg2o_incremental.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_csparse_extension.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_core.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_stuff.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_types_slam2d.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_types_slam3d.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_solver_cholmod.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_solver_pcg.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_solver_csparse.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libg2o_incremental.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libpcl_ros_filters.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libpcl_ros_io.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/vel_converter: /opt/ros/kinetic/lib/libpcl_ros_tf.so

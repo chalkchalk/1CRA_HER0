@@ -85,6 +85,8 @@ namespace HeroMultistage {
         std::vector<Point2D> pointsIntersect;
         Point2D chassisSidesMid[4];
         std::vector<int> sides;
+        Point2D chassisLeft;
+        Point2D chassisRight;
         pointsfeedback->clear();
         pointsfeedback->emplace_back(chassisMid);
         bool isHit = false;
@@ -92,8 +94,16 @@ namespace HeroMultistage {
             return 0;
         for(i=0;i<4;i++) //front left back right
         {
-            Point2D chassisLeft = hero_common::PointRotateAroundPoint(Point2D(RobotLength*0.5, RobotWidth*0.5) + chassisMid, chassisMid, chassisYaw - i * 3.14159 * 0.5);
-            Point2D chassisRight = hero_common::PointRotateAroundPoint(Point2D(RobotLength*0.5, -RobotWidth*0.5) + chassisMid, chassisMid, chassisYaw - i * 3.14159 * 0.5);
+          if(i%2)
+          {
+            chassisLeft = hero_common::PointRotateAroundPoint(Point2D(RobotLength*0.5, RobotWidth*0.5) + chassisMid, chassisMid, chassisYaw - i * 3.14159 * 0.5);
+            chassisRight = hero_common::PointRotateAroundPoint(Point2D(RobotLength*0.5, -RobotWidth*0.5) + chassisMid, chassisMid, chassisYaw - i * 3.14159 * 0.5);
+          }
+          else {
+
+            chassisLeft = hero_common::PointRotateAroundPoint(Point2D(RobotWidth*0.5, RobotLength*0.5) + chassisMid, chassisMid, chassisYaw - i * 3.14159 * 0.5);
+            chassisRight = hero_common::PointRotateAroundPoint(Point2D(RobotWidth*0.5, -RobotLength*0.5) + chassisMid, chassisMid, chassisYaw - i * 3.14159 * 0.5);
+          }
             pointsfeedback->emplace_back(chassisLeft);
             pointsfeedback->emplace_back(chassisRight);
             chassisSidesMid[i] = (chassisLeft + chassisRight) * 0.5;

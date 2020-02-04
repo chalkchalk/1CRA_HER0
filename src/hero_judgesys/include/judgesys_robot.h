@@ -76,6 +76,8 @@ namespace hero_judgesys{
 
         void Cool(int fre);
 
+        void Reset();
+
 
         private:
         hero_common::ErrorInfo Init(std::string robot_num, std::string color);

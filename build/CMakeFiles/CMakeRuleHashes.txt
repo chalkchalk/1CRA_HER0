@@ -54,7 +54,6 @@ e910d390d3e4598fef442a9a76f94ef0 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist
 8574b004718e6b204d0c1cb62ac65446 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_BonusStatus.py
 2e15c1dfc829cff7f0fa0d625db17016 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_Buffinfo.py
 abc5b17fd0e9b5b136a4b513df8f735b /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_BulletMove.py
-d887509ed4ac2a8b79efff55e7b21a59 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_Bulletmove.py
 b81edb11f0acebe5930a07a0c27c7108 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_BulletsInfo.py
 a3e13f61edf327c5e57d8e050388608d /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_GameResult.py
 f56f2945d1a6e53a17b37ccf22b53e35 /home/ycz/ICRA_HERO_ws/devel/lib/python2.7/dist-packages/hero_msgs/msg/_GameStatus.py
@@ -102,7 +101,6 @@ bdad534a8d986c6c73a8d36bb5a05061 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/
 7cf3a565f8222eeb49b4fc9b6a146ab9 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/BonusStatus.lisp
 991a74bc5612ef4f0959aa9704541861 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/Buffinfo.lisp
 5accec46349aec47756cc34b60c87f07 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/BulletMove.lisp
-195cf79fbb4adc5a7baa73673eeb6b6f /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/Bulletmove.lisp
 0daf5a523e074f02211247ccf343facc /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/BulletsInfo.lisp
 0ec9f47b88b668fb01474143caf6ede7 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/GameResult.lisp
 6468dfac6db767d99ea86c48acdb5340 /home/ycz/ICRA_HERO_ws/devel/share/common-lisp/ros/hero_msgs/msg/GameStatus.lisp
@@ -148,7 +146,6 @@ d0338ce9aa3c3c5db527229b95c616f1 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ro
 8e0b9a6df0fb85d87bcfad4f7d6ede8c /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/BonusStatus.js
 6300bb75dec57a0ce4df413db13165b1 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/Buffinfo.js
 08cf1f3264cbc48875dfd951db4c7cb3 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/BulletMove.js
-46e4b34701be8b7711c368ebfd52ab58 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/Bulletmove.js
 f0ea906b97f9f412456bb98707d4c053 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/BulletsInfo.js
 3a1d9e9c3cb12c61f31aecc2bead4792 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/GameResult.js
 35a5269d66110ae9627f5b58f75ee539 /home/ycz/ICRA_HERO_ws/devel/share/gennodejs/ros/hero_msgs/msg/GameStatus.js
@@ -195,7 +192,6 @@ aa36c4e12a3caeb344079a041cde5ea2 /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/h
 2fd9e02ad6dcbe445f17f629cc7cc8aa /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/BonusStatus.l
 77e7a4d4354125d732bbd2f6be0d2f4b /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/Buffinfo.l
 c69f9126130fa7069ded56b4766a1e36 /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/BulletMove.l
-beb9e47a805392962a8853e670a43c7a /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/Bulletmove.l
 f3f9c5b10bed35047881376dee1111b9 /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/BulletsInfo.l
 21c79b9d426bb72256d3f0109cd36bbd /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/GameResult.l
 df673c954069fae8ea26aa44861eea6f /home/ycz/ICRA_HERO_ws/devel/share/roseus/ros/hero_msgs/msg/GameStatus.l

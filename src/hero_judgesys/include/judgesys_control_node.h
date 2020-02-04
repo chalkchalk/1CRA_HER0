@@ -51,6 +51,7 @@ public:
     void BuffHandle(int fre);
     void GameTick(int fre);
     void SetGamePhase(int phase);
+    void ResetAllRobot();
 
     enum GamePhase{
         PREPERATION = 0,

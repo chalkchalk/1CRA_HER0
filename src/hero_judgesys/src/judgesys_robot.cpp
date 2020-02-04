@@ -28,16 +28,7 @@ ErrorInfo JudgesysRobot::Init(std::string robot_num, std::string color){
 	}
 	color_ = color;
 	robot_num_ = robot_num;
-    health_ = hero_judgesys::JudgesysControl::MaxHealth;
-    heat_cooling_limit_ = hero_judgesys::JudgesysControl::HeatLimit;
-	heat_ = 0;
-    if(robot_num == "robot_0"|| robot_num == "robot_2")
-        ammo_ = 50;
-    else {
-        ammo_ = 0;
-    }
-    move_debuff_time_ = 0;
-    shoot_debuff_time_ = 0;
+    Reset();
 	ros::NodeHandle nh_;
     judgeVel_pub_ = nh_.advertise<geometry_msgs::Twist>(robot_num + "/" + "cmd_vel", 5);
     judgeStatus_pub_ = nh_.advertise<hero_msgs::RobotStatus>("judgeSysInfo/" + robot_num + "/status",5);
@@ -94,8 +85,9 @@ void JudgesysRobot::PublishVel()
 		output_cmd_vel_.linear.x = raw_cmd_vel_.linear.x;
 		output_cmd_vel_.linear.y = raw_cmd_vel_.linear.y;
 		output_cmd_vel_.angular.z = raw_cmd_vel_.angular.z;
+        judgeVel_pub_.publish(output_cmd_vel_);
 	}
-    judgeVel_pub_.publish(output_cmd_vel_);
+
 }
 
 void JudgesysRobot::PublishInfo()
@@ -210,6 +202,20 @@ void JudgesysRobot::BeHit(hero_common::JudgeSysCommand command)
     }
     if(health_<0)
         health_ = 0;
+}
+
+void JudgesysRobot::Reset()
+{
+    health_ = hero_judgesys::JudgesysControl::MaxHealth;
+    heat_cooling_limit_ = hero_judgesys::JudgesysControl::HeatLimit;
+    heat_ = 0;
+    if(robot_num_ == "robot_0"|| robot_num_ == "robot_2")
+        ammo_ = 50;
+    else {
+        ammo_ = 0;
+    }
+    move_debuff_time_ = 0;
+    shoot_debuff_time_ = 0;
 }
 
 }

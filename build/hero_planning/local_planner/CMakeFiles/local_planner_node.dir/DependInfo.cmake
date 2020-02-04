@@ -51,7 +51,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/tcl"
   "/usr/include/eigen3"
   "/usr/include/suitesparse"
-  "/usr/local/include/g2o"
+  "/opt/ros/kinetic/include/g2o"
   "/home/ycz/ICRA_HERO_ws/devel/include"
   "/home/ycz/ICRA_HERO_ws/src/hero_common/include"
   "/home/ycz/ICRA_HERO_ws/src/hero_costmap/include"

@@ -8,7 +8,6 @@ from ._ArmorDetectionResult import *
 from ._BonusStatus import *
 from ._Buffinfo import *
 from ._BulletMove import *
-from ._Bulletmove import *
 from ._BulletsInfo import *
 from ._GameResult import *
 from ._GameStatus import *
