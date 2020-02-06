@@ -21,10 +21,17 @@ class ShootCmdRequest {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
+      this.robot_num = null;
       this.mode = null;
       this.number = null;
     }
     else {
+      if (initObj.hasOwnProperty('robot_num')) {
+        this.robot_num = initObj.robot_num
+      }
+      else {
+        this.robot_num = '';
+      }
       if (initObj.hasOwnProperty('mode')) {
         this.mode = initObj.mode
       }
@@ -42,6 +49,8 @@ class ShootCmdRequest {
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type ShootCmdRequest
+    // Serialize message field [robot_num]
+    bufferOffset = _serializer.string(obj.robot_num, buffer, bufferOffset);
     // Serialize message field [mode]
     bufferOffset = _serializer.uint8(obj.mode, buffer, bufferOffset);
     // Serialize message field [number]
@@ -53,6 +62,8 @@ class ShootCmdRequest {
     //deserializes a message object of type ShootCmdRequest
     let len;
     let data = new ShootCmdRequest(null);
+    // Deserialize message field [robot_num]
+    data.robot_num = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [mode]
     data.mode = _deserializer.uint8(buffer, bufferOffset);
     // Deserialize message field [number]
@@ -61,7 +72,9 @@ class ShootCmdRequest {
   }
 
   static getMessageSize(object) {
-    return 2;
+    let length = 0;
+    length += object.robot_num.length;
+    return length + 6;
   }
 
   static datatype() {
@@ -71,7 +84,7 @@ class ShootCmdRequest {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'e60d1d1007f97ae14e2d2f584fbf2502';
+    return '1848194f0789e026dfc605fc1be05359';
   }
 
   static messageDefinition() {
@@ -80,6 +93,7 @@ class ShootCmdRequest {
     uint8 STOP = 0
     uint8 ONCE = 1
     uint8 CONTINUOUS = 2
+    string robot_num
     uint8 mode
     uint8 number
     
@@ -92,6 +106,13 @@ class ShootCmdRequest {
       msg = {};
     }
     const resolved = new ShootCmdRequest(null);
+    if (msg.robot_num !== undefined) {
+      resolved.robot_num = msg.robot_num;
+    }
+    else {
+      resolved.robot_num = ''
+    }
+
     if (msg.mode !== undefined) {
       resolved.mode = msg.mode;
     }
@@ -192,6 +213,6 @@ class ShootCmdResponse {
 module.exports = {
   Request: ShootCmdRequest,
   Response: ShootCmdResponse,
-  md5sum() { return '4a5bfc809f6670479f63201258fb4866'; },
+  md5sum() { return '4adbabcc97afbd3e618602740ecc0659'; },
   datatype() { return 'hero_msgs/ShootCmd'; }
 };

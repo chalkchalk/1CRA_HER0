@@ -41,7 +41,8 @@ namespace hero_judgesys{
         {return ammo_;}
 
         void RawVelCallback(const geometry_msgs::Twist::ConstPtr& msg);
-        
+        void RawVelCallback_act(const geometry_msgs::Twist::ConstPtr& msg);
+
         void PublishVel();
         void PublishInfo();
         
@@ -98,7 +99,8 @@ namespace hero_judgesys{
         ros::Publisher judgeVel_pub_;
         ros::Publisher judgeStatus_pub_;
         ros::Publisher judgeHeat_pub_;
-        ros::Subscriber judge_sub_;
+        ros::Subscriber judge_sub_[2];
+        int raw_cmd_selector_count;
 
         hero_msgs::RobotStatus roboStatus_;
         hero_msgs::RobotHeat roboHeat_;

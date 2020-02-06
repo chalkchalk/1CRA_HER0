@@ -23,6 +23,7 @@
 #include <QtGui/QMenuBar>
 #include <QtGui/QProgressBar>
 #include <QtGui/QPushButton>
+#include <QtGui/QRadioButton>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTabWidget>
 #include <QtGui/QWidget>
@@ -94,6 +95,10 @@ public:
     QPushButton *pushButtonRFID_KillAll;
     QLabel *labelStatus;
     QWidget *tab_2;
+    QGroupBox *groupBox_simu_ctrl;
+    QRadioButton *radioButton_ctrl_rts;
+    QRadioButton *radioButton_ctrl_act;
+    QRadioButton *radioButton_ctrl_eve;
     QWidget *tab_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -352,6 +357,19 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        groupBox_simu_ctrl = new QGroupBox(tab_2);
+        groupBox_simu_ctrl->setObjectName(QString::fromUtf8("groupBox_simu_ctrl"));
+        groupBox_simu_ctrl->setGeometry(QRect(30, 20, 381, 61));
+        groupBox_simu_ctrl->setStyleSheet(QString::fromUtf8("background-color: rgb(211, 215, 207);"));
+        radioButton_ctrl_rts = new QRadioButton(groupBox_simu_ctrl);
+        radioButton_ctrl_rts->setObjectName(QString::fromUtf8("radioButton_ctrl_rts"));
+        radioButton_ctrl_rts->setGeometry(QRect(20, 30, 71, 23));
+        radioButton_ctrl_act = new QRadioButton(groupBox_simu_ctrl);
+        radioButton_ctrl_act->setObjectName(QString::fromUtf8("radioButton_ctrl_act"));
+        radioButton_ctrl_act->setGeometry(QRect(150, 30, 51, 23));
+        radioButton_ctrl_eve = new QRadioButton(groupBox_simu_ctrl);
+        radioButton_ctrl_eve->setObjectName(QString::fromUtf8("radioButton_ctrl_eve"));
+        radioButton_ctrl_eve->setGeometry(QRect(279, 30, 51, 23));
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
@@ -434,7 +452,11 @@ public:
         pushButtonRFID_KillAll->setText(QApplication::translate("MainWindowDesign", "Kill All", 0, QApplication::UnicodeUTF8));
         labelStatus->setText(QApplication::translate("MainWindowDesign", "Status:", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindowDesign", "JudgeSys", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindowDesign", "Physics", 0, QApplication::UnicodeUTF8));
+        groupBox_simu_ctrl->setTitle(QApplication::translate("MainWindowDesign", "Control Mode", 0, QApplication::UnicodeUTF8));
+        radioButton_ctrl_rts->setText(QApplication::translate("MainWindowDesign", "RTS", 0, QApplication::UnicodeUTF8));
+        radioButton_ctrl_act->setText(QApplication::translate("MainWindowDesign", "ACT", 0, QApplication::UnicodeUTF8));
+        radioButton_ctrl_eve->setText(QApplication::translate("MainWindowDesign", "EVE", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindowDesign", "Simulation", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindowDesign", "Strategy", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

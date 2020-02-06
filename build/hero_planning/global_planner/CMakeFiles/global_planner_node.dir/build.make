@@ -343,6 +343,7 @@ global_planner_node_EXTERNAL_OBJECTS =
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/global_planner_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/global_planner_node: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/global_planner_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+/home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/global_planner_node: /usr/local/lib/libglog.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/global_planner_node: /opt/ros/kinetic/lib/liblaser_geometry.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/global_planner_node: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/ycz/ICRA_HERO_ws/devel/lib/hero_planning/global_planner_node: /opt/ros/kinetic/lib/libroscpp_serialization.so

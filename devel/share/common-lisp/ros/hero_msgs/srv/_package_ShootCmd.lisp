@@ -1,5 +1,7 @@
 (cl:in-package hero_msgs-srv)
-(cl:export '(MODE-VAL
+(cl:export '(ROBOT_NUM-VAL
+          ROBOT_NUM
+          MODE-VAL
           MODE
           NUMBER-VAL
           NUMBER

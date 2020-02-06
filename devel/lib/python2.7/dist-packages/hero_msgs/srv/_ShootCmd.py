@@ -7,12 +7,13 @@ import struct
 
 
 class ShootCmdRequest(genpy.Message):
-  _md5sum = "e60d1d1007f97ae14e2d2f584fbf2502"
+  _md5sum = "1848194f0789e026dfc605fc1be05359"
   _type = "hero_msgs/ShootCmdRequest"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """uint8 STOP = 0
 uint8 ONCE = 1
 uint8 CONTINUOUS = 2
+string robot_num
 uint8 mode
 uint8 number
 """
@@ -21,8 +22,8 @@ uint8 number
   ONCE = 1
   CONTINUOUS = 2
 
-  __slots__ = ['mode','number']
-  _slot_types = ['uint8','uint8']
+  __slots__ = ['robot_num','mode','number']
+  _slot_types = ['string','uint8','uint8']
 
   def __init__(self, *args, **kwds):
     """
@@ -32,7 +33,7 @@ uint8 number
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       mode,number
+       robot_num,mode,number
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -41,11 +42,14 @@ uint8 number
     if args or kwds:
       super(ShootCmdRequest, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
+      if self.robot_num is None:
+        self.robot_num = ''
       if self.mode is None:
         self.mode = 0
       if self.number is None:
         self.number = 0
     else:
+      self.robot_num = ''
       self.mode = 0
       self.number = 0
 
@@ -61,6 +65,12 @@ uint8 number
     :param buff: buffer, ``StringIO``
     """
     try:
+      _x = self.robot_num
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
       buff.write(_get_struct_2B().pack(_x.mode, _x.number))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
@@ -73,6 +83,15 @@ uint8 number
     """
     try:
       end = 0
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.robot_num = str[start:end].decode('utf-8')
+      else:
+        self.robot_num = str[start:end]
       _x = self
       start = end
       end += 2
@@ -89,6 +108,12 @@ uint8 number
     :param numpy: numpy python module
     """
     try:
+      _x = self.robot_num
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
       buff.write(_get_struct_2B().pack(_x.mode, _x.number))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
@@ -102,6 +127,15 @@ uint8 number
     """
     try:
       end = 0
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.robot_num = str[start:end].decode('utf-8')
+      else:
+        self.robot_num = str[start:end]
       _x = self
       start = end
       end += 2
@@ -231,6 +265,6 @@ def _get_struct_B():
     return _struct_B
 class ShootCmd(object):
   _type          = 'hero_msgs/ShootCmd'
-  _md5sum = '4a5bfc809f6670479f63201258fb4866'
+  _md5sum = '4adbabcc97afbd3e618602740ecc0659'
   _request_class  = ShootCmdRequest
   _response_class = ShootCmdResponse

@@ -30,73 +30,6 @@ JudgesysRobot* JudgesysControl::FindRobot(std::string robot_name)
     return nullptr;
 }
 
-bool JudgesysControl::handle_function(hero_msgs::JudgeSysControl::Request &req,
-                    hero_msgs::JudgeSysControl::Response &res)
-{
-        res.error_code = 0;
-        std::string  robot_name = req.robot_name;
-    switch (req.command) {
-    case JudgeSysCommand::KILL_ROBOT:
-        KillRobot(req.robot_name);
-        break;
-    case JudgeSysCommand::REVIVE_ROBOT:
-        ReviveRobot(req.robot_name);
-        break;
-    case JudgeSysCommand::RELOAD_ROBOT:
-        ReloadRobot(req.robot_name);
-        break;
-    case JudgeSysCommand::DISARM_ROBOT:
-        DisarmRobot(req.robot_name);
-        break;
-    case JudgeSysCommand::ARMOR_HIT_FRONT:
-        HitRobot(req.robot_name,JudgeSysCommand::ARMOR_HIT_FRONT);
-        ROS_INFO("[Hero_judgesys] %s get hit on front armor", robot_name.c_str());
-        break;
-    case JudgeSysCommand::ARMOR_HIT_LEFT:
-        HitRobot(req.robot_name,JudgeSysCommand::ARMOR_HIT_LEFT);
-        ROS_INFO("[Hero_judgesys] %s get hit on left armor",robot_name.c_str());
-        break;
-    case JudgeSysCommand::ARMOR_HIT_BACK:
-        HitRobot(req.robot_name,JudgeSysCommand::ARMOR_HIT_BACK);
-        ROS_INFO("[Hero_judgesys] %s get hit on back armor, that's hurt!",robot_name.c_str());
-        break;
-    case JudgeSysCommand::ARMOR_HIT_RIGHT:
-        HitRobot(req.robot_name,JudgeSysCommand::ARMOR_HIT_RIGHT);
-        ROS_INFO("[Hero_judgesys] %s get hit on right armor",robot_name.c_str());
-        break;
-    case JudgeSysCommand::SHOOT_BULLET:
-        RobotShoot(req.robot_name);
-        break;
-    case JudgeSysCommand::RFID_F1:
-    case JudgeSysCommand::RFID_F2:
-    case JudgeSysCommand::RFID_F3:
-    case JudgeSysCommand::RFID_F4:
-    case JudgeSysCommand::RFID_F5:
-    case JudgeSysCommand::RFID_F6:
-        RFID_Callback(req.robot_name,req.command - JudgeSysCommand::RFID_F1);
-        break;
-    case JudgeSysCommand::REFRESH_RFID:
-        RFID_Refresh();
-        break;
-    case JudgeSysCommand::KILL_ALL:
-        KillRobot("all");
-        ROS_INFO("[Hero_judgesys]Kill all");
-        break;
-    case JudgeSysCommand::GAME_PERP:
-    case JudgeSysCommand::GAME_START:
-    case JudgeSysCommand::GAME_END:
-        SetGamePhase(req.command);
-        break;
-    default:   res.error_code = 1;
-        break;
-    }
-//	ROS_INFO("Request from %s with age %d ", req.name.c_str(), req.age);
-	
-	// 返回一个反馈，将response设置为"..."
-
-	return true;
-}
-
 void JudgesysControl::ResetAllRobot()
 {
     for (auto it = robots_.begin(); it != robots_.end(); ++it) {
@@ -197,6 +130,75 @@ ErrorInfo JudgesysControl::Init() {
     RFID_Refresh();
 	return ErrorInfo(ErrorCode::OK);
 }
+
+
+bool JudgesysControl::handle_function(hero_msgs::JudgeSysControl::Request &req,
+                    hero_msgs::JudgeSysControl::Response &res)
+{
+        res.error_code = 0;
+        std::string  robot_name = req.robot_name;
+    switch (req.command) {
+    case JudgeSysCommand::KILL_ROBOT:
+        KillRobot(req.robot_name);
+        break;
+    case JudgeSysCommand::REVIVE_ROBOT:
+        ReviveRobot(req.robot_name);
+        break;
+    case JudgeSysCommand::RELOAD_ROBOT:
+        ReloadRobot(req.robot_name);
+        break;
+    case JudgeSysCommand::DISARM_ROBOT:
+        DisarmRobot(req.robot_name);
+        break;
+    case JudgeSysCommand::ARMOR_HIT_FRONT:
+        HitRobot(req.robot_name,JudgeSysCommand::ARMOR_HIT_FRONT);
+        ROS_INFO("[Hero_judgesys] %s get hit on front armor", robot_name.c_str());
+        break;
+    case JudgeSysCommand::ARMOR_HIT_LEFT:
+        HitRobot(req.robot_name,JudgeSysCommand::ARMOR_HIT_LEFT);
+        ROS_INFO("[Hero_judgesys] %s get hit on left armor",robot_name.c_str());
+        break;
+    case JudgeSysCommand::ARMOR_HIT_BACK:
+        HitRobot(req.robot_name,JudgeSysCommand::ARMOR_HIT_BACK);
+        ROS_INFO("[Hero_judgesys] %s get hit on back armor, that's hurt!",robot_name.c_str());
+        break;
+    case JudgeSysCommand::ARMOR_HIT_RIGHT:
+        HitRobot(req.robot_name,JudgeSysCommand::ARMOR_HIT_RIGHT);
+        ROS_INFO("[Hero_judgesys] %s get hit on right armor",robot_name.c_str());
+        break;
+    case JudgeSysCommand::SHOOT_BULLET:
+        RobotShoot(req.robot_name);
+        break;
+    case JudgeSysCommand::RFID_F1:
+    case JudgeSysCommand::RFID_F2:
+    case JudgeSysCommand::RFID_F3:
+    case JudgeSysCommand::RFID_F4:
+    case JudgeSysCommand::RFID_F5:
+    case JudgeSysCommand::RFID_F6:
+        RFID_Callback(req.robot_name,req.command - JudgeSysCommand::RFID_F1);
+        break;
+    case JudgeSysCommand::REFRESH_RFID:
+        RFID_Refresh();
+        break;
+    case JudgeSysCommand::KILL_ALL:
+        KillRobot("all");
+        ROS_INFO("[Hero_judgesys]Kill all");
+        break;
+    case JudgeSysCommand::GAME_PERP:
+    case JudgeSysCommand::GAME_START:
+    case JudgeSysCommand::GAME_END:
+        SetGamePhase(req.command);
+        break;
+    default:   res.error_code = 1;
+        break;
+    }
+//	ROS_INFO("Request from %s with age %d ", req.name.c_str(), req.age);
+
+  // 返回一个反馈，将response设置为"..."
+
+  return true;
+}
+
 
 void JudgesysControl::GameTick(int fre)
 {

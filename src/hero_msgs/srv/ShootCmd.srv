@@ -1,6 +1,7 @@
 uint8 STOP = 0
 uint8 ONCE = 1
 uint8 CONTINUOUS = 2
+string robot_num
 uint8 mode
 uint8 number
 ---

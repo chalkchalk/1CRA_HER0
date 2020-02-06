@@ -24,16 +24,21 @@ struct ShootCmdRequest_
   typedef ShootCmdRequest_<ContainerAllocator> Type;
 
   ShootCmdRequest_()
-    : mode(0)
+    : robot_num()
+    , mode(0)
     , number(0)  {
     }
   ShootCmdRequest_(const ContainerAllocator& _alloc)
-    : mode(0)
+    : robot_num(_alloc)
+    , mode(0)
     , number(0)  {
   (void)_alloc;
     }
 
 
+
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _robot_num_type;
+  _robot_num_type robot_num;
 
    typedef uint8_t _mode_type;
   _mode_type mode;
@@ -86,7 +91,7 @@ namespace message_traits
 
 
 
-// BOOLTRAITS {'IsFixedSize': True, 'IsMessage': True, 'HasHeader': False}
+// BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': False}
 // {'hero_msgs': ['/home/ycz/ICRA_HERO_ws/devel/share/hero_msgs/msg', '/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg', '/home/ycz/ICRA_HERO_ws/src/hero_msgs/msg/referee_system'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'actionlib_msgs': ['/opt/ros/kinetic/share/actionlib_msgs/cmake/../msg'], 'nav_msgs': ['/opt/ros/kinetic/share/nav_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
@@ -96,12 +101,12 @@ namespace message_traits
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::hero_msgs::ShootCmdRequest_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::hero_msgs::ShootCmdRequest_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -130,12 +135,12 @@ struct MD5Sum< ::hero_msgs::ShootCmdRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "e60d1d1007f97ae14e2d2f584fbf2502";
+    return "1848194f0789e026dfc605fc1be05359";
   }
 
   static const char* value(const ::hero_msgs::ShootCmdRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xe60d1d1007f97ae1ULL;
-  static const uint64_t static_value2 = 0x4e2d2f584fbf2502ULL;
+  static const uint64_t static_value1 = 0x1848194f0789e026ULL;
+  static const uint64_t static_value2 = 0xdfc605fc1be05359ULL;
 };
 
 template<class ContainerAllocator>
@@ -157,6 +162,7 @@ struct Definition< ::hero_msgs::ShootCmdRequest_<ContainerAllocator> >
     return "uint8 STOP = 0\n\
 uint8 ONCE = 1\n\
 uint8 CONTINUOUS = 2\n\
+string robot_num\n\
 uint8 mode\n\
 uint8 number\n\
 ";
@@ -177,6 +183,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
+      stream.next(m.robot_num);
       stream.next(m.mode);
       stream.next(m.number);
     }
@@ -197,6 +204,8 @@ struct Printer< ::hero_msgs::ShootCmdRequest_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::hero_msgs::ShootCmdRequest_<ContainerAllocator>& v)
   {
+    s << indent << "robot_num: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.robot_num);
     s << indent << "mode: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.mode);
     s << indent << "number: ";

@@ -909,8 +909,63 @@
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Physics</string>
+      <string>Simulation</string>
      </attribute>
+     <widget class="QGroupBox" name="groupBox_simu_ctrl">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>381</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(211, 215, 207);</string>
+      </property>
+      <property name="title">
+       <string>Control Mode</string>
+      </property>
+      <widget class="QRadioButton" name="radioButton_ctrl_rts">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>71</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>RTS</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButton_ctrl_act">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>30</y>
+         <width>51</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ACT</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButton_ctrl_eve">
+       <property name="geometry">
+        <rect>
+         <x>279</x>
+         <y>30</y>
+         <width>51</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>EVE</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">

@@ -20,8 +20,13 @@ BattleView::BattleView(QNode *qNode)
     buffImage[5].load((ros::package::getPath("hero_interface") + "/resources/images/shoot_debuff.png").c_str());
 
     isDraging = false;
+    isMousePressed = false;
 }
 
+bool BattleView::inImageScope(int x, int y)
+{
+  return x>=0&&x<=BATTLEFIELD_PIX_W&&y>=0&&y<=BATTLEFIELD_PIX_H;
+}
 bool BattleView::SetRobotPose(std::string robot_num,float x, float y, float yaw)
 {
     bool val = false;
@@ -90,7 +95,13 @@ void BattleView::LeftButtonPress(int x, int y)
 {
 
 
+    isMousePressed = true;
     lastPoint = QPoint(x,y);
+    if(isACT&&inImageScope(x,y))
+    {
+      //qNode_->RobotShoot("robot_0");
+      qNode_->isShooting = true;
+    }
      //printf("left press\n");
 
 }
@@ -106,11 +117,30 @@ void BattleView::LeftButtonDrag(int x, int y)
     {
         dragingPoint = QPoint(x,y);
     }
+    //printf("x=%d,y=%d\n",x,y);
 
+
+}
+
+void BattleView::AimPointRobot0(int x, int y)
+{
+  if(isACT&&inImageScope(x,y))
+  {
+    double x_target;
+    double y_target;
+    ImageToPosePoint(&x_target,&y_target,x, y);
+
+      //ROS_INFO("*set yaw :%f",-std::atan2(y - FindRobot("robot_0")->pose.y,x - FindRobot("robot_0")->pose.x));
+      qNode_->SetRobot0Yaw(-std::atan2(y_target - FindRobot("robot_0")->pose.y,x_target - FindRobot("robot_0")->pose.x));
+     // printf("set yaw :%f\n",std::atan2(y - FindRobot("robot_0")->pose.y,x - FindRobot("robot_0")->pose.x));
+
+  }
 }
 
 void BattleView::LeftButtonRelease(int x, int y)
 {
+   isMousePressed = false;
+   qNode_->isShooting = false;
     if(isDraging)
     {
         isDraging = false;
@@ -148,7 +178,7 @@ void BattleView::SetRobotGoalPoint(int image_x, int image_y)
     for (auto it = robots_.begin(); it != robots_.end(); ++it) {
         if((*it)->selected)
         {
-            double yaw_target = std::atan2(y_target - (*it)->pose.y,x_target - (*it)->pose.x) *180 / 3.14159;
+            double yaw_target = std::atan2(y_target - (*it)->pose.y,x_target - (*it)->pose.x);
             //double yaw_target = (*it)->pose.yaw;
             qNode_->SendGoalPoint((*it)->index,x_target,y_target,yaw_target);
             (*it)->SetDest.x = x_target;
@@ -160,7 +190,7 @@ void BattleView::SetRobotGoalPoint(int image_x, int image_y)
 }
 float PoseToAngle(float yaw)
 {
-    return yaw + 180;
+    return yaw + 3.14159;
 }
 
 
@@ -188,6 +218,17 @@ void BattleView::UpdateHealthHeat()
          (*it)->heat = qNode_->GetRoboHeat(3).shooter_heat;
      }
     }
+}
+
+Robot* BattleView::FindRobot(std::string robot_name)
+{
+  for (auto it = robots_.begin(); it != robots_.end(); ++it) {
+      if((*it)->name == robot_name)
+      {
+          return (*it);
+      }
+  }
+  return nullptr;
 }
 
 void BattleView::DrawRobot(QImage *qImage)
@@ -252,13 +293,13 @@ void BattleView::DrawRobot(QImage *qImage)
         //painterRobot.drawRect(ROBOT_WIDTH_PIX*0.6,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX*0.15,ROBOT_HEIGHT_PIX*0.45);//barrel
         hero_common::Point2D gimbalMid(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.7);
         hero_common::Point2D gimbalEndNormal(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.15);
-        hero_common::Point2D gimbalEndRotated = hero_common::PointRotateAroundPoint(gimbalEndNormal, gimbalMid, - qNode_->GetGimbalYaw((*it)->index) * 3.14159 / 180);
+        hero_common::Point2D gimbalEndRotated = hero_common::PointRotateAroundPoint(gimbalEndNormal, gimbalMid, - qNode_->GetGimbalYaw((*it)->index));
         painterRobot.setPen(QPen(Qt::gray, 20, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
         painterRobot.drawLine(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.7,gimbalEndRotated.X(),gimbalEndRotated.Y());
 
         MeterToPix(&pix_h,&pix_w,ROBOT_HEIGHT*1.4,ROBOT_WIDTH*1.4,background.size());
         QMatrix matrix;
-        matrix.rotate(PoseToAngle((*it)->pose.yaw));
+        matrix.rotate(PoseToAngle((*it)->pose.yaw) *180.0 / 3.1415);
         painter.drawImage(PoseToMapPoint((*it)->pose,background.size(),robotImage.scaled(pix_w,pix_h).transformed(matrix)), robotImage.scaled(pix_w,pix_h).transformed(matrix));
 
         if((*it)->selected && !((*it)->SetDest.x==0&&(*it)->SetDest.y==0))

@@ -36,6 +36,8 @@
 #include "hero_msgs/GameStatus.h"
 #include "hero_msgs/Buffinfo.h"
 #include "geometry_msgs/PoseStamped.h"
+#include "geometry_msgs/Twist.h"
+#include "hero_msgs/ShootCmd.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -43,6 +45,7 @@
 
 namespace hero_interface {
 
+const int KEY_ROBOT_SPEED=2;
 /*****************************************************************************
 ** Class
 *****************************************************************************/
@@ -77,7 +80,7 @@ public:
         std::string robot_name;
         hero_msgs::RobotStatus roboStatus;
         hero_msgs::RobotHeat roboHeat;
-        float gimbal_yaw;
+        double gimbal_yaw;
     };
 
     QStringListModel* loggingModel() { return &logging_model; }
@@ -110,13 +113,19 @@ public:
     {return &robot[i];}
 
     bool SendJudgeSysCall(int comman, std::string robot_name);
+    void SetRobot0Yaw(double yaw)
+    {robot_0_set_yaw = yaw;}
 
     void SendGoalPoint(int robot_num, double x, double y,double yaw);
+    void MoveRobot0(double x_speed,double y_speed);
+    void RobotShoot(std::string robot_num);
     double RFID_F_x[6];
     double RFID_F_y[6];
 
     double RFID_height;
     double RFID_width;
+
+    bool isShooting;
 
 
 
@@ -138,6 +147,7 @@ private:
     QStringListModel logging_model;
     BattleView *parentBattleView_;
     ros::ServiceClient client_;
+    ros::ServiceClient shoot_client_;
     //hero_msgs::RobotStatus roboStatus_[4];
     //hero_msgs::RobotHeat roboHeat_[4];
     hero_msgs::Buffinfo buffInfo_;
@@ -146,9 +156,11 @@ private:
     ros::Subscriber gimbal_yaw_sub_[4];
 
     ros::Publisher goalPoint_pub_[4];
+    ros::Publisher cmd_act_;
+
 
     //float gimbal_yaw_[4];
-
+    double robot_0_set_yaw;
     Robot robot[4];
     void RobotStatusCallback0(const hero_msgs::RobotStatus::ConstPtr& msg);
     void RobotStatusCallback1(const hero_msgs::RobotStatus::ConstPtr& msg);
@@ -171,6 +183,8 @@ private:
     void SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index);
 
     void GetParam(ros::NodeHandle *nh);
+
+
 };
 
 }  // namespace hero_interface

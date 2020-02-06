@@ -7,7 +7,12 @@
 ;//! \htmlinclude ShootCmd-request.msg.html
 
 (cl:defclass <ShootCmd-request> (roslisp-msg-protocol:ros-message)
-  ((mode
+  ((robot_num
+    :reader robot_num
+    :initarg :robot_num
+    :type cl:string
+    :initform "")
+   (mode
     :reader mode
     :initarg :mode
     :type cl:fixnum
@@ -26,6 +31,11 @@
   (cl:declare (cl:ignorable args))
   (cl:unless (cl:typep m 'ShootCmd-request)
     (roslisp-msg-protocol:msg-deprecation-warning "using old message class name hero_msgs-srv:<ShootCmd-request> is deprecated: use hero_msgs-srv:ShootCmd-request instead.")))
+
+(cl:ensure-generic-function 'robot_num-val :lambda-list '(m))
+(cl:defmethod robot_num-val ((m <ShootCmd-request>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-srv:robot_num-val is deprecated.  Use hero_msgs-srv:robot_num instead.")
+  (robot_num m))
 
 (cl:ensure-generic-function 'mode-val :lambda-list '(m))
 (cl:defmethod mode-val ((m <ShootCmd-request>))
@@ -50,11 +60,25 @@
 )
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <ShootCmd-request>) ostream)
   "Serializes a message object of type '<ShootCmd-request>"
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'robot_num))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'robot_num))
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'mode)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'number)) ostream)
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <ShootCmd-request>) istream)
   "Deserializes a message object of type '<ShootCmd-request>"
+    (cl:let ((__ros_str_len 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'robot_num) (cl:make-string __ros_str_len))
+      (cl:dotimes (__ros_str_idx __ros_str_len msg)
+        (cl:setf (cl:char (cl:slot-value msg 'robot_num) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'mode)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'number)) (cl:read-byte istream))
   msg
@@ -67,24 +91,26 @@
   "hero_msgs/ShootCmdRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<ShootCmd-request>)))
   "Returns md5sum for a message object of type '<ShootCmd-request>"
-  "4a5bfc809f6670479f63201258fb4866")
+  "4adbabcc97afbd3e618602740ecc0659")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'ShootCmd-request)))
   "Returns md5sum for a message object of type 'ShootCmd-request"
-  "4a5bfc809f6670479f63201258fb4866")
+  "4adbabcc97afbd3e618602740ecc0659")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ShootCmd-request>)))
   "Returns full string definition for message of type '<ShootCmd-request>"
-  (cl:format cl:nil "uint8 STOP = 0~%uint8 ONCE = 1~%uint8 CONTINUOUS = 2~%uint8 mode~%uint8 number~%~%~%"))
+  (cl:format cl:nil "uint8 STOP = 0~%uint8 ONCE = 1~%uint8 CONTINUOUS = 2~%string robot_num~%uint8 mode~%uint8 number~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'ShootCmd-request)))
   "Returns full string definition for message of type 'ShootCmd-request"
-  (cl:format cl:nil "uint8 STOP = 0~%uint8 ONCE = 1~%uint8 CONTINUOUS = 2~%uint8 mode~%uint8 number~%~%~%"))
+  (cl:format cl:nil "uint8 STOP = 0~%uint8 ONCE = 1~%uint8 CONTINUOUS = 2~%string robot_num~%uint8 mode~%uint8 number~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <ShootCmd-request>))
   (cl:+ 0
+     4 (cl:length (cl:slot-value msg 'robot_num))
      1
      1
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <ShootCmd-request>))
   "Converts a ROS message object to a list"
   (cl:list 'ShootCmd-request
+    (cl:cons ':robot_num (robot_num msg))
     (cl:cons ':mode (mode msg))
     (cl:cons ':number (number msg))
 ))
@@ -127,10 +153,10 @@
   "hero_msgs/ShootCmdResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<ShootCmd-response>)))
   "Returns md5sum for a message object of type '<ShootCmd-response>"
-  "4a5bfc809f6670479f63201258fb4866")
+  "4adbabcc97afbd3e618602740ecc0659")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'ShootCmd-response)))
   "Returns md5sum for a message object of type 'ShootCmd-response"
-  "4a5bfc809f6670479f63201258fb4866")
+  "4adbabcc97afbd3e618602740ecc0659")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ShootCmd-response>)))
   "Returns full string definition for message of type '<ShootCmd-response>"
   (cl:format cl:nil "bool received~%~%~%~%"))

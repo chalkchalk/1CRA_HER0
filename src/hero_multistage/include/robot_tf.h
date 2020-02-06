@@ -22,7 +22,6 @@ class RobotTF
 {
 public:
     RobotTF(std::string robot_name);
-    void PublishArmorTF();
     std::string GetName()
     {return robot_name_;}
     float GetGimbalYaw()

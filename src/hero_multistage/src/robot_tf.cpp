@@ -2,8 +2,7 @@
 #include "hero_math/geometry.h"
 #include "hero_math/math.h"
 
-#define DegreeToRad(a) ((a)* 3.1415926 /180.0)
-#define RadToDegree(a) ((a)/ 3.1415926 *180.0)
+
 
 namespace HeroMultistage {
 
@@ -30,45 +29,11 @@ namespace HeroMultistage {
     }
 
 
-    void RobotTF::PublishArmorTF()
-    {
-        tf::Transform transform;
-        tf::Quaternion q;
-
-        /*
-        armor_tf[0].setOrigin(tf::Vector3(RobotLength/2,0,0));
-        q.setRPY(0,0,DegreeToRad(0));
-        armor_tf[0].setRotation(q);
-        broadcaster_.sendTransform(tf::StampedTransform(armor_tf[0],ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/armor_front"));
-
-        armor_tf[3].setOrigin(tf::Vector3(- RobotLength/2,0,0));
-        q.setRPY(0,0,DegreeToRad(180));
-        armor_tf[3].setRotation(q);
-        broadcaster_.sendTransform(tf::StampedTransform(armor_tf[3],ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/armor_back"));
-
-        armor_tf[1].setOrigin(tf::Vector3(0,RobotWidth/2,0));
-        q.setRPY(0,0,DegreeToRad(90));
-        armor_tf[1].setRotation(q);
-        broadcaster_.sendTransform(tf::StampedTransform(armor_tf[1],ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/armor_left"));
-
-        armor_tf[2].setOrigin(tf::Vector3(0, - RobotWidth /2,0));
-        q.setRPY(0,0,DegreeToRad(-90));
-        armor_tf[2].setRotation(q);
-        broadcaster_.sendTransform(tf::StampedTransform(armor_tf[2],ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/armor_right"));
-
-        q.setRPY(0,0,DegreeToRad(gimbal_yaw_));
-        transform.setOrigin(tf::Vector3(0,0,0));
-        transform.setRotation(q);
-        broadcaster_.sendTransform(tf::StampedTransform(transform,ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/gimbal"));
-*/
-
-    }
-
     float RobotTF::GetGimbalAbsoluteYaw()
     {
         double roll,pitch,yaw;
         tf::Matrix3x3(robot_tf.getRotation()).getRPY(roll, pitch, yaw);
-        gimbal_yaw_absolute_ = (RadToDegree(yaw) + gimbal_yaw_);
+        gimbal_yaw_absolute_ = (yaw + gimbal_yaw_);
         return gimbal_yaw_absolute_;
 
     }

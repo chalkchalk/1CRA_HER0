@@ -12,6 +12,9 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
@@ -285,6 +288,7 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
  /usr/include/qt4/QtGui/QPrinter
  /usr/include/qt4/QtGui/QProgressBar
  /usr/include/qt4/QtGui/QPushButton
+ /usr/include/qt4/QtGui/QRadioButton
  /usr/include/qt4/QtGui/QStatusBar
  /usr/include/qt4/QtGui/QStringListModel
  /usr/include/qt4/QtGui/QTabWidget
@@ -537,6 +541,9 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cx
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp
@@ -1045,6 +1052,9 @@ hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math/geometry.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math/math.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
@@ -1679,6 +1689,9 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
@@ -1953,6 +1966,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o
  /usr/include/qt4/QtGui/QPrinter
  /usr/include/qt4/QtGui/QProgressBar
  /usr/include/qt4/QtGui/QPushButton
+ /usr/include/qt4/QtGui/QRadioButton
  /usr/include/qt4/QtGui/QStatusBar
  /usr/include/qt4/QtGui/QStringListModel
  /usr/include/qt4/QtGui/QTabWidget
@@ -2204,6 +2218,9 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
@@ -2479,6 +2496,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o
  /usr/include/qt4/QtGui/QPrinter
  /usr/include/qt4/QtGui/QProgressBar
  /usr/include/qt4/QtGui/QPushButton
+ /usr/include/qt4/QtGui/QRadioButton
  /usr/include/qt4/QtGui/QStatusBar
  /usr/include/qt4/QtGui/QStringListModel
  /usr/include/qt4/QtGui/QTabWidget
@@ -2730,6 +2748,9 @@ hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
  /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+ /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
  /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
  /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp

@@ -1,7 +1,6 @@
 #include "bullet.h"
 
 
-#define DegreeToRad(a) ((a)* 3.1415926 /180.0)
 
 namespace HeroMultistage {
     using hero_common::Point2D;
@@ -21,8 +20,8 @@ namespace HeroMultistage {
     void Bullet::Move(int frequency)
     {
         position_last_ = position_now_;
-        double dx = std::cos(DegreeToRad(yaw_)) * speed_ / frequency;
-        double dy = std::sin(DegreeToRad(yaw_)) * speed_ / frequency;
+        double dx = std::cos(yaw_) * speed_ / frequency;
+        double dy = std::sin(yaw_) * speed_ / frequency;
         coveredDistance_ += speed_ / frequency;
         position_now_ += Point2D (dx,dy);
     }

@@ -78,6 +78,7 @@ public:
     {
          robots_.push_back(robot);
     }
+    Robot* FindRobot(std::string robot_name);
     void GetBattleView(QImage *qImage);
     bool SetRobotPose(std::string robot_num,float x, float y, float yaw);
     void ImageToPosePoint(double *pose_x, double *pose_y, int image_x, int image_y);
@@ -86,6 +87,9 @@ public:
     void LeftButtonDrag(int x, int y);
     void LeftButtonRelease(int x, int y);
     void RightButtonPress(int x, int y);
+    void AimPointRobot0(int x,int y);
+    bool isRTS;
+    bool isACT;
  private:
     std::vector<Robot*> robots_;
     void DrawRobot(QImage *qImage);
@@ -97,6 +101,8 @@ public:
     QPoint lastPoint;
     QPoint dragingPoint;
     bool isDraging;
+    bool isMousePressed;
+    bool inImageScope(int x, int y);
 };
 
 }

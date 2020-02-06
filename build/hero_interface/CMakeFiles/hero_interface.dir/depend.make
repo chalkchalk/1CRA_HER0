@@ -11,6 +11,9 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
@@ -284,6 +287,7 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_win
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /usr/include/qt4/QtGui/QPrinter
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /usr/include/qt4/QtGui/QProgressBar
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /usr/include/qt4/QtGui/QPushButton
+hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /usr/include/qt4/QtGui/QRadioButton
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /usr/include/qt4/QtGui/QStatusBar
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /usr/include/qt4/QtGui/QStringListModel
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_main_window.cxx.o: /usr/include/qt4/QtGui/QTabWidget
@@ -536,6 +540,9 @@ hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cx
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
 hero_interface/CMakeFiles/hero_interface.dir/include/hero_interface/moc_qnode.cxx.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp
@@ -1044,6 +1051,9 @@ hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICR
 hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
 hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math/geometry.h
 hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/hero_math/math.h
 hero_interface/CMakeFiles/hero_interface.dir/src/battleview.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
@@ -1678,6 +1688,9 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
@@ -1952,6 +1965,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /usr/include/qt4/Qt
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /usr/include/qt4/QtGui/QPrinter
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /usr/include/qt4/QtGui/QProgressBar
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /usr/include/qt4/QtGui/QPushButton
+hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /usr/include/qt4/QtGui/QRadioButton
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /usr/include/qt4/QtGui/QStatusBar
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /usr/include/qt4/QtGui/QStringListModel
 hero_interface/CMakeFiles/hero_interface.dir/src/main.cpp.o: /usr/include/qt4/QtGui/QTabWidget
@@ -2203,6 +2217,9 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/IC
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/main_window.hpp
@@ -2478,6 +2495,7 @@ hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /usr/include
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /usr/include/qt4/QtGui/QPrinter
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /usr/include/qt4/QtGui/QProgressBar
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /usr/include/qt4/QtGui/QPushButton
+hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /usr/include/qt4/QtGui/QRadioButton
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /usr/include/qt4/QtGui/QStatusBar
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /usr/include/qt4/QtGui/QStringListModel
 hero_interface/CMakeFiles/hero_interface.dir/src/main_window.cpp.o: /usr/include/qt4/QtGui/QTabWidget
@@ -2729,6 +2747,9 @@ hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HER
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/JudgeSysControlResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotHeat.h
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/RobotStatus.h
+hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmd.h
+hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdRequest.h
+hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/devel/include/hero_msgs/ShootCmdResponse.h
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_common/include/state/command_code.h
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/battleview.h
 hero_interface/CMakeFiles/hero_interface.dir/src/qnode.cpp.o: /home/ycz/ICRA_HERO_ws/src/hero_interface/include/hero_interface/qnode.hpp

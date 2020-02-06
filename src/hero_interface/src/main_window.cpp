@@ -28,7 +28,9 @@ using namespace Qt;
 MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 	: QMainWindow(parent)
     , qnode(argc,argv,&battleView),
-      battleView(&qnode)
+      battleView(&qnode),
+      w_s_speed(0),
+      a_d_speed(0)
 {
 	ui.setupUi(this); // Calling this incidentally connects all ui's triggers to on_...() callbacks in this class.
     setAutoFillBackground(false);  //这个不设置的话就背景变黑
@@ -42,8 +44,17 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     image = QImage(this->size(), QImage::Format_RGB32);
     image.fill(Qt::white);
 
-    fTimer=new QTimer(this);
+    //this->grabKeyboard();
+    // setMouseTracking(true);
+    //QMainWindow::setMouseTracking(true);
+    //QMainWindow::centralWidget()->setMouseTracking(true);
+   // ui->openGLWidget->setMouseTracking(true);
+     //this->setMouseTracking(true);
+    //ui.centralwidget->setMouseTracking(true);
+    //ui.horizontalLayoutWidget->setMouseTracking(true);
 
+    ui.radioButton_ctrl_rts->setChecked(true);
+    fTimer=new QTimer(this);
     fTimer->start(50);
     battleView.AddRobot(new Robot("robot_0","blue"));
     battleView.AddRobot(new Robot("robot_1","blue"));
@@ -59,6 +70,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     qnode.RFID_width = 0.4;
 
     qnode.init();
+
     connect(fTimer,SIGNAL(timeout()),this,SLOT(timer_timeout()));
 }
 
@@ -116,6 +128,14 @@ void MainWindow::timer_timeout()
     ShowJudgeSysInfo();
     DisplayCountDown(qnode.GetGameStatus()->remaining_time);
     ShowGameStatus();
+    if(ui.radioButton_ctrl_act->isChecked())
+    {
+      qnode.MoveRobot0(w_s_speed,a_d_speed);
+    }
+    battleView.isACT = ui.radioButton_ctrl_act->isChecked();
+    battleView.isRTS = ui.radioButton_ctrl_rts->isChecked();
+    battleView.AimPointRobot0(this->mapFromGlobal(QCursor::pos()).x(),this->mapFromGlobal(QCursor::pos()).y());
+    //printf("[]%d , %d\n",this->mapFromGlobal(QCursor::pos()).x(),this->mapFromGlobal(QCursor::pos()).y());
     this->update();
 }
 
@@ -270,3 +290,60 @@ void hero_interface::MainWindow::mouseReleaseEvent(QMouseEvent *event)
     }
 
 }
+
+void hero_interface::MainWindow::keyPressEvent(QKeyEvent *ev)
+{
+    if(ev->isAutoRepeat())// otherwise this event will be trigered repeatedly
+      return;
+    switch(ev->key())
+    {
+    case Qt::Key_W:
+      w_s_speed -= 1;
+      break;
+    case Qt::Key_S:
+      w_s_speed += 1;
+      break;
+    case Qt::Key_A:
+      a_d_speed -= 1;
+      break;
+    case Qt::Key_D:
+      a_d_speed += 1;
+      break;
+    default:
+      break;
+
+    }
+    //printf("press!\n");
+
+
+    //QWidget::keyPressEvent(ev);
+}
+
+void hero_interface::MainWindow::keyReleaseEvent(QKeyEvent *ev)
+{
+  if(ev->isAutoRepeat())// otherwise this event will be trigered repeatedly
+    return;
+  switch(ev->key())
+  {
+  case Qt::Key_W:
+    w_s_speed += 1;
+    break;
+  case Qt::Key_S:
+    w_s_speed -= 1;
+    break;
+  case Qt::Key_A:
+    a_d_speed += 1;
+    break;
+  case Qt::Key_D:
+    a_d_speed -= 1;
+    break;
+  default:
+    break;
+
+  }
+  //printf("release!\n");
+
+
+ // QWidget::keyReleaseEvent(ev);
+}
+

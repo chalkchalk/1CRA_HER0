@@ -41,6 +41,8 @@ public:
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
+    virtual void keyPressEvent(QKeyEvent *ev);
+    virtual void keyReleaseEvent(QKeyEvent *ev);
 public Q_SLOTS:
 
 
@@ -73,6 +75,9 @@ private:
     BattleView battleView;
     QImage          image;
     QTimer *fTimer;//定时器
+
+    int w_s_speed;
+    int a_d_speed;
 
 
     void ShowJudgeSysInfo();

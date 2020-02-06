@@ -11,7 +11,8 @@ JudgesysRobot::JudgesysRobot(std::string robot_num, std::string color):
 new_cmd_acc_(false), 
 begin_(false),
 is_forbidden_to_move_(false),
-is_alive_(true){
+is_alive_(true),
+raw_cmd_selector_count(50){
    if (Init(robot_num,color).IsOK()) {
     ROS_INFO("%s robot:%s initialization completed.",color.c_str(),robot_num.c_str());
   } else {
@@ -33,18 +34,33 @@ ErrorInfo JudgesysRobot::Init(std::string robot_num, std::string color){
     judgeVel_pub_ = nh_.advertise<geometry_msgs::Twist>(robot_num + "/" + "cmd_vel", 5);
     judgeStatus_pub_ = nh_.advertise<hero_msgs::RobotStatus>("judgeSysInfo/" + robot_num + "/status",5);
     judgeHeat_pub_ = nh_.advertise<hero_msgs::RobotHeat>("judgeSysInfo/" + robot_num + "/heat_power",5);
-    judge_sub_ = nh_.subscribe<geometry_msgs::Twist>	(robot_num + "/" + "cmd_vel_raw", 100, &JudgesysRobot::RawVelCallback,this);
+    judge_sub_[0] = nh_.subscribe<geometry_msgs::Twist>	(robot_num + "/" + "cmd_vel_raw", 100, &JudgesysRobot::RawVelCallback,this);
+    judge_sub_[1] = nh_.subscribe<geometry_msgs::Twist>	(robot_num + "/" + "cmd_vel_raw_act", 100, &JudgesysRobot::RawVelCallback_act,this);
 	return ErrorInfo(ErrorCode::OK);
 }
 
 void JudgesysRobot::RawVelCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {
+  raw_cmd_selector_count ++;
+  if(raw_cmd_selector_count<50)
+    return;
 	if (!begin_) {
     begin_ = true;
         ROS_INFO("[Hero_judgesys]%s robot:%s raw cmd vel received!",color_.c_str(),robot_num_.c_str());
   }
 	new_cmd_acc_ = true;
 	raw_cmd_vel_ = *msg;
+}
+
+void JudgesysRobot::RawVelCallback_act(const geometry_msgs::Twist::ConstPtr& msg)
+{
+  if (!begin_) {
+    begin_ = true;
+        ROS_INFO("[Hero_judgesys]%s robot:%s raw cmd vel(act) received!",color_.c_str(),robot_num_.c_str());
+  }
+  new_cmd_acc_ = true;
+  raw_cmd_vel_ = *msg;
+  raw_cmd_selector_count = 0;
 }
 
 void JudgesysRobot::BuffReload()

@@ -70,6 +70,8 @@ namespace HeroMultistage {
 
         judgeSysClient_ = nh_.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
         static_map_srv_ = nh_.serviceClient<nav_msgs::GetMap>("/static_map");
+
+        shoot_service_ = nh_.advertiseService("shoot_server", &RobotPhysics::Shoot_handle_function,this);
         ros::service::waitForService("/static_map", -1);
         nav_msgs::GetMap::Request req;
         nav_msgs::GetMap::Response res;
@@ -146,8 +148,6 @@ namespace HeroMultistage {
             robotf->robot_tf.setOrigin(tf::Vector3(msg->pose.pose.position.x,msg->pose.pose.position.y,0));
             robotf->robot_tf.setRotation(q);
             broadcaster.sendTransform(tf::StampedTransform(robotf->robot_tf,ros::Time::now(),"map",robot_name + "/base_pose_ground_truth"));
-
-            robotf->PublishArmorTF();
         }
     }
 
@@ -209,8 +209,6 @@ namespace HeroMultistage {
 
     void RobotPhysics::BulletJudge()
     {
-
-
         for(auto iter=bullets_.begin(); iter!=bullets_.end(); )
         {
             //hero_common::Polygon2D
@@ -222,10 +220,6 @@ namespace HeroMultistage {
               else
                  iter ++ ;
         }
-
-
-
-
     }
 
 
@@ -368,6 +362,17 @@ namespace HeroMultistage {
                 ROS_ERROR("Failed to call judgesys service");
             }
     }
+
+    bool RobotPhysics::Shoot_handle_function(hero_msgs::ShootCmd::Request &req, hero_msgs::ShootCmd::Response &res)
+    {
+        res.received = true;
+        if(req.mode == req.ONCE)
+        {
+          RobotShoot(req.robot_num);
+        }
+        //ROS_INFO("shoot request receive!");
+        return true;
+    }
 }
 
 
@@ -401,7 +406,7 @@ int main(int argc, char** argv){
         divider++;
         if(divider%3==0)
         {
-          robotPhysics.RobotShoot("robot_0");
+          //robotPhysics.RobotShoot("robot_0");
             //robotPhysics.RobotShoot("robot_3");
         }
 
