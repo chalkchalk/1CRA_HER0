@@ -1,8 +1,0 @@
-prefix=/home/ycz/ICRA_HERO_ws/install
-
-Name: hero_localization
-Description: Description of hero_localization
-Version: 1.0.0
-Cflags: 
-Libs: -L/home/ycz/ICRA_HERO_ws/install/lib 
-Requires: 

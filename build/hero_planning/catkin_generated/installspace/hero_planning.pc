@@ -1,8 +1,0 @@
-prefix=/home/ycz/ICRA_HERO_ws/install
-
-Name: hero_planning
-Description: Description of hero_planning
-Version: 1.0.0
-Cflags: 
-Libs: -L/home/ycz/ICRA_HERO_ws/install/lib 
-Requires: 
