@@ -2311,6 +2311,19 @@ a_star_planner/fast:
 .PHONY : a_star_planner/fast
 
 #=============================================================================
+# Target rules for targets named hero_base_node
+
+# Build rule for target.
+hero_base_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hero_base_node
+.PHONY : hero_base_node
+
+# fast build rule for target.
+hero_base_node/fast:
+	$(MAKE) -f hero_base/CMakeFiles/hero_base_node.dir/build.make hero_base/CMakeFiles/hero_base_node.dir/build
+.PHONY : hero_base_node/fast
+
+#=============================================================================
 # Target rules for targets named hero_interface
 
 # Build rule for target.
@@ -2540,6 +2553,7 @@ help:
 	@echo "... global_planner_node"
 	@echo "... global_planner_test"
 	@echo "... a_star_planner"
+	@echo "... hero_base_node"
 	@echo "... hero_interface"
 	@echo "... localization_node"
 	@echo "... amcl"
