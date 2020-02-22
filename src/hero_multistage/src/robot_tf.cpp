@@ -13,7 +13,8 @@ namespace HeroMultistage {
     using hero_common::LineSegment2D;
 
     RobotTF::RobotTF(std::string robot_name):
-        gimbal_yaw_(0)
+      gimbal_yaw_(0),
+      gimbal_yaw_set_(0)
     {
         if (Init(robot_name).IsOK()) {
          ROS_INFO("[robot_physicis]robot %s added.",robot_name.c_str());
@@ -23,9 +24,25 @@ namespace HeroMultistage {
     }
 
     ErrorInfo RobotTF::Init(std::string robot_name) {
+        ros::NodeHandle nh_;
         robot_name_ = robot_name;
-
+        gimbal_aim_service_ = nh_.advertiseService("/"+robot_name_+"/gimbal_aim_server",&RobotTF::GimbalAim_handle_function,this);
+        judgeStatus_sub_ = nh_.subscribe<hero_msgs::RobotStatus>("/judgeSysInfo/"+robot_name_+"/status", 100,&RobotTF::RobotStatusCallback,this);
         return ErrorInfo(ErrorCode::OK);
+    }
+
+    void RobotTF::RobotStatusCallback(const hero_msgs::RobotStatus::ConstPtr &msg)
+    {
+      roboStatus_ = *msg;
+    }
+
+
+    bool RobotTF::GimbalAim_handle_function(hero_msgs::GimbalAim::Request &req, hero_msgs::GimbalAim::Response &res)
+    {
+      SetGimbalAbsoluteYaw(req.set_angle_absolute);
+      res.aimed = (std::abs(hero_common::GetAngleInRange(req.set_angle_absolute - GetGimbalAbsoluteYaw()))<0.02);
+      //ROS_INFO("[%s]set %f ,now %f, err = %f",robot_name_.c_str(), req.set_angle_absolute , GetGimbalAbsoluteYaw(),std::abs(hero_common::GetAngleInRange(req.set_angle_absolute - GetGimbalAbsoluteYaw())));
+      return true;
     }
 
 
@@ -34,9 +51,85 @@ namespace HeroMultistage {
         double roll,pitch,yaw;
         tf::Matrix3x3(robot_tf.getRotation()).getRPY(roll, pitch, yaw);
         gimbal_yaw_absolute_ = (yaw + gimbal_yaw_);
-        return gimbal_yaw_absolute_;
+        return hero_common::GetAngleInRange(gimbal_yaw_absolute_);
 
     }
+
+    void RobotTF::SetGimbalAbsoluteYaw(double set_yaw_absolute)
+    {
+      double roll,pitch,yaw;
+      double set_yaw;
+      tf::Matrix3x3(robot_tf.getRotation()).getRPY(roll, pitch, yaw);
+      set_yaw = set_yaw_absolute - yaw;
+      SetGimbalEncoderYaw(hero_common::GetAngleInRange(set_yaw));
+    }
+
+    bool RobotTF::SetGimbalEncoderYaw(double yaw_set)
+    {
+      if(yaw_set>hero_common::PI*0.5)
+        yaw_set = hero_common::PI*0.5;
+      if(yaw_set<-hero_common::PI*0.5)
+        yaw_set = -hero_common::PI*0.5;//machanical limit
+        gimbal_yaw_set_ = yaw_set;
+
+    }
+
+    bool RobotTF::GimbalMove()
+    {
+      if(roboStatus_.remain_hp==0)
+        return false;
+      if(gimbal_yaw_set_ - gimbal_yaw_ > GimbalMaxSpeed)
+      {
+          gimbal_yaw_ += GimbalMaxSpeed;
+          return false;
+      }
+      else if(gimbal_yaw_set_ - gimbal_yaw_ > 0){
+        gimbal_yaw_ = gimbal_yaw_set_;
+        return true;
+      }
+      if(gimbal_yaw_set_ - gimbal_yaw_ <- GimbalMaxSpeed)
+      {
+          gimbal_yaw_ -= GimbalMaxSpeed;
+          return false;
+      }
+      else if(gimbal_yaw_set_ - gimbal_yaw_ < 0){
+        gimbal_yaw_ = gimbal_yaw_set_;
+        return true;
+      }
+    }
+
+    void RobotTF::PublishArmorTF()
+        {
+            tf::Transform transform;
+            tf::Quaternion q;
+
+            transform.setOrigin(tf::Vector3(RobotWidth/2,0,0));
+            q.setRPY(0,0,0);
+            transform.setRotation(q);
+            broadcaster_.sendTransform(tf::StampedTransform(transform,ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/armor_front"));
+
+            transform.setOrigin(tf::Vector3(- RobotWidth/2,0,0));
+            q.setRPY(0,0,hero_common::PI);
+            transform.setRotation(q);
+            broadcaster_.sendTransform(tf::StampedTransform(transform,ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/armor_back"));
+
+            transform.setOrigin(tf::Vector3(0,RobotLength/2,0));
+            q.setRPY(0,0,hero_common::PI*0.5);
+            transform.setRotation(q);
+            broadcaster_.sendTransform(tf::StampedTransform(transform,ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/armor_left"));
+
+            transform.setOrigin(tf::Vector3(0, - RobotLength /2,0));
+            q.setRPY(0,0,-hero_common::PI*0.5);
+            transform.setRotation(q);
+            broadcaster_.sendTransform(tf::StampedTransform(transform,ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/armor_right"));
+
+            q.setRPY(0,0,gimbal_yaw_);
+            transform.setOrigin(tf::Vector3(0,0,0));
+            transform.setRotation(q);
+            broadcaster_.sendTransform(tf::StampedTransform(transform,ros::Time::now(),robot_name_ + "/base_pose_ground_truth",robot_name_ + "/gimbal"));
+
+
+        }
 
     int RobotTF::BulletHitDetect(Bullet bullet,std::vector<Point2D> *pointsfeedback)
     {
@@ -48,7 +141,6 @@ namespace HeroMultistage {
         LineSegment2D bulletSeg(bullet.GetPositionNow(),bullet.GetPositionLast());
         Point2D interSectionPoint;
         std::vector<Point2D> pointsIntersect;
-        Point2D chassisSidesMid[4];
         std::vector<int> sides;
         Point2D chassisLeft;
         Point2D chassisRight;
@@ -71,7 +163,7 @@ namespace HeroMultistage {
           }
             pointsfeedback->emplace_back(chassisLeft);
             pointsfeedback->emplace_back(chassisRight);
-            chassisSidesMid[i] = (chassisLeft + chassisRight) * 0.5;
+            chassisSidesMid_[i] = (chassisLeft + chassisRight) * 0.5;
             LineSegment2D chassisEdge(chassisLeft,chassisRight);
             if(hero_common::CheckLineSegmentsIntersection2D(chassisEdge,bulletSeg,&interSectionPoint))
             {
@@ -100,7 +192,7 @@ namespace HeroMultistage {
             }
 
         }
-        if(hero_common::PointDistance(firstPointIntersect,chassisSidesMid[index]) < AromrLength * 0.5)
+        if(hero_common::PointDistance(firstPointIntersect,chassisSidesMid_[index]) < AromrLength * 0.5)
             return index + 1;
         else {
             return index + 5;

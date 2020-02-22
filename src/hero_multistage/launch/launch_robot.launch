@@ -26,4 +26,5 @@
 
   <node pkg="hero_decision" type="point_navigation" name="point_navigation" respawn="false"  ns="$(arg robot_num)"   />
 
+  <node pkg="hero_decision" type="simu_basic_executor" name="simu_basic_executor" respawn="false"  ns="$(arg robot_num)"  output="screen" />
 </launch>

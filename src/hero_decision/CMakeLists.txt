@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_module)
 set(CMAKE_BUILD_TYPE Release)
 
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
@@ -20,8 +21,9 @@ find_package(Eigen3 REQUIRED)
 find_package(ProtoBuf REQUIRED)
 
 include_directories(
-  include ${catkin_INCLUDE_DIRS}
   include
+  simulation
+  ${catkin_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -63,8 +65,28 @@ add_dependencies(behavior_test_node
 add_executable(point_navigation
   executor/point_navigation.cpp
 )
-add_dependencies(point_navigation ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(point_navigation
+
+
+add_dependencies(point_navigation
+    ${${PROJECT_NAME}_EXPORTED_TARGETS}
+    ${catkin_EXPORTED_TARGETS}
+    )
+
+target_link_libraries(
+    point_navigation
   ${catkin_LIBRARIES}
 )
 
+add_executable(simu_basic_executor
+  simulation/basic_executor.cpp
+  simulation/basic_executor.h
+)
+
+target_link_libraries(
+  simu_basic_executor
+  ${EIGEN3_LIBRARIES}
+  ${catkin_LIBRARIES}
+)
+
+include_directories("/usr/include/eigen3")
+include_directories("/usr/include/eigen3/Eigen")

@@ -30,7 +30,9 @@ add_message_files(
     ShootState.msg
     BulletMove.msg
     BulletsInfo.msg
-
+    Position.msg
+    RobotPosition.msg
+    BattlePosition.msg
 )
 
 add_message_files(
@@ -58,6 +60,7 @@ add_service_files(
     FricWhl.srv
     ShootCmd.srv
     JudgeSysControl.srv
+    GimbalAim.srv
 )
 
 generate_messages(

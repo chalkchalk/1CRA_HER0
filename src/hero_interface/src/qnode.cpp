@@ -89,6 +89,7 @@ bool QNode::init() {
     cmd_act_ = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel_raw_act", 5);
     client_ = n.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
     shoot_client_ = n.serviceClient<hero_msgs::ShootCmd>("shoot_server");
+    gimbal_aim_client_ = n.serviceClient<hero_msgs::GimbalAim>("/robot_0/gimbal_aim_server");
     GetParam(&n);
 
     robot[0].robot_name = "robot_0";
@@ -345,6 +346,18 @@ void QNode::MoveRobot0(double x_speed,double y_speed)
     }
   }
   shoot_divider++;
+
+  hero_msgs::GimbalAim gimbal_aim;
+  gimbal_aim.request.set_angle_absolute = -robot_0_set_yaw;
+  //ROS_INFO("aim:%f",-robot_0_set_yaw);
+  if (gimbal_aim_client_.call(gimbal_aim))
+  {
+    //ROS_INFO("set success");
+  }
+  else
+  {
+    ROS_ERROR("Failed to call gimbal server");
+  }
 }
 
 void QNode::RobotShoot(std::string robot_num)

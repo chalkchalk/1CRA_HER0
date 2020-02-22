@@ -6,6 +6,8 @@
   :components ((:file "_package")
     (:file "FricWhl" :depends-on ("_package_FricWhl"))
     (:file "_package_FricWhl" :depends-on ("_package"))
+    (:file "GimbalAim" :depends-on ("_package_GimbalAim"))
+    (:file "_package_GimbalAim" :depends-on ("_package"))
     (:file "GimbalMode" :depends-on ("_package_GimbalMode"))
     (:file "_package_GimbalMode" :depends-on ("_package"))
     (:file "JudgeSysControl" :depends-on ("_package_JudgeSysControl"))

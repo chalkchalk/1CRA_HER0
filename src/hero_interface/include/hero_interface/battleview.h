@@ -23,15 +23,24 @@ namespace hero_interface {
 #define BULLET_RADIUS_PIX   8
 class QNode;
 
-struct Pose
+class Pose
 {
+public:
     Pose(float x_, float y_,float yaw_) :x(x_), y(y_), yaw(yaw_){}//有参构造
     Pose() :x(0), y(0), yaw(0){}
     float x;
     float y;
     float yaw;
+    friend Pose operator+(const Pose& pose1,const Pose& pose2) {
+        float x = pose1.x+pose2.x;
+        float y = pose1.x+pose2.y;
+        float yaw = pose1.yaw+pose2.yaw;
+        return Pose(x, y,yaw);
+      }
 
 };
+
+
 
 class Robot
 {

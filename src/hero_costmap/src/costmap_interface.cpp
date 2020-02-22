@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -236,7 +236,7 @@ void CostmapInterface::MapUpdateLoop(double frequency) {
   while (nh.ok() && !map_update_thread_shutdown_) {
     struct timeval start, end;
     gettimeofday(&start, NULL);
-    UpdateMap();
+    UpdateMap();//update map
     gettimeofday(&end, NULL);
     r.sleep();
     if (r.cycleTime() > ros::Duration(1 / frequency)) {

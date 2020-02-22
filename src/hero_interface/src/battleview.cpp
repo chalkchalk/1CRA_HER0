@@ -2,7 +2,7 @@
 #include "rotatedrect.h"
 #include <ros/package.h>
 #include "hero_math/math.h"
-
+#include "qstring.h"
 namespace hero_interface {
 
 
@@ -297,10 +297,21 @@ void BattleView::DrawRobot(QImage *qImage)
         painterRobot.setPen(QPen(Qt::gray, 20, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
         painterRobot.drawLine(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.7,gimbalEndRotated.X(),gimbalEndRotated.Y());
 
+
+
+
+
         MeterToPix(&pix_h,&pix_w,ROBOT_HEIGHT*1.4,ROBOT_WIDTH*1.4,background.size());
         QMatrix matrix;
         matrix.rotate(PoseToAngle((*it)->pose.yaw) *180.0 / 3.1415);
         painter.drawImage(PoseToMapPoint((*it)->pose,background.size(),robotImage.scaled(pix_w,pix_h).transformed(matrix)), robotImage.scaled(pix_w,pix_h).transformed(matrix));
+
+        QFont font;
+        font.setFamily("Microsoft YaHei");
+        font.setPointSize(11);
+        painter.setFont(font);
+        painter.setPen(QPen(Qt::white, 5, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
+        painter.drawText(PoseToMapPoint((*it)->pose,background.size()) - QPoint(40,40) , QString::fromStdString((*it)->name));//draw name
 
         if((*it)->selected && !((*it)->SetDest.x==0&&(*it)->SetDest.y==0))
         {

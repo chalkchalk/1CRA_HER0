@@ -5,6 +5,7 @@ from ._ArmorDetectionActionResult import *
 from ._ArmorDetectionFeedback import *
 from ._ArmorDetectionGoal import *
 from ._ArmorDetectionResult import *
+from ._BattlePosition import *
 from ._BonusStatus import *
 from ._Buffinfo import *
 from ._BulletMove import *
@@ -29,10 +30,12 @@ from ._LocalPlannerFeedback import *
 from ._LocalPlannerGoal import *
 from ._LocalPlannerResult import *
 from ._ObstacleMsg import *
+from ._Position import *
 from ._ProjectileSupply import *
 from ._RobotBonus import *
 from ._RobotDamage import *
 from ._RobotHeat import *
+from ._RobotPosition import *
 from ._RobotShoot import *
 from ._RobotStatus import *
 from ._ShootInfo import *

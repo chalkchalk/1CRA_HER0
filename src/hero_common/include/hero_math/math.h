@@ -26,6 +26,9 @@
 #include "geometry.h"
 namespace hero_common {
 
+const double PI = 3.14159265358979323846;
+
+
 inline double Cross2D (const hero_common::Point2D &vector0,
                        const hero_common::Point2D &vector1) {
   return vector0.X() * vector1.Y() - vector0.Y() * vector1.X();
@@ -459,6 +462,20 @@ inline int PointInRect(const hero_common::Point2D point,
                        const hero_common::Point2D rect_2)
 {
     return PointInRect(point.X(),point.Y(),rect_1.X(),rect_1.Y(),rect_2.X(),rect_2.Y());
+}
+
+inline double GetlinesegmentAngle(double x1,double y1, double x2, double y2)
+{
+  return std::atan2(y2 - y1,x2 - x1);
+}
+
+inline double GetAngleInRange(double angle)//(-PI,PI]
+{
+  while(angle > hero_common::PI)
+    angle -= 2*hero_common::PI;
+  while(angle <= -hero_common::PI)
+    angle += 2*hero_common::PI;
+  return angle;
 }
 
 

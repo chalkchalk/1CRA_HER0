@@ -38,6 +38,7 @@
 #include "geometry_msgs/PoseStamped.h"
 #include "geometry_msgs/Twist.h"
 #include "hero_msgs/ShootCmd.h"
+#include "hero_msgs/GimbalAim.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -148,6 +149,7 @@ private:
     BattleView *parentBattleView_;
     ros::ServiceClient client_;
     ros::ServiceClient shoot_client_;
+    ros::ServiceClient gimbal_aim_client_;
     //hero_msgs::RobotStatus roboStatus_[4];
     //hero_msgs::RobotHeat roboHeat_[4];
     hero_msgs::Buffinfo buffInfo_;
