@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -138,7 +138,7 @@ hero_common::ErrorInfo TebLocalPlanner::ComputeVelocityCommands(hero_msgs::Twist
   } else*/ if (global_plan_overwrite_orientation_) {
     transformed_plan_.back().SetTheta(EstimateLocalGoalOrientation(transformed_plan_.back(), goal_idx));
   }
-
+  transformed_plan_.back().SetTheta(robot_pose_.GetTheta());//here!!!!!
   if (transformed_plan_.size()==1) {// plan only contains the goal
     transformed_plan_.insert(transformed_plan_.begin(), robot_pose_); // insert start (not yet initialized)
   } else {
@@ -200,6 +200,7 @@ hero_common::ErrorInfo TebLocalPlanner::ComputeVelocityCommands(hero_msgs::Twist
     return velocity_error;
   }
 
+  //ROS_ERROR("x speed = %f",cmd_vel.twist.linear.x);
   SaturateVelocity(cmd_vel.twist.linear.x, cmd_vel.twist.linear.y, cmd_vel.twist.angular.z,
                    max_vel_x_,max_vel_y_,max_vel_theta_,max_vel_x_backwards);
 
@@ -318,13 +319,16 @@ bool TebLocalPlanner::TransformGlobalPlan(int *current_goal_idx) {
       double x_diff = robot_pose.getOrigin().x() - global_plan_.poses[i].pose.position.x;
       double y_diff = robot_pose.getOrigin().y() - global_plan_.poses[i].pose.position.y;
       new_sq_dist = x_diff * x_diff + y_diff * y_diff;
+      //ROS_ERROR("new_sq_dist = %f, sq_dis t= %f, sq_dist_threshold = %f",new_sq_dist,sq_dist,sq_dist_threshold);
       if (new_sq_dist > sq_dist && sq_dist < sq_dist_threshold) {
+       // ROS_ERROR("[**]new_sq_dist = %f, sq_dis t= %f, sq_dist_threshold = %f",new_sq_dist,sq_dist,sq_dist_threshold);
         sq_dist = new_sq_dist;
         break;
       }
       sq_dist = new_sq_dist;
       ++i;
-    }
+    }//Find the closet point
+    //ROS_ERROR("i=%d, size = %d",i,(int)global_plan_.poses.size());
 
     tf::Stamped<tf::Pose> tf_pose;
     geometry_msgs::PoseStamped newer_pose;
@@ -342,7 +346,7 @@ bool TebLocalPlanner::TransformGlobalPlan(int *current_goal_idx) {
       tf::poseStampedTFToMsg(tf_pose, newer_pose);
       auto temp = DataConverter::LocalConvertGData(newer_pose.pose);
       DataBase data_pose(temp.first, temp.second);
-
+      //data_pose.SetTheta(0);
       transformed_plan_.push_back(data_pose);
 
       double x_diff = robot_pose.getOrigin().x() - global_plan_.poses[i].pose.position.x;
@@ -356,7 +360,7 @@ bool TebLocalPlanner::TransformGlobalPlan(int *current_goal_idx) {
 
       ++i;
     }
-
+    //ROS_ERROR("i=%d, size = %d",i,(int)global_plan_.poses.size());
     if (transformed_plan_.empty()) {
       tf::poseStampedMsgToTF(global_plan_.poses.back(), tf_pose);
       tf_pose.setData(plan_to_global_transform_ * tf_pose);
@@ -374,7 +378,7 @@ bool TebLocalPlanner::TransformGlobalPlan(int *current_goal_idx) {
       }
     } else {
       if (current_goal_idx) {
-        *current_goal_idx = i-1;
+        *current_goal_idx = i-1;//...holy shit
       }
     }
 

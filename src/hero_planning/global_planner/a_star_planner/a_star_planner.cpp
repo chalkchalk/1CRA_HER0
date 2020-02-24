@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -40,6 +40,7 @@ AStarPlanner::AStarPlanner(CostmapPtr costmap_ptr) :
   heuristic_factor_ = a_star_planner_config.heuristic_factor();
   inaccessible_cost_ = a_star_planner_config.inaccessible_cost();
   goal_search_tolerance_ = a_star_planner_config.goal_search_tolerance()/costmap_ptr->GetCostMap()->GetResolution();
+  //ROS_ERROR("tolerence = %d",goal_search_tolerance_);
 }
 
 AStarPlanner::~AStarPlanner(){
@@ -50,7 +51,8 @@ ErrorInfo AStarPlanner::Plan(const geometry_msgs::PoseStamped &start,
                              const geometry_msgs::PoseStamped &goal,
                              std::vector<geometry_msgs::PoseStamped> &path) {
 
-  unsigned int start_x, start_y, goal_x, goal_y, tmp_goal_x, tmp_goal_y;
+  unsigned int start_x, start_y, goal_x, goal_y;
+  int tmp_goal_x, tmp_goal_y;
   unsigned int valid_goal[2];
   unsigned  int shortest_dist = std::numeric_limits<unsigned int>::max();
   bool goal_valid = false;
@@ -76,14 +78,37 @@ ErrorInfo AStarPlanner::Plan(const geometry_msgs::PoseStamped &start,
     valid_goal[1] = goal_y;
     goal_valid = true;
   }else{
-    tmp_goal_x = goal_x;
-    tmp_goal_y = goal_y - goal_search_tolerance_;
+    unsigned int x_min,y_min,x_max,y_max;
+    if((int)goal_x -(int) goal_search_tolerance_<0)
+      x_min = 0;
+    else
+      x_min = (int)goal_x - (int)goal_search_tolerance_;
+    if((int)goal_y - (int)goal_search_tolerance_<0)
+      y_min = 0;
+    else
+      y_min = (int)goal_y - (int)goal_search_tolerance_<0;
 
-    while(tmp_goal_y <= goal_y + goal_search_tolerance_){
-      tmp_goal_x = goal_x - goal_search_tolerance_;
-      while(tmp_goal_x <= goal_x + goal_search_tolerance_){
+    if(goal_x + goal_search_tolerance_>costmap_ptr_->GetCostMap()->GetSizeXCell())
+      x_max = costmap_ptr_->GetCostMap()->GetSizeXCell();
+    else
+      x_max = (int)goal_x + goal_search_tolerance_;
+
+    if(goal_y + goal_search_tolerance_>costmap_ptr_->GetCostMap()->GetSizeYCell())
+      y_max = costmap_ptr_->GetCostMap()->GetSizeYCell();
+    else
+      y_max = (int)goal_y + goal_search_tolerance_;
+
+    tmp_goal_x = x_min;
+    tmp_goal_y = y_min;
+    //ROS_ERROR("[start]x_min=%d,y_min=%d ",x_min,y_min);
+    //ROS_ERROR("[start]x=%d,y=%d",tmp_goal_x,tmp_goal_y);
+    while(tmp_goal_y <= y_max){
+      tmp_goal_x = x_min;
+      while(tmp_goal_x <= x_max){
+
         unsigned char cost = costmap_ptr_->GetCostMap()->GetCost(tmp_goal_x, tmp_goal_y);
         unsigned int dist = abs(goal_x - tmp_goal_x) + abs(goal_y - tmp_goal_y);
+        //ROS_ERROR("x=%d,y=%d cost = %d",tmp_goal_x,tmp_goal_y,cost);
         if (cost < inaccessible_cost_ && dist < shortest_dist ) {
           shortest_dist = dist;
           valid_goal[0] = tmp_goal_x;

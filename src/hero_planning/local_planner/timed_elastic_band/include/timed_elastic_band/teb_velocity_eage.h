@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -126,6 +126,7 @@ class VelocityHolonomicEdge : public TebMultiEdgeBase<3, double> {
     const TebVertexTimeDiff *deltaT = static_cast<const TebVertexTimeDiff *>(_vertices[2]);
     const Eigen::Vector2d deltaS = conf2->estimate().GetPosition() - conf1->estimate().GetPosition();
 
+    //static int kk=0;
     double cos_theta1 = std::cos(conf1->GetPose().GetTheta());
     double sin_theta1 = std::sin(conf1->GetPose().GetTheta());
 
@@ -135,7 +136,13 @@ class VelocityHolonomicEdge : public TebMultiEdgeBase<3, double> {
     double vx = r_dx / deltaT->estimate();
     double vy = r_dy / deltaT->estimate();
     double omega = g2o::normalize_theta(conf2->GetPose().GetTheta() - conf1->GetPose().GetTheta()) / deltaT->estimate();
-
+/*
+    kk++;
+    if(kk%500==0)
+    {
+    ROS_ERROR("theta = %f, cos_theta1= %f,sin_theta1 = %f, deltaS.x() = %f,deltaS.y()=%f, r_dx = %f",conf1->GetPose().GetTheta(), cos_theta1,sin_theta1,deltaS.x(),deltaS.y(),r_dx);
+    //ROS_ERROR("vx = %f",vx);
+     }*/
     _error[0] = PenaltyBoundToInterval(vx, -config_param_->kinematics_opt().max_vel_x_backwards(),
                                        config_param_->kinematics_opt().max_vel_x(), config_param_->optimize_info().penalty_epsilon());
     _error[1] = PenaltyBoundToInterval(vy, config_param_->kinematics_opt().max_vel_y(), 0.0);

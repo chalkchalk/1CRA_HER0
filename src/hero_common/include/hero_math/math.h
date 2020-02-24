@@ -479,6 +479,7 @@ inline double GetAngleInRange(double angle)//(-PI,PI]
 }
 
 
+
 } // namespace hero_common
 
 #endif //HERO_COMMON_MATH_H

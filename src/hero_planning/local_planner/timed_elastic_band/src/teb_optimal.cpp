@@ -321,6 +321,7 @@ bool TebOptimal::BuildGraph(double weight_multiplier) {
 
   AddTimeOptimalEdges();
 
+  /*
   if (robot_info_.min_turning_radius() == 0 ||
       optimization_info_.weight_kinematics_turning_radius() == 0) {
     AddKinematicsDiffDriveEdges();
@@ -328,6 +329,7 @@ bool TebOptimal::BuildGraph(double weight_multiplier) {
     AddKinematicsCarlikeEdges();
   }
 
+  */
   AddPreferRotDirEdges();
 
   return true;
@@ -1018,6 +1020,11 @@ void TebOptimal::ExtractVelocity(const DataBase &pose1,
   }
 
   Eigen::Vector2d deltaS = pose2.GetPosition() - pose1.GetPosition();
+  //ROS_ERROR("x1 = %f, y1 = %f",pose2.GetPosition().coeff(0),pose2.GetPosition().coeff(1));
+  //ROS_ERROR("x2 = %f, y2 = %f",pose1.GetPosition().coeff(0),pose1.GetPosition().coeff(1));
+  //ROS_ERROR("cof0 = %f, cof1 = %f",deltaS.coeffRef(0),deltaS.coeffRef(1));
+  //ROS_ERROR("dt = %f",dt);
+
   if (robot_info_.max_vel_y() == 0) {
     Eigen::Vector2d conf1dir( cos(pose1.GetTheta()), sin(pose1.GetTheta()) );
     double dir = deltaS.dot(conf1dir);

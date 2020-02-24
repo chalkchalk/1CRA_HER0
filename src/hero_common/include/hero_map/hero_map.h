@@ -40,21 +40,24 @@ double GetMapPointOccupancy(const nav_msgs::OccupancyGrid *map, double x, double
 
 }
 
-bool LineSegmentIsIntersectMapObstacle(const nav_msgs::OccupancyGrid *map,double x1, double y1, double x2, double y2, int divider = 10, double threshold = 0.9)
+double LineSegmentIsIntersectMapObstacle(const nav_msgs::OccupancyGrid *map,double x1, double y1, double x2, double y2, int divider = 20, double threshold = 0.9)
 {
     int i = 0;
     if(divider < 0)
         divider = 10;
-    bool value = false;
+    double value = 0;
 
     for(i=0;i<divider+1;i++)
     {
         double x_check = (x2 - x1) * i / divider + x1;
         double y_check = (y2 - y1) * i / divider + y1;
         if(GetMapPointOccupancy(map,x_check,y_check))
-            value = true;
+        {
+            value = i+1;
+            return value/divider;
+        }
     }
-    return value;
+    return value/divider;
 }
 
 }

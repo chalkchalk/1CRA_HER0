@@ -4,6 +4,7 @@
 #include <thread>
 #include "hero_map/hero_map.h"
 #include "hero_math/math.h"
+#include "tf/tf.h"
 
 namespace hero_decision {
 
@@ -15,18 +16,31 @@ BasicExecutor::BasicExecutor()
 
 void BasicExecutor::Init()
 {
+  set_yaw = 0;
+  yaw_received_ = false;
+  yaw_control_received_ = false;
   if(nh_.getNamespace().c_str()!="/"&&nh_.getNamespace().size()>5)
       my_name_ = nh_.getNamespace().substr(2);
   else
       my_name_ = "robot_0";
-  ros::Duration(0.5).sleep();
+  ros::Duration(2.0).sleep();
   battle_position_sub_ = nh_.subscribe<hero_msgs::BattlePosition>("/simu_decision_info/battle_position",100,&BasicExecutor::BattlePositionCallback,this);
+  yaw_set_sub_ = nh_.subscribe<std_msgs::Float64>("yaw_set",100,&BasicExecutor::YawSetCallback,this);
+  yaw_speed_pub_ = nh_.advertise<std_msgs::Float64>("cmd_yaw_speed", 5);
+  goalPoint_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 5);
   static_map_srv_ = nh_.serviceClient<nav_msgs::GetMap>("/static_map");
   shoot_client_ = nh_.serviceClient<hero_msgs::ShootCmd>("/shoot_server");
   gimbal_aim_client_ =  nh_.serviceClient<hero_msgs::GimbalAim>("gimbal_aim_server");
+
   GetStaticMap();
 }
 
+void BasicExecutor::YawSetCallback(const std_msgs::Float64::ConstPtr &msg)
+{
+  set_yaw = msg->data;
+  yaw_control_received_ = true;
+
+}
 bool BasicExecutor::GetStaticMap()
 {
   ros::service::waitForService("/static_map", -1);
@@ -61,6 +75,12 @@ bool BasicExecutor::Shoot()
 void BasicExecutor::BattlePositionCallback(const hero_msgs::BattlePosition::ConstPtr &msg)
 {
   battle_position_ = *msg;
+  if(!yaw_received_)
+  {
+    yaw_received_ = true;
+    set_yaw = FindRobotPosition(my_name_).position.yaw;
+  }
+
 }
 
 hero_msgs::RobotPosition BasicExecutor::FindRobotPosition(std::string robot_name)
@@ -164,6 +184,7 @@ bool BasicExecutor::GimbalAimPoint(double x, double y)
 
 bool BasicExecutor::EngageRobot(std::string robot_name)
 {
+  FaceRobot(robot_name);
   if(AimRobot(robot_name))
   {
     Shoot();
@@ -213,6 +234,108 @@ std::string BasicExecutor::FindClosetAimableEnemy()
   }
 }
 
+void BasicExecutor::YawControlLoop()
+{
+
+  if(!(yaw_received_&&yaw_control_received_))
+    return;
+  double yaw_err = FindRobotPosition(my_name_).position.yaw - set_yaw;
+  static double i_out;
+  if(yaw_err>M_PI)
+    yaw_err-=M_PI*2;
+  if(yaw_err<-M_PI)
+    yaw_err+=M_PI*2;
+
+  i_out += -yaw_err*0.003;
+  if(i_out>hero_decision::I_OUT_YAW)
+     i_out=hero_decision::I_OUT_YAW;
+  if(i_out<-hero_decision::I_OUT_YAW)
+     i_out=-hero_decision::I_OUT_YAW;
+
+  set_yaw_speed_ = -yaw_err*3 + i_out;
+
+   //ROS_ERROR("set_yaw = %f, chassis_yaw - %f, yaw_err = %f",set_yaw,FindRobotPosition(my_name_).position.yaw,yaw_err);
+
+  std_msgs::Float64 msg;
+  msg.data = set_yaw_speed_;
+  yaw_speed_pub_.publish(msg);
+}
+
+bool BasicExecutor::ApproachEnemy(std::string robot_name,double contact_distance)
+{
+  static int divider =0;
+  divider++;
+  if(divider==10)
+  {
+    divider =0;
+  }
+  else {
+    return false;
+  }
+  double enemy_x = FindRobotPosition(robot_name).position.x;
+  double enemy_y = FindRobotPosition(robot_name).position.y;
+  double goto_x = enemy_x;
+  double goto_y = enemy_y;
+  int scan_num = 20;
+
+  double min_distance=1000;
+  for(int i=0;i<scan_num;i++)
+  {
+    double new_x = enemy_x+contact_distance*std::cos(((double)i)/scan_num * 2 * M_PI);
+    double new_y = enemy_y+contact_distance*std::sin(((double)i)/scan_num * 2 * M_PI);
+    if(hero_common::LineSegmentIsIntersectMapObstacle(&map_,enemy_x,enemy_y,new_x,new_y)==0)
+    {
+      double distance_of_other_robot = 100;
+      for(int j =0;j<4;j++)
+      {
+        if(RobotName[j] == my_name_||RobotName[j]==robot_name)
+          continue;
+        double new_other_robot_distance =  hero_common::PointToLineDistance(FindRobotPosition(RobotName[j]).position.x,
+                                                                            FindRobotPosition(RobotName[j]).position.y,
+                                                                            new_x,
+                                                                            new_y,
+                                                                            FindRobotPosition(robot_name).position.x,
+                                                                            FindRobotPosition(robot_name).position.y);
+        if(new_other_robot_distance<distance_of_other_robot)
+          distance_of_other_robot = new_other_robot_distance;
+      }
+
+
+      if(distance_of_other_robot> 0.6)
+      {
+        double new_distance = hero_common::PointDistance(FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y,
+                                                         new_x,new_y);
+        if(new_distance<min_distance)
+        {
+          min_distance = new_distance;
+          goto_x = new_x;
+          goto_y = new_y;
+        }
+      }
+
+
+
+      }
+
+
+
+   }
+  geometry_msgs::PoseStamped pose;
+  pose.pose.position.x = goto_x;
+  pose.pose.position.y = goto_y;
+  pose.pose.position.z = 0;
+  pose.pose.orientation = tf::createQuaternionMsgFromYaw(0);
+  goalPoint_pub_.publish(pose);
+  return true;
+}
+
+void BasicExecutor::FaceRobot(std::string robot_name)
+{
+    yaw_control_received_ = true;
+    set_yaw = hero_common::GetlinesegmentAngle(FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y,
+                                               FindRobotPosition(robot_name).position.x,FindRobotPosition(robot_name).position.y);
+}
+
 }
 
 
@@ -230,21 +353,18 @@ int main(int argc, char **argv)
     ms_last = tv.tv_sec*1000 + tv.tv_usec/1000;
 
     //if(basic_executor.GetName()!="robot_0")
+   // {basic_executor.EngageRobot(basic_executor.FindClosetAimableEnemy());
+
+   // }
+
+    //if(basic_executor.GetName()=="robot_2")
     {
-      basic_executor.EngageRobot(basic_executor.FindClosetAimableEnemy());
-    }
-/*
-    if(basic_executor.GetName()=="robot_0")
-    {
-      int i = basic_executor.CanShootRobot("robot_2");
-      if(i)
-      {
-        ROS_INFO("I can shoot, value = %d",i);
-      }
+       basic_executor.EngageRobot(basic_executor.FindClosetAimableEnemy());
+       basic_executor.ApproachEnemy(basic_executor.FindClosetAimableEnemy(),2.0);
 
     }
-*/
 
+    basic_executor.YawControlLoop();
 
 
 

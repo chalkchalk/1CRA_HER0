@@ -7,6 +7,7 @@
 
 namespace hero_decision{
 
+
 class PointNavigation{
 typedef actionlib::SimpleActionClient<hero_msgs::GlobalPlannerAction> GlobalActionClient;
   typedef actionlib::SimpleActionClient<hero_msgs::LocalPlannerAction> LocalActionClient;
@@ -22,8 +23,11 @@ typedef actionlib::SimpleActionClient<hero_msgs::GlobalPlannerAction> GlobalActi
   //! local planner actionlib goal
   hero_msgs::LocalPlannerGoal local_planner_goal_;
   ros::Subscriber sub_;
+  ros::Publisher yaw_speed_pub_;
   void GlobalPlannerFeedbackCallback(const hero_msgs::GlobalPlannerFeedbackConstPtr& global_planner_feedback);
   void chatterCallback(const geometry_msgs::PoseStamped &goal);
+  double set_yaw;
+  double set_yaw_speed_;
 
 };
 
@@ -43,9 +47,13 @@ PointNavigation::PointNavigation():global_planner_client_("global_planner_node_a
 {
   ros::NodeHandle nh;
   if(nh.getNamespace().c_str()!="/"&&nh.getNamespace().size()>5)
+  {
       sub_ = nh.subscribe(nh.getNamespace().substr(1) + "/move_base_simple/goal", 1000, &PointNavigation::chatterCallback,this);
+  }
   else
     sub_ = nh.subscribe("/move_base_simple/goal", 1000, &PointNavigation::chatterCallback,this);
+
+
   ROS_INFO("PointNavigation start!");
   global_planner_client_.waitForServer();
   ROS_INFO("Global planer server start!");
@@ -63,23 +71,14 @@ void PointNavigation::GlobalPlannerFeedbackCallback(const hero_msgs::GlobalPlann
 
 }
 
+
+
 }
 int main(int argc, char **argv)
 {
-	/**
-	 * The ros::init() function needs to see argc and argv so that it can perform
-	 * any ROS arguments and name remapping that were provided at the command line.
-	 * For programmatic remappings you can use a different version of init() which takes
-	 * remappings directly, but for most command-line programs, passing argc and argv is
-	 * the easiest way to do it.  The third argument to init() is the name of the node.
-	 *
-	 * You must call one of the versions of ros::init() before using any other
-	 * part of the ROS system.
-	 */
 	ros::init(argc, argv, "point_navigation");
-	auto PointNavigation = new hero_decision::PointNavigation;
-	
 
+	auto PointNavigation = new hero_decision::PointNavigation;
 
 
 
@@ -88,7 +87,7 @@ int main(int argc, char **argv)
 	 * callbacks will be called from within this thread (the main one).  ros::spin()
 	 * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
 	 */
-	ros::spin();
+  ros::spin();
 
 	return 0;
 }

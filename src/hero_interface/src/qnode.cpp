@@ -297,7 +297,7 @@ void QNode::SendGoalPoint(int robot_num, double x, double y,double yaw)
     pose.pose.position.x = x;
     pose.pose.position.y = y;
     pose.pose.position.z = 0;
-
+   // pose.header.frame_id = "map";
     pose.pose.orientation.x = quaternion.x;
     pose.pose.orientation.y = quaternion.y;
     pose.pose.orientation.z = quaternion.z;

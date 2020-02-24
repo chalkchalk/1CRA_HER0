@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -308,7 +308,10 @@ bool TebVertexConsole::InitTEBtoGoal(std::vector<DataBase> &plan,
           yaw = g2o::normalize_theta(std::atan2(dy, dx) + M_PI);
           plan[i].SetTheta(yaw);
         } else*/ {
+          //plan[i].SetTheta(std::atan2(dy, dx));
           plan[i].SetTheta(std::atan2(dy, dx));
+         // plan[i].SetTheta(0);
+         // ROS_ERROR("set!!");
         }
 
       }

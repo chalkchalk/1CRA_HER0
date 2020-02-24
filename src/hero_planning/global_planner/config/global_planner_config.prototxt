@@ -3,4 +3,4 @@
   frequency: 4
   max_retries: 5 
   goal_distance_tolerance: 0.15
-  goal_angle_tolerance: 0.15
+  goal_angle_tolerance: 100
