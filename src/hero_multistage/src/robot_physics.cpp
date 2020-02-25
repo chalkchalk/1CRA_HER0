@@ -464,7 +464,7 @@ int main(int argc, char** argv){
       //robotPhysics.FindRobot("robot_0")->SetGimbalAbsoluteYaw(0);
       robotPhysics.GimbalsMove();
       robotPhysics.PublishGimbalYaw();
-      robotPhysics.LetBulletsFly(30);
+      robotPhysics.LetBulletsFly(33);
       robotPhysics.PublishBulletsInfo();
       robotPhysics.BulletJudge();
       robotPhysics.ArmorHitDetect();

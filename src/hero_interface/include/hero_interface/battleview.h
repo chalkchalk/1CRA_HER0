@@ -48,6 +48,7 @@ public:
     Robot(){
         health = 2000;
         heat = 0;
+        attacking_ = false;
     };
     Robot(std::string robot_name, std::string robot_color){
         selected = false;
@@ -67,15 +68,18 @@ public:
         else {
             index = -1;
         }
+        attacking_ = false;
     };
     std::string color;
     std::string name;
     int index;
     int health;
     int heat;
+    std::string target;
     Pose pose;
     bool selected;
     Pose SetDest;
+    bool attacking_;
 };
 
 
@@ -90,8 +94,10 @@ public:
     Robot* FindRobot(std::string robot_name);
     void GetBattleView(QImage *qImage);
     bool SetRobotPose(std::string robot_num,float x, float y, float yaw);
+    std::vector<std::string> FindRobotInViewRange(int x, int y, double max_distance);
     void ImageToPosePoint(double *pose_x, double *pose_y, int image_x, int image_y);
     void SetRobotGoalPoint(int image_x,int image_y);
+    void SetRobotAttackTarget(std::string target);
     void LeftButtonPress(int x, int y);
     void LeftButtonDrag(int x, int y);
     void LeftButtonRelease(int x, int y);
@@ -111,6 +117,7 @@ public:
     QPoint dragingPoint;
     bool isDraging;
     bool isMousePressed;
+
     bool inImageScope(int x, int y);
 };
 

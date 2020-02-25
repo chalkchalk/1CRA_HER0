@@ -17,7 +17,7 @@
   <node pkg="hero_planning" type="global_planner_node" name="global_planner_node"  respawn="true"  ns="$(arg robot_num)" />
 
   <!-- Run the local planner node -->
-  <node pkg="hero_planning" type="local_planner_node" name="local_planner_node" respawn="false" ns="$(arg robot_num)" />
+  <node pkg="hero_planning" type="local_planner_node" name="local_planner_node" respawn="true"  ns="$(arg robot_num)" />
 
    <!-- Run the velocity converter node -->
   <node pkg="hero_planning" type="vel_converter" name="vel_converter_node" respawn="false" ns="$(arg robot_num)" />

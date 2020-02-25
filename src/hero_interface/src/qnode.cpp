@@ -90,6 +90,12 @@ bool QNode::init() {
     client_ = n.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
     shoot_client_ = n.serviceClient<hero_msgs::ShootCmd>("shoot_server");
     gimbal_aim_client_ = n.serviceClient<hero_msgs::GimbalAim>("/robot_0/gimbal_aim_server");
+
+    basic_executor_cient_[0] = n.serviceClient<hero_msgs::BasicExecutor>("/robot_0/basic_executor_server");
+    basic_executor_cient_[1] = n.serviceClient<hero_msgs::BasicExecutor>("/robot_1/basic_executor_server");
+    basic_executor_cient_[2] = n.serviceClient<hero_msgs::BasicExecutor>("/robot_2/basic_executor_server");
+    basic_executor_cient_[3] = n.serviceClient<hero_msgs::BasicExecutor>("/robot_3/basic_executor_server");
+
     GetParam(&n);
 
     robot[0].robot_name = "robot_0";
@@ -267,14 +273,14 @@ bool QNode::SendJudgeSysCall(int command, std::string robot_name)
             if(srv.response.error_code==0)
                 return  true;
             else {
-                ROS_ERROR("judgesys service error:%d\n",srv.response.error_code);
+                ROS_ERROR("[q_node]judgesys service error:%d\n",srv.response.error_code);
                 return false;
             }
 
         }
         else
         {
-            ROS_ERROR("Failed to call judgesys server");
+            ROS_ERROR("[q_node]Failed to call judgesys server");
             return false;
         }
 }
@@ -292,6 +298,20 @@ void QNode::BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr &msg)
 
 void QNode::SendGoalPoint(int robot_num, double x, double y,double yaw)
 {
+  hero_msgs::BasicExecutor basic_executor;
+  basic_executor.request.command = basic_executor.request.MOVE_TO_POSITION;
+  basic_executor.request.position_x = x;
+  basic_executor.request.position_y = y;
+
+  if(basic_executor_cient_[robot_num].call(basic_executor))
+  {
+
+  }
+  else {
+     ROS_ERROR("[q_node]Failed to call basic_executor server");
+  }
+
+  /*
     geometry_msgs::PoseStamped pose;
     geometry_msgs::Quaternion quaternion = tf::createQuaternionMsgFromRollPitchYaw(0,0,yaw); //欧拉角;
     pose.pose.position.x = x;
@@ -302,9 +322,22 @@ void QNode::SendGoalPoint(int robot_num, double x, double y,double yaw)
     pose.pose.orientation.y = quaternion.y;
     pose.pose.orientation.z = quaternion.z;
     pose.pose.orientation.w = quaternion.w;
-    goalPoint_pub_[robot_num].publish(pose);
+    goalPoint_pub_[robot_num].publish(pose);*/
 }
 
+void QNode::AttackRobot(int attacker, std::string target)
+{
+  hero_msgs::BasicExecutor basic_executor;
+  basic_executor.request.command = basic_executor.request.ATTACK_ROBOT;
+  basic_executor.request.robot_name = target;
+  if(basic_executor_cient_[attacker].call(basic_executor))
+  {
+
+  }
+  else {
+     ROS_ERROR("[q_node]Failed to call basic_executor server");
+  }
+}
 void QNode::MoveRobot0(double x_speed,double y_speed)
 {
   geometry_msgs::Twist cmd_vel;

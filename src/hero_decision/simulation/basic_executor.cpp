@@ -8,6 +8,8 @@
 
 namespace hero_decision {
 
+using namespace hero_decision;
+
 BasicExecutor::BasicExecutor()
 {
   Init();
@@ -23,6 +25,7 @@ void BasicExecutor::Init()
       my_name_ = nh_.getNamespace().substr(2);
   else
       my_name_ = "robot_0";
+  state_ = BasicExecutorState::IDLE;
   ros::Duration(2.0).sleep();
   battle_position_sub_ = nh_.subscribe<hero_msgs::BattlePosition>("/simu_decision_info/battle_position",100,&BasicExecutor::BattlePositionCallback,this);
   yaw_set_sub_ = nh_.subscribe<std_msgs::Float64>("yaw_set",100,&BasicExecutor::YawSetCallback,this);
@@ -31,10 +34,65 @@ void BasicExecutor::Init()
   static_map_srv_ = nh_.serviceClient<nav_msgs::GetMap>("/static_map");
   shoot_client_ = nh_.serviceClient<hero_msgs::ShootCmd>("/shoot_server");
   gimbal_aim_client_ =  nh_.serviceClient<hero_msgs::GimbalAim>("gimbal_aim_server");
-
+  basic_executor_server_ = nh_.advertiseService("basic_executor_server",&BasicExecutor::BasicExecutor_handle_function,this);
   GetStaticMap();
+
+
 }
 
+void BasicExecutor::FSM_handler()
+{
+  switch (state_) {
+  case BasicExecutorState::IDLE:
+    MoveToPosition(FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y);
+    EngageRobot(FindClosetAimableEnemy());
+    break;
+  case BasicExecutorState::ATTACK_ROBOT:
+    if(isAlive(target_enemy_))
+    {
+      ApproachEnemy(target_enemy_,1.5);
+      EngageRobot(target_enemy_);
+    }
+    else {
+      ROS_INFO("[basic_executor]%s: %s is history now.",my_name_.c_str(),target_enemy_.c_str());
+      state_ = BasicExecutorState::IDLE;
+    }
+    break;
+  case BasicExecutorState::MOVE_TO_POSITION:
+    MoveToPosition(move_x,move_y);
+    EngageRobot(FindClosetAimableEnemy());
+    break;
+  default:
+    break;
+  }
+
+  YawControlLoop();
+}
+
+
+
+bool BasicExecutor::BasicExecutor_handle_function(hero_msgs::BasicExecutor::Request &req, hero_msgs::BasicExecutor::Response &res)
+{
+  bool success = true;
+  switch(req.command)
+  {
+  case req.MOVE_TO_POSITION:
+    state_ = BasicExecutorState::MOVE_TO_POSITION;
+    move_x = req.position_x;
+    move_y = req.position_y;
+    break;
+  case req.ATTACK_ROBOT:
+    target_enemy_ = req.robot_name;
+    state_ = BasicExecutorState::ATTACK_ROBOT;
+    break;
+  case req.HALT:
+    state_ = BasicExecutorState::IDLE;
+    break;
+  default:success = false;break;
+  }
+  res.error_code = res.OK;
+  return success;
+}
 void BasicExecutor::YawSetCallback(const std_msgs::Float64::ConstPtr &msg)
 {
   set_yaw = msg->data;
@@ -96,6 +154,11 @@ hero_msgs::RobotPosition BasicExecutor::FindRobotPosition(std::string robot_name
   return hero_msgs::RobotPosition();
 }
 
+bool BasicExecutor::isAlive(std::string robot_name)
+{
+  return FindRobotPosition(robot_name).health>0;
+}
+
 int BasicExecutor::CanShootRobot(std::string robot_name)
 {
   int return_val = 0;
@@ -110,7 +173,10 @@ int BasicExecutor::CanShootRobot(std::string robot_name)
   for(int i =0;i<4;i++)
   {
     //ROS_INFO("%s[%d]:%f,%f",robot_name.c_str(),i,FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y);
-    if(FindRobotPosition(robot_name).health>0&&(!hero_common::LineSegmentIsIntersectMapObstacle(&map_,FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y,
+
+
+    if(FindRobotPosition(robot_name).health>0&&
+       (!hero_common::LineSegmentIsIntersectMapObstacle(&map_,FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y,
                                                    FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y,50))&&
        hero_common::PointDistance(FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y,
                                   FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y)<hero_decision::MaxShootRange)
@@ -263,7 +329,7 @@ void BasicExecutor::YawControlLoop()
 
 bool BasicExecutor::ApproachEnemy(std::string robot_name,double contact_distance)
 {
-  static int divider =0;
+  /*static int divider =0;
   divider++;
   if(divider==10)
   {
@@ -271,7 +337,7 @@ bool BasicExecutor::ApproachEnemy(std::string robot_name,double contact_distance
   }
   else {
     return false;
-  }
+  }*/
   double enemy_x = FindRobotPosition(robot_name).position.x;
   double enemy_y = FindRobotPosition(robot_name).position.y;
   double goto_x = enemy_x;
@@ -286,7 +352,7 @@ bool BasicExecutor::ApproachEnemy(std::string robot_name,double contact_distance
     if(hero_common::LineSegmentIsIntersectMapObstacle(&map_,enemy_x,enemy_y,new_x,new_y)==0)
     {
       double distance_of_other_robot = 100;
-      for(int j =0;j<4;j++)
+      for(int j = 0; j < 4; j++)
       {
         if(RobotName[j] == my_name_||RobotName[j]==robot_name)
           continue;
@@ -296,7 +362,7 @@ bool BasicExecutor::ApproachEnemy(std::string robot_name,double contact_distance
                                                                             new_y,
                                                                             FindRobotPosition(robot_name).position.x,
                                                                             FindRobotPosition(robot_name).position.y);
-        if(new_other_robot_distance<distance_of_other_robot)
+        if(new_other_robot_distance < distance_of_other_robot)
           distance_of_other_robot = new_other_robot_distance;
       }
 
@@ -312,21 +378,20 @@ bool BasicExecutor::ApproachEnemy(std::string robot_name,double contact_distance
           goto_y = new_y;
         }
       }
-
-
-
-      }
-
-
-
+    }
    }
+  MoveToPosition(goto_x,goto_y);
+  return true;
+}
+
+void BasicExecutor::MoveToPosition(double x, double y)
+{
   geometry_msgs::PoseStamped pose;
-  pose.pose.position.x = goto_x;
-  pose.pose.position.y = goto_y;
+  pose.pose.position.x = x;
+  pose.pose.position.y = y;
   pose.pose.position.z = 0;
   pose.pose.orientation = tf::createQuaternionMsgFromYaw(0);
   goalPoint_pub_.publish(pose);
-  return true;
 }
 
 void BasicExecutor::FaceRobot(std::string robot_name)
@@ -334,6 +399,12 @@ void BasicExecutor::FaceRobot(std::string robot_name)
     yaw_control_received_ = true;
     set_yaw = hero_common::GetlinesegmentAngle(FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y,
                                                FindRobotPosition(robot_name).position.x,FindRobotPosition(robot_name).position.y);
+}
+
+void BasicExecutor::TestBehaviour()
+{
+  state_ = BasicExecutorState::ATTACK_ROBOT;
+  target_enemy_ = FindClosetAimableEnemy();
 }
 
 }
@@ -357,28 +428,19 @@ int main(int argc, char **argv)
 
    // }
 
-    //if(basic_executor.GetName()=="robot_2")
+    if(basic_executor.GetName()=="robot_2"||basic_executor.GetName()=="robot_3")
     {
-       basic_executor.EngageRobot(basic_executor.FindClosetAimableEnemy());
-       basic_executor.ApproachEnemy(basic_executor.FindClosetAimableEnemy(),2.0);
-
+       //basic_executor.EngageRobot(basic_executor.FindClosetAimableEnemy());
+       //basic_executor.ApproachEnemy(basic_executor.FindClosetAimableEnemy(),2.0);
+      basic_executor.TestBehaviour();
     }
-
-    basic_executor.YawControlLoop();
-
-
-
-
-
-
-
-
-
+    basic_executor.FSM_handler();
+   // basic_executor.YawControlLoop();
 
     gettimeofday(&tv,&tz);
     ms = tv.tv_sec*1000 + tv.tv_usec/1000;
-    if(ms - ms_last <33)
-      std::this_thread::sleep_for(std::chrono::milliseconds(33 -(ms - ms_last)));
+    if(ms - ms_last <hero_decision::LoopTimeMs)
+      std::this_thread::sleep_for(std::chrono::milliseconds(hero_decision::LoopTimeMs -(ms - ms_last)));
   ros::spinOnce();
   }
 

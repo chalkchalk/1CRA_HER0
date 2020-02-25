@@ -4,6 +4,8 @@
 (defsystem "hero_msgs-srv"
   :depends-on (:roslisp-msg-protocol :roslisp-utils )
   :components ((:file "_package")
+    (:file "BasicExecutor" :depends-on ("_package_BasicExecutor"))
+    (:file "_package_BasicExecutor" :depends-on ("_package"))
     (:file "FricWhl" :depends-on ("_package_FricWhl"))
     (:file "_package_FricWhl" :depends-on ("_package"))
     (:file "GimbalAim" :depends-on ("_package_GimbalAim"))

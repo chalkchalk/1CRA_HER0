@@ -61,6 +61,7 @@ add_service_files(
     ShootCmd.srv
     JudgeSysControl.srv
     GimbalAim.srv
+    BasicExecutor.srv
 )
 
 generate_messages(

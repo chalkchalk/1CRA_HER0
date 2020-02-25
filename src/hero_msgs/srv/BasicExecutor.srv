@@ -1,0 +1,14 @@
+uint8 MOVE_TO_POSITION = 1
+uint8 ATTACK_ROBOT = 2
+uint8 HALT = 3
+uint8 command
+string robot_name
+bool yaw_control
+float64 position_x
+float64 position_y
+---
+uint8 OK = 100
+uint8 I_AM_DEAD = 101
+uint8 OUT_OF_AMMO = 102
+uint8 TARGET_IS_DEAD = 103
+uint8 error_code

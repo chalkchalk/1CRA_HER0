@@ -39,6 +39,7 @@
 #include "geometry_msgs/Twist.h"
 #include "hero_msgs/ShootCmd.h"
 #include "hero_msgs/GimbalAim.h"
+#include "hero_msgs/BasicExecutor.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -120,6 +121,7 @@ public:
     void SendGoalPoint(int robot_num, double x, double y,double yaw);
     void MoveRobot0(double x_speed,double y_speed);
     void RobotShoot(std::string robot_num);
+    void AttackRobot(int attacker, std::string target);
     double RFID_F_x[6];
     double RFID_F_y[6];
 
@@ -150,6 +152,7 @@ private:
     ros::ServiceClient client_;
     ros::ServiceClient shoot_client_;
     ros::ServiceClient gimbal_aim_client_;
+    ros::ServiceClient basic_executor_cient_[4];
     //hero_msgs::RobotStatus roboStatus_[4];
     //hero_msgs::RobotHeat roboHeat_[4];
     hero_msgs::Buffinfo buffInfo_;
