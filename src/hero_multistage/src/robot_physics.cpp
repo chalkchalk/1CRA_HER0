@@ -272,6 +272,7 @@ namespace HeroMultistage {
           robot_position.armor_plates[i].x = (*it)->GetChassisSidesMid(i).X();
           robot_position.armor_plates[i].y = (*it)->GetChassisSidesMid(i).Y();
           robot_position.armor_plates[i].yaw = robot_position.position.yaw + hero_common::PI * 0.5 * i;
+          robot_position.ammo = FindRobot((*it)->GetName())->roboStatus_.remain_ammo;
           if(robot_position.armor_plates[i].yaw>hero_common::PI)
             robot_position.armor_plates[i].yaw -= 2*hero_common::PI;
           if(robot_position.armor_plates[i].yaw<-hero_common::PI)
@@ -474,9 +475,11 @@ int main(int argc, char** argv){
 
       gettimeofday(&tv,&tz);
       ms = tv.tv_sec*1000 + tv.tv_usec/1000;
-      //ROS_INFO("time used:%d",ms-ms_last);
+
       if(ms - ms_last <33)
         std::this_thread::sleep_for(std::chrono::milliseconds(33 -(ms - ms_last)));
+     // else
+       // ROS_INFO("time used:%d",ms-ms_last);
     }
     return 0;
 }

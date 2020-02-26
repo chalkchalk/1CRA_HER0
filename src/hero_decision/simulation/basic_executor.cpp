@@ -43,12 +43,12 @@ void BasicExecutor::Init()
 void BasicExecutor::FSM_handler()
 {
   switch (state_) {
-  case BasicExecutorState::IDLE:
+  case BasicExecutorState::IDLE: //idle,not moving, auto engage the closet and aimable enemy.
     MoveToPosition(FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y);
     EngageRobot(FindClosetAimableEnemy());
     break;
-  case BasicExecutorState::ATTACK_ROBOT:
-    if(isAlive(target_enemy_))
+  case BasicExecutorState::ATTACK_ROBOT: //attacking, move to the attack position which is 1.5 meter away from the target, and engage it
+    if(isAlive(target_enemy_)) //if the target is dead, switch to idle state
     {
       ApproachEnemy(target_enemy_,1.5);
       EngageRobot(target_enemy_);
@@ -58,15 +58,14 @@ void BasicExecutor::FSM_handler()
       state_ = BasicExecutorState::IDLE;
     }
     break;
-  case BasicExecutorState::MOVE_TO_POSITION:
+  case BasicExecutorState::MOVE_TO_POSITION: //moving to posiion. automaticlly engaging the closet and aimable enemy on its route.
     MoveToPosition(move_x,move_y);
     EngageRobot(FindClosetAimableEnemy());
     break;
   default:
     break;
   }
-
-  YawControlLoop();
+  YawControlLoop(); //chassis yaw contorl loop
 }
 
 

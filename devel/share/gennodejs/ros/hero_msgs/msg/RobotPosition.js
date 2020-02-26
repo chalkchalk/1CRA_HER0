@@ -23,6 +23,7 @@ class RobotPosition {
       this.position = null;
       this.armor_plates = null;
       this.health = null;
+      this.ammo = null;
     }
     else {
       if (initObj.hasOwnProperty('robot_name')) {
@@ -49,6 +50,12 @@ class RobotPosition {
       else {
         this.health = 0;
       }
+      if (initObj.hasOwnProperty('ammo')) {
+        this.ammo = initObj.ammo
+      }
+      else {
+        this.ammo = 0;
+      }
     }
   }
 
@@ -68,6 +75,8 @@ class RobotPosition {
     });
     // Serialize message field [health]
     bufferOffset = _serializer.int32(obj.health, buffer, bufferOffset);
+    // Serialize message field [ammo]
+    bufferOffset = _serializer.int32(obj.ammo, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -87,13 +96,15 @@ class RobotPosition {
     }
     // Deserialize message field [health]
     data.health = _deserializer.int32(buffer, bufferOffset);
+    // Deserialize message field [ammo]
+    data.ammo = _deserializer.int32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += object.robot_name.length;
-    return length + 128;
+    return length + 132;
   }
 
   static datatype() {
@@ -103,7 +114,7 @@ class RobotPosition {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '1b53db4978d8547fbe7a70a9e519607a';
+    return '7d821070cef65bd1dbcfa6be273d43f8';
   }
 
   static messageDefinition() {
@@ -113,6 +124,7 @@ class RobotPosition {
     hero_msgs/Position position
     hero_msgs/Position[4] armor_plates
     int32 health
+    int32 ammo
     
     ================================================================================
     MSG: hero_msgs/Position
@@ -163,6 +175,13 @@ class RobotPosition {
     }
     else {
       resolved.health = 0
+    }
+
+    if (msg.ammo !== undefined) {
+      resolved.ammo = msg.ammo;
+    }
+    else {
+      resolved.ammo = 0
     }
 
     return resolved;

@@ -26,6 +26,11 @@
     :reader health
     :initarg :health
     :type cl:integer
+    :initform 0)
+   (ammo
+    :reader ammo
+    :initarg :ammo
+    :type cl:integer
     :initform 0))
 )
 
@@ -56,6 +61,11 @@
 (cl:defmethod health-val ((m <RobotPosition>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:health-val is deprecated.  Use hero_msgs-msg:health instead.")
   (health m))
+
+(cl:ensure-generic-function 'ammo-val :lambda-list '(m))
+(cl:defmethod ammo-val ((m <RobotPosition>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:ammo-val is deprecated.  Use hero_msgs-msg:ammo instead.")
+  (ammo m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <RobotPosition>) ostream)
   "Serializes a message object of type '<RobotPosition>"
   (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'robot_name))))
@@ -68,6 +78,12 @@
   (cl:map cl:nil #'(cl:lambda (ele) (roslisp-msg-protocol:serialize ele ostream))
    (cl:slot-value msg 'armor_plates))
   (cl:let* ((signed (cl:slot-value msg 'health)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 4294967296) signed)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
+    )
+  (cl:let* ((signed (cl:slot-value msg 'ammo)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 4294967296) signed)))
     (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
@@ -96,6 +112,12 @@
       (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
       (cl:setf (cl:slot-value msg 'health) (cl:if (cl:< unsigned 2147483648) unsigned (cl:- unsigned 4294967296))))
+    (cl:let ((unsigned 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'ammo) (cl:if (cl:< unsigned 2147483648) unsigned (cl:- unsigned 4294967296))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<RobotPosition>)))
@@ -106,21 +128,22 @@
   "hero_msgs/RobotPosition")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<RobotPosition>)))
   "Returns md5sum for a message object of type '<RobotPosition>"
-  "1b53db4978d8547fbe7a70a9e519607a")
+  "7d821070cef65bd1dbcfa6be273d43f8")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'RobotPosition)))
   "Returns md5sum for a message object of type 'RobotPosition"
-  "1b53db4978d8547fbe7a70a9e519607a")
+  "7d821070cef65bd1dbcfa6be273d43f8")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<RobotPosition>)))
   "Returns full string definition for message of type '<RobotPosition>"
-  (cl:format cl:nil "string robot_name~%hero_msgs/Position position~%hero_msgs/Position[4] armor_plates~%int32 health~%~%================================================================================~%MSG: hero_msgs/Position~%float64 x~%float64 y~%float64 yaw~%~%~%"))
+  (cl:format cl:nil "string robot_name~%hero_msgs/Position position~%hero_msgs/Position[4] armor_plates~%int32 health~%int32 ammo~%~%================================================================================~%MSG: hero_msgs/Position~%float64 x~%float64 y~%float64 yaw~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'RobotPosition)))
   "Returns full string definition for message of type 'RobotPosition"
-  (cl:format cl:nil "string robot_name~%hero_msgs/Position position~%hero_msgs/Position[4] armor_plates~%int32 health~%~%================================================================================~%MSG: hero_msgs/Position~%float64 x~%float64 y~%float64 yaw~%~%~%"))
+  (cl:format cl:nil "string robot_name~%hero_msgs/Position position~%hero_msgs/Position[4] armor_plates~%int32 health~%int32 ammo~%~%================================================================================~%MSG: hero_msgs/Position~%float64 x~%float64 y~%float64 yaw~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <RobotPosition>))
   (cl:+ 0
      4 (cl:length (cl:slot-value msg 'robot_name))
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'position))
      0 (cl:reduce #'cl:+ (cl:slot-value msg 'armor_plates) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ (roslisp-msg-protocol:serialization-length ele))))
+     4
      4
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <RobotPosition>))
@@ -130,4 +153,5 @@
     (cl:cons ':position (position msg))
     (cl:cons ':armor_plates (armor_plates msg))
     (cl:cons ':health (health msg))
+    (cl:cons ':ammo (ammo msg))
 ))

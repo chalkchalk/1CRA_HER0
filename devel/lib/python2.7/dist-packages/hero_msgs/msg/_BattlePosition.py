@@ -8,7 +8,7 @@ import struct
 import hero_msgs.msg
 
 class BattlePosition(genpy.Message):
-  _md5sum = "489a047d00172221ccddcce4b5adc631"
+  _md5sum = "4cb89422094dbe8ef13eac42ca6ded41"
   _type = "hero_msgs/BattlePosition"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """int16 robots_num
@@ -20,6 +20,7 @@ string robot_name
 hero_msgs/Position position
 hero_msgs/Position[4] armor_plates
 int32 health
+int32 ammo
 
 ================================================================================
 MSG: hero_msgs/Position
@@ -83,7 +84,8 @@ float64 yaw
         for val2 in val1.armor_plates:
           _x = val2
           buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.yaw))
-        buff.write(_get_struct_i().pack(val1.health))
+        _x = val1
+        buff.write(_get_struct_2i().pack(_x.health, _x.ammo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -127,9 +129,10 @@ float64 yaw
           end += 24
           (_x.x, _x.y, _x.yaw,) = _get_struct_3d().unpack(str[start:end])
           val1.armor_plates.append(val2)
+        _x = val1
         start = end
-        end += 4
-        (val1.health,) = _get_struct_i().unpack(str[start:end])
+        end += 8
+        (_x.health, _x.ammo,) = _get_struct_2i().unpack(str[start:end])
         self.robots_position.append(val1)
       return self
     except struct.error as e:
@@ -159,7 +162,8 @@ float64 yaw
         for val2 in val1.armor_plates:
           _x = val2
           buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.yaw))
-        buff.write(_get_struct_i().pack(val1.health))
+        _x = val1
+        buff.write(_get_struct_2i().pack(_x.health, _x.ammo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -204,9 +208,10 @@ float64 yaw
           end += 24
           (_x.x, _x.y, _x.yaw,) = _get_struct_3d().unpack(str[start:end])
           val1.armor_plates.append(val2)
+        _x = val1
         start = end
-        end += 4
-        (val1.health,) = _get_struct_i().unpack(str[start:end])
+        end += 8
+        (_x.health, _x.ammo,) = _get_struct_2i().unpack(str[start:end])
         self.robots_position.append(val1)
       return self
     except struct.error as e:
@@ -216,18 +221,18 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_i = None
-def _get_struct_i():
-    global _struct_i
-    if _struct_i is None:
-        _struct_i = struct.Struct("<i")
-    return _struct_i
 _struct_h = None
 def _get_struct_h():
     global _struct_h
     if _struct_h is None:
         _struct_h = struct.Struct("<h")
     return _struct_h
+_struct_2i = None
+def _get_struct_2i():
+    global _struct_2i
+    if _struct_2i is None:
+        _struct_2i = struct.Struct("<2i")
+    return _struct_2i
 _struct_3d = None
 def _get_struct_3d():
     global _struct_3d

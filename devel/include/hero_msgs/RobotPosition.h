@@ -29,13 +29,15 @@ struct RobotPosition_
     : robot_name()
     , position()
     , armor_plates()
-    , health(0)  {
+    , health(0)
+    , ammo(0)  {
     }
   RobotPosition_(const ContainerAllocator& _alloc)
     : robot_name(_alloc)
     , position(_alloc)
     , armor_plates()
-    , health(0)  {
+    , health(0)
+    , ammo(0)  {
   (void)_alloc;
       armor_plates.assign( ::hero_msgs::Position_<ContainerAllocator> (_alloc));
   }
@@ -53,6 +55,9 @@ struct RobotPosition_
 
    typedef int32_t _health_type;
   _health_type health;
+
+   typedef int32_t _ammo_type;
+  _ammo_type ammo;
 
 
 
@@ -132,12 +137,12 @@ struct MD5Sum< ::hero_msgs::RobotPosition_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "1b53db4978d8547fbe7a70a9e519607a";
+    return "7d821070cef65bd1dbcfa6be273d43f8";
   }
 
   static const char* value(const ::hero_msgs::RobotPosition_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x1b53db4978d8547fULL;
-  static const uint64_t static_value2 = 0xbe7a70a9e519607aULL;
+  static const uint64_t static_value1 = 0x7d821070cef65bd1ULL;
+  static const uint64_t static_value2 = 0xdbcfa6be273d43f8ULL;
 };
 
 template<class ContainerAllocator>
@@ -160,6 +165,7 @@ struct Definition< ::hero_msgs::RobotPosition_<ContainerAllocator> >
 hero_msgs/Position position\n\
 hero_msgs/Position[4] armor_plates\n\
 int32 health\n\
+int32 ammo\n\
 \n\
 ================================================================================\n\
 MSG: hero_msgs/Position\n\
@@ -188,6 +194,7 @@ namespace serialization
       stream.next(m.position);
       stream.next(m.armor_plates);
       stream.next(m.health);
+      stream.next(m.ammo);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -221,6 +228,8 @@ struct Printer< ::hero_msgs::RobotPosition_<ContainerAllocator> >
     }
     s << indent << "health: ";
     Printer<int32_t>::stream(s, indent + "  ", v.health);
+    s << indent << "ammo: ";
+    Printer<int32_t>::stream(s, indent + "  ", v.ammo);
   }
 };
 

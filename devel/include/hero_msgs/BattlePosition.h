@@ -120,12 +120,12 @@ struct MD5Sum< ::hero_msgs::BattlePosition_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "489a047d00172221ccddcce4b5adc631";
+    return "4cb89422094dbe8ef13eac42ca6ded41";
   }
 
   static const char* value(const ::hero_msgs::BattlePosition_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x489a047d00172221ULL;
-  static const uint64_t static_value2 = 0xccddcce4b5adc631ULL;
+  static const uint64_t static_value1 = 0x4cb89422094dbe8eULL;
+  static const uint64_t static_value2 = 0xf13eac42ca6ded41ULL;
 };
 
 template<class ContainerAllocator>
@@ -153,6 +153,7 @@ string robot_name\n\
 hero_msgs/Position position\n\
 hero_msgs/Position[4] armor_plates\n\
 int32 health\n\
+int32 ammo\n\
 \n\
 ================================================================================\n\
 MSG: hero_msgs/Position\n\

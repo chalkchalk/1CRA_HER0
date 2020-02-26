@@ -8,13 +8,14 @@ import struct
 import hero_msgs.msg
 
 class RobotPosition(genpy.Message):
-  _md5sum = "1b53db4978d8547fbe7a70a9e519607a"
+  _md5sum = "7d821070cef65bd1dbcfa6be273d43f8"
   _type = "hero_msgs/RobotPosition"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """string robot_name
 hero_msgs/Position position
 hero_msgs/Position[4] armor_plates
 int32 health
+int32 ammo
 
 ================================================================================
 MSG: hero_msgs/Position
@@ -22,8 +23,8 @@ float64 x
 float64 y
 float64 yaw
 """
-  __slots__ = ['robot_name','position','armor_plates','health']
-  _slot_types = ['string','hero_msgs/Position','hero_msgs/Position[4]','int32']
+  __slots__ = ['robot_name','position','armor_plates','health','ammo']
+  _slot_types = ['string','hero_msgs/Position','hero_msgs/Position[4]','int32','int32']
 
   def __init__(self, *args, **kwds):
     """
@@ -33,7 +34,7 @@ float64 yaw
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       robot_name,position,armor_plates,health
+       robot_name,position,armor_plates,health,ammo
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -50,11 +51,14 @@ float64 yaw
         self.armor_plates = [hero_msgs.msg.Position() for _ in range(4)]
       if self.health is None:
         self.health = 0
+      if self.ammo is None:
+        self.ammo = 0
     else:
       self.robot_name = ''
       self.position = hero_msgs.msg.Position()
       self.armor_plates = [hero_msgs.msg.Position() for _ in range(4)]
       self.health = 0
+      self.ammo = 0
 
   def _get_types(self):
     """
@@ -79,7 +83,8 @@ float64 yaw
       for val1 in self.armor_plates:
         _x = val1
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.yaw))
-      buff.write(_get_struct_i().pack(self.health))
+      _x = self
+      buff.write(_get_struct_2i().pack(_x.health, _x.ammo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -115,9 +120,10 @@ float64 yaw
         end += 24
         (_x.x, _x.y, _x.yaw,) = _get_struct_3d().unpack(str[start:end])
         self.armor_plates.append(val1)
+      _x = self
       start = end
-      end += 4
-      (self.health,) = _get_struct_i().unpack(str[start:end])
+      end += 8
+      (_x.health, _x.ammo,) = _get_struct_2i().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -141,7 +147,8 @@ float64 yaw
       for val1 in self.armor_plates:
         _x = val1
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.yaw))
-      buff.write(_get_struct_i().pack(self.health))
+      _x = self
+      buff.write(_get_struct_2i().pack(_x.health, _x.ammo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -178,9 +185,10 @@ float64 yaw
         end += 24
         (_x.x, _x.y, _x.yaw,) = _get_struct_3d().unpack(str[start:end])
         self.armor_plates.append(val1)
+      _x = self
       start = end
-      end += 4
-      (self.health,) = _get_struct_i().unpack(str[start:end])
+      end += 8
+      (_x.health, _x.ammo,) = _get_struct_2i().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -189,12 +197,12 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_i = None
-def _get_struct_i():
-    global _struct_i
-    if _struct_i is None:
-        _struct_i = struct.Struct("<i")
-    return _struct_i
+_struct_2i = None
+def _get_struct_2i():
+    global _struct_2i
+    if _struct_2i is None:
+        _struct_2i = struct.Struct("<2i")
+    return _struct_2i
 _struct_3d = None
 def _get_struct_3d():
     global _struct_3d

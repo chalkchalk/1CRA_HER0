@@ -7,4 +7,6 @@
           ARMOR_PLATES
           HEALTH-VAL
           HEALTH
+          AMMO-VAL
+          AMMO
 ))

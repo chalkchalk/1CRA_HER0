@@ -82,7 +82,7 @@ class BattlePosition {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '489a047d00172221ccddcce4b5adc631';
+    return '4cb89422094dbe8ef13eac42ca6ded41';
   }
 
   static messageDefinition() {
@@ -97,6 +97,7 @@ class BattlePosition {
     hero_msgs/Position position
     hero_msgs/Position[4] armor_plates
     int32 health
+    int32 ammo
     
     ================================================================================
     MSG: hero_msgs/Position

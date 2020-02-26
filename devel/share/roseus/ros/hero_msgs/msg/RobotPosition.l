@@ -14,7 +14,7 @@
 
 (defclass hero_msgs::RobotPosition
   :super ros::object
-  :slots (_robot_name _position _armor_plates _health ))
+  :slots (_robot_name _position _armor_plates _health _ammo ))
 
 (defmethod hero_msgs::RobotPosition
   (:init
@@ -23,12 +23,14 @@
     ((:position __position) (instance hero_msgs::Position :init))
     ((:armor_plates __armor_plates) (let (r) (dotimes (i 4) (push (instance hero_msgs::Position :init) r)) r))
     ((:health __health) 0)
+    ((:ammo __ammo) 0)
     )
    (send-super :init)
    (setq _robot_name (string __robot_name))
    (setq _position __position)
    (setq _armor_plates __armor_plates)
    (setq _health (round __health))
+   (setq _ammo (round __ammo))
    self)
   (:robot_name
    (&optional __robot_name)
@@ -50,6 +52,9 @@
   (:health
    (&optional __health)
    (if __health (setq _health __health)) _health)
+  (:ammo
+   (&optional __ammo)
+   (if __ammo (setq _ammo __ammo)) _ammo)
   (:serialization-length
    ()
    (+
@@ -60,6 +65,8 @@
     ;; hero_msgs/Position[4] _armor_plates
     (apply #'+ (send-all _armor_plates :serialization-length))
     ;; int32 _health
+    4
+    ;; int32 _ammo
     4
     ))
   (:serialize
@@ -76,6 +83,8 @@
        )
      ;; int32 _health
        (write-long _health s)
+     ;; int32 _ammo
+       (write-long _ammo s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -90,17 +99,20 @@
      )
    ;; int32 _health
      (setq _health (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int32 _ammo
+     (setq _ammo (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get hero_msgs::RobotPosition :md5sum-) "1b53db4978d8547fbe7a70a9e519607a")
+(setf (get hero_msgs::RobotPosition :md5sum-) "7d821070cef65bd1dbcfa6be273d43f8")
 (setf (get hero_msgs::RobotPosition :datatype-) "hero_msgs/RobotPosition")
 (setf (get hero_msgs::RobotPosition :definition-)
       "string robot_name
 hero_msgs/Position position
 hero_msgs/Position[4] armor_plates
 int32 health
+int32 ammo
 
 ================================================================================
 MSG: hero_msgs/Position
@@ -112,6 +124,6 @@ float64 yaw
 
 
 
-(provide :hero_msgs/RobotPosition "1b53db4978d8547fbe7a70a9e519607a")
+(provide :hero_msgs/RobotPosition "7d821070cef65bd1dbcfa6be273d43f8")
 
 

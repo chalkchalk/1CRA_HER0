@@ -72,7 +72,7 @@
    self)
   )
 
-(setf (get hero_msgs::BattlePosition :md5sum-) "489a047d00172221ccddcce4b5adc631")
+(setf (get hero_msgs::BattlePosition :md5sum-) "4cb89422094dbe8ef13eac42ca6ded41")
 (setf (get hero_msgs::BattlePosition :datatype-) "hero_msgs/BattlePosition")
 (setf (get hero_msgs::BattlePosition :definition-)
       "int16 robots_num
@@ -84,6 +84,7 @@ string robot_name
 hero_msgs/Position position
 hero_msgs/Position[4] armor_plates
 int32 health
+int32 ammo
 
 ================================================================================
 MSG: hero_msgs/Position
@@ -95,6 +96,6 @@ float64 yaw
 
 
 
-(provide :hero_msgs/BattlePosition "489a047d00172221ccddcce4b5adc631")
+(provide :hero_msgs/BattlePosition "4cb89422094dbe8ef13eac42ca6ded41")
 
 

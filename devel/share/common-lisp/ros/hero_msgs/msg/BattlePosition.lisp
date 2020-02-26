@@ -76,16 +76,16 @@
   "hero_msgs/BattlePosition")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BattlePosition>)))
   "Returns md5sum for a message object of type '<BattlePosition>"
-  "489a047d00172221ccddcce4b5adc631")
+  "4cb89422094dbe8ef13eac42ca6ded41")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BattlePosition)))
   "Returns md5sum for a message object of type 'BattlePosition"
-  "489a047d00172221ccddcce4b5adc631")
+  "4cb89422094dbe8ef13eac42ca6ded41")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BattlePosition>)))
   "Returns full string definition for message of type '<BattlePosition>"
-  (cl:format cl:nil "int16 robots_num~%hero_msgs/RobotPosition[] robots_position~%~%================================================================================~%MSG: hero_msgs/RobotPosition~%string robot_name~%hero_msgs/Position position~%hero_msgs/Position[4] armor_plates~%int32 health~%~%================================================================================~%MSG: hero_msgs/Position~%float64 x~%float64 y~%float64 yaw~%~%~%"))
+  (cl:format cl:nil "int16 robots_num~%hero_msgs/RobotPosition[] robots_position~%~%================================================================================~%MSG: hero_msgs/RobotPosition~%string robot_name~%hero_msgs/Position position~%hero_msgs/Position[4] armor_plates~%int32 health~%int32 ammo~%~%================================================================================~%MSG: hero_msgs/Position~%float64 x~%float64 y~%float64 yaw~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'BattlePosition)))
   "Returns full string definition for message of type 'BattlePosition"
-  (cl:format cl:nil "int16 robots_num~%hero_msgs/RobotPosition[] robots_position~%~%================================================================================~%MSG: hero_msgs/RobotPosition~%string robot_name~%hero_msgs/Position position~%hero_msgs/Position[4] armor_plates~%int32 health~%~%================================================================================~%MSG: hero_msgs/Position~%float64 x~%float64 y~%float64 yaw~%~%~%"))
+  (cl:format cl:nil "int16 robots_num~%hero_msgs/RobotPosition[] robots_position~%~%================================================================================~%MSG: hero_msgs/RobotPosition~%string robot_name~%hero_msgs/Position position~%hero_msgs/Position[4] armor_plates~%int32 health~%int32 ammo~%~%================================================================================~%MSG: hero_msgs/Position~%float64 x~%float64 y~%float64 yaw~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <BattlePosition>))
   (cl:+ 0
      2
