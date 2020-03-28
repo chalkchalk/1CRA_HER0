@@ -29,7 +29,6 @@ class BasicExecutor
 {
 public:
   BasicExecutor();
-  void Init();
   int CanShootRobot(std::string robot_name);
   bool AimRobot(std::string robot_name);
   bool EngageRobot(std::string robot_name);
@@ -53,6 +52,7 @@ private:
   hero_msgs::BattlePosition battle_position_;
 
   hero_decision::BasicExecutorState state_;
+  void Init();
   void BattlePositionCallback(const hero_msgs::BattlePosition::ConstPtr& msg);
   void YawSetCallback(const std_msgs::Float64::ConstPtr& msg);
   bool GetStaticMap();

@@ -24,9 +24,12 @@
 (intern "*ATTACK_ROBOT*" (find-package "HERO_MSGS::BASICEXECUTORREQUEST"))
 (shadow '*ATTACK_ROBOT* (find-package "HERO_MSGS::BASICEXECUTORREQUEST"))
 (defconstant hero_msgs::BasicExecutorRequest::*ATTACK_ROBOT* 2)
+(intern "*ENGAGE_ROBOT*" (find-package "HERO_MSGS::BASICEXECUTORREQUEST"))
+(shadow '*ENGAGE_ROBOT* (find-package "HERO_MSGS::BASICEXECUTORREQUEST"))
+(defconstant hero_msgs::BasicExecutorRequest::*ENGAGE_ROBOT* 3)
 (intern "*HALT*" (find-package "HERO_MSGS::BASICEXECUTORREQUEST"))
 (shadow '*HALT* (find-package "HERO_MSGS::BASICEXECUTORREQUEST"))
-(defconstant hero_msgs::BasicExecutorRequest::*HALT* 3)
+(defconstant hero_msgs::BasicExecutorRequest::*HALT* 4)
 (defclass hero_msgs::BasicExecutorRequest
   :super ros::object
   :slots (_command _robot_name _yaw_control _position_x _position_y ))
@@ -161,7 +164,7 @@
   :super ros::object
   :slots ())
 
-(setf (get hero_msgs::BasicExecutor :md5sum-) "3c53e40ff8af1a43835b3d7ab9ff6623")
+(setf (get hero_msgs::BasicExecutor :md5sum-) "29dda9959aaf5bb18d3e017845cd697d")
 (setf (get hero_msgs::BasicExecutor :datatype-) "hero_msgs/BasicExecutor")
 (setf (get hero_msgs::BasicExecutor :request) hero_msgs::BasicExecutorRequest)
 (setf (get hero_msgs::BasicExecutor :response) hero_msgs::BasicExecutorResponse)
@@ -169,12 +172,13 @@
 (defmethod hero_msgs::BasicExecutorRequest
   (:response () (instance hero_msgs::BasicExecutorResponse :init)))
 
-(setf (get hero_msgs::BasicExecutorRequest :md5sum-) "3c53e40ff8af1a43835b3d7ab9ff6623")
+(setf (get hero_msgs::BasicExecutorRequest :md5sum-) "29dda9959aaf5bb18d3e017845cd697d")
 (setf (get hero_msgs::BasicExecutorRequest :datatype-) "hero_msgs/BasicExecutorRequest")
 (setf (get hero_msgs::BasicExecutorRequest :definition-)
       "uint8 MOVE_TO_POSITION = 1
 uint8 ATTACK_ROBOT = 2
-uint8 HALT = 3
+uint8 ENGAGE_ROBOT = 3
+uint8 HALT = 4
 uint8 command
 string robot_name
 bool yaw_control
@@ -189,12 +193,13 @@ uint8 error_code
 
 ")
 
-(setf (get hero_msgs::BasicExecutorResponse :md5sum-) "3c53e40ff8af1a43835b3d7ab9ff6623")
+(setf (get hero_msgs::BasicExecutorResponse :md5sum-) "29dda9959aaf5bb18d3e017845cd697d")
 (setf (get hero_msgs::BasicExecutorResponse :datatype-) "hero_msgs/BasicExecutorResponse")
 (setf (get hero_msgs::BasicExecutorResponse :definition-)
       "uint8 MOVE_TO_POSITION = 1
 uint8 ATTACK_ROBOT = 2
-uint8 HALT = 3
+uint8 ENGAGE_ROBOT = 3
+uint8 HALT = 4
 uint8 command
 string robot_name
 bool yaw_control
@@ -211,6 +216,6 @@ uint8 error_code
 
 
 
-(provide :hero_msgs/BasicExecutor "3c53e40ff8af1a43835b3d7ab9ff6623")
+(provide :hero_msgs/BasicExecutor "29dda9959aaf5bb18d3e017845cd697d")
 
 

@@ -38,7 +38,7 @@ void PointNavigation::chatterCallback(const geometry_msgs::PoseStamped &goal)
                                   GlobalActionClient::SimpleDoneCallback(),
                                   GlobalActionClient::SimpleActiveCallback(),
                                   boost::bind(&PointNavigation::GlobalPlannerFeedbackCallback, this, _1));
-								  
+
 	ROS_INFO("goal set! ");
 }
 

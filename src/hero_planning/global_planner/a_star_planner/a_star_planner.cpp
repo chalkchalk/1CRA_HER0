@@ -47,6 +47,64 @@ AStarPlanner::~AStarPlanner(){
   cost_ = nullptr;
 }
 
+bool AStarPlanner::GetClosestFreePoint(unsigned int origin_x, unsigned int origin_y, unsigned int &closest_x, unsigned int &closest_y, unsigned int max_distance)
+{
+  bool valid = false;
+  if (costmap_ptr_->GetCostMap()->GetCost(origin_x,origin_y)<inaccessible_cost_){
+    closest_x = origin_x;
+    closest_y = origin_y;
+    return  true;
+  }
+  else {
+
+    unsigned  int shortest_dist = std::numeric_limits<unsigned int>::max();
+    int tmp_goal_x, tmp_goal_y;
+    unsigned int x_min,y_min,x_max,y_max;
+    if((int)origin_x -(int) max_distance<0)
+      x_min = 0;
+    else
+      x_min = (int)origin_x - (int)max_distance;
+    if((int)origin_y - (int)max_distance<0)
+      y_min = 0;
+    else
+      y_min = (int)origin_y - (int)max_distance<0;
+
+    if(origin_x + max_distance>costmap_ptr_->GetCostMap()->GetSizeXCell())
+      x_max = costmap_ptr_->GetCostMap()->GetSizeXCell();
+    else
+      x_max = (int)origin_x + max_distance;
+
+    if(origin_y + max_distance>costmap_ptr_->GetCostMap()->GetSizeYCell())
+      y_max = costmap_ptr_->GetCostMap()->GetSizeYCell();
+    else
+      y_max = (int)origin_y + max_distance;
+
+    tmp_goal_x = x_min;
+    tmp_goal_y = y_min;
+    //ROS_ERROR("[start]x_min=%d,y_min=%d ",x_min,y_min);
+    //ROS_ERROR("[start]x=%d,y=%d",tmp_goal_x,tmp_goal_y);
+    while(tmp_goal_y <= y_max){
+      tmp_goal_x = x_min;
+      while(tmp_goal_x <= x_max){
+
+        unsigned char cost = costmap_ptr_->GetCostMap()->GetCost(tmp_goal_x, tmp_goal_y);
+        unsigned int dist = abs(origin_x - tmp_goal_x) + abs(origin_y - tmp_goal_y);
+        //ROS_ERROR("x=%d,y=%d cost = %d",tmp_goal_x,tmp_goal_y,cost);
+        if (cost < inaccessible_cost_ && dist < shortest_dist ) {
+          shortest_dist = dist;
+          closest_x = tmp_goal_x;
+          closest_y = tmp_goal_y;
+          valid = true;
+        }
+        tmp_goal_x += 1;
+      }
+      tmp_goal_y += 1;
+    }
+  }
+  return valid;
+}
+
+
 ErrorInfo AStarPlanner::Plan(const geometry_msgs::PoseStamped &start,
                              const geometry_msgs::PoseStamped &goal,
                              std::vector<geometry_msgs::PoseStamped> &path) {
@@ -54,8 +112,10 @@ ErrorInfo AStarPlanner::Plan(const geometry_msgs::PoseStamped &start,
   unsigned int start_x, start_y, goal_x, goal_y;
   int tmp_goal_x, tmp_goal_y;
   unsigned int valid_goal[2];
+  unsigned int valid_startl[2];
   unsigned  int shortest_dist = std::numeric_limits<unsigned int>::max();
   bool goal_valid = false;
+  bool start_valid = false;
 
   if (!costmap_ptr_->GetCostMap()->World2Map(start.pose.position.x,
                                              start.pose.position.y,
@@ -73,11 +133,24 @@ ErrorInfo AStarPlanner::Plan(const geometry_msgs::PoseStamped &start,
     return ErrorInfo(ErrorCode::GP_POSE_TRANSFORM_ERROR,
                      "Goal pose can't be transformed to costmap frame.");
   }
+
+  if (costmap_ptr_->GetCostMap()->GetCost(start_x,start_y)<inaccessible_cost_)
+  {
+     valid_startl[0] = start_x;
+     valid_startl[1] = start_y;
+     start_valid = true;
+  }
+  else
+  {
+   start_valid =  GetClosestFreePoint(start_x,start_y,valid_startl[0],valid_startl[1],goal_search_tolerance_);
+  }
   if (costmap_ptr_->GetCostMap()->GetCost(goal_x,goal_y)<inaccessible_cost_){
     valid_goal[0] = goal_x;
     valid_goal[1] = goal_y;
     goal_valid = true;
   }else{
+    goal_valid = GetClosestFreePoint(goal_x,goal_y,valid_goal[0],valid_goal[1],goal_search_tolerance_);
+    /*
     unsigned int x_min,y_min,x_max,y_max;
     if((int)goal_x -(int) goal_search_tolerance_<0)
       x_min = 0;
@@ -118,19 +191,26 @@ ErrorInfo AStarPlanner::Plan(const geometry_msgs::PoseStamped &start,
         tmp_goal_x += 1;
       }
       tmp_goal_y += 1;
-    }
+    }*/
   }
+
+   //
   ErrorInfo error_info;
   if (!goal_valid){
     error_info=ErrorInfo(ErrorCode::GP_GOAL_INVALID_ERROR);
     path.clear();
   }
+  else if(!start_valid)
+  {
+    error_info=ErrorInfo(ErrorCode::GP_START_INVALID_ERROR);
+    path.clear();
+  }
   else{
     unsigned int start_index, goal_index;
-    start_index = costmap_ptr_->GetCostMap()->GetIndex(start_x, start_y);
+    start_index = costmap_ptr_->GetCostMap()->GetIndex(valid_startl[0], valid_startl[1]);
     goal_index = costmap_ptr_->GetCostMap()->GetIndex(valid_goal[0], valid_goal[1]);
 
-    costmap_ptr_->GetCostMap()->SetCost(start_x, start_y,hero_costmap::FREE_SPACE);
+    //costmap_ptr_->GetCostMap()->SetCost(start_x, start_y,hero_costmap::FREE_SPACE);
 
     if(start_index == goal_index){
       error_info=ErrorInfo::OK();
@@ -222,12 +302,11 @@ ErrorInfo AStarPlanner::SearchPath(const int &start_index,
     ROS_WARN("Global planner can't search the valid path!");
     return ErrorInfo(ErrorCode::GP_PATH_SEARCH_ERROR, "Valid global path not found.");
   }
-
   unsigned int iter_index = current_index, iter_x, iter_y;
 
   geometry_msgs::PoseStamped iter_pos;
 
-   ros::NodeHandle nh_;
+  // ros::NodeHandle nh_;
   iter_pos.pose.orientation.w = 1;
   iter_pos.header.frame_id = "/map";
 //  if(nh_.getNamespace().c_str()!="/")
@@ -250,7 +329,7 @@ ErrorInfo AStarPlanner::SearchPath(const int &start_index,
   }
 
   std::reverse(path.begin(),path.end());
-
+//return ErrorInfo(ErrorCode::GP_PATH_SEARCH_ERROR, "T T  555...");
   return ErrorInfo(ErrorCode::OK);
 
 }

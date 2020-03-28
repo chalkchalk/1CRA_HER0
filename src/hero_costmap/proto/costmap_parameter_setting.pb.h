@@ -291,10 +291,31 @@ class ParaCostmapInterface : public ::google::protobuf::Message {
   inline bool has_static_layer() const;
   inline void set_has_static_layer(bool value);
 
-  // required string inflation_file_path = 15;
+  // required bool has_debuff_layer = 15;
+  inline bool has_has_debuff_layer() const;
+  inline void clear_has_debuff_layer();
+  static const int kHasDebuffLayerFieldNumber = 15;
+  inline bool has_debuff_layer() const;
+  inline void set_has_debuff_layer(bool value);
+
+  // required bool has_tactic_layer = 16;
+  inline bool has_has_tactic_layer() const;
+  inline void clear_has_tactic_layer();
+  static const int kHasTacticLayerFieldNumber = 16;
+  inline bool has_tactic_layer() const;
+  inline void set_has_tactic_layer(bool value);
+
+  // required bool has_inflation_layer = 17;
+  inline bool has_has_inflation_layer() const;
+  inline void clear_has_inflation_layer();
+  static const int kHasInflationLayerFieldNumber = 17;
+  inline bool has_inflation_layer() const;
+  inline void set_has_inflation_layer(bool value);
+
+  // required string inflation_file_path = 18;
   inline bool has_inflation_file_path() const;
   inline void clear_inflation_file_path();
-  static const int kInflationFilePathFieldNumber = 15;
+  static const int kInflationFilePathFieldNumber = 18;
   inline const ::std::string& inflation_file_path() const;
   inline void set_inflation_file_path(const ::std::string& value);
   inline void set_inflation_file_path(const char* value);
@@ -303,10 +324,10 @@ class ParaCostmapInterface : public ::google::protobuf::Message {
   inline ::std::string* release_inflation_file_path();
   inline void set_allocated_inflation_file_path(::std::string* inflation_file_path);
 
-  // required double map_update_frequency = 16;
+  // required double map_update_frequency = 19;
   inline bool has_map_update_frequency() const;
   inline void clear_map_update_frequency();
-  static const int kMapUpdateFrequencyFieldNumber = 16;
+  static const int kMapUpdateFrequencyFieldNumber = 19;
   inline double map_update_frequency() const;
   inline void set_map_update_frequency(double value);
 
@@ -340,6 +361,12 @@ class ParaCostmapInterface : public ::google::protobuf::Message {
   inline void clear_has_has_obstacle_layer();
   inline void set_has_has_static_layer();
   inline void clear_has_has_static_layer();
+  inline void set_has_has_debuff_layer();
+  inline void clear_has_has_debuff_layer();
+  inline void set_has_has_tactic_layer();
+  inline void clear_has_has_tactic_layer();
+  inline void set_has_has_inflation_layer();
+  inline void clear_has_has_inflation_layer();
   inline void set_has_inflation_file_path();
   inline void clear_has_inflation_file_path();
   inline void set_has_map_update_frequency();
@@ -359,12 +386,15 @@ class ParaCostmapInterface : public ::google::protobuf::Message {
   double map_origin_x_;
   double map_origin_y_;
   double map_resolution_;
-  ::std::string* inflation_file_path_;
-  double map_update_frequency_;
   bool is_tracking_unknown_;
   bool is_rolling_window_;
   bool has_obstacle_layer_;
   bool has_static_layer_;
+  bool has_debuff_layer_;
+  bool has_tactic_layer_;
+  bool has_inflation_layer_;
+  ::std::string* inflation_file_path_;
+  double map_update_frequency_;
   friend void  protobuf_AddDesc_costmap_5fparameter_5fsetting_2eproto();
   friend void protobuf_AssignDesc_costmap_5fparameter_5fsetting_2eproto();
   friend void protobuf_ShutdownFile_costmap_5fparameter_5fsetting_2eproto();
@@ -1147,15 +1177,87 @@ inline void ParaCostmapInterface::set_has_static_layer(bool value) {
   // @@protoc_insertion_point(field_set:hero_costmap.ParaCostmapInterface.has_static_layer)
 }
 
-// required string inflation_file_path = 15;
-inline bool ParaCostmapInterface::has_inflation_file_path() const {
+// required bool has_debuff_layer = 15;
+inline bool ParaCostmapInterface::has_has_debuff_layer() const {
   return (_has_bits_[0] & 0x00004000u) != 0;
 }
-inline void ParaCostmapInterface::set_has_inflation_file_path() {
+inline void ParaCostmapInterface::set_has_has_debuff_layer() {
   _has_bits_[0] |= 0x00004000u;
 }
-inline void ParaCostmapInterface::clear_has_inflation_file_path() {
+inline void ParaCostmapInterface::clear_has_has_debuff_layer() {
   _has_bits_[0] &= ~0x00004000u;
+}
+inline void ParaCostmapInterface::clear_has_debuff_layer() {
+  has_debuff_layer_ = false;
+  clear_has_has_debuff_layer();
+}
+inline bool ParaCostmapInterface::has_debuff_layer() const {
+  // @@protoc_insertion_point(field_get:hero_costmap.ParaCostmapInterface.has_debuff_layer)
+  return has_debuff_layer_;
+}
+inline void ParaCostmapInterface::set_has_debuff_layer(bool value) {
+  set_has_has_debuff_layer();
+  has_debuff_layer_ = value;
+  // @@protoc_insertion_point(field_set:hero_costmap.ParaCostmapInterface.has_debuff_layer)
+}
+
+// required bool has_tactic_layer = 16;
+inline bool ParaCostmapInterface::has_has_tactic_layer() const {
+  return (_has_bits_[0] & 0x00008000u) != 0;
+}
+inline void ParaCostmapInterface::set_has_has_tactic_layer() {
+  _has_bits_[0] |= 0x00008000u;
+}
+inline void ParaCostmapInterface::clear_has_has_tactic_layer() {
+  _has_bits_[0] &= ~0x00008000u;
+}
+inline void ParaCostmapInterface::clear_has_tactic_layer() {
+  has_tactic_layer_ = false;
+  clear_has_has_tactic_layer();
+}
+inline bool ParaCostmapInterface::has_tactic_layer() const {
+  // @@protoc_insertion_point(field_get:hero_costmap.ParaCostmapInterface.has_tactic_layer)
+  return has_tactic_layer_;
+}
+inline void ParaCostmapInterface::set_has_tactic_layer(bool value) {
+  set_has_has_tactic_layer();
+  has_tactic_layer_ = value;
+  // @@protoc_insertion_point(field_set:hero_costmap.ParaCostmapInterface.has_tactic_layer)
+}
+
+// required bool has_inflation_layer = 17;
+inline bool ParaCostmapInterface::has_has_inflation_layer() const {
+  return (_has_bits_[0] & 0x00010000u) != 0;
+}
+inline void ParaCostmapInterface::set_has_has_inflation_layer() {
+  _has_bits_[0] |= 0x00010000u;
+}
+inline void ParaCostmapInterface::clear_has_has_inflation_layer() {
+  _has_bits_[0] &= ~0x00010000u;
+}
+inline void ParaCostmapInterface::clear_has_inflation_layer() {
+  has_inflation_layer_ = false;
+  clear_has_has_inflation_layer();
+}
+inline bool ParaCostmapInterface::has_inflation_layer() const {
+  // @@protoc_insertion_point(field_get:hero_costmap.ParaCostmapInterface.has_inflation_layer)
+  return has_inflation_layer_;
+}
+inline void ParaCostmapInterface::set_has_inflation_layer(bool value) {
+  set_has_has_inflation_layer();
+  has_inflation_layer_ = value;
+  // @@protoc_insertion_point(field_set:hero_costmap.ParaCostmapInterface.has_inflation_layer)
+}
+
+// required string inflation_file_path = 18;
+inline bool ParaCostmapInterface::has_inflation_file_path() const {
+  return (_has_bits_[0] & 0x00020000u) != 0;
+}
+inline void ParaCostmapInterface::set_has_inflation_file_path() {
+  _has_bits_[0] |= 0x00020000u;
+}
+inline void ParaCostmapInterface::clear_has_inflation_file_path() {
+  _has_bits_[0] &= ~0x00020000u;
 }
 inline void ParaCostmapInterface::clear_inflation_file_path() {
   if (inflation_file_path_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -1223,15 +1325,15 @@ inline void ParaCostmapInterface::set_allocated_inflation_file_path(::std::strin
   // @@protoc_insertion_point(field_set_allocated:hero_costmap.ParaCostmapInterface.inflation_file_path)
 }
 
-// required double map_update_frequency = 16;
+// required double map_update_frequency = 19;
 inline bool ParaCostmapInterface::has_map_update_frequency() const {
-  return (_has_bits_[0] & 0x00008000u) != 0;
+  return (_has_bits_[0] & 0x00040000u) != 0;
 }
 inline void ParaCostmapInterface::set_has_map_update_frequency() {
-  _has_bits_[0] |= 0x00008000u;
+  _has_bits_[0] |= 0x00040000u;
 }
 inline void ParaCostmapInterface::clear_has_map_update_frequency() {
-  _has_bits_[0] &= ~0x00008000u;
+  _has_bits_[0] &= ~0x00040000u;
 }
 inline void ParaCostmapInterface::clear_map_update_frequency() {
   map_update_frequency_ = 0;

@@ -4,7 +4,7 @@ para_basic {
 }
 para_costmap_interface {
   global_frame: "map"
-  robot_base_frame: "base_link"
+  robot_base_frame: "map"
   footprint_padding: 0.1
   transform_tolerance: 3.0
   distance_threshold: 1.0
@@ -15,10 +15,13 @@ para_costmap_interface {
   map_origin_y: 0.0
   is_tracking_unknown: false
   is_rolling_window: false
-  has_obstacle_layer: true
+  has_obstacle_layer: false
   has_static_layer: true
+  has_debuff_layer: true
+  has_tactic_layer: true;
+  has_inflation_layer: true
   inflation_file_path: "/config/inflation_layer_config.prototxt"
-  map_update_frequency: 5
+  map_update_frequency: 2
 }
 footprint {
   point {

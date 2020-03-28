@@ -61,7 +61,8 @@ struct BasicExecutorRequest_
   enum {
     MOVE_TO_POSITION = 1u,
     ATTACK_ROBOT = 2u,
-    HALT = 3u,
+    ENGAGE_ROBOT = 3u,
+    HALT = 4u,
   };
 
 
@@ -76,6 +77,8 @@ typedef boost::shared_ptr< ::hero_msgs::BasicExecutorRequest > BasicExecutorRequ
 typedef boost::shared_ptr< ::hero_msgs::BasicExecutorRequest const> BasicExecutorRequestConstPtr;
 
 // constants requiring out of line definition
+
+   
 
    
 
@@ -145,12 +148,12 @@ struct MD5Sum< ::hero_msgs::BasicExecutorRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "59e9b2222ab31692a62b743a59e7772a";
+    return "915f07e066835d39bcef29a683b32eec";
   }
 
   static const char* value(const ::hero_msgs::BasicExecutorRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x59e9b2222ab31692ULL;
-  static const uint64_t static_value2 = 0xa62b743a59e7772aULL;
+  static const uint64_t static_value1 = 0x915f07e066835d39ULL;
+  static const uint64_t static_value2 = 0xbcef29a683b32eecULL;
 };
 
 template<class ContainerAllocator>
@@ -171,7 +174,8 @@ struct Definition< ::hero_msgs::BasicExecutorRequest_<ContainerAllocator> >
   {
     return "uint8 MOVE_TO_POSITION = 1\n\
 uint8 ATTACK_ROBOT = 2\n\
-uint8 HALT = 3\n\
+uint8 ENGAGE_ROBOT = 3\n\
+uint8 HALT = 4\n\
 uint8 command\n\
 string robot_name\n\
 bool yaw_control\n\

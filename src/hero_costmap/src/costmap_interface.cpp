@@ -76,10 +76,11 @@ CostmapInterface::CostmapInterface(std::string map_name,
   layered_costmap_ = new CostmapLayers(global_frame_, is_rolling_window_, is_track_unknown_);
   layered_costmap_->SetFilePath(config_file_inflation_);
   ros::Time last_error = ros::Time::now();
-  ROS_INFO("[costmap_interface]waiting tf...");
+
   ROS_INFO("[costmap_interface]global_frame_:%s,robot_base_frame_:%s",global_frame_.c_str(),robot_base_frame_.c_str());
   while (ros::ok() && !tf_.waitForTransform(global_frame_, robot_base_frame_, ros::Time(), ros::Duration(0.1), \
          ros::Duration(0.01), &tf_error)) {
+    ROS_INFO("[costmap_interface]waiting tf... %s to %s",global_frame_.c_str(),robot_base_frame_.c_str());
     ros::spinOnce();
     if (last_error + ros::Duration(5.0) < ros::Time::now()) {
       last_error = ros::Time::now();
@@ -102,10 +103,30 @@ CostmapInterface::CostmapInterface(std::string map_name,
     plugin_obstacle_layer->Initialize(layered_costmap_, map_name + "/" + "obstacle_layer", &tf_);
     ROS_INFO("obstacle layer loaded!");  
   }
-  Layer *plugin_inflation_layer = new InflationLayer;
-  layered_costmap_->AddPlugin(plugin_inflation_layer);
-  plugin_inflation_layer->Initialize(layered_costmap_, map_name + "/" + "inflation_layer", &tf_);
-  ROS_INFO("inflation layer loaded!"); 
+
+  if(has_tactic_layer_)
+  {
+    Layer *plugin_debuff_layer = new TacticLayer;
+    layered_costmap_->AddPlugin(plugin_debuff_layer);
+    plugin_debuff_layer->Initialize(layered_costmap_, map_name + "/" + "tactic_layer", &tf_);
+    ROS_INFO("tactic layer loaded!");
+  }
+
+  if(has_debuff_layer_)
+  {
+    Layer *plugin_debuff_layer = new DebuffLayer;
+    layered_costmap_->AddPlugin(plugin_debuff_layer);
+    plugin_debuff_layer->Initialize(layered_costmap_, map_name + "/" + "debuff_layer", &tf_);
+    ROS_INFO("debuff layer loaded!");
+  }
+  if(has_inflation_layer_)
+  {
+    Layer *plugin_inflation_layer = new InflationLayer;
+    layered_costmap_->AddPlugin(plugin_inflation_layer);
+    plugin_inflation_layer->Initialize(layered_costmap_, map_name + "/" + "inflation_layer", &tf_);
+    ROS_INFO("inflation layer loaded!");
+  }
+
 
   SetUnpaddedRobotFootprint(footprint_points_);
   stop_updates_ = false;
@@ -159,7 +180,7 @@ void CostmapInterface::LoadParameter() {
   ros::NodeHandle nh_;
  if(nh_.getNamespace().c_str()!="/"&&nh_.getNamespace().size()>5)
   {
-
+    if(robot_base_frame_ == "base_link")
     robot_base_frame_ = nh_.getNamespace().substr(1) + '/' + robot_base_frame_;
     if(global_frame_=="odom")
         global_frame_ = nh_.getNamespace().substr(1) + '/' + global_frame_;
@@ -173,7 +194,10 @@ void CostmapInterface::LoadParameter() {
   is_debug_ = ParaCollectionConfig.para_basic().is_debug();
   is_track_unknown_ = ParaCollectionConfig.para_costmap_interface().is_tracking_unknown();
   has_obstacle_layer_ = ParaCollectionConfig.para_costmap_interface().has_obstacle_layer();
+  has_debuff_layer_ = ParaCollectionConfig.para_costmap_interface().has_debuff_layer();
   has_static_layer_ = ParaCollectionConfig.para_costmap_interface().has_static_layer();
+  has_tactic_layer_ = ParaCollectionConfig.para_costmap_interface().has_tactic_layer();
+  has_inflation_layer_ = ParaCollectionConfig.para_costmap_interface().has_inflation_layer();
   map_width_ = ParaCollectionConfig.para_costmap_interface().map_width();
   map_height_ = ParaCollectionConfig.para_costmap_interface().map_height();
   map_origin_x_ = ParaCollectionConfig.para_costmap_interface().map_origin_x();

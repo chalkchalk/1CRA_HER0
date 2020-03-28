@@ -7,12 +7,13 @@ import struct
 
 
 class BasicExecutorRequest(genpy.Message):
-  _md5sum = "59e9b2222ab31692a62b743a59e7772a"
+  _md5sum = "915f07e066835d39bcef29a683b32eec"
   _type = "hero_msgs/BasicExecutorRequest"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """uint8 MOVE_TO_POSITION = 1
 uint8 ATTACK_ROBOT = 2
-uint8 HALT = 3
+uint8 ENGAGE_ROBOT = 3
+uint8 HALT = 4
 uint8 command
 string robot_name
 bool yaw_control
@@ -22,7 +23,8 @@ float64 position_y
   # Pseudo-constants
   MOVE_TO_POSITION = 1
   ATTACK_ROBOT = 2
-  HALT = 3
+  ENGAGE_ROBOT = 3
+  HALT = 4
 
   __slots__ = ['command','robot_name','yaw_control','position_x','position_y']
   _slot_types = ['uint8','string','bool','float64','float64']
@@ -297,6 +299,6 @@ def _get_struct_B():
     return _struct_B
 class BasicExecutor(object):
   _type          = 'hero_msgs/BasicExecutor'
-  _md5sum = '3c53e40ff8af1a43835b3d7ab9ff6623'
+  _md5sum = '29dda9959aaf5bb18d3e017845cd697d'
   _request_class  = BasicExecutorRequest
   _response_class = BasicExecutorResponse

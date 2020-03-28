@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_module)
-#find_package(Eigen3 REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(ProtoBuf REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   laser_geometry
   sensor_msgs
   geometry_msgs
+  hero_msgs
   )
 
 find_package(PCL 1.7 REQUIRED)
@@ -50,7 +51,7 @@ add_library(hero_costmap
 target_include_directories(hero_costmap
   PUBLIC
   ${catkin_INCLUDE_DIRS}
-  #${EIGEN3_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIRS}
   )
 
 target_link_libraries(hero_costmap
@@ -65,7 +66,7 @@ add_executable(test_costmap src/test_costmap.cpp)
 target_include_directories(test_costmap
   PUBLIC
   ${catkin_INCLUDE_DIRS}
-  #${EIGEN3_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIRS}
   )
 
 target_link_libraries(test_costmap

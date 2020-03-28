@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -66,6 +66,7 @@ enum ErrorCode{
     GP_GET_POSE_ERROR,
     GP_POSE_TRANSFORM_ERROR,
     GP_GOAL_INVALID_ERROR,
+    GP_START_INVALID_ERROR,
     GP_PATH_SEARCH_ERROR,
     GP_MOVE_COST_ERROR,
     GP_MAX_RETRIES_FAILURE,

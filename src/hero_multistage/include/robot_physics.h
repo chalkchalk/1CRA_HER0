@@ -18,7 +18,7 @@
 #include "hero_msgs/RobotHeat.h"
 #include "hero_msgs/RobotPosition.h"
 #include "hero_msgs/BattlePosition.h"
-
+#include "hero_msgs/JudgeSysShootHit.h"
 
 #define DistributeYaw 0.03f
 #define DistributeSpeed 2.0f
@@ -66,11 +66,13 @@ private:
     ros::Subscriber judgeHeat_sub_[4];
     ros::ServiceClient static_map_srv_;
     ros::Publisher bulletsInfo_pub_;
+    ros::Publisher shoot_hit_pub_;
     ros::Publisher simu_decision_info_pub_;
     ros::Publisher gimbalYaw_pub_[4];
     nav_msgs::OccupancyGrid map_;
     ros::ServiceClient judgeSysClient_;
     ros::ServiceServer shoot_service_;
+
 
      double RFID_F_x[6];
      double RFID_F_y[6];

@@ -24,7 +24,7 @@
 #include <string>
 #include <QThread>
 #include <QStringListModel>
-#include "nav_msgs//Odometry.h"
+#include "nav_msgs/Odometry.h"
 #include "battleview.h"
 #include "hero_msgs/JudgeSysControl.h"
 #include "hero_msgs/RobotStatus.h"
@@ -40,6 +40,7 @@
 #include "hero_msgs/ShootCmd.h"
 #include "hero_msgs/GimbalAim.h"
 #include "hero_msgs/BasicExecutor.h"
+#include "std_srvs/Empty.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -130,8 +131,7 @@ public:
 
     bool isShooting;
 
-
-
+    bool ResetPosition();
 
 
 Q_SIGNALS:
@@ -153,6 +153,7 @@ private:
     ros::ServiceClient shoot_client_;
     ros::ServiceClient gimbal_aim_client_;
     ros::ServiceClient basic_executor_cient_[4];
+    ros::ServiceClient stage_ros_resit_client_;
     //hero_msgs::RobotStatus roboStatus_[4];
     //hero_msgs::RobotHeat roboHeat_[4];
     hero_msgs::Buffinfo buffInfo_;
@@ -161,6 +162,7 @@ private:
     ros::Subscriber gimbal_yaw_sub_[4];
 
     ros::Publisher goalPoint_pub_[4];
+    ros::Subscriber goalPoint_sub_[4];
     ros::Publisher cmd_act_;
 
 
@@ -180,7 +182,7 @@ private:
     void BulletInfoCallback(const hero_msgs::BulletsInfo::ConstPtr& msg);
     void GameStatusCallback(const hero_msgs::GameStatus::ConstPtr& msg);
     void BuffInfoCallback(const hero_msgs::Buffinfo::ConstPtr& msg);
-
+    void GoalPointCallback(const geometry_msgs::PoseStamped::ConstPtr&msg, int robot_num);
     void GimbalYawCallback0(const std_msgs::Float32::ConstPtr& msg);
     void GimbalYawCallback1(const std_msgs::Float32::ConstPtr& msg);
     void GimbalYawCallback2(const std_msgs::Float32::ConstPtr& msg);

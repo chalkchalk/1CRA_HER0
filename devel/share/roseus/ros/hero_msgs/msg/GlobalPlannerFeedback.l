@@ -86,6 +86,7 @@ nav_msgs/Path path
 int32  error_code
 string error_msg
 
+
 ================================================================================
 MSG: nav_msgs/Path
 #An array of poses that represents a Path for a robot to follow

@@ -71,6 +71,8 @@ void JudgesysRobot::BuffReload()
 
 void JudgesysRobot::BuffHeal()
 {
+  if(!IsAlive())
+    return;
     health_ += JudgesysControl::RecoveredHealth;
     if(health_ > JudgesysControl::MaxHealth )
         health_ = JudgesysControl::MaxHealth;

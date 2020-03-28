@@ -7,6 +7,7 @@
 
 namespace hero_interface {
 
+const std::string RobotName[4] = {"robot_0","robot_1","robot_2","robot_3"};
 
 #define ROBOT_WIDTH 0.5
 #define ROBOT_HEIGHT 0.6
@@ -14,11 +15,11 @@ namespace hero_interface {
 #define ROBOT_WIDTH_PIX 100
 #define ROBOT_HEIGHT_PIX 120
 
-#define BATTLEFIELD_W 8.54
-#define BATTLEFIELD_H 5.54
+#define BATTLEFIELD_W 8.49
+#define BATTLEFIELD_H 4.89
 
-#define BATTLEFIELD_PIX_W 554
-#define BATTLEFIELD_PIX_H 854
+#define BATTLEFIELD_PIX_W 489
+#define BATTLEFIELD_PIX_H 849
 
 #define BULLET_RADIUS_PIX   8
 class QNode;
@@ -103,6 +104,7 @@ public:
     void LeftButtonRelease(int x, int y);
     void RightButtonPress(int x, int y);
     void AimPointRobot0(int x,int y);
+    void RefreshGoal(int robot_num,double x, double y);
     bool isRTS;
     bool isACT;
  private:

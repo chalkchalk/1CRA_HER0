@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -66,6 +66,8 @@
 #include "static_layer.h"
 #include "obstacle_layer.h"
 #include "inflation_layer.h"
+#include "debuff_layer.h"
+#include "tactic_layer.h"
 
 namespace hero_costmap {
 
@@ -248,7 +250,7 @@ class CostmapInterface {
   std::vector<geometry_msgs::Point> unpadded_footprint_, padded_footprint_;
   float footprint_padding_;
   bool map_update_thread_shutdown_, stop_updates_, initialized_, stopped_, robot_stopped_, got_footprint_, is_debug_, \
-       is_track_unknown_, is_rolling_window_, has_static_layer_, has_obstacle_layer_;
+       is_track_unknown_, is_rolling_window_, has_static_layer_, has_obstacle_layer_, has_debuff_layer_,has_tactic_layer_,has_inflation_layer_;
   double map_update_frequency_, map_width_, map_height_, map_origin_x_, map_origin_y_, map_resolution_;
   std::thread* map_update_thread_;
   ros::Timer timer_;

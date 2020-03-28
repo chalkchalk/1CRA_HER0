@@ -19,7 +19,7 @@ using hero_common::Polygon2D;
 
 #define RobotWidth 0.5
 #define RobotLength 0.6
-#define AromrLength 0.2//real lenth(0.13) is to difficult to hit!
+#define AromrLength 0.13//real lenth(0.13) is to difficult to hit!
 #define GimbalMaxSpeed 0.6
 class RobotTF
 {

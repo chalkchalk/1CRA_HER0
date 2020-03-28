@@ -81,10 +81,15 @@ bool QNode::init() {
     gameStatus_sub_ = n.subscribe<hero_msgs::GameStatus>("judgeSysInfo/game_state", 1000,&QNode::GameStatusCallback,this);
     buffInfo_sub_ = n.subscribe<hero_msgs::Buffinfo>("judgeSysInfo/buff_info", 1000,&QNode::BuffInfoCallback,this);
 
-    goalPoint_pub_[0] = n.advertise<geometry_msgs::PoseStamped>("robot_0/move_base_simple/goal", 5);
-    goalPoint_pub_[1] = n.advertise<geometry_msgs::PoseStamped>("robot_1/move_base_simple/goal", 5);
-    goalPoint_pub_[2] = n.advertise<geometry_msgs::PoseStamped>("robot_2/move_base_simple/goal", 5);
-    goalPoint_pub_[3] = n.advertise<geometry_msgs::PoseStamped>("robot_3/move_base_simple/goal", 5);
+    goalPoint_pub_[0] = n.advertise<geometry_msgs::PoseStamped>("/robot_0/move_base_simple/goal", 5);
+    goalPoint_pub_[1] = n.advertise<geometry_msgs::PoseStamped>("/robot_1/move_base_simple/goal", 5);
+    goalPoint_pub_[2] = n.advertise<geometry_msgs::PoseStamped>("/robot_2/move_base_simple/goal", 5);
+    goalPoint_pub_[3] = n.advertise<geometry_msgs::PoseStamped>("/robot_3/move_base_simple/goal", 5);
+
+    goalPoint_sub_[0] = n.subscribe<geometry_msgs::PoseStamped>("robot_0/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,0));
+    goalPoint_sub_[1] = n.subscribe<geometry_msgs::PoseStamped>("robot_1/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,1));
+    goalPoint_sub_[2] = n.subscribe<geometry_msgs::PoseStamped>("robot_2/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,2));
+    goalPoint_sub_[3] = n.subscribe<geometry_msgs::PoseStamped>("robot_3/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,3));
 
     cmd_act_ = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel_raw_act", 5);
     client_ = n.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
@@ -96,6 +101,7 @@ bool QNode::init() {
     basic_executor_cient_[2] = n.serviceClient<hero_msgs::BasicExecutor>("/robot_2/basic_executor_server");
     basic_executor_cient_[3] = n.serviceClient<hero_msgs::BasicExecutor>("/robot_3/basic_executor_server");
 
+    stage_ros_resit_client_ = n.serviceClient<std_srvs::Empty>("/reset_positions");
     GetParam(&n);
 
     robot[0].robot_name = "robot_0";
@@ -106,22 +112,33 @@ bool QNode::init() {
     return true;
 }
 
+void QNode::GoalPointCallback(const geometry_msgs::PoseStamped::ConstPtr &msg, int robot_num)
+{
+  parentBattleView_->RefreshGoal(robot_num,msg->pose.position.x,msg->pose.position.y);
+}
+
+bool QNode::ResetPosition()
+{
+  std_srvs::Empty call;
+  return stage_ros_resit_client_.call(call);
+}
+
 void QNode::GetParam(ros::NodeHandle *nh)
 {
-    nh->param<double>("RFID_F1_x", RFID_F_x[0], 7.63);
-    nh->param<double>("RFID_F1_y", RFID_F_y[0], 1.8);
-    nh->param<double>("RFID_F2_x", RFID_F_x[1], 6.23);
-    nh->param<double>("RFID_F2_y", RFID_F_y[1], 3.225);
-    nh->param<double>("RFID_F3_x", RFID_F_x[2], 4.03);
-    nh->param<double>("RFID_F3_y", RFID_F_y[2], 0.49);
-    nh->param<double>("RFID_F4_x", RFID_F_x[3], 0.45);
-    nh->param<double>("RFID_F4_y", RFID_F_y[3], 3.34);
-    nh->param<double>("RFID_F5_x", RFID_F_x[4], 1.85);
-    nh->param<double>("RFID_F5_y", RFID_F_y[4], 1.915);
-    nh->param<double>("RFID_F6_x", RFID_F_x[5], 4.05);
-    nh->param<double>("RFID_F6_y", RFID_F_y[5], 4.9);
-    nh->param<double>("RFID_height", RFID_height, 0.4);
-    nh->param<double>("RFID_width", RFID_width, 0.46);
+  nh->param<double>("/RFID_F1_x", RFID_F_x[0], 7.63);
+  nh->param<double>("/RFID_F1_y", RFID_F_y[0], 1.8);
+  nh->param<double>("/RFID_F2_x", RFID_F_x[1], 6.23);
+  nh->param<double>("/RFID_F2_y", RFID_F_y[1], 3.225);
+  nh->param<double>("/RFID_F3_x", RFID_F_x[2], 4.03);
+  nh->param<double>("/RFID_F3_y", RFID_F_y[2], 0.49);
+  nh->param<double>("/RFID_F4_x", RFID_F_x[3], 0.45);
+  nh->param<double>("/RFID_F4_y", RFID_F_y[3], 3.34);
+  nh->param<double>("/RFID_F5_x", RFID_F_x[4], 1.85);
+  nh->param<double>("/RFID_F5_y", RFID_F_y[4], 1.915);
+  nh->param<double>("/RFID_F6_x", RFID_F_x[5], 4.05);
+  nh->param<double>("/RFID_F6_y", RFID_F_y[5], 4.9);
+  nh->param<double>("/RFID_height", RFID_height, 0.4);
+  nh->param<double>("/RFID_width", RFID_width, 0.46);
 }
 void QNode::GameStatusCallback(const hero_msgs::GameStatus::ConstPtr &msg)
 {

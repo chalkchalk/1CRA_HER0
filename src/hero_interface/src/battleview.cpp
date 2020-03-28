@@ -8,7 +8,7 @@ namespace hero_interface {
 
 BattleView::BattleView(QNode *qNode)
 {
-    std::string full_path = ros::package::getPath("hero_interface") + "/resources/images/map.png";
+    std::string full_path = ros::package::getPath("hero_interface") + "/resources/images/map.jpg";
     background.load(full_path.c_str());
     background = background.scaled(BATTLEFIELD_PIX_W,BATTLEFIELD_PIX_H);
     qNode_ = qNode;
@@ -204,8 +204,8 @@ void BattleView::SetRobotGoalPoint(int image_x, int image_y)
             double yaw_target = std::atan2(y_target - (*it)->pose.y,x_target - (*it)->pose.x);
             //double yaw_target = (*it)->pose.yaw;
             qNode_->SendGoalPoint((*it)->index,x_target,y_target,yaw_target);
-            (*it)->SetDest.x = x_target;
-            (*it)->SetDest.y = y_target;
+            //(*it)->SetDest.x = x_target;
+            //(*it)->SetDest.y = y_target;
 
             (*it)->attacking_ = false;
 
@@ -266,6 +266,14 @@ Robot* BattleView::FindRobot(std::string robot_name)
       }
   }
   return nullptr;
+}
+
+void BattleView::RefreshGoal(int robot_num,double x, double y)
+{
+  FindRobot(RobotName[robot_num])->SetDest.x = x;
+  FindRobot(RobotName[robot_num])->SetDest.y = y;
+  //(*it)->SetDest.x = x_target;
+ // (*it)->SetDest.y = y_target;
 }
 
 void BattleView::DrawRobot(QImage *qImage)
@@ -355,7 +363,7 @@ void BattleView::DrawRobot(QImage *qImage)
     {
         if(!(*it)->attacking_)
         {
-          if((*it)->selected && !((*it)->SetDest.x==0&&(*it)->SetDest.y==0))
+          if(/*(*it)->selected && */(*it)->health>0&&!((*it)->SetDest.x==0&&(*it)->SetDest.y==0))
           {
               if(hero_common::PointDistance((*it)->pose.x,(*it)->pose.y,(*it)->SetDest.x, (*it)->SetDest.y) > 0.4)
               {

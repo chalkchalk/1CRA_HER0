@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -104,6 +104,7 @@ void CostmapLayers::UpdateMap(double robot_x, double robot_y, double robot_yaw) 
     ROS_WARN("No Layer");
     return;
   }
+ // ROS_INFO("UPDATE1");
 
   minx_ = miny_ = 1e30;
   maxx_ = maxy_ = -1e30;
@@ -112,7 +113,9 @@ void CostmapLayers::UpdateMap(double robot_x, double robot_y, double robot_yaw) 
     double prev_miny = miny_;
     double prev_maxx = maxx_;
     double prev_maxy = maxy_;
+
     (*plugin)->UpdateBounds(robot_x, robot_y, robot_yaw, &minx_, &miny_, &maxx_, &maxy_);
+   //ROS_INFO("bound %s %f, %f, %f, %f",(*plugin)->GetName().c_str(),minx_,miny_,maxx_,maxy_);
     count++;
     if (minx_ > prev_minx || miny_ > prev_miny || maxx_ < prev_maxx || maxy_ < prev_maxy) {
       ROS_WARN("Illegal bounds change. The offending layer is %s", (*plugin)->GetName().c_str());
@@ -126,12 +129,14 @@ void CostmapLayers::UpdateMap(double robot_x, double robot_y, double robot_yaw) 
   y0 = std::max(0, y0);
   yn = std::min(int(costmap_.GetSizeYCell()), yn + 1);
   if (xn < x0 || yn < y0) {
+   // ROS_INFO("RETURN!! %d,%d,%d,%d",xn,x0,yn,y0);
     return;
   }
   costmap_.ResetPartMap(x0, y0, xn, yn);
   for (auto plugin = plugins_.begin(); plugin != plugins_.end(); ++plugin) {
     (*plugin)->UpdateCosts(costmap_, x0, y0, xn, yn);
   }
+
   bx0_ = x0;
   bxn_ = xn;
   by0_ = y0;

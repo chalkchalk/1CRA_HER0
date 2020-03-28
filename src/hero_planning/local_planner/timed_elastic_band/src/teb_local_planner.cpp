@@ -138,6 +138,12 @@ hero_common::ErrorInfo TebLocalPlanner::ComputeVelocityCommands(hero_msgs::Twist
   } else*/ if (global_plan_overwrite_orientation_) {
     transformed_plan_.back().SetTheta(EstimateLocalGoalOrientation(transformed_plan_.back(), goal_idx));
   }
+
+  for(auto it = transformed_plan_.begin();it != transformed_plan_.end();it++)
+  {
+    it->SetTheta(robot_pose_.GetTheta());//here!!!!!
+  }
+
   transformed_plan_.back().SetTheta(robot_pose_.GetTheta());//here!!!!!
   if (transformed_plan_.size()==1) {// plan only contains the goal
     transformed_plan_.insert(transformed_plan_.begin(), robot_pose_); // insert start (not yet initialized)

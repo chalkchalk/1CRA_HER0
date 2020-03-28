@@ -51,7 +51,7 @@ void JudgesysControl::SetGamePhase(int phase)
         gamePhase_ = GamePhase::START;
         game_time = 180;
         ROS_INFO("[Hero_judgesys]Set game start");
-        RFID_Refresh();
+        //RFID_Refresh();
         ResetAllRobot();
     }
     else if(phase == JudgeSysCommand::GAME_END)
@@ -65,7 +65,7 @@ void JudgesysControl::SetGamePhase(int phase)
 
 void JudgesysControl::RFID_Callback(std::string robot_name, int num)
 {
-    if(RFID[num].isActivated)
+    if(RFID[num].isActivated||FindRobot(robot_name)->GetHealth()==0)
         return;
     if(RFID[num].color == "red")
     {
@@ -119,6 +119,7 @@ ErrorInfo JudgesysControl::Init() {
     service_ = nh_.advertiseService("judgesys_control", &JudgesysControl::handle_function,this);
     gameState_pub_ = nh_.advertise<hero_msgs::GameStatus>("judgeSysInfo/game_state", 5);
     buffInfo_pub_ = nh_.advertise<hero_msgs::Buffinfo>("judgeSysInfo/buff_info", 5);
+    shoot_hit_sub_ = nh_.subscribe<hero_msgs::JudgeSysShootHit>("judgeSysInfo/shoot_hit_event",100,&JudgesysControl::ShootHitCallback,this);
     for(int i=0;i<6;i++)
         buffZone[i] = false;
     game_time = 0;
@@ -131,6 +132,31 @@ ErrorInfo JudgesysControl::Init() {
 	return ErrorInfo(ErrorCode::OK);
 }
 
+void JudgesysControl::ShootHitCallback(const hero_msgs::JudgeSysShootHit::ConstPtr &msg)
+{
+  std::string  robot_name = msg->robot_name;
+  switch (msg->command) {
+  case JudgeSysCommand::ARMOR_HIT_FRONT:
+    HitRobot(msg->robot_name,JudgeSysCommand::ARMOR_HIT_FRONT);
+    ROS_INFO("[Hero_judgesys] %s get hit on front armor", robot_name.c_str());
+    break;
+  case JudgeSysCommand::ARMOR_HIT_LEFT:
+    HitRobot(msg->robot_name,JudgeSysCommand::ARMOR_HIT_LEFT);
+    ROS_INFO("[Hero_judgesys] %s get hit on left armor",robot_name.c_str());
+    break;
+  case JudgeSysCommand::ARMOR_HIT_BACK:
+    HitRobot(msg->robot_name,JudgeSysCommand::ARMOR_HIT_BACK);
+    ROS_INFO("[Hero_judgesys] %s get hit on back armor, that's hurt!",robot_name.c_str());
+    break;
+  case JudgeSysCommand::ARMOR_HIT_RIGHT:
+    HitRobot(msg->robot_name,JudgeSysCommand::ARMOR_HIT_RIGHT);
+    ROS_INFO("[Hero_judgesys] %s get hit on right armor",robot_name.c_str());
+    break;
+  case JudgeSysCommand::SHOOT_BULLET:
+    RobotShoot(msg->robot_name);
+    break;
+  }
+}
 
 bool JudgesysControl::handle_function(hero_msgs::JudgeSysControl::Request &req,
                     hero_msgs::JudgeSysControl::Response &res)

@@ -12,6 +12,7 @@
 #include "state/command_code.h"
 #include "hero_msgs/GameStatus.h"
 #include "hero_msgs/Buffinfo.h"
+#include "hero_msgs/JudgeSysShootHit.h"
 
 namespace hero_judgesys{
 class JudgesysRobot;
@@ -85,9 +86,10 @@ private:
     ros::ServiceServer service_;
     ros::Publisher gameState_pub_;
     ros::Publisher buffInfo_pub_;
+    ros::Subscriber shoot_hit_sub_;
     bool handle_function(hero_msgs::JudgeSysControl::Request &req,
                         hero_msgs::JudgeSysControl::Response &res);
-
+    void ShootHitCallback(const hero_msgs::JudgeSysShootHit::ConstPtr &msg);
     std::vector<JudgesysRobot* > robots_;
     bool buffZone[6];
 

@@ -106,7 +106,7 @@ class BasicExecutorRequest {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '59e9b2222ab31692a62b743a59e7772a';
+    return '915f07e066835d39bcef29a683b32eec';
   }
 
   static messageDefinition() {
@@ -114,7 +114,8 @@ class BasicExecutorRequest {
     return `
     uint8 MOVE_TO_POSITION = 1
     uint8 ATTACK_ROBOT = 2
-    uint8 HALT = 3
+    uint8 ENGAGE_ROBOT = 3
+    uint8 HALT = 4
     uint8 command
     string robot_name
     bool yaw_control
@@ -173,7 +174,8 @@ class BasicExecutorRequest {
 BasicExecutorRequest.Constants = {
   MOVE_TO_POSITION: 1,
   ATTACK_ROBOT: 2,
-  HALT: 3,
+  ENGAGE_ROBOT: 3,
+  HALT: 4,
 }
 
 class BasicExecutorResponse {
@@ -263,6 +265,6 @@ BasicExecutorResponse.Constants = {
 module.exports = {
   Request: BasicExecutorRequest,
   Response: BasicExecutorResponse,
-  md5sum() { return '3c53e40ff8af1a43835b3d7ab9ff6623'; },
+  md5sum() { return '29dda9959aaf5bb18d3e017845cd697d'; },
   datatype() { return 'hero_msgs/BasicExecutor'; }
 };

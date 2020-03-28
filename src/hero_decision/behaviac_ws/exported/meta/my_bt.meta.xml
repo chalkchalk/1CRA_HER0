@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
+<agents version="1" signature="2004824151">
+  <agent type="hero_decision::Robot" base="behaviac::Agent" signature="1382842015">
+    <properties>
+      <property name="ammo" type="int" member="false" static="false" defaultvalue="0" />
+      <property name="combat_effective_num" type="int" member="false" static="false" defaultvalue="0" />
+      <property name="combat_effectiveness" type="double" member="false" static="false" defaultvalue="0" />
+      <property name="health" type="int" member="false" static="false" defaultvalue="0" />
+    </properties>
+  </agent>
+</agents>

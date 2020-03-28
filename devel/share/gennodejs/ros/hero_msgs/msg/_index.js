@@ -23,11 +23,13 @@ let GlobalPlannerResult = require('./GlobalPlannerResult.js');
 let ArmorDetectionAction = require('./ArmorDetectionAction.js');
 let LocalPlannerActionFeedback = require('./LocalPlannerActionFeedback.js');
 let BattlePosition = require('./BattlePosition.js');
+let JudgeSysShootHit = require('./JudgeSysShootHit.js');
 let ObstacleMsg = require('./ObstacleMsg.js');
 let BulletsInfo = require('./BulletsInfo.js');
 let GimbalAngle = require('./GimbalAngle.js');
 let TwistAccel = require('./TwistAccel.js');
 let ShootState = require('./ShootState.js');
+let MovePoint = require('./MovePoint.js');
 let BulletMove = require('./BulletMove.js');
 let Position = require('./Position.js');
 let RobotPosition = require('./RobotPosition.js');
@@ -69,11 +71,13 @@ module.exports = {
   ArmorDetectionAction: ArmorDetectionAction,
   LocalPlannerActionFeedback: LocalPlannerActionFeedback,
   BattlePosition: BattlePosition,
+  JudgeSysShootHit: JudgeSysShootHit,
   ObstacleMsg: ObstacleMsg,
   BulletsInfo: BulletsInfo,
   GimbalAngle: GimbalAngle,
   TwistAccel: TwistAccel,
   ShootState: ShootState,
+  MovePoint: MovePoint,
   BulletMove: BulletMove,
   Position: Position,
   RobotPosition: RobotPosition,

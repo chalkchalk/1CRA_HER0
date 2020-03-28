@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -102,6 +102,9 @@ class AStarPlanner : public GlobalPlannerBase {
   /**
    * @brief Used for priority queue compare process.
    */
+
+  bool GetClosestFreePoint(unsigned int origin_x, unsigned int origin_y, unsigned int &closest_x, unsigned int &closest_y, unsigned int max_distance);
+
   struct Compare {
     bool operator()(const int &index1, const int &index2) {
       return AStarPlanner::f_score_.at(index1) > AStarPlanner::f_score_.at(index2);

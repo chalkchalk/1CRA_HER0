@@ -17,8 +17,11 @@ para_costmap_interface {
   is_rolling_window: false
   has_obstacle_layer: true
   has_static_layer: true
+  has_debuff_layer: true
+  has_tactic_layer: true;
+  has_inflation_layer : true
   inflation_file_path: "/config/inflation_layer_config.prototxt"
-  map_update_frequency: 5
+  map_update_frequency: 2
 }
 footprint {
   point {

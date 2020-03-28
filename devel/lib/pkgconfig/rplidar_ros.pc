@@ -1,0 +1,8 @@
+prefix=/home/ycz/ICRA_HERO_ws/devel
+
+Name: rplidar_ros
+Description: Description of rplidar_ros
+Version: 1.9.0
+Cflags: 
+Libs: -L/home/ycz/ICRA_HERO_ws/devel/lib 
+Requires: 

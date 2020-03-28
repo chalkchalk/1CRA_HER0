@@ -238,6 +238,7 @@ void hero_interface::MainWindow::on_pushButtonRFID_KillAll_clicked()
 void hero_interface::MainWindow::on_pushButtonGamePrep_clicked()
 {
     qnode.SendJudgeSysCall(hero_common::JudgeSysCommand::GAME_PERP,"null");
+    qnode.ResetPosition();
 }
 
 void hero_interface::MainWindow::on_pushButtonGameStart_clicked()

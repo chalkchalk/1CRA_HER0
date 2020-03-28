@@ -1,6 +1,7 @@
 uint8 MOVE_TO_POSITION = 1
 uint8 ATTACK_ROBOT = 2
-uint8 HALT = 3
+uint8 ENGAGE_ROBOT = 3
+uint8 HALT = 4
 uint8 command
 string robot_name
 bool yaw_control

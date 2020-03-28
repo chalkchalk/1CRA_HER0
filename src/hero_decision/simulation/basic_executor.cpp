@@ -42,24 +42,39 @@ void BasicExecutor::Init()
 
 void BasicExecutor::FSM_handler()
 {
+  static bool idle_flag = false;
   switch (state_) {
   case BasicExecutorState::IDLE: //idle,not moving, auto engage the closet and aimable enemy.
-    MoveToPosition(FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y);
+    if(idle_flag)
+    {
+      idle_flag = false;
+      MoveToPosition(FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y);
+    }
     EngageRobot(FindClosetAimableEnemy());
     break;
   case BasicExecutorState::ATTACK_ROBOT: //attacking, move to the attack position which is 1.5 meter away from the target, and engage it
     if(isAlive(target_enemy_)) //if the target is dead, switch to idle state
     {
-      ApproachEnemy(target_enemy_,1.5);
-      EngageRobot(target_enemy_);
+      ApproachEnemy(target_enemy_,2.0);
+      if(CanShootRobot(target_enemy_))
+         EngageRobot(target_enemy_);
+      else
+        EngageRobot(FindClosetAimableEnemy());
     }
     else {
       ROS_INFO("[basic_executor]%s: %s is history now.",my_name_.c_str(),target_enemy_.c_str());
       state_ = BasicExecutorState::IDLE;
+      idle_flag = true;
     }
     break;
   case BasicExecutorState::MOVE_TO_POSITION: //moving to posiion. automaticlly engaging the closet and aimable enemy on its route.
-    MoveToPosition(move_x,move_y);
+    if(hero_common::PointDistance(move_x,move_y,FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y)<0.2)
+    {
+      state_ = BasicExecutorState::IDLE;
+      idle_flag = true;
+    }
+    else
+      MoveToPosition(move_x,move_y);
     EngageRobot(FindClosetAimableEnemy());
     break;
   default:
@@ -169,20 +184,27 @@ int BasicExecutor::CanShootRobot(std::string robot_name)
     return 0;
   }
   //ROS_INFO("%s:%f,%f",my_name_.c_str(),FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y);
-  for(int i =0;i<4;i++)
+  for(int i =0;i<4;i++)//four armor plates
   {
     //ROS_INFO("%s[%d]:%f,%f",robot_name.c_str(),i,FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y);
 
-
+    double dot = (FindRobotPosition(robot_name).armor_plates[i].x - FindRobotPosition(robot_name).position.x) * (FindRobotPosition(robot_name).armor_plates[i].x -FindRobotPosition(my_name_).position.x)
+        + (FindRobotPosition(robot_name).armor_plates[i].y - FindRobotPosition(robot_name).position.y) * (FindRobotPosition(robot_name).armor_plates[i].y -FindRobotPosition(my_name_).position.y);
+    double norm = hero_common::PointDistance(FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y,
+                                             FindRobotPosition(robot_name).position.x,FindRobotPosition(robot_name).position.y) *
+                  hero_common::PointDistance(FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y,
+                                             FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y);
+    double armor_angle_cos = std::fabs(dot) / norm;
     if(FindRobotPosition(robot_name).health>0&&
        (!hero_common::LineSegmentIsIntersectMapObstacle(&map_,FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y,
-                                                   FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y,50))&&
+                                                   FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y,100))&&
        hero_common::PointDistance(FindRobotPosition(robot_name).armor_plates[i].x,FindRobotPosition(robot_name).armor_plates[i].y,
-                                  FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y)<hero_decision::MaxShootRange)
+                                  FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y)<hero_decision::MaxShootRange&&
+       armor_angle_cos > 0.3)
     {
       //ROS_INFO("can see you.");
 
-      for(int j =0;j<4;j++)
+      for(int j =0;j<4;j++)//shade of other robots
       {
         if(RobotName[j] == my_name_||RobotName[j]==robot_name)
           continue;
@@ -431,7 +453,7 @@ int main(int argc, char **argv)
     {
        //basic_executor.EngageRobot(basic_executor.FindClosetAimableEnemy());
        //basic_executor.ApproachEnemy(basic_executor.FindClosetAimableEnemy(),2.0);
-      basic_executor.TestBehaviour();
+      //basic_executor.TestBehaviour();
     }
     basic_executor.FSM_handler();
    // basic_executor.YawControlLoop();

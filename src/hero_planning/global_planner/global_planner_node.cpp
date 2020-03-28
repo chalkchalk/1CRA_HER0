@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -24,7 +24,8 @@ namespace hero_global_planner{
 using hero_common::ErrorCode;
 using hero_common::ErrorInfo;
 using hero_common::NodeState;
-GlobalPlannerNode::GlobalPlannerNode() :
+GlobalPlannerNode::GlobalPlannerNode(std::string type) :
+    type_(type),
     new_path_(false),pause_(false), node_state_(NodeState::IDLE), error_info_(ErrorCode::OK),
     as_(nh_,"global_planner_node_action",boost::bind(&GlobalPlannerNode::GoalCallback,this,_1),false) {
 
@@ -65,12 +66,25 @@ ErrorInfo GlobalPlannerNode::Init() {
   // Create tf listener
   tf_ptr_ = std::make_shared<tf::TransformListener>(ros::Duration(10));
 
-  // Create global costmap
-  std::string map_path = ros::package::getPath("hero_costmap") + \
-      "/config/costmap_parameter_config_for_global_plan.prototxt";
-  costmap_ptr_ = std::make_shared<hero_costmap::CostmapInterface>("global_costmap",
-                                                                           *tf_ptr_,
-                                                                           map_path.c_str());
+  if(type_ == "collective_diecion")
+  {
+    // Create global costmap
+    std::string map_path = ros::package::getPath("hero_costmap") + \
+        "/config/costmap_parameter_config_for_decision.prototxt";
+    costmap_ptr_ = std::make_shared<hero_costmap::CostmapInterface>("global_costmap",
+                                                                             *tf_ptr_,
+                                                                             map_path.c_str());
+  }
+  else//"robot"
+  {
+    // Create global costmap
+    std::string map_path = ros::package::getPath("hero_costmap") + \
+        "/config/costmap_parameter_config_for_global_plan.prototxt";
+    costmap_ptr_ = std::make_shared<hero_costmap::CostmapInterface>("global_costmap",
+                                                                             *tf_ptr_,
+                                                                             map_path.c_str());
+  }
+
   ROS_INFO("[global planner]costmap created!");
   // Create the instance of the selected algorithm
   global_planner_ptr_ = hero_common::AlgorithmFactory<GlobalPlannerBase,CostmapPtr >::CreateAlgorithm(
@@ -140,12 +154,17 @@ void GlobalPlannerNode::GoalCallback(const hero_msgs::GlobalPlannerGoal::ConstPt
           feedback.error_code = error_info.error_code();
           feedback.error_msg = error_info.error_msg();
           SetErrorInfo(ErrorInfo::OK());
+         // ROS_ERROR("%s:NOT OK",nh_.getNamespace().substr(2).c_str());
         }
         if (new_path_) {
           feedback.path = path_;
           new_path_ = false;
+          //ROS_ERROR("%s:NEW PATH",nh_.getNamespace().substr(2).c_str());
         }
-        ROS_INFO("[feedback.path] id:%s",feedback.path.poses.front().header.frame_id.c_str());
+        //ROS_ERROR("%s:PUB!",nh_.getNamespace().substr(2).c_str());
+        //this line under this will trigger problem!
+        //ROS_INFO("[feedback.path] id:%s",feedback.path.poses.front().header.frame_id.c_str());
+        //when the path is empty, this ROS_INFO will trigger the collapse of this program!
         as_.publishFeedback(feedback);
       }
 
@@ -226,7 +245,6 @@ void GlobalPlannerNode::PlanThread() {
       std::this_thread::sleep_for(std::chrono::microseconds(1));
     }
     ROS_INFO("Go on planning!");
-
     std::chrono::steady_clock::time_point start_time = std::chrono::steady_clock::now();
 
     {
@@ -246,16 +264,18 @@ void GlobalPlannerNode::PlanThread() {
       current_goal = GetGoal();
 
       if (current_goal.header.frame_id != costmap_ptr_->GetGlobalFrameID()) {
+        //ROS_ERROR("%s:SET!",nh_.getNamespace().substr(2).c_str());
         current_goal = costmap_ptr_->Pose2GlobalFrame(current_goal);
         SetGoal(current_goal);
+
       }
 
       //Plan
       error_info = global_planner_ptr_->Plan(current_start, current_goal, current_path);
-
     }
 
     if (error_info.IsOK()) {
+     // ROS_ERROR("%s:WTF?!",nh_.getNamespace().substr(2).c_str());
       //When planner succeed, reset the retry times
       retries = 0;
       PathVisualization(current_path);
@@ -290,6 +310,7 @@ void GlobalPlannerNode::PlanThread() {
     // Set and update the error info
     SetErrorInfo(error_info);
 
+
     // Deal with the duration to wait
     std::chrono::steady_clock::time_point end_time = std::chrono::steady_clock::now();
     std::chrono::microseconds execution_duration =
@@ -304,6 +325,7 @@ void GlobalPlannerNode::PlanThread() {
       sleep_time = std::chrono::microseconds(0);
       SetErrorInfo(ErrorInfo(ErrorCode::GP_TIME_OUT_ERROR, "Planning once time out."));
     }
+    //ROS_ERROR("%s:OUT!",nh_.getNamespace().substr(2).c_str());
   }
 
 
@@ -342,9 +364,16 @@ GlobalPlannerNode::~GlobalPlannerNode() {
 } //namespace hero_global_planner
 
 int main(int argc, char **argv) {
-
   ros::init(argc, argv, "global_planner_node");
-  hero_global_planner::GlobalPlannerNode global_planner;
+  ros::NodeHandle nh;
+  std::string type = "robot";
+  if(nh.getNamespace().substr(2)=="red_decision"||nh.getNamespace().substr(2)=="blue_decision")
+    type = "collective_diecion";
+  else
+    type = "robot";
+
+    hero_global_planner::GlobalPlannerNode global_planner(type);
+
   ros::spin();
   return 0;
 }

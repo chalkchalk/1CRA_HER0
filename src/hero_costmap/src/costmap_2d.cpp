@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -258,8 +258,10 @@ bool Costmap2D::SetConvexRegionCost(const std::vector<geometry_msgs::Point> &pol
     }
     map_polygon.push_back(loc);
   }
+
   std::vector<MapLocation> polygon_cells;
   FillConvexCells(map_polygon, polygon_cells);
+  //ROS_ERROR("fill:%d with %d",polygon_cells.size(),cost_value);
   for (unsigned int i = 0; i < polygon_cells.size(); ++i) {
     unsigned int index = GetIndex(polygon_cells[i].x, polygon_cells[i].y);
     costmap_[index] = cost_value;

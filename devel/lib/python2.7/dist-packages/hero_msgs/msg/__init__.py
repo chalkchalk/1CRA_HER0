@@ -22,6 +22,7 @@ from ._GlobalPlannerActionResult import *
 from ._GlobalPlannerFeedback import *
 from ._GlobalPlannerGoal import *
 from ._GlobalPlannerResult import *
+from ._JudgeSysShootHit import *
 from ._LocalPlannerAction import *
 from ._LocalPlannerActionFeedback import *
 from ._LocalPlannerActionGoal import *
@@ -29,6 +30,7 @@ from ._LocalPlannerActionResult import *
 from ._LocalPlannerFeedback import *
 from ._LocalPlannerGoal import *
 from ._LocalPlannerResult import *
+from ._MovePoint import *
 from ._ObstacleMsg import *
 from ._Position import *
 from ._ProjectileSupply import *

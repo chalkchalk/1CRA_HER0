@@ -40,7 +40,7 @@ template<>
 struct MD5Sum< ::hero_msgs::BasicExecutor > {
   static const char* value()
   {
-    return "3c53e40ff8af1a43835b3d7ab9ff6623";
+    return "29dda9959aaf5bb18d3e017845cd697d";
   }
 
   static const char* value(const ::hero_msgs::BasicExecutor&) { return value(); }

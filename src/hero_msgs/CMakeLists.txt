@@ -33,6 +33,8 @@ add_message_files(
     Position.msg
     RobotPosition.msg
     BattlePosition.msg
+    JudgeSysShootHit.msg
+    MovePoint.msg
 )
 
 add_message_files(

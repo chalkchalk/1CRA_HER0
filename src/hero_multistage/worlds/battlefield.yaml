@@ -1,23 +1,23 @@
 RFID_width : 0.46
 RFID_height : 0.40
 
-RFID_F1_x : 7.63
-RFID_F1_y : 1.80
+RFID_F1_x : 0.435
+RFID_F1_y : 2.755
 
-RFID_F2_x : 6.23
-RFID_F2_y : 3.225
+RFID_F2_x : 1.89 #1.835
+RFID_F2_y : 1.66 #1.615
 
-RFID_F3_x : 4.03
-RFID_F3_y : 0.49
+RFID_F3_x : 3.975
+RFID_F3_y : 4.000
 
-RFID_F4_x : 0.45
-RFID_F4_y : 3.34
+RFID_F4_x : 7.515
+RFID_F4_y : 1.655
 
-RFID_F5_x : 1.85
-RFID_F5_y : 1.915
+RFID_F5_x : 6.115
+RFID_F5_y : 2.795
 
-RFID_F6_x : 4.05
-RFID_F6_y : 4.65
+RFID_F6_x : 3.975
+RFID_F6_y : 0.410
 
 
 

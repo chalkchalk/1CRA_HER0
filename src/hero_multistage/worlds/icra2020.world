@@ -36,8 +36,8 @@ define rmcar position
   rplidar(pose [ 0.000 0.000 -0.450 0.000 ])
   odom_error [0.03 0.03 0.00 0.05]
   # [ xmin xmax ymin ymax zmin zmax amin amax ]				
-  velocity_bounds [-3 3 -3 3 -3 3 -360 360 ]
-  acceleration_bounds [-2 2 -2 2 -2 2 -90 90]
+  velocity_bounds [-5 5 -5 5 -5 5 -360 360 ]
+  acceleration_bounds [-5 5 -5 5 -5 5 -90 90]
   ranger_return 1.000
 )
 
@@ -78,14 +78,14 @@ floorplan
 ( 
   name "RoboMaster Map"
   bitmap "../maps/icra2020.pgm"
-  size [8.540 5.540 0.500]
-  pose [4.27  2.77  0.000 0.000 ]
+  size [8.490 4.890 0.500]
+  pose [4.245  2.445  0.000 0.000 ]
 )
 
 # throw in a robot
- rmcar(pose [ 0.600 0.600 0.000 0.000 ] name "rmcar0" color "blue" )
- rmcar(pose [ 0.600 4.700 0.000 0.000 ] name "rmcar1" color "blue" )
+ rmcar(pose [ 0.700 0.700 0.000 0.000 ] name "rmcar0" color "blue" )
+ rmcar(pose [ 0.700 4.200 0.000 0.000 ] name "rmcar1" color "blue" )
 
- rmcar(pose [ 7.700 0.600 0.000 180.000 ] name "rmcar2" color "red" )
- rmcar(pose [ 7.700 4.700 0.000 180.000 ] name "rmcar3" color "red" )
+ rmcar(pose [ 7.700 0.700 0.000 180.000 ] name "rmcar2" color "red" )
+ rmcar(pose [ 7.700 4.200 0.000 180.000 ] name "rmcar3" color "red" )
  #block(pose [ 7.790 3.450 0.000 0.300 ] color "red"  )

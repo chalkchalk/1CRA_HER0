@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -37,8 +37,8 @@ void OdomInfo::GetVel(tf::Stamped<tf::Pose>& vel) {
     boost::mutex::scoped_lock lock(mutex_);
     temp_vel.linear.x = odom_.twist.twist.linear.x;
     temp_vel.linear.y = odom_.twist.twist.linear.y;
-    temp_vel.angular.z = odom_.twist.twist.angular.z;
-
+    //temp_vel.angular.z = odom_.twist.twist.angular.z;
+    temp_vel.angular.z = 0;//here!!!!!!!!!!!!
     vel.frame_id_ = odom_.child_frame_id;
   }
   vel.setData(tf::Transform(tf::createQuaternionFromYaw(temp_vel.angular.z),

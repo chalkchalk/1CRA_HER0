@@ -87,6 +87,7 @@ namespace HeroMultistage {
 
         shoot_service_ = nh_.advertiseService("/shoot_server", &RobotPhysics::Shoot_handle_function,this);
 
+        shoot_hit_pub_ = nh_.advertise<hero_msgs::JudgeSysShootHit>("judgeSysInfo/shoot_hit_event",5);
         ros::service::waitForService("/static_map", -1);
         nav_msgs::GetMap::Request req;
         nav_msgs::GetMap::Response res;
@@ -232,7 +233,7 @@ namespace HeroMultistage {
 
              if( (*iter)->ReachBoundary(8,8)||
                      hero_common::LineSegmentIsIntersectMapObstacle(&map_,(*iter)->GetPositionNow().X(),(*iter)->GetPositionNow().Y(),
-                                                                    (*iter)->GetPositionLast().X(),(*iter)->GetPositionLast().Y()))
+                                                                    (*iter)->GetPositionLast().X(),(*iter)->GetPositionLast().Y(),50))
                   iter = bullets_.erase(iter);
               else
                  iter ++ ;
@@ -332,12 +333,20 @@ namespace HeroMultistage {
 
     void RobotPhysics::SendHitRobotInfo(std::string robot_name, int armor_num)
     {
-        SendJudgeSysRequest(robot_name,hero_common::JudgeSysCommand::ARMOR_HIT_FRONT + armor_num);
+        //SendJudgeSysRequest(robot_name,hero_common::JudgeSysCommand::ARMOR_HIT_FRONT + armor_num);
+        hero_msgs::JudgeSysShootHit shoot_hit_info;
+        shoot_hit_info.robot_name = robot_name;
+        shoot_hit_info.command = hero_common::JudgeSysCommand::ARMOR_HIT_FRONT + armor_num;
+        shoot_hit_pub_.publish(shoot_hit_info);
     }
 
     void RobotPhysics::SendShootRobotInfo(std::string robot_name)
     {
-        SendJudgeSysRequest(robot_name,hero_common::JudgeSysCommand::SHOOT_BULLET);
+        //SendJudgeSysRequest(robot_name,hero_common::JudgeSysCommand::SHOOT_BULLET);
+        hero_msgs::JudgeSysShootHit shoot_hit_info;
+        shoot_hit_info.robot_name = robot_name;
+        shoot_hit_info.command = hero_common::JudgeSysCommand::SHOOT_BULLET;
+        shoot_hit_pub_.publish(shoot_hit_info);
     }
 
 
@@ -381,10 +390,10 @@ namespace HeroMultistage {
         srv.request.robot_name = robot_name;
         if (judgeSysClient_.call(srv))
             {
-                if(srv.response.error_code!=0)
+                /*if(srv.response.error_code!=0)
                 {
                     ROS_ERROR("judgesys service error:%d\n",srv.response.error_code);
-                }
+                }*/
 
             }
             else
