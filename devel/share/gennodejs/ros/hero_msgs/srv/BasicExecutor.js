@@ -221,7 +221,7 @@ class BasicExecutorResponse {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '5d7f46f06f230dc931e54261335b2557';
+    return '99f30f8d8cf28fa4411b9b2a9dbd60cb';
   }
 
   static messageDefinition() {
@@ -231,6 +231,7 @@ class BasicExecutorResponse {
     uint8 I_AM_DEAD = 101
     uint8 OUT_OF_AMMO = 102
     uint8 TARGET_IS_DEAD = 103
+    uint8 INVALID_TARGET = 104
     uint8 error_code
     
     
@@ -260,11 +261,12 @@ BasicExecutorResponse.Constants = {
   I_AM_DEAD: 101,
   OUT_OF_AMMO: 102,
   TARGET_IS_DEAD: 103,
+  INVALID_TARGET: 104,
 }
 
 module.exports = {
   Request: BasicExecutorRequest,
   Response: BasicExecutorResponse,
-  md5sum() { return '29dda9959aaf5bb18d3e017845cd697d'; },
+  md5sum() { return '71e7fa81f181141342b4387ee705a327'; },
   datatype() { return 'hero_msgs/BasicExecutor'; }
 };

@@ -86,10 +86,15 @@ bool QNode::init() {
     goalPoint_pub_[2] = n.advertise<geometry_msgs::PoseStamped>("/robot_2/move_base_simple/goal", 5);
     goalPoint_pub_[3] = n.advertise<geometry_msgs::PoseStamped>("/robot_3/move_base_simple/goal", 5);
 
-    goalPoint_sub_[0] = n.subscribe<geometry_msgs::PoseStamped>("robot_0/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,0));
-    goalPoint_sub_[1] = n.subscribe<geometry_msgs::PoseStamped>("robot_1/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,1));
-    goalPoint_sub_[2] = n.subscribe<geometry_msgs::PoseStamped>("robot_2/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,2));
-    goalPoint_sub_[3] = n.subscribe<geometry_msgs::PoseStamped>("robot_3/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,3));
+    //goalPoint_sub_[0] = n.subscribe<geometry_msgs::PoseStamped>("robot_0/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,0));
+    //goalPoint_sub_[1] = n.subscribe<geometry_msgs::PoseStamped>("robot_1/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,1));
+    //goalPoint_sub_[2] = n.subscribe<geometry_msgs::PoseStamped>("robot_2/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,2));
+    //goalPoint_sub_[3] = n.subscribe<geometry_msgs::PoseStamped>("robot_3/move_base_simple/goal", 100,boost::bind(&QNode::GoalPointCallback,this,_1,3));
+
+    basic_executor_status_sub_[0] = n.subscribe<hero_msgs::BasicExecutorStatus>("/robot_0/basic_executor_status", 100,boost::bind(&QNode::BasicExecutorStatusCallback,this,_1,0));
+    basic_executor_status_sub_[1] = n.subscribe<hero_msgs::BasicExecutorStatus>("/robot_1/basic_executor_status", 100,boost::bind(&QNode::BasicExecutorStatusCallback,this,_1,1));
+    basic_executor_status_sub_[2] = n.subscribe<hero_msgs::BasicExecutorStatus>("/robot_2/basic_executor_status", 100,boost::bind(&QNode::BasicExecutorStatusCallback,this,_1,2));
+    basic_executor_status_sub_[3] = n.subscribe<hero_msgs::BasicExecutorStatus>("/robot_3/basic_executor_status", 100,boost::bind(&QNode::BasicExecutorStatusCallback,this,_1,3));
 
     cmd_act_ = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel_raw_act", 5);
     client_ = n.serviceClient<hero_msgs::JudgeSysControl>("judgesys_control");
@@ -123,6 +128,12 @@ bool QNode::ResetPosition()
   return stage_ros_resit_client_.call(call);
 }
 
+void QNode::BasicExecutorStatusCallback(const hero_msgs::BasicExecutorStatus::ConstPtr &msg, int robot_num)
+{
+  parentBattleView_->RefreshGoal(robot_num,msg->move_x,msg->move_y);
+  parentBattleView_->RefreshTarget(robot_num,msg->target_name);
+  //basic_executor_status[robot_num] = *msg;
+}
 void QNode::GetParam(ros::NodeHandle *nh)
 {
   nh->param<double>("/RFID_F1_x", RFID_F_x[0], 7.63);

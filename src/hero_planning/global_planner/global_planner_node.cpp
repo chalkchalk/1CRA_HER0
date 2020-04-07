@@ -367,7 +367,7 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "global_planner_node");
   ros::NodeHandle nh;
   std::string type = "robot";
-  if(nh.getNamespace().substr(2)=="red_decision"||nh.getNamespace().substr(2)=="blue_decision")
+  if(nh.getNamespace().length() > 2 && (nh.getNamespace().substr(2)=="red_decision"||nh.getNamespace().substr(2)=="blue_decision"))
     type = "collective_diecion";
   else
     type = "robot";

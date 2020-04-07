@@ -431,11 +431,12 @@ namespace HeroMultistage {
     void RobotPhysics::ShootSequence()
     {
       static int divider = 0;
-      if(divider==0)
+      if(divider<8)
       {
-        divider =1;
+        divider ++;
         return;
       }
+      divider = 0;
       if(need_shooting[0])
         RobotShoot("robot_0");
       if(need_shooting[1])
@@ -474,7 +475,7 @@ int main(int argc, char** argv){
       //robotPhysics.FindRobot("robot_0")->SetGimbalAbsoluteYaw(0);
       robotPhysics.GimbalsMove();
       robotPhysics.PublishGimbalYaw();
-      robotPhysics.LetBulletsFly(33);
+      robotPhysics.LetBulletsFly(50);
       robotPhysics.PublishBulletsInfo();
       robotPhysics.BulletJudge();
       robotPhysics.ArmorHitDetect();
@@ -485,8 +486,8 @@ int main(int argc, char** argv){
       gettimeofday(&tv,&tz);
       ms = tv.tv_sec*1000 + tv.tv_usec/1000;
 
-      if(ms - ms_last <33)
-        std::this_thread::sleep_for(std::chrono::milliseconds(33 -(ms - ms_last)));
+      if(ms - ms_last <20)
+        std::this_thread::sleep_for(std::chrono::milliseconds(20 -(ms - ms_last)));
      // else
        // ROS_INFO("time used:%d",ms-ms_last);
     }

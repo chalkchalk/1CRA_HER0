@@ -151,10 +151,10 @@
   "hero_msgs/BasicExecutorRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BasicExecutor-request>)))
   "Returns md5sum for a message object of type '<BasicExecutor-request>"
-  "29dda9959aaf5bb18d3e017845cd697d")
+  "71e7fa81f181141342b4387ee705a327")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BasicExecutor-request)))
   "Returns md5sum for a message object of type 'BasicExecutor-request"
-  "29dda9959aaf5bb18d3e017845cd697d")
+  "71e7fa81f181141342b4387ee705a327")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BasicExecutor-request>)))
   "Returns full string definition for message of type '<BasicExecutor-request>"
   (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 ENGAGE_ROBOT = 3~%uint8 HALT = 4~%uint8 command~%string robot_name~%bool yaw_control~%float64 position_x~%float64 position_y~%~%~%"))
@@ -205,14 +205,16 @@
   '((:OK . 100)
     (:I_AM_DEAD . 101)
     (:OUT_OF_AMMO . 102)
-    (:TARGET_IS_DEAD . 103))
+    (:TARGET_IS_DEAD . 103)
+    (:INVALID_TARGET . 104))
 )
 (cl:defmethod roslisp-msg-protocol:symbol-codes ((msg-type (cl:eql 'BasicExecutor-response)))
     "Constants for message type 'BasicExecutor-response"
   '((:OK . 100)
     (:I_AM_DEAD . 101)
     (:OUT_OF_AMMO . 102)
-    (:TARGET_IS_DEAD . 103))
+    (:TARGET_IS_DEAD . 103)
+    (:INVALID_TARGET . 104))
 )
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <BasicExecutor-response>) ostream)
   "Serializes a message object of type '<BasicExecutor-response>"
@@ -231,16 +233,16 @@
   "hero_msgs/BasicExecutorResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BasicExecutor-response>)))
   "Returns md5sum for a message object of type '<BasicExecutor-response>"
-  "29dda9959aaf5bb18d3e017845cd697d")
+  "71e7fa81f181141342b4387ee705a327")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BasicExecutor-response)))
   "Returns md5sum for a message object of type 'BasicExecutor-response"
-  "29dda9959aaf5bb18d3e017845cd697d")
+  "71e7fa81f181141342b4387ee705a327")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BasicExecutor-response>)))
   "Returns full string definition for message of type '<BasicExecutor-response>"
-  (cl:format cl:nil "uint8 OK = 100~%uint8 I_AM_DEAD = 101~%uint8 OUT_OF_AMMO = 102~%uint8 TARGET_IS_DEAD = 103~%uint8 error_code~%~%~%~%"))
+  (cl:format cl:nil "uint8 OK = 100~%uint8 I_AM_DEAD = 101~%uint8 OUT_OF_AMMO = 102~%uint8 TARGET_IS_DEAD = 103~%uint8 INVALID_TARGET = 104~%uint8 error_code~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'BasicExecutor-response)))
   "Returns full string definition for message of type 'BasicExecutor-response"
-  (cl:format cl:nil "uint8 OK = 100~%uint8 I_AM_DEAD = 101~%uint8 OUT_OF_AMMO = 102~%uint8 TARGET_IS_DEAD = 103~%uint8 error_code~%~%~%~%"))
+  (cl:format cl:nil "uint8 OK = 100~%uint8 I_AM_DEAD = 101~%uint8 OUT_OF_AMMO = 102~%uint8 TARGET_IS_DEAD = 103~%uint8 INVALID_TARGET = 104~%uint8 error_code~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <BasicExecutor-response>))
   (cl:+ 0
      1

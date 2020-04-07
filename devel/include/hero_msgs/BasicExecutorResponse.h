@@ -43,6 +43,7 @@ struct BasicExecutorResponse_
     I_AM_DEAD = 101u,
     OUT_OF_AMMO = 102u,
     TARGET_IS_DEAD = 103u,
+    INVALID_TARGET = 104u,
   };
 
 
@@ -57,6 +58,8 @@ typedef boost::shared_ptr< ::hero_msgs::BasicExecutorResponse > BasicExecutorRes
 typedef boost::shared_ptr< ::hero_msgs::BasicExecutorResponse const> BasicExecutorResponseConstPtr;
 
 // constants requiring out of line definition
+
+   
 
    
 
@@ -128,12 +131,12 @@ struct MD5Sum< ::hero_msgs::BasicExecutorResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "5d7f46f06f230dc931e54261335b2557";
+    return "99f30f8d8cf28fa4411b9b2a9dbd60cb";
   }
 
   static const char* value(const ::hero_msgs::BasicExecutorResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x5d7f46f06f230dc9ULL;
-  static const uint64_t static_value2 = 0x31e54261335b2557ULL;
+  static const uint64_t static_value1 = 0x99f30f8d8cf28fa4ULL;
+  static const uint64_t static_value2 = 0x411b9b2a9dbd60cbULL;
 };
 
 template<class ContainerAllocator>
@@ -156,6 +159,7 @@ struct Definition< ::hero_msgs::BasicExecutorResponse_<ContainerAllocator> >
 uint8 I_AM_DEAD = 101\n\
 uint8 OUT_OF_AMMO = 102\n\
 uint8 TARGET_IS_DEAD = 103\n\
+uint8 INVALID_TARGET = 104\n\
 uint8 error_code\n\
 \n\
 ";

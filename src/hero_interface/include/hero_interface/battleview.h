@@ -4,6 +4,7 @@
 #include <vector>
 #include <QtGui>
 #include "../include/hero_interface/qnode.hpp"
+#include "hero_msgs/BasicExecutorStatus.h"
 
 namespace hero_interface {
 
@@ -105,6 +106,7 @@ public:
     void RightButtonPress(int x, int y);
     void AimPointRobot0(int x,int y);
     void RefreshGoal(int robot_num,double x, double y);
+    void RefreshTarget(int robot_num, std::string name);
     bool isRTS;
     bool isACT;
  private:

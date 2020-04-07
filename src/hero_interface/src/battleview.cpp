@@ -276,6 +276,10 @@ void BattleView::RefreshGoal(int robot_num,double x, double y)
  // (*it)->SetDest.y = y_target;
 }
 
+void BattleView::RefreshTarget(int robot_num, std::string name)
+{
+  FindRobot(RobotName[robot_num])->target = name;
+}
 void BattleView::DrawRobot(QImage *qImage)
 {
     QPainter painter(qImage);
@@ -361,9 +365,15 @@ void BattleView::DrawRobot(QImage *qImage)
  }
     for (auto it = robots_.begin(); it != robots_.end(); ++it)
     {
-        if(!(*it)->attacking_)
+      if((*it)->color=="red")
+          robotColor=Qt::red;
+      else if((*it)->color=="blue")
+          robotColor=Qt::blue;
+      if((*it)->health>0)
+      {
+       // if(!(*it)->attacking_)
         {
-          if(/*(*it)->selected && */(*it)->health>0&&!((*it)->SetDest.x==0&&(*it)->SetDest.y==0))
+          if(/*(*it)->selected && */!((*it)->SetDest.x==0&&(*it)->SetDest.y==0))
           {
               if(hero_common::PointDistance((*it)->pose.x,(*it)->pose.y,(*it)->SetDest.x, (*it)->SetDest.y) > 0.4)
               {
@@ -377,21 +387,26 @@ void BattleView::DrawRobot(QImage *qImage)
               }
           }
         }
-        else {
-           if((*it)->selected)
+        //else
+        if(FindRobot((*it)->target))
+        {
+          // if((*it)->selected)
            {
-             painter.setPen(QPen(Qt::red, 2, Qt::SolidLine,
+             painter.setPen(QPen(robotColor, 2, Qt::SolidLine,
                                      Qt::RoundCap, Qt::RoundJoin));
-             painter.drawLine(PoseToMapPoint((*it)->pose,background.size()),PoseToMapPoint(FindRobot((*it)->target)->pose,background.size()));
-             painter.setPen(QPen(Qt::red, 5, Qt::SolidLine,
+
+             painter.drawLine(PoseToMapPoint((*it)->SetDest,background.size()),PoseToMapPoint(FindRobot((*it)->target)->pose,background.size()));
+             //painter.drawLine(PoseToMapPoint((*it)->pose,background.size()),PoseToMapPoint(FindRobot((*it)->target)->pose,background.size()));
+             painter.setPen(QPen(robotColor, 5, Qt::SolidLine,
                                      Qt::SquareCap, Qt::RoundJoin));
-             painter.drawPoint(PoseToMapPoint((*it)->pose,background.size()));
+             painter.drawPoint(PoseToMapPoint((*it)->SetDest,background.size()));
+             //painter.drawPoint(PoseToMapPoint((*it)->pose,background.size()));
              painter.drawPoint(PoseToMapPoint(FindRobot((*it)->target)->pose,background.size()));
            }
 
         }
-
-}
+      }
+  }
 
 
     /***************************Draw bullets********************************************************************************/

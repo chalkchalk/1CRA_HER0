@@ -11,6 +11,7 @@
 #include "std_msgs/Float64.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "hero_msgs/BasicExecutor.h"
+#include "hero_msgs/BasicExecutorStatus.h"
 
 namespace hero_decision{
 
@@ -65,16 +66,19 @@ private:
   bool yaw_control_received_;
 
   std::string target_enemy_;
+  std::string attacking_target;
   double move_x;
   double move_y;
 
   ros::Publisher goalPoint_pub_;
   ros::Publisher yaw_speed_pub_;
+  ros::Publisher basic_executor_status_pub_;
   ros::Subscriber yaw_set_sub_;
   ros::ServiceServer basic_executor_server_;
   hero_msgs::RobotPosition FindRobotPosition(std::string robot_name);
   bool BasicExecutor_handle_function(hero_msgs::BasicExecutor::Request &req,
   hero_msgs::BasicExecutor::Response &res);
+  void PublishStatus();
 
 };
 

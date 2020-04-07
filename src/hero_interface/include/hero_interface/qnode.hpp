@@ -41,6 +41,7 @@
 #include "hero_msgs/GimbalAim.h"
 #include "hero_msgs/BasicExecutor.h"
 #include "std_srvs/Empty.h"
+#include "hero_msgs/BasicExecutorStatus.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -146,7 +147,9 @@ private:
     ros::Subscriber bulletInfo_sub_;
     ros::Subscriber gameStatus_sub_;
     ros::Subscriber buffInfo_sub_;
+    ros::Subscriber basic_executor_status_sub_[4];
 
+    //hero_msgs::BasicExecutorStatus basic_executor_status[4];
     QStringListModel logging_model;
     BattleView *parentBattleView_;
     ros::ServiceClient client_;
@@ -188,7 +191,7 @@ private:
     void GimbalYawCallback2(const std_msgs::Float32::ConstPtr& msg);
     void GimbalYawCallback3(const std_msgs::Float32::ConstPtr& msg);
     void SetRobotHeat(const hero_msgs::RobotHeat::ConstPtr& msg,int index);
-
+    void BasicExecutorStatusCallback(const hero_msgs::BasicExecutorStatus::ConstPtr& msg, int robot_num);
     void GetParam(ros::NodeHandle *nh);
 
 

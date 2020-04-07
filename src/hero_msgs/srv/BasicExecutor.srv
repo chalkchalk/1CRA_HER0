@@ -12,4 +12,5 @@ uint8 OK = 100
 uint8 I_AM_DEAD = 101
 uint8 OUT_OF_AMMO = 102
 uint8 TARGET_IS_DEAD = 103
+uint8 INVALID_TARGET = 104
 uint8 error_code

@@ -72,7 +72,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Map
-      Topic: /red_decision/red_tactic_costmap/red_tactic_costmap/costmap
+      Topic: /blue_decision/blue_tactic_costmap/blue_tactic_costmap/costmap
       Unreliable: false
       Use Timestamp: false
       Value: true

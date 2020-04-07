@@ -5,6 +5,7 @@
 #include "hero_math/math.h"
 #include "tf/tf.h"
 #include <ros/package.h>
+#include "hero_map/hero_map.h"
 
 #define LOGI ROS_INFO
 namespace hero_decision{
@@ -193,11 +194,92 @@ void Collective_decision::MoveToPosition(int robot_num, double x,double y)
 
 }
 
+double Collective_decision::GetContactDistanceCost(double distance, double optimal_distance)
+{
+  return std::abs(distance - optimal_distance);
+}
+
+bool Collective_decision::GetOptimalEngagePosition(int robot_num, int enemy_num, double &optimal_x, double &optimal_y)
+{
+  double enemy_x = enemy_status[enemy_num].x;
+  double enemy_y = enemy_status[enemy_num].y;
+  double goto_x = enemy_x;
+  double goto_y = enemy_y;
+  double contact_distance = 2;
+  int scan_num = 20;
+
+  double min_distance=1000;
+
+  double range = 3;
+  double origin_x = enemy_status[enemy_num].x;
+  double origin_y = enemy_status[enemy_num].y;
+  double end_x = std::min(origin_x + range,costmap_ptr_->GetCostMap()->GetSizeXWorld());
+  double end_y = std::min(origin_y + range,costmap_ptr_->GetCostMap()->GetSizeYWorld());
+  int min_cost = 1000000;;
+  double min_x = origin_x;
+  double min_y = origin_y;
+  double x = std::max(origin_x - range,0.0);
+  double y = std::max(origin_y - range,0.0);
+  unsigned int cell_x,cell_y;
+  while(x<end_x)
+  {
+    while(y<end_y)
+    {
+
+     if(hero_common::LineSegmentIsIntersectMapObstacle(&map_,enemy_x,enemy_y,x,y,100)==0)
+      {
+        double distance_of_other_robot = 1000;
+        for(int j = 0; j < 4; j++)
+        {
+          if(RobotName[j] == robot_status[robot_num].name || RobotName[j]== enemy_status[enemy_num].name)
+            continue;
+          double new_other_robot_distance =  hero_common::PointToLineDistance(FindRobotPosition(RobotName[j]).position.x,
+                                                                              FindRobotPosition(RobotName[j]).position.y,
+                                                                              x,
+                                                                              y,
+                                                                              enemy_status[enemy_num].x,
+                                                                              enemy_status[enemy_num].y);
+
+          if(new_other_robot_distance < distance_of_other_robot)
+            distance_of_other_robot = new_other_robot_distance;
+        }
+
+        if(distance_of_other_robot> 0.6)
+        {
+          costmap_ptr_->GetCostMap()->World2Map(x,y,cell_x,cell_y);
+          int new_cost = costmap_ptr_->GetCostMap()->GetCost(cell_x,cell_y) + GetContactDistanceCost(hero_common::PointDistance(origin_x,origin_y,x,y),2) * 20+
+                          hero_common::PointDistance( robot_status[robot_num].x, robot_status[robot_num].y,x,y) * 20 -
+                          hero_common::PointDistance( robot_status[robot_num].x, robot_status[robot_num].y,robot_status[1-robot_num].x, robot_status[1-robot_num].y) * 0 * (robot_status[1-robot_num].health > 0);
+          //ROS_INFO("cost %f",new_cost);
+          if(new_cost < min_cost)
+          {
+            min_cost = new_cost;
+            min_x = x;
+            min_y = y;
+          }
+        }
+     }
+     y += 0.02;
+  }
+    x += 0.02;
+    y = std::max(origin_y - range,0.0);
+ }
+
+  optimal_x = min_x;
+  optimal_y = min_y;
+  return true;
+}
+
+
 void Collective_decision::AttackRobot(int robot_num, int enemy_num)
 {
   hero_msgs::BasicExecutor basic_executor;
-  basic_executor.request.command = basic_executor.request.ATTACK_ROBOT;
+ // if(color_ == "red")
+   basic_executor.request.command = basic_executor.request.ATTACK_ROBOT;
+ // else
+  // basic_executor.request.command = basic_executor.request.ENGAGE_ROBOT;
   basic_executor.request.robot_name = enemy_name_[enemy_num];
+  GetOptimalEngagePosition(robot_num,enemy_num,basic_executor.request.position_x,basic_executor.request.position_y);
   if(basic_executor_cient_[robot_num].call(basic_executor))
   {
 
@@ -254,7 +336,7 @@ int Collective_decision::GetBuffRFIDNum(BuffType buff_type)
 }
 void Collective_decision::FleeBehaviour(int robot_num)
 {
-  double range = 3;
+  double range = 5;
   double origin_x = FindRobotPosition(friendly_name_[robot_num]).position.x;
   double origin_y = FindRobotPosition(friendly_name_[robot_num]).position.y;
   double end_x = std::min(FindRobotPosition(friendly_name_[robot_num]).position.x + range,costmap_ptr_->GetCostMap()->GetSizeXWorld());
@@ -270,7 +352,8 @@ void Collective_decision::FleeBehaviour(int robot_num)
     while(y<end_y)
     {
       costmap_ptr_->GetCostMap()->World2Map(x,y,cell_x,cell_y);
-      int new_cost = costmap_ptr_->GetCostMap()->GetCost(cell_x,cell_y) + (hero_common::PointDistance(origin_x,origin_y,x,y) * 3.0);
+      int new_cost = costmap_ptr_->GetCostMap()->GetCost(cell_x,cell_y) *( 2000 -std::min(robot_status[robot_num].health,1000)) / 1000  +
+          (hero_common::PointDistance(origin_x,origin_y,x,y) * 3.0);
       if(new_cost < min_cost)
       {
         min_cost = new_cost;
@@ -293,10 +376,6 @@ void Collective_decision::Spin()
   TaskAssign();
   if(gameStatus_.game_status == gameStatus_.ROUND)
      RobotsExecutor();
-
-
-
-
 
 }
 
@@ -334,21 +413,23 @@ void Collective_decision::CalculateCostBenefitCost()
       {
       case ATTACK_ROBOT_0:
         if(enemy_status[0].health > 0)
-          task->benefit = 4 + (2000 - enemy_status[0].health) / 350.0;
+          task->benefit = (5 + (2000 - enemy_status[0].health) / 200.0 ) * std::min(robot_status[i].ammo,20) / 20.0;
         else
           task->benefit = 0;
-        task->cost = std::min(enemy_status[0].ammo,30) / 10.0;
+        task->cost = std::min(enemy_status[0].ammo,30) / 20.0 +
+            hero_common::PointDistance(robot_status[i].x,robot_status[i].y,enemy_status[0].x,enemy_status[0].y) *0.5;
         break;
       case ATTACK_ROBOT_1:
         if(enemy_status[1].health > 0)
-          task->benefit = 4 + (2000 - enemy_status[1].health) / 350.0;
+          task->benefit = (5 + (2000 - enemy_status[1].health) / 200.0) * std::min(robot_status[i].ammo,20) / 20.0;
         else
           task->benefit = 0;
-        task->cost = std::min(enemy_status[1].ammo,30) / 10.0;
+        task->cost = std::min(enemy_status[1].ammo,30) / 20.0 +
+            hero_common::PointDistance(robot_status[i].x,robot_status[i].y,enemy_status[1].x,enemy_status[1].y) *0.5;
         break;
       case GET_AMMO:
         if(!buffInfo_.activated[GetBuffRFIDNum(FRIENDLY_AMMO)])
-          task->benefit = (200 - robot_status[0].ammo - robot_status[1].ammo) / 2.0 +
+          task->benefit = (150 - robot_status[0].ammo - robot_status[1].ammo) / 2.0 +
               3.0 / hero_common::PointDistance(robot_status[i].x,robot_status[i].y,RFID_F_x[GetBuffRFIDNum(FRIENDLY_AMMO)],RFID_F_y[GetBuffRFIDNum(FRIENDLY_AMMO)]);
         else
           task->benefit = 0;
@@ -356,23 +437,21 @@ void Collective_decision::CalculateCostBenefitCost()
         break;
       case GET_HEALTH:
         if(!buffInfo_.activated[GetBuffRFIDNum(FRIENDLY_HEAL)] && (4000 - robot_status[0].health - robot_status[1].health) > 50)
-          task->benefit = (4000 - robot_status[0].health - robot_status[1].health) / 100.0 +
-              3.0 / hero_common::PointDistance(robot_status[i].x,robot_status[i].y,RFID_F_x[GetBuffRFIDNum(FRIENDLY_HEAL)],RFID_F_y[GetBuffRFIDNum(FRIENDLY_HEAL)]);
+          task->benefit = (4000 - robot_status[0].health - robot_status[1].health) / 100.0;
         else
           task->benefit = 0;
-        task->cost = 0;
+        task->cost =  hero_common::PointDistance(robot_status[i].x,robot_status[i].y,RFID_F_x[GetBuffRFIDNum(FRIENDLY_HEAL)],RFID_F_y[GetBuffRFIDNum(FRIENDLY_HEAL)]) * 0.5;
         break;
       case GET_ENEMY_HEALTH:
         if(!buffInfo_.activated[GetBuffRFIDNum(ENEMY_HEAL)] && (4000 - enemy_status[0].health - enemy_status[1].health) < 50)
-          task->benefit = (enemy_status[0].health + enemy_status[1].health - 3950) / 20.0 +
-              5.0 / hero_common::PointDistance(robot_status[i].x,robot_status[i].y,RFID_F_x[GetBuffRFIDNum(ENEMY_HEAL)],RFID_F_y[GetBuffRFIDNum(ENEMY_HEAL)]);
+          task->benefit = (enemy_status[0].health + enemy_status[1].health - 3950) / 20.0;
         else
           task->benefit = 0;
-        task->cost = 0;
+        task->cost = hero_common::PointDistance(robot_status[i].x,robot_status[i].y,RFID_F_x[GetBuffRFIDNum(ENEMY_HEAL)],RFID_F_y[GetBuffRFIDNum(ENEMY_HEAL)]) * 0.5;
          //ROS_INFO("%s %s benefit %f",color_.c_str(),robot_status[0].name.c_str(),task->benefit);
         break;
       case FLEE:
-        task->benefit = (2000 - robot_status[i].health) / 200.0;
+        task->benefit = (2000 - robot_status[i].health) / 200.0 ;
         task->cost = 0;
         break;
       default:

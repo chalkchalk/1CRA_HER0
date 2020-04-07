@@ -123,6 +123,9 @@
 (intern "*TARGET_IS_DEAD*" (find-package "HERO_MSGS::BASICEXECUTORRESPONSE"))
 (shadow '*TARGET_IS_DEAD* (find-package "HERO_MSGS::BASICEXECUTORRESPONSE"))
 (defconstant hero_msgs::BasicExecutorResponse::*TARGET_IS_DEAD* 103)
+(intern "*INVALID_TARGET*" (find-package "HERO_MSGS::BASICEXECUTORRESPONSE"))
+(shadow '*INVALID_TARGET* (find-package "HERO_MSGS::BASICEXECUTORRESPONSE"))
+(defconstant hero_msgs::BasicExecutorResponse::*INVALID_TARGET* 104)
 (defclass hero_msgs::BasicExecutorResponse
   :super ros::object
   :slots (_error_code ))
@@ -164,7 +167,7 @@
   :super ros::object
   :slots ())
 
-(setf (get hero_msgs::BasicExecutor :md5sum-) "29dda9959aaf5bb18d3e017845cd697d")
+(setf (get hero_msgs::BasicExecutor :md5sum-) "71e7fa81f181141342b4387ee705a327")
 (setf (get hero_msgs::BasicExecutor :datatype-) "hero_msgs/BasicExecutor")
 (setf (get hero_msgs::BasicExecutor :request) hero_msgs::BasicExecutorRequest)
 (setf (get hero_msgs::BasicExecutor :response) hero_msgs::BasicExecutorResponse)
@@ -172,7 +175,7 @@
 (defmethod hero_msgs::BasicExecutorRequest
   (:response () (instance hero_msgs::BasicExecutorResponse :init)))
 
-(setf (get hero_msgs::BasicExecutorRequest :md5sum-) "29dda9959aaf5bb18d3e017845cd697d")
+(setf (get hero_msgs::BasicExecutorRequest :md5sum-) "71e7fa81f181141342b4387ee705a327")
 (setf (get hero_msgs::BasicExecutorRequest :datatype-) "hero_msgs/BasicExecutorRequest")
 (setf (get hero_msgs::BasicExecutorRequest :definition-)
       "uint8 MOVE_TO_POSITION = 1
@@ -189,11 +192,12 @@ uint8 OK = 100
 uint8 I_AM_DEAD = 101
 uint8 OUT_OF_AMMO = 102
 uint8 TARGET_IS_DEAD = 103
+uint8 INVALID_TARGET = 104
 uint8 error_code
 
 ")
 
-(setf (get hero_msgs::BasicExecutorResponse :md5sum-) "29dda9959aaf5bb18d3e017845cd697d")
+(setf (get hero_msgs::BasicExecutorResponse :md5sum-) "71e7fa81f181141342b4387ee705a327")
 (setf (get hero_msgs::BasicExecutorResponse :datatype-) "hero_msgs/BasicExecutorResponse")
 (setf (get hero_msgs::BasicExecutorResponse :definition-)
       "uint8 MOVE_TO_POSITION = 1
@@ -210,12 +214,13 @@ uint8 OK = 100
 uint8 I_AM_DEAD = 101
 uint8 OUT_OF_AMMO = 102
 uint8 TARGET_IS_DEAD = 103
+uint8 INVALID_TARGET = 104
 uint8 error_code
 
 ")
 
 
 
-(provide :hero_msgs/BasicExecutor "29dda9959aaf5bb18d3e017845cd697d")
+(provide :hero_msgs/BasicExecutor "71e7fa81f181141342b4387ee705a327")
 
 

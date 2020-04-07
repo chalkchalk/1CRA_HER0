@@ -29,6 +29,7 @@ let BulletsInfo = require('./BulletsInfo.js');
 let GimbalAngle = require('./GimbalAngle.js');
 let TwistAccel = require('./TwistAccel.js');
 let ShootState = require('./ShootState.js');
+let BasicExecutorStatus = require('./BasicExecutorStatus.js');
 let MovePoint = require('./MovePoint.js');
 let BulletMove = require('./BulletMove.js');
 let Position = require('./Position.js');
@@ -77,6 +78,7 @@ module.exports = {
   GimbalAngle: GimbalAngle,
   TwistAccel: TwistAccel,
   ShootState: ShootState,
+  BasicExecutorStatus: BasicExecutorStatus,
   MovePoint: MovePoint,
   BulletMove: BulletMove,
   Position: Position,

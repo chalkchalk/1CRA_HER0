@@ -5,6 +5,7 @@ from ._ArmorDetectionActionResult import *
 from ._ArmorDetectionFeedback import *
 from ._ArmorDetectionGoal import *
 from ._ArmorDetectionResult import *
+from ._BasicExecutorStatus import *
 from ._BattlePosition import *
 from ._BonusStatus import *
 from ._Buffinfo import *

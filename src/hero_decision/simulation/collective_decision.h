@@ -17,6 +17,7 @@
 
 namespace hero_decision{
 
+const std::string RobotName[4]={"robot_0","robot_1","robot_2","robot_3"};
 
 class Collective_decision
 {
@@ -123,6 +124,8 @@ private:
   void TaskExecutor(int robot_num, RobotTask *task);
   void CalculateCostBenefitCost();
   void TaskAssign();
+  bool GetOptimalEngagePosition(int robot_num, int enemy_num, double &optimal_x, double &optimal_y);
+  double GetContactDistanceCost(double distance,double optimal_distance);
   //bool TaskSortFun(const RobotTask &t1,const RobotTask &t2);
 };
 

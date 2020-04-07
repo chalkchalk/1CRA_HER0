@@ -26,6 +26,9 @@ void BasicExecutor::Init()
   else
       my_name_ = "robot_0";
   state_ = BasicExecutorState::IDLE;
+  target_enemy_ = "undefine";
+  move_x = 0;
+  move_y = 0;
   ros::Duration(2.0).sleep();
   battle_position_sub_ = nh_.subscribe<hero_msgs::BattlePosition>("/simu_decision_info/battle_position",100,&BasicExecutor::BattlePositionCallback,this);
   yaw_set_sub_ = nh_.subscribe<std_msgs::Float64>("yaw_set",100,&BasicExecutor::YawSetCallback,this);
@@ -35,31 +38,51 @@ void BasicExecutor::Init()
   shoot_client_ = nh_.serviceClient<hero_msgs::ShootCmd>("/shoot_server");
   gimbal_aim_client_ =  nh_.serviceClient<hero_msgs::GimbalAim>("gimbal_aim_server");
   basic_executor_server_ = nh_.advertiseService("basic_executor_server",&BasicExecutor::BasicExecutor_handle_function,this);
+  basic_executor_status_pub_ = nh_.advertise<hero_msgs::BasicExecutorStatus>("basic_executor_status",5);
   GetStaticMap();
 
 
 }
 
+void BasicExecutor::PublishStatus()
+{
+  hero_msgs::BasicExecutorStatus status;
+  status.robot_name = my_name_;
+  status.target_name = attacking_target;
+  status.move_x = move_x;
+  status.move_y = move_y;
+  switch (state_) {
+  case BasicExecutorState::IDLE: //idle,not moving, auto engage the closet and aimable enemy.
+    status.state = status.IDLE;
+    break;
+  case BasicExecutorState::ATTACK_ROBOT: //attacking, move to the attack position which is 1.5 meter away from the target, and engage it
+    status.state = status.ATTACK_ROBOT;
+    break;
+  case BasicExecutorState::MOVE_TO_POSITION: //moving to posiion. automaticlly engaging the closet and aimable enemy on its route.
+    status.state = status.MOVE_TO_POSITION;
+    break;
+
+  }
+  basic_executor_status_pub_.publish(status);
+}
+
 void BasicExecutor::FSM_handler()
 {
-  static bool idle_flag = false;
+  static bool idle_flag = true;
   switch (state_) {
   case BasicExecutorState::IDLE: //idle,not moving, auto engage the closet and aimable enemy.
     if(idle_flag)
     {
       idle_flag = false;
-      MoveToPosition(FindRobotPosition(my_name_).position.x,FindRobotPosition(my_name_).position.y);
+      move_x = FindRobotPosition(my_name_).position.x;
+      move_y = FindRobotPosition(my_name_).position.y;
+      MoveToPosition(move_x,move_y);
     }
-    EngageRobot(FindClosetAimableEnemy());
     break;
   case BasicExecutorState::ATTACK_ROBOT: //attacking, move to the attack position which is 1.5 meter away from the target, and engage it
     if(isAlive(target_enemy_)) //if the target is dead, switch to idle state
     {
-      ApproachEnemy(target_enemy_,2.0);
-      if(CanShootRobot(target_enemy_))
-         EngageRobot(target_enemy_);
-      else
-        EngageRobot(FindClosetAimableEnemy());
+     ApproachEnemy(target_enemy_,2.0);
     }
     else {
       ROS_INFO("[basic_executor]%s: %s is history now.",my_name_.c_str(),target_enemy_.c_str());
@@ -75,12 +98,20 @@ void BasicExecutor::FSM_handler()
     }
     else
       MoveToPosition(move_x,move_y);
-    EngageRobot(FindClosetAimableEnemy());
     break;
+
   default:
     break;
   }
+  if(target_enemy_ != "undefine" && CanShootRobot(target_enemy_) && isAlive(target_enemy_))
+  {
+    EngageRobot(target_enemy_);
+  }
+  else {
+    EngageRobot(FindClosetAimableEnemy());
+  }
   YawControlLoop(); //chassis yaw contorl loop
+  PublishStatus();
 }
 
 
@@ -94,6 +125,7 @@ bool BasicExecutor::BasicExecutor_handle_function(hero_msgs::BasicExecutor::Requ
     state_ = BasicExecutorState::MOVE_TO_POSITION;
     move_x = req.position_x;
     move_y = req.position_y;
+    target_enemy_ = "undefine" ;
     break;
   case req.ATTACK_ROBOT:
     target_enemy_ = req.robot_name;
@@ -101,10 +133,24 @@ bool BasicExecutor::BasicExecutor_handle_function(hero_msgs::BasicExecutor::Requ
     break;
   case req.HALT:
     state_ = BasicExecutorState::IDLE;
+    target_enemy_ = "undefine" ;
+    break;
+  case req.ENGAGE_ROBOT:
+    state_ = BasicExecutorState::MOVE_TO_POSITION;
+    move_x = req.position_x;
+    move_y = req.position_y;
+    target_enemy_ = req.robot_name;
     break;
   default:success = false;break;
   }
-  res.error_code = res.OK;
+  if(target_enemy_ == my_name_)
+  {
+    ROS_ERROR("%s can't engage itself!",my_name_);
+    res.error_code = res.INVALID_TARGET;
+    success = false;
+  }
+  else
+    res.error_code = res.OK;
   return success;
 }
 void BasicExecutor::YawSetCallback(const std_msgs::Float64::ConstPtr &msg)
@@ -275,6 +321,10 @@ bool BasicExecutor::EngageRobot(std::string robot_name)
   if(AimRobot(robot_name))
   {
     Shoot();
+    attacking_target = robot_name;
+  }
+  else {
+    attacking_target = target_enemy_;
   }
 }
 
@@ -350,15 +400,6 @@ void BasicExecutor::YawControlLoop()
 
 bool BasicExecutor::ApproachEnemy(std::string robot_name,double contact_distance)
 {
-  /*static int divider =0;
-  divider++;
-  if(divider==10)
-  {
-    divider =0;
-  }
-  else {
-    return false;
-  }*/
   double enemy_x = FindRobotPosition(robot_name).position.x;
   double enemy_y = FindRobotPosition(robot_name).position.y;
   double goto_x = enemy_x;
@@ -401,6 +442,8 @@ bool BasicExecutor::ApproachEnemy(std::string robot_name,double contact_distance
       }
     }
    }
+  move_x = goto_x;
+  move_y = goto_y;
   MoveToPosition(goto_x,goto_y);
   return true;
 }
@@ -444,19 +487,7 @@ int main(int argc, char **argv)
     gettimeofday(&tv,&tz);
     ms_last = tv.tv_sec*1000 + tv.tv_usec/1000;
 
-    //if(basic_executor.GetName()!="robot_0")
-   // {basic_executor.EngageRobot(basic_executor.FindClosetAimableEnemy());
-
-   // }
-
-    if(basic_executor.GetName()=="robot_2"||basic_executor.GetName()=="robot_3")
-    {
-       //basic_executor.EngageRobot(basic_executor.FindClosetAimableEnemy());
-       //basic_executor.ApproachEnemy(basic_executor.FindClosetAimableEnemy(),2.0);
-      //basic_executor.TestBehaviour();
-    }
     basic_executor.FSM_handler();
-   // basic_executor.YawControlLoop();
 
     gettimeofday(&tv,&tz);
     ms = tv.tv_sec*1000 + tv.tv_usec/1000;

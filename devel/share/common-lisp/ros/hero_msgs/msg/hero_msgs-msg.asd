@@ -22,6 +22,8 @@
     (:file "_package_ArmorDetectionGoal" :depends-on ("_package"))
     (:file "ArmorDetectionResult" :depends-on ("_package_ArmorDetectionResult"))
     (:file "_package_ArmorDetectionResult" :depends-on ("_package"))
+    (:file "BasicExecutorStatus" :depends-on ("_package_BasicExecutorStatus"))
+    (:file "_package_BasicExecutorStatus" :depends-on ("_package"))
     (:file "BattlePosition" :depends-on ("_package_BattlePosition"))
     (:file "_package_BattlePosition" :depends-on ("_package"))
     (:file "BonusStatus" :depends-on ("_package_BonusStatus"))

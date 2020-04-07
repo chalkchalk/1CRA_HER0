@@ -21,7 +21,7 @@ para_costmap_interface {
   has_tactic_layer: true;
   has_inflation_layer: true
   inflation_file_path: "/config/inflation_layer_config.prototxt"
-  map_update_frequency: 2
+  map_update_frequency: 5
 }
 footprint {
   point {

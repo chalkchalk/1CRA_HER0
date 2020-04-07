@@ -35,6 +35,7 @@ add_message_files(
     BattlePosition.msg
     JudgeSysShootHit.msg
     MovePoint.msg
+    BasicExecutorStatus.msg
 )
 
 add_message_files(

@@ -189,13 +189,14 @@ import struct
 
 
 class BasicExecutorResponse(genpy.Message):
-  _md5sum = "5d7f46f06f230dc931e54261335b2557"
+  _md5sum = "99f30f8d8cf28fa4411b9b2a9dbd60cb"
   _type = "hero_msgs/BasicExecutorResponse"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """uint8 OK = 100
 uint8 I_AM_DEAD = 101
 uint8 OUT_OF_AMMO = 102
 uint8 TARGET_IS_DEAD = 103
+uint8 INVALID_TARGET = 104
 uint8 error_code
 
 """
@@ -204,6 +205,7 @@ uint8 error_code
   I_AM_DEAD = 101
   OUT_OF_AMMO = 102
   TARGET_IS_DEAD = 103
+  INVALID_TARGET = 104
 
   __slots__ = ['error_code']
   _slot_types = ['uint8']
@@ -299,6 +301,6 @@ def _get_struct_B():
     return _struct_B
 class BasicExecutor(object):
   _type          = 'hero_msgs/BasicExecutor'
-  _md5sum = '29dda9959aaf5bb18d3e017845cd697d'
+  _md5sum = '71e7fa81f181141342b4387ee705a327'
   _request_class  = BasicExecutorRequest
   _response_class = BasicExecutorResponse
