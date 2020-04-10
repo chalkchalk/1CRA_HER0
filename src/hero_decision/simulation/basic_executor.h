@@ -79,6 +79,7 @@ private:
   bool BasicExecutor_handle_function(hero_msgs::BasicExecutor::Request &req,
   hero_msgs::BasicExecutor::Response &res);
   void PublishStatus();
+  std::string saying;
 
 };
 

@@ -25,6 +25,7 @@ struct BasicExecutorStatus_
 
   BasicExecutorStatus_()
     : state(0)
+    , saying()
     , robot_name()
     , target_name()
     , move_x(0.0)
@@ -32,6 +33,7 @@ struct BasicExecutorStatus_
     }
   BasicExecutorStatus_(const ContainerAllocator& _alloc)
     : state(0)
+    , saying(_alloc)
     , robot_name(_alloc)
     , target_name(_alloc)
     , move_x(0.0)
@@ -43,6 +45,9 @@ struct BasicExecutorStatus_
 
    typedef uint8_t _state_type;
   _state_type state;
+
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _saying_type;
+  _saying_type saying;
 
    typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _robot_name_type;
   _robot_name_type robot_name;
@@ -145,12 +150,12 @@ struct MD5Sum< ::hero_msgs::BasicExecutorStatus_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "f13bcadfb243ddd81dbe4444edcd6a1c";
+    return "6355e6033a487f335fe4d99196ec3f6b";
   }
 
   static const char* value(const ::hero_msgs::BasicExecutorStatus_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xf13bcadfb243ddd8ULL;
-  static const uint64_t static_value2 = 0x1dbe4444edcd6a1cULL;
+  static const uint64_t static_value1 = 0x6355e6033a487f33ULL;
+  static const uint64_t static_value2 = 0x5fe4d99196ec3f6bULL;
 };
 
 template<class ContainerAllocator>
@@ -173,6 +178,7 @@ struct Definition< ::hero_msgs::BasicExecutorStatus_<ContainerAllocator> >
 uint8 ATTACK_ROBOT = 2\n\
 uint8 IDLE = 3\n\
 uint8 state\n\
+string saying\n\
 string robot_name\n\
 string target_name\n\
 float64 move_x\n\
@@ -196,6 +202,7 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.state);
+      stream.next(m.saying);
       stream.next(m.robot_name);
       stream.next(m.target_name);
       stream.next(m.move_x);
@@ -220,6 +227,8 @@ struct Printer< ::hero_msgs::BasicExecutorStatus_<ContainerAllocator> >
   {
     s << indent << "state: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.state);
+    s << indent << "saying: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.saying);
     s << indent << "robot_name: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.robot_name);
     s << indent << "target_name: ";

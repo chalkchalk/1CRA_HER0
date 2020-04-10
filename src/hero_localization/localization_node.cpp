@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -54,6 +54,7 @@ bool LocalizationNode::Init() {
   init_pose_ = {localization_config.initial_pose_x,
                 localization_config.initial_pose_y,
                 localization_config.initial_pose_a};
+  ROS_INFO("init_pose:%f %f %f",localization_config.initial_pose_x,localization_config.initial_pose_y,localization_config.initial_pose_a);
   init_cov_ = {localization_config.initial_cov_xx,
                localization_config.initial_cov_yy,
                localization_config.initial_cov_aa};

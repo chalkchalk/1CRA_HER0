@@ -7,13 +7,14 @@ import struct
 
 
 class BasicExecutorStatus(genpy.Message):
-  _md5sum = "f13bcadfb243ddd81dbe4444edcd6a1c"
+  _md5sum = "6355e6033a487f335fe4d99196ec3f6b"
   _type = "hero_msgs/BasicExecutorStatus"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """uint8 MOVE_TO_POSITION = 1
 uint8 ATTACK_ROBOT = 2
 uint8 IDLE = 3
 uint8 state
+string saying
 string robot_name
 string target_name
 float64 move_x
@@ -24,8 +25,8 @@ float64 move_y
   ATTACK_ROBOT = 2
   IDLE = 3
 
-  __slots__ = ['state','robot_name','target_name','move_x','move_y']
-  _slot_types = ['uint8','string','string','float64','float64']
+  __slots__ = ['state','saying','robot_name','target_name','move_x','move_y']
+  _slot_types = ['uint8','string','string','string','float64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -35,7 +36,7 @@ float64 move_y
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       state,robot_name,target_name,move_x,move_y
+       state,saying,robot_name,target_name,move_x,move_y
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -46,6 +47,8 @@ float64 move_y
       #message fields cannot be None, assign default values for those that are
       if self.state is None:
         self.state = 0
+      if self.saying is None:
+        self.saying = ''
       if self.robot_name is None:
         self.robot_name = ''
       if self.target_name is None:
@@ -56,6 +59,7 @@ float64 move_y
         self.move_y = 0.
     else:
       self.state = 0
+      self.saying = ''
       self.robot_name = ''
       self.target_name = ''
       self.move_x = 0.
@@ -74,6 +78,12 @@ float64 move_y
     """
     try:
       buff.write(_get_struct_B().pack(self.state))
+      _x = self.saying
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self.robot_name
       length = len(_x)
       if python3 or type(_x) == unicode:
@@ -101,6 +111,15 @@ float64 move_y
       start = end
       end += 1
       (self.state,) = _get_struct_B().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.saying = str[start:end].decode('utf-8')
+      else:
+        self.saying = str[start:end]
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
@@ -136,6 +155,12 @@ float64 move_y
     """
     try:
       buff.write(_get_struct_B().pack(self.state))
+      _x = self.saying
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self.robot_name
       length = len(_x)
       if python3 or type(_x) == unicode:
@@ -164,6 +189,15 @@ float64 move_y
       start = end
       end += 1
       (self.state,) = _get_struct_B().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.saying = str[start:end].decode('utf-8')
+      else:
+        self.saying = str[start:end]
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])

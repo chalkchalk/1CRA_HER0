@@ -1,6 +1,8 @@
 (cl:in-package hero_msgs-msg)
 (cl:export '(STATE-VAL
           STATE
+          SAYING-VAL
+          SAYING
           ROBOT_NAME-VAL
           ROBOT_NAME
           TARGET_NAME-VAL

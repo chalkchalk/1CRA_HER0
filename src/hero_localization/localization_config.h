@@ -7,8 +7,8 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -48,6 +48,7 @@ struct LocalizationConfig {
         initial_pose_x_str = initial_pose_x_str + '_' + "robot_0";
         initial_pose_y_str = initial_pose_y_str + '_' + "robot_0";
         initial_pose_a_str = initial_pose_a_str + '_' + "robot_0";
+        //ROS_ERROR("namespace not varified!");
       }
 
       nh->param<double>(initial_pose_x_str, initial_pose_x, 1);

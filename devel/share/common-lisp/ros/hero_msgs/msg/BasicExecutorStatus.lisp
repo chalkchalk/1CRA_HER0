@@ -12,6 +12,11 @@
     :initarg :state
     :type cl:fixnum
     :initform 0)
+   (saying
+    :reader saying
+    :initarg :saying
+    :type cl:string
+    :initform "")
    (robot_name
     :reader robot_name
     :initarg :robot_name
@@ -47,6 +52,11 @@
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:state-val is deprecated.  Use hero_msgs-msg:state instead.")
   (state m))
 
+(cl:ensure-generic-function 'saying-val :lambda-list '(m))
+(cl:defmethod saying-val ((m <BasicExecutorStatus>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:saying-val is deprecated.  Use hero_msgs-msg:saying instead.")
+  (saying m))
+
 (cl:ensure-generic-function 'robot_name-val :lambda-list '(m))
 (cl:defmethod robot_name-val ((m <BasicExecutorStatus>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-msg:robot_name-val is deprecated.  Use hero_msgs-msg:robot_name instead.")
@@ -81,6 +91,12 @@
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <BasicExecutorStatus>) ostream)
   "Serializes a message object of type '<BasicExecutorStatus>"
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'state)) ostream)
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'saying))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'saying))
   (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'robot_name))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
@@ -115,6 +131,14 @@
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <BasicExecutorStatus>) istream)
   "Deserializes a message object of type '<BasicExecutorStatus>"
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'state)) (cl:read-byte istream))
+    (cl:let ((__ros_str_len 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'saying) (cl:make-string __ros_str_len))
+      (cl:dotimes (__ros_str_idx __ros_str_len msg)
+        (cl:setf (cl:char (cl:slot-value msg 'saying) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
     (cl:let ((__ros_str_len 0))
       (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
@@ -161,19 +185,20 @@
   "hero_msgs/BasicExecutorStatus")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BasicExecutorStatus>)))
   "Returns md5sum for a message object of type '<BasicExecutorStatus>"
-  "f13bcadfb243ddd81dbe4444edcd6a1c")
+  "6355e6033a487f335fe4d99196ec3f6b")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BasicExecutorStatus)))
   "Returns md5sum for a message object of type 'BasicExecutorStatus"
-  "f13bcadfb243ddd81dbe4444edcd6a1c")
+  "6355e6033a487f335fe4d99196ec3f6b")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BasicExecutorStatus>)))
   "Returns full string definition for message of type '<BasicExecutorStatus>"
-  (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 IDLE = 3~%uint8 state~%string robot_name~%string target_name~%float64 move_x~%float64 move_y~%~%~%"))
+  (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 IDLE = 3~%uint8 state~%string saying~%string robot_name~%string target_name~%float64 move_x~%float64 move_y~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'BasicExecutorStatus)))
   "Returns full string definition for message of type 'BasicExecutorStatus"
-  (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 IDLE = 3~%uint8 state~%string robot_name~%string target_name~%float64 move_x~%float64 move_y~%~%~%"))
+  (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 IDLE = 3~%uint8 state~%string saying~%string robot_name~%string target_name~%float64 move_x~%float64 move_y~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <BasicExecutorStatus>))
   (cl:+ 0
      1
+     4 (cl:length (cl:slot-value msg 'saying))
      4 (cl:length (cl:slot-value msg 'robot_name))
      4 (cl:length (cl:slot-value msg 'target_name))
      8
@@ -183,6 +208,7 @@
   "Converts a ROS message object to a list"
   (cl:list 'BasicExecutorStatus
     (cl:cons ':state (state msg))
+    (cl:cons ':saying (saying msg))
     (cl:cons ':robot_name (robot_name msg))
     (cl:cons ':target_name (target_name msg))
     (cl:cons ':move_x (move_x msg))

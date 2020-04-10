@@ -28,14 +28,16 @@ struct BasicExecutorRequest_
     , robot_name()
     , yaw_control(false)
     , position_x(0.0)
-    , position_y(0.0)  {
+    , position_y(0.0)
+    , saying()  {
     }
   BasicExecutorRequest_(const ContainerAllocator& _alloc)
     : command(0)
     , robot_name(_alloc)
     , yaw_control(false)
     , position_x(0.0)
-    , position_y(0.0)  {
+    , position_y(0.0)
+    , saying(_alloc)  {
   (void)_alloc;
     }
 
@@ -55,6 +57,9 @@ struct BasicExecutorRequest_
 
    typedef double _position_y_type;
   _position_y_type position_y;
+
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _saying_type;
+  _saying_type saying;
 
 
 
@@ -148,12 +153,12 @@ struct MD5Sum< ::hero_msgs::BasicExecutorRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "915f07e066835d39bcef29a683b32eec";
+    return "8f8f42ab7f78246732e3373077b186c3";
   }
 
   static const char* value(const ::hero_msgs::BasicExecutorRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x915f07e066835d39ULL;
-  static const uint64_t static_value2 = 0xbcef29a683b32eecULL;
+  static const uint64_t static_value1 = 0x8f8f42ab7f782467ULL;
+  static const uint64_t static_value2 = 0x32e3373077b186c3ULL;
 };
 
 template<class ContainerAllocator>
@@ -181,6 +186,7 @@ string robot_name\n\
 bool yaw_control\n\
 float64 position_x\n\
 float64 position_y\n\
+string saying\n\
 ";
   }
 
@@ -204,6 +210,7 @@ namespace serialization
       stream.next(m.yaw_control);
       stream.next(m.position_x);
       stream.next(m.position_y);
+      stream.next(m.saying);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -232,6 +239,8 @@ struct Printer< ::hero_msgs::BasicExecutorRequest_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.position_x);
     s << indent << "position_y: ";
     Printer<double>::stream(s, indent + "  ", v.position_y);
+    s << indent << "saying: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.saying);
   }
 };
 

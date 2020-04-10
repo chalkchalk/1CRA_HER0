@@ -51,6 +51,7 @@ public:
         health = 2000;
         heat = 0;
         attacking_ = false;
+        saying = "waiting";
     };
     Robot(std::string robot_name, std::string robot_color){
         selected = false;
@@ -71,6 +72,7 @@ public:
             index = -1;
         }
         attacking_ = false;
+        saying = "waiting";
     };
     std::string color;
     std::string name;
@@ -82,6 +84,7 @@ public:
     bool selected;
     Pose SetDest;
     bool attacking_;
+    std::string saying;
 };
 
 
@@ -107,6 +110,7 @@ public:
     void AimPointRobot0(int x,int y);
     void RefreshGoal(int robot_num,double x, double y);
     void RefreshTarget(int robot_num, std::string name);
+    void RefreshRobotSaying(int robot_num, std::string saying);
     bool isRTS;
     bool isACT;
  private:

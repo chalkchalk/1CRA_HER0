@@ -23,12 +23,13 @@
 (defconstant hero_msgs::BasicExecutorStatus::*IDLE* 3)
 (defclass hero_msgs::BasicExecutorStatus
   :super ros::object
-  :slots (_state _robot_name _target_name _move_x _move_y ))
+  :slots (_state _saying _robot_name _target_name _move_x _move_y ))
 
 (defmethod hero_msgs::BasicExecutorStatus
   (:init
    (&key
     ((:state __state) 0)
+    ((:saying __saying) "")
     ((:robot_name __robot_name) "")
     ((:target_name __target_name) "")
     ((:move_x __move_x) 0.0)
@@ -36,6 +37,7 @@
     )
    (send-super :init)
    (setq _state (round __state))
+   (setq _saying (string __saying))
    (setq _robot_name (string __robot_name))
    (setq _target_name (string __target_name))
    (setq _move_x (float __move_x))
@@ -44,6 +46,9 @@
   (:state
    (&optional __state)
    (if __state (setq _state __state)) _state)
+  (:saying
+   (&optional __saying)
+   (if __saying (setq _saying __saying)) _saying)
   (:robot_name
    (&optional __robot_name)
    (if __robot_name (setq _robot_name __robot_name)) _robot_name)
@@ -61,6 +66,8 @@
    (+
     ;; uint8 _state
     1
+    ;; string _saying
+    4 (length _saying)
     ;; string _robot_name
     4 (length _robot_name)
     ;; string _target_name
@@ -76,6 +83,8 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; uint8 _state
        (write-byte _state s)
+     ;; string _saying
+       (write-long (length _saying) s) (princ _saying s)
      ;; string _robot_name
        (write-long (length _robot_name) s) (princ _robot_name s)
      ;; string _target_name
@@ -90,6 +99,8 @@
    (buf &optional (ptr- 0))
    ;; uint8 _state
      (setq _state (sys::peek buf ptr- :char)) (incf ptr- 1)
+   ;; string _saying
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _saying (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;; string _robot_name
      (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _robot_name (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;; string _target_name
@@ -102,13 +113,14 @@
    self)
   )
 
-(setf (get hero_msgs::BasicExecutorStatus :md5sum-) "f13bcadfb243ddd81dbe4444edcd6a1c")
+(setf (get hero_msgs::BasicExecutorStatus :md5sum-) "6355e6033a487f335fe4d99196ec3f6b")
 (setf (get hero_msgs::BasicExecutorStatus :datatype-) "hero_msgs/BasicExecutorStatus")
 (setf (get hero_msgs::BasicExecutorStatus :definition-)
       "uint8 MOVE_TO_POSITION = 1
 uint8 ATTACK_ROBOT = 2
 uint8 IDLE = 3
 uint8 state
+string saying
 string robot_name
 string target_name
 float64 move_x
@@ -118,6 +130,6 @@ float64 move_y
 
 
 
-(provide :hero_msgs/BasicExecutorStatus "f13bcadfb243ddd81dbe4444edcd6a1c")
+(provide :hero_msgs/BasicExecutorStatus "6355e6033a487f335fe4d99196ec3f6b")
 
 

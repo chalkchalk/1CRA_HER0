@@ -32,7 +32,7 @@
 (defconstant hero_msgs::BasicExecutorRequest::*HALT* 4)
 (defclass hero_msgs::BasicExecutorRequest
   :super ros::object
-  :slots (_command _robot_name _yaw_control _position_x _position_y ))
+  :slots (_command _robot_name _yaw_control _position_x _position_y _saying ))
 
 (defmethod hero_msgs::BasicExecutorRequest
   (:init
@@ -42,6 +42,7 @@
     ((:yaw_control __yaw_control) nil)
     ((:position_x __position_x) 0.0)
     ((:position_y __position_y) 0.0)
+    ((:saying __saying) "")
     )
    (send-super :init)
    (setq _command (round __command))
@@ -49,6 +50,7 @@
    (setq _yaw_control __yaw_control)
    (setq _position_x (float __position_x))
    (setq _position_y (float __position_y))
+   (setq _saying (string __saying))
    self)
   (:command
    (&optional __command)
@@ -65,6 +67,9 @@
   (:position_y
    (&optional __position_y)
    (if __position_y (setq _position_y __position_y)) _position_y)
+  (:saying
+   (&optional __saying)
+   (if __saying (setq _saying __saying)) _saying)
   (:serialization-length
    ()
    (+
@@ -78,6 +83,8 @@
     8
     ;; float64 _position_y
     8
+    ;; string _saying
+    4 (length _saying)
     ))
   (:serialize
    (&optional strm)
@@ -93,6 +100,8 @@
        (sys::poke _position_x (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _position_y
        (sys::poke _position_y (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; string _saying
+       (write-long (length _saying) s) (princ _saying s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -107,6 +116,8 @@
      (setq _position_x (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _position_y
      (setq _position_y (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; string _saying
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _saying (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;;
    self)
   )
@@ -167,7 +178,7 @@
   :super ros::object
   :slots ())
 
-(setf (get hero_msgs::BasicExecutor :md5sum-) "71e7fa81f181141342b4387ee705a327")
+(setf (get hero_msgs::BasicExecutor :md5sum-) "325ca9264209204e72b5e0c4ca8bae2e")
 (setf (get hero_msgs::BasicExecutor :datatype-) "hero_msgs/BasicExecutor")
 (setf (get hero_msgs::BasicExecutor :request) hero_msgs::BasicExecutorRequest)
 (setf (get hero_msgs::BasicExecutor :response) hero_msgs::BasicExecutorResponse)
@@ -175,7 +186,7 @@
 (defmethod hero_msgs::BasicExecutorRequest
   (:response () (instance hero_msgs::BasicExecutorResponse :init)))
 
-(setf (get hero_msgs::BasicExecutorRequest :md5sum-) "71e7fa81f181141342b4387ee705a327")
+(setf (get hero_msgs::BasicExecutorRequest :md5sum-) "325ca9264209204e72b5e0c4ca8bae2e")
 (setf (get hero_msgs::BasicExecutorRequest :datatype-) "hero_msgs/BasicExecutorRequest")
 (setf (get hero_msgs::BasicExecutorRequest :definition-)
       "uint8 MOVE_TO_POSITION = 1
@@ -187,6 +198,7 @@ string robot_name
 bool yaw_control
 float64 position_x
 float64 position_y
+string saying
 ---
 uint8 OK = 100
 uint8 I_AM_DEAD = 101
@@ -197,7 +209,7 @@ uint8 error_code
 
 ")
 
-(setf (get hero_msgs::BasicExecutorResponse :md5sum-) "71e7fa81f181141342b4387ee705a327")
+(setf (get hero_msgs::BasicExecutorResponse :md5sum-) "325ca9264209204e72b5e0c4ca8bae2e")
 (setf (get hero_msgs::BasicExecutorResponse :datatype-) "hero_msgs/BasicExecutorResponse")
 (setf (get hero_msgs::BasicExecutorResponse :definition-)
       "uint8 MOVE_TO_POSITION = 1
@@ -209,6 +221,7 @@ string robot_name
 bool yaw_control
 float64 position_x
 float64 position_y
+string saying
 ---
 uint8 OK = 100
 uint8 I_AM_DEAD = 101
@@ -221,6 +234,6 @@ uint8 error_code
 
 
 
-(provide :hero_msgs/BasicExecutor "71e7fa81f181141342b4387ee705a327")
+(provide :hero_msgs/BasicExecutor "325ca9264209204e72b5e0c4ca8bae2e")
 
 

@@ -183,7 +183,7 @@ void Collective_decision::MoveToPosition(int robot_num, double x,double y)
   basic_executor.request.command = basic_executor.request.MOVE_TO_POSITION;
   basic_executor.request.position_x = x;
   basic_executor.request.position_y = y;
-
+  basic_executor.request.saying = robot_status[robot_num].saying;
   if(basic_executor_cient_[robot_num].call(basic_executor))
   {
 
@@ -275,11 +275,12 @@ void Collective_decision::AttackRobot(int robot_num, int enemy_num)
 {
   hero_msgs::BasicExecutor basic_executor;
  // if(color_ == "red")
-   basic_executor.request.command = basic_executor.request.ATTACK_ROBOT;
+   //basic_executor.request.command = basic_executor.request.ATTACK_ROBOT;
  // else
-  // basic_executor.request.command = basic_executor.request.ENGAGE_ROBOT;
+  basic_executor.request.command = basic_executor.request.ENGAGE_ROBOT;
   basic_executor.request.robot_name = enemy_name_[enemy_num];
   GetOptimalEngagePosition(robot_num,enemy_num,basic_executor.request.position_x,basic_executor.request.position_y);
+   basic_executor.request.saying = robot_status[robot_num].saying;
   if(basic_executor_cient_[robot_num].call(basic_executor))
   {
 
@@ -484,21 +485,27 @@ void Collective_decision::TaskExecutor(int robot_num, RobotTask *task)
   switch(task->type)
   {
   case ATTACK_ROBOT_0:
+    robot_status[robot_num].saying = "attack "+enemy_name_[0];
     AttackRobot(robot_num,0);
     break;
   case ATTACK_ROBOT_1:
-     AttackRobot(robot_num,1);
+    robot_status[robot_num].saying = "attack "+enemy_name_[1];
+    AttackRobot(robot_num,1);
     break;
   case GET_AMMO:
-   GoGetBuff(robot_num ,GetBuffRFIDNum(FRIENDLY_AMMO));
+    robot_status[robot_num].saying = "go get ammo";
+    GoGetBuff(robot_num ,GetBuffRFIDNum(FRIENDLY_AMMO));
     break;
   case GET_HEALTH:
-   GoGetBuff(robot_num ,GetBuffRFIDNum(FRIENDLY_HEAL));
+    robot_status[robot_num].saying = "go get health";
+    GoGetBuff(robot_num ,GetBuffRFIDNum(FRIENDLY_HEAL));
     break;
   case GET_ENEMY_HEALTH:
-   GoGetBuff(robot_num ,GetBuffRFIDNum(ENEMY_HEAL));
+    robot_status[robot_num].saying = "get enemy health";
+    GoGetBuff(robot_num ,GetBuffRFIDNum(ENEMY_HEAL));
     break;
   case FLEE:
+    robot_status[robot_num].saying = "flee";
     FleeBehaviour(robot_num);
     break;
   default:

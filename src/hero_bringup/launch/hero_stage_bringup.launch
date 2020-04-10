@@ -17,7 +17,7 @@
     <param name="base_watchdog_timeout" value="0.01" />
   </node>
 
- <node pkg="hero_localization" type="localization_node" name="localization_node" respawn="false" />
+ <node pkg="hero_localization" type="localization_node" name="localization_node" respawn="false" output="screen" />
 
   <!-- Run the global planner Node -->
   <node pkg="hero_planning" type="global_planner_node" name="global_planner_node" respawn="false" />

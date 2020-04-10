@@ -280,6 +280,12 @@ void BattleView::RefreshTarget(int robot_num, std::string name)
 {
   FindRobot(RobotName[robot_num])->target = name;
 }
+
+void BattleView::RefreshRobotSaying(int robot_num, std::string saying)
+{
+  FindRobot(RobotName[robot_num])->saying = saying;
+}
+
 void BattleView::DrawRobot(QImage *qImage)
 {
     QPainter painter(qImage);
@@ -309,7 +315,10 @@ void BattleView::DrawRobot(QImage *qImage)
         painterRobot.setPen(QPen(Qt::black, 8, Qt::SolidLine,
                                 Qt::RoundCap, Qt::RoundJoin));
         //painterRobot.drawRect(robotImage.rect());
+
         painterRobot.fillRect(ROBOT_WIDTH_PIX*0.2,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX,ROBOT_HEIGHT_PIX,robotColor);
+        if((*it)->health==0)
+          painterRobot.fillRect(ROBOT_WIDTH_PIX*0.25,ROBOT_HEIGHT_PIX*0.25,ROBOT_WIDTH_PIX*0.9,ROBOT_HEIGHT_PIX*0.9,Qt::gray);
         if((*it)->selected)
             painterRobot.drawRect(ROBOT_WIDTH_PIX*0.2,ROBOT_HEIGHT_PIX*0.2,ROBOT_WIDTH_PIX,ROBOT_HEIGHT_PIX);
 
@@ -343,7 +352,7 @@ void BattleView::DrawRobot(QImage *qImage)
         hero_common::Point2D gimbalMid(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.7);
         hero_common::Point2D gimbalEndNormal(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.15);
         hero_common::Point2D gimbalEndRotated = hero_common::PointRotateAroundPoint(gimbalEndNormal, gimbalMid, - qNode_->GetGimbalYaw((*it)->index));
-        painterRobot.setPen(QPen(Qt::gray, 20, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
+        painterRobot.setPen(QPen(Qt::black, 20, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
         painterRobot.drawLine(ROBOT_WIDTH_PIX*0.7,ROBOT_HEIGHT_PIX*0.7,gimbalEndRotated.X(),gimbalEndRotated.Y());
 
 
@@ -361,7 +370,11 @@ void BattleView::DrawRobot(QImage *qImage)
         painter.setFont(font);
         painter.setPen(QPen(Qt::white, 5, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
         painter.drawText(PoseToMapPoint((*it)->pose,background.size()) - QPoint(40,40) , QString::fromStdString((*it)->name));//draw name
-
+        if((*it)->health>0)
+        {
+          painter.setPen(QPen(Qt::white, 5, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
+          painter.drawText(PoseToMapPoint((*it)->pose,background.size()) - QPoint(40,-40) , QString::fromStdString((*it)->saying));//draw name
+        }
  }
     for (auto it = robots_.begin(); it != robots_.end(); ++it)
     {

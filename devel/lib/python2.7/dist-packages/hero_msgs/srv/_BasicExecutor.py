@@ -7,7 +7,7 @@ import struct
 
 
 class BasicExecutorRequest(genpy.Message):
-  _md5sum = "915f07e066835d39bcef29a683b32eec"
+  _md5sum = "8f8f42ab7f78246732e3373077b186c3"
   _type = "hero_msgs/BasicExecutorRequest"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """uint8 MOVE_TO_POSITION = 1
@@ -19,6 +19,7 @@ string robot_name
 bool yaw_control
 float64 position_x
 float64 position_y
+string saying
 """
   # Pseudo-constants
   MOVE_TO_POSITION = 1
@@ -26,8 +27,8 @@ float64 position_y
   ENGAGE_ROBOT = 3
   HALT = 4
 
-  __slots__ = ['command','robot_name','yaw_control','position_x','position_y']
-  _slot_types = ['uint8','string','bool','float64','float64']
+  __slots__ = ['command','robot_name','yaw_control','position_x','position_y','saying']
+  _slot_types = ['uint8','string','bool','float64','float64','string']
 
   def __init__(self, *args, **kwds):
     """
@@ -37,7 +38,7 @@ float64 position_y
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       command,robot_name,yaw_control,position_x,position_y
+       command,robot_name,yaw_control,position_x,position_y,saying
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -56,12 +57,15 @@ float64 position_y
         self.position_x = 0.
       if self.position_y is None:
         self.position_y = 0.
+      if self.saying is None:
+        self.saying = ''
     else:
       self.command = 0
       self.robot_name = ''
       self.yaw_control = False
       self.position_x = 0.
       self.position_y = 0.
+      self.saying = ''
 
   def _get_types(self):
     """
@@ -84,6 +88,12 @@ float64 position_y
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
       buff.write(_get_struct_B2d().pack(_x.yaw_control, _x.position_x, _x.position_y))
+      _x = self.saying
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -111,6 +121,15 @@ float64 position_y
       end += 17
       (_x.yaw_control, _x.position_x, _x.position_y,) = _get_struct_B2d().unpack(str[start:end])
       self.yaw_control = bool(self.yaw_control)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.saying = str[start:end].decode('utf-8')
+      else:
+        self.saying = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -132,6 +151,12 @@ float64 position_y
       buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
       buff.write(_get_struct_B2d().pack(_x.yaw_control, _x.position_x, _x.position_y))
+      _x = self.saying
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -160,6 +185,15 @@ float64 position_y
       end += 17
       (_x.yaw_control, _x.position_x, _x.position_y,) = _get_struct_B2d().unpack(str[start:end])
       self.yaw_control = bool(self.yaw_control)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.saying = str[start:end].decode('utf-8')
+      else:
+        self.saying = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -301,6 +335,6 @@ def _get_struct_B():
     return _struct_B
 class BasicExecutor(object):
   _type          = 'hero_msgs/BasicExecutor'
-  _md5sum = '71e7fa81f181141342b4387ee705a327'
+  _md5sum = '325ca9264209204e72b5e0c4ca8bae2e'
   _request_class  = BasicExecutorRequest
   _response_class = BasicExecutorResponse

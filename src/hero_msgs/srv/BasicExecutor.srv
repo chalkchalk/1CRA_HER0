@@ -7,6 +7,7 @@ string robot_name
 bool yaw_control
 float64 position_x
 float64 position_y
+string saying
 ---
 uint8 OK = 100
 uint8 I_AM_DEAD = 101

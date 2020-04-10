@@ -29,6 +29,7 @@ void BasicExecutor::Init()
   target_enemy_ = "undefine";
   move_x = 0;
   move_y = 0;
+  saying = "";
   ros::Duration(2.0).sleep();
   battle_position_sub_ = nh_.subscribe<hero_msgs::BattlePosition>("/simu_decision_info/battle_position",100,&BasicExecutor::BattlePositionCallback,this);
   yaw_set_sub_ = nh_.subscribe<std_msgs::Float64>("yaw_set",100,&BasicExecutor::YawSetCallback,this);
@@ -61,8 +62,8 @@ void BasicExecutor::PublishStatus()
   case BasicExecutorState::MOVE_TO_POSITION: //moving to posiion. automaticlly engaging the closet and aimable enemy on its route.
     status.state = status.MOVE_TO_POSITION;
     break;
-
   }
+  status.saying = saying;
   basic_executor_status_pub_.publish(status);
 }
 
@@ -133,7 +134,7 @@ bool BasicExecutor::BasicExecutor_handle_function(hero_msgs::BasicExecutor::Requ
     break;
   case req.HALT:
     state_ = BasicExecutorState::IDLE;
-    target_enemy_ = "undefine" ;
+    target_enemy_ = "undefine" ;   
     break;
   case req.ENGAGE_ROBOT:
     state_ = BasicExecutorState::MOVE_TO_POSITION;
@@ -151,6 +152,7 @@ bool BasicExecutor::BasicExecutor_handle_function(hero_msgs::BasicExecutor::Requ
   }
   else
     res.error_code = res.OK;
+  saying = req.saying;
   return success;
 }
 void BasicExecutor::YawSetCallback(const std_msgs::Float64::ConstPtr &msg)

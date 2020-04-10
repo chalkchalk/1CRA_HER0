@@ -67,6 +67,7 @@ private:
     int ammo;
     double x,y;
     double combat_effectiveness;
+    std::string saying;
    RobotTask *task;
    std::vector<RobotTask> candidate_tasks;
   };

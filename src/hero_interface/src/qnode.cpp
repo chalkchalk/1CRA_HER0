@@ -132,6 +132,7 @@ void QNode::BasicExecutorStatusCallback(const hero_msgs::BasicExecutorStatus::Co
 {
   parentBattleView_->RefreshGoal(robot_num,msg->move_x,msg->move_y);
   parentBattleView_->RefreshTarget(robot_num,msg->target_name);
+  parentBattleView_->RefreshRobotSaying(robot_num,msg->saying);
   //basic_executor_status[robot_num] = *msg;
 }
 void QNode::GetParam(ros::NodeHandle *nh)

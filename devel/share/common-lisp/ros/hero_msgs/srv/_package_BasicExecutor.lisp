@@ -9,6 +9,8 @@
           POSITION_X
           POSITION_Y-VAL
           POSITION_Y
+          SAYING-VAL
+          SAYING
           ERROR_CODE-VAL
           ERROR_CODE
 ))

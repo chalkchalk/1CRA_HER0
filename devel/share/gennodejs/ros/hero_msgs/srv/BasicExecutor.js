@@ -26,6 +26,7 @@ class BasicExecutorRequest {
       this.yaw_control = null;
       this.position_x = null;
       this.position_y = null;
+      this.saying = null;
     }
     else {
       if (initObj.hasOwnProperty('command')) {
@@ -58,6 +59,12 @@ class BasicExecutorRequest {
       else {
         this.position_y = 0.0;
       }
+      if (initObj.hasOwnProperty('saying')) {
+        this.saying = initObj.saying
+      }
+      else {
+        this.saying = '';
+      }
     }
   }
 
@@ -73,6 +80,8 @@ class BasicExecutorRequest {
     bufferOffset = _serializer.float64(obj.position_x, buffer, bufferOffset);
     // Serialize message field [position_y]
     bufferOffset = _serializer.float64(obj.position_y, buffer, bufferOffset);
+    // Serialize message field [saying]
+    bufferOffset = _serializer.string(obj.saying, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -90,13 +99,16 @@ class BasicExecutorRequest {
     data.position_x = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [position_y]
     data.position_y = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [saying]
+    data.saying = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += object.robot_name.length;
-    return length + 22;
+    length += object.saying.length;
+    return length + 26;
   }
 
   static datatype() {
@@ -106,7 +118,7 @@ class BasicExecutorRequest {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '915f07e066835d39bcef29a683b32eec';
+    return '8f8f42ab7f78246732e3373077b186c3';
   }
 
   static messageDefinition() {
@@ -121,6 +133,7 @@ class BasicExecutorRequest {
     bool yaw_control
     float64 position_x
     float64 position_y
+    string saying
     
     `;
   }
@@ -164,6 +177,13 @@ class BasicExecutorRequest {
     }
     else {
       resolved.position_y = 0.0
+    }
+
+    if (msg.saying !== undefined) {
+      resolved.saying = msg.saying;
+    }
+    else {
+      resolved.saying = ''
     }
 
     return resolved;
@@ -267,6 +287,6 @@ BasicExecutorResponse.Constants = {
 module.exports = {
   Request: BasicExecutorRequest,
   Response: BasicExecutorResponse,
-  md5sum() { return '71e7fa81f181141342b4387ee705a327'; },
+  md5sum() { return '325ca9264209204e72b5e0c4ca8bae2e'; },
   datatype() { return 'hero_msgs/BasicExecutor'; }
 };

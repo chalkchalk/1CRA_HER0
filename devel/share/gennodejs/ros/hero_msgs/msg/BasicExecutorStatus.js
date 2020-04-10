@@ -19,6 +19,7 @@ class BasicExecutorStatus {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.state = null;
+      this.saying = null;
       this.robot_name = null;
       this.target_name = null;
       this.move_x = null;
@@ -30,6 +31,12 @@ class BasicExecutorStatus {
       }
       else {
         this.state = 0;
+      }
+      if (initObj.hasOwnProperty('saying')) {
+        this.saying = initObj.saying
+      }
+      else {
+        this.saying = '';
       }
       if (initObj.hasOwnProperty('robot_name')) {
         this.robot_name = initObj.robot_name
@@ -62,6 +69,8 @@ class BasicExecutorStatus {
     // Serializes a message object of type BasicExecutorStatus
     // Serialize message field [state]
     bufferOffset = _serializer.uint8(obj.state, buffer, bufferOffset);
+    // Serialize message field [saying]
+    bufferOffset = _serializer.string(obj.saying, buffer, bufferOffset);
     // Serialize message field [robot_name]
     bufferOffset = _serializer.string(obj.robot_name, buffer, bufferOffset);
     // Serialize message field [target_name]
@@ -79,6 +88,8 @@ class BasicExecutorStatus {
     let data = new BasicExecutorStatus(null);
     // Deserialize message field [state]
     data.state = _deserializer.uint8(buffer, bufferOffset);
+    // Deserialize message field [saying]
+    data.saying = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [robot_name]
     data.robot_name = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [target_name]
@@ -92,9 +103,10 @@ class BasicExecutorStatus {
 
   static getMessageSize(object) {
     let length = 0;
+    length += object.saying.length;
     length += object.robot_name.length;
     length += object.target_name.length;
-    return length + 25;
+    return length + 29;
   }
 
   static datatype() {
@@ -104,7 +116,7 @@ class BasicExecutorStatus {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'f13bcadfb243ddd81dbe4444edcd6a1c';
+    return '6355e6033a487f335fe4d99196ec3f6b';
   }
 
   static messageDefinition() {
@@ -114,6 +126,7 @@ class BasicExecutorStatus {
     uint8 ATTACK_ROBOT = 2
     uint8 IDLE = 3
     uint8 state
+    string saying
     string robot_name
     string target_name
     float64 move_x
@@ -133,6 +146,13 @@ class BasicExecutorStatus {
     }
     else {
       resolved.state = 0
+    }
+
+    if (msg.saying !== undefined) {
+      resolved.saying = msg.saying;
+    }
+    else {
+      resolved.saying = ''
     }
 
     if (msg.robot_name !== undefined) {

@@ -31,7 +31,12 @@
     :reader position_y
     :initarg :position_y
     :type cl:float
-    :initform 0.0))
+    :initform 0.0)
+   (saying
+    :reader saying
+    :initarg :saying
+    :type cl:string
+    :initform ""))
 )
 
 (cl:defclass BasicExecutor-request (<BasicExecutor-request>)
@@ -66,6 +71,11 @@
 (cl:defmethod position_y-val ((m <BasicExecutor-request>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-srv:position_y-val is deprecated.  Use hero_msgs-srv:position_y instead.")
   (position_y m))
+
+(cl:ensure-generic-function 'saying-val :lambda-list '(m))
+(cl:defmethod saying-val ((m <BasicExecutor-request>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hero_msgs-srv:saying-val is deprecated.  Use hero_msgs-srv:saying instead.")
+  (saying m))
 (cl:defmethod roslisp-msg-protocol:symbol-codes ((msg-type (cl:eql '<BasicExecutor-request>)))
     "Constants for message type '<BasicExecutor-request>"
   '((:MOVE_TO_POSITION . 1)
@@ -108,6 +118,12 @@
     (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'saying))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'saying))
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <BasicExecutor-request>) istream)
   "Deserializes a message object of type '<BasicExecutor-request>"
@@ -141,6 +157,14 @@
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'position_y) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((__ros_str_len 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'saying) (cl:make-string __ros_str_len))
+      (cl:dotimes (__ros_str_idx __ros_str_len msg)
+        (cl:setf (cl:char (cl:slot-value msg 'saying) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<BasicExecutor-request>)))
@@ -151,16 +175,16 @@
   "hero_msgs/BasicExecutorRequest")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BasicExecutor-request>)))
   "Returns md5sum for a message object of type '<BasicExecutor-request>"
-  "71e7fa81f181141342b4387ee705a327")
+  "325ca9264209204e72b5e0c4ca8bae2e")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BasicExecutor-request)))
   "Returns md5sum for a message object of type 'BasicExecutor-request"
-  "71e7fa81f181141342b4387ee705a327")
+  "325ca9264209204e72b5e0c4ca8bae2e")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BasicExecutor-request>)))
   "Returns full string definition for message of type '<BasicExecutor-request>"
-  (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 ENGAGE_ROBOT = 3~%uint8 HALT = 4~%uint8 command~%string robot_name~%bool yaw_control~%float64 position_x~%float64 position_y~%~%~%"))
+  (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 ENGAGE_ROBOT = 3~%uint8 HALT = 4~%uint8 command~%string robot_name~%bool yaw_control~%float64 position_x~%float64 position_y~%string saying~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'BasicExecutor-request)))
   "Returns full string definition for message of type 'BasicExecutor-request"
-  (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 ENGAGE_ROBOT = 3~%uint8 HALT = 4~%uint8 command~%string robot_name~%bool yaw_control~%float64 position_x~%float64 position_y~%~%~%"))
+  (cl:format cl:nil "uint8 MOVE_TO_POSITION = 1~%uint8 ATTACK_ROBOT = 2~%uint8 ENGAGE_ROBOT = 3~%uint8 HALT = 4~%uint8 command~%string robot_name~%bool yaw_control~%float64 position_x~%float64 position_y~%string saying~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <BasicExecutor-request>))
   (cl:+ 0
      1
@@ -168,6 +192,7 @@
      1
      8
      8
+     4 (cl:length (cl:slot-value msg 'saying))
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <BasicExecutor-request>))
   "Converts a ROS message object to a list"
@@ -177,6 +202,7 @@
     (cl:cons ':yaw_control (yaw_control msg))
     (cl:cons ':position_x (position_x msg))
     (cl:cons ':position_y (position_y msg))
+    (cl:cons ':saying (saying msg))
 ))
 ;//! \htmlinclude BasicExecutor-response.msg.html
 
@@ -233,10 +259,10 @@
   "hero_msgs/BasicExecutorResponse")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<BasicExecutor-response>)))
   "Returns md5sum for a message object of type '<BasicExecutor-response>"
-  "71e7fa81f181141342b4387ee705a327")
+  "325ca9264209204e72b5e0c4ca8bae2e")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'BasicExecutor-response)))
   "Returns md5sum for a message object of type 'BasicExecutor-response"
-  "71e7fa81f181141342b4387ee705a327")
+  "325ca9264209204e72b5e0c4ca8bae2e")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<BasicExecutor-response>)))
   "Returns full string definition for message of type '<BasicExecutor-response>"
   (cl:format cl:nil "uint8 OK = 100~%uint8 I_AM_DEAD = 101~%uint8 OUT_OF_AMMO = 102~%uint8 TARGET_IS_DEAD = 103~%uint8 INVALID_TARGET = 104~%uint8 error_code~%~%~%~%"))
